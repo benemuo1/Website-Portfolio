@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FORGE — Performance Training</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;500;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0a0a;--fg:#fff;--red:#e63946;--yellow:#ffd60a;--dark:#111}
+body{background:var(--bg);color:var(--fg);font-family:'Barlow',sans-serif;overflow-x:hidden}
+nav{position:fixed;top:0;width:100%;padding:1.5rem 4rem;display:flex;justify-content:space-between;align-items:center;z-index:100;mix-blend-mode:difference}
+nav .logo{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;letter-spacing:.05em}
+nav ul{display:flex;gap:2rem;list-style:none}
+nav a{color:#fff;text-decoration:none;font-size:.8rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase}
+.hero{height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200') center/cover;filter:brightness(.3) contrast(1.2)}
+.hero-content{text-align:center;position:relative;z-index:2}
+.hero-content h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(5rem,15vw,14rem);line-height:.85;letter-spacing:.02em}
+.hero-content h1 .red{color:var(--red)}
+.hero-content p{font-size:1.1rem;color:#aaa;margin-top:1.5rem;letter-spacing:.1em;text-transform:uppercase;font-weight:300}
+.hero-content .cta{display:inline-block;margin-top:2.5rem;padding:1.2rem 3rem;background:var(--red);color:#fff;text-decoration:none;font-weight:900;font-size:.9rem;letter-spacing:.15em;text-transform:uppercase;clip-path:polygon(0 0,100% 0,96% 100%,4% 100%)}
+.orbit-dot{position:absolute;width:12px;height:12px;border-radius:50%;background:var(--red);z-index:3;box-shadow:0 0 20px rgba(230,57,70,.5)}
+svg.orbit-path{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:700px;z-index:1;opacity:.1}
+.programs{padding:8rem 4rem}
+.programs h2{font-family:'Bebas Neue',sans-serif;font-size:5rem;margin-bottom:4rem}
+.programs h2 span{color:var(--red)}
+.program-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+.program-card{padding:3rem;border:1px solid #1a1a1a;position:relative;overflow:hidden;transition:all .4s}
+.program-card:hover{background:var(--red);border-color:var(--red)}
+.program-card .num{font-family:'Bebas Neue',sans-serif;font-size:6rem;color:#1a1a1a;line-height:1;transition:color .4s}
+.program-card:hover .num{color:rgba(255,255,255,.2)}
+.program-card h3{font-size:1.5rem;font-weight:900;margin:1rem 0 .5rem;text-transform:uppercase;letter-spacing:.05em}
+.program-card p{color:#777;font-size:.9rem;line-height:1.6;transition:color .4s}
+.program-card:hover p{color:rgba(255,255,255,.8)}
+.stats-bar{padding:4rem;display:flex;justify-content:space-around;border-top:1px solid #1a1a1a;border-bottom:1px solid #1a1a1a}
+.stat{text-align:center}
+.stat h3{font-family:'Bebas Neue',sans-serif;font-size:4rem;color:var(--yellow)}
+.stat p{font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:#666;margin-top:.3rem}
+.trainers{padding:8rem 4rem}
+.trainers h2{font-family:'Bebas Neue',sans-serif;font-size:5rem;margin-bottom:4rem}
+.trainer-row{display:flex;gap:2rem}
+.trainer{flex:1;position:relative;overflow:hidden;height:500px}
+.trainer img{width:100%;height:100%;object-fit:cover;filter:grayscale(100%) contrast(1.1);transition:all .5s}
+.trainer:hover img{filter:grayscale(0%);transform:scale(1.05)}
+.trainer .overlay{position:absolute;bottom:0;left:0;right:0;padding:2rem;background:linear-gradient(transparent,rgba(0,0,0,.9));transform:translateY(100%);transition:transform .4s}
+.trainer:hover .overlay{transform:translateY(0)}
+.trainer .overlay h3{font-family:'Bebas Neue',sans-serif;font-size:1.8rem}
+.trainer .overlay span{color:var(--red);font-size:.8rem;letter-spacing:.15em;text-transform:uppercase}
+.cta-section{padding:10rem 4rem;text-align:center;position:relative}
+.cta-section h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,8vw,7rem);line-height:.95}
+.cta-section h2 .red{color:var(--red)}
+.cta-section a{display:inline-block;margin-top:2rem;padding:1.2rem 3rem;background:var(--red);color:#fff;text-decoration:none;font-weight:900;letter-spacing:.15em;text-transform:uppercase;font-size:.9rem}
+footer{padding:3rem 4rem;border-top:1px solid #1a1a1a;display:flex;justify-content:space-between;font-size:.8rem;color:#555}
+</style>
+</head>
+<body>
+<nav><div class="logo">FORGE</div><ul><li><a href="#">Programs</a></li><li><a href="#">Trainers</a></li><li><a href="#">Join</a></li></ul></nav>
+<section class="hero">
+<div class="hero-bg"></div>
+<svg class="orbit-path" viewBox="0 0 700 700"><ellipse cx="350" cy="350" rx="340" ry="200" fill="none" stroke="#e63946" id="orbitPath"/></svg>
+<div class="orbit-dot" id="dot1"></div>
+<div class="orbit-dot" id="dot2" style="width:8px;height:8px;background:var(--yellow)"></div>
+<div class="hero-content">
+<h1>BREAK<br><span class="red">LIMITS</span></h1>
+<p>Elite performance training for every body</p>
+<a href="#" class="cta">Start Free Trial</a>
+</div>
+</section>
+<section class="programs">
+<h2>OUR <span>PROGRAMS</span></h2>
+<div class="program-grid">
+<div class="program-card"><div class="num">01</div><h3>Strength</h3><p>Progressive overload programs designed to build raw power and functional strength.</p></div>
+<div class="program-card"><div class="num">02</div><h3>HIIT</h3><p>High-intensity intervals that torch calories and boost cardiovascular endurance.</p></div>
+<div class="program-card"><div class="num">03</div><h3>Mobility</h3><p>Restore range of motion and prevent injury with guided flexibility work.</p></div>
+</div>
+</section>
+<div class="stats-bar">
+<div class="stat"><h3>12K+</h3><p>Members</p></div>
+<div class="stat"><h3>50+</h3><p>Classes Weekly</p></div>
+<div class="stat"><h3>98%</h3><p>Retention Rate</p></div>
+<div class="stat"><h3>15</h3><p>Elite Coaches</p></div>
+</div>
+<section class="trainers">
+<h2>COACHES</h2>
+<div class="trainer-row">
+<div class="trainer"><img src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?w=400" alt=""><div class="overlay"><h3>ALEX RIVERA</h3><span>Strength & Conditioning</span></div></div>
+<div class="trainer"><img src="https://images.unsplash.com/photo-1548690312-e3b507d8c110?w=400" alt=""><div class="overlay"><h3>MAYA JOHNSON</h3><span>HIIT & Cardio</span></div></div>
+<div class="trainer"><img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=400" alt=""><div class="overlay"><h3>CHRIS PARK</h3><span>Mobility & Recovery</span></div></div>
+</div>
+</section>
+<section class="cta-section">
+<h2>YOUR FIRST<br>CLASS IS <span class="red">FREE</span></h2>
+<a href="#">Book Now</a>
+</section>
+<footer><span>© 2024 FORGE FITNESS</span><span>Los Angeles · Miami · Austin</span></footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(MotionPathPlugin, ScrollTrigger);
+
+// Orbit dots around hero
+gsap.to('#dot1',{duration:6,repeat:-1,ease:'none',motionPath:{path:'#orbitPath',align:'#orbitPath',alignOrigin:[.5,.5]}});
+gsap.to('#dot2',{duration:9,repeat:-1,ease:'none',motionPath:{path:'#orbitPath',align:'#orbitPath',alignOrigin:[.5,.5],start:.5}});
+
+gsap.from('.hero-content h1',{scale:.6,opacity:0,duration:1.5,ease:'power4.out',delay:.3});
+gsap.from('.hero-content p, .hero-content .cta',{y:30,opacity:0,stagger:.2,duration:.8,delay:1});
+
+gsap.from('.programs h2',{scrollTrigger:{trigger:'.programs',start:'top 80%'},x:-60,opacity:0,duration:.8});
+gsap.from('.program-card',{scrollTrigger:{trigger:'.program-grid',start:'top 70%'},y:80,opacity:0,stagger:.15,duration:.8,ease:'power3.out'});
+gsap.from('.program-card .num',{scrollTrigger:{trigger:'.program-grid',start:'top 70%'},scale:0,stagger:.15,duration:.6,ease:'back.out(2)',delay:.3});
+gsap.from('.program-card h3, .program-card p',{scrollTrigger:{trigger:'.program-grid',start:'top 65%'},y:15,opacity:0,stagger:.05,duration:.4,delay:.5});
+
+gsap.from('.stat',{scrollTrigger:{trigger:'.stats-bar',start:'top 80%'},scale:.5,opacity:0,stagger:.1,duration:.7,ease:'back.out(1.7)'});
+gsap.from('.stat h3',{scrollTrigger:{trigger:'.stats-bar',start:'top 75%'},y:20,opacity:0,stagger:.1,duration:.5,delay:.3});
+gsap.from('.stat p',{scrollTrigger:{trigger:'.stats-bar',start:'top 75%'},y:10,opacity:0,stagger:.1,duration:.4,delay:.5});
+
+gsap.from('.trainers h2',{scrollTrigger:{trigger:'.trainers',start:'top 80%'},x:-60,opacity:0,duration:.8});
+gsap.from('.trainer',{scrollTrigger:{trigger:'.trainer-row',start:'top 70%'},x:i=>[-80,0,80][i],opacity:0,stagger:.15,duration:1});
+gsap.from('.trainer img',{scrollTrigger:{trigger:'.trainer-row',start:'top 70%'},scale:1.2,stagger:.15,duration:1.5,ease:'power3.out'});
+
+gsap.from('.cta-section h2',{scrollTrigger:{trigger:'.cta-section',start:'top 65%'},y:60,opacity:0,duration:1});
+gsap.from('.cta-section a',{scrollTrigger:{trigger:'.cta-section',start:'top 60%'},y:30,opacity:0,scale:.8,duration:.7,ease:'back.out(1.7)',delay:.3});
+</script>
+</body>
+</html>

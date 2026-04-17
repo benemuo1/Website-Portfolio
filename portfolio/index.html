@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Template Portfolio — Web Design Showcase</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:#faf6f1;color:#2d2520;font-family:'Inter',sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+::selection{background:rgba(234,124,50,.2)}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 2rem;height:52px;background:rgba(255,255,255,.85);backdrop-filter:blur(24px);border-bottom:1px solid rgba(0,0,0,.06);display:flex;align-items:center;justify-content:space-between}
+.nav-brand{font-size:.8rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:#8a7060}
+.nav-brand .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,#ea7c32,#e85d26);margin-right:.5rem;animation:dotPulse 2s ease-in-out infinite}
+@keyframes dotPulse{0%,100%{opacity:.6;transform:scale(1)}50%{opacity:1;transform:scale(1.3)}}
+.nav-count{font-size:.65rem;color:#b8a898;letter-spacing:.1em;background:rgba(0,0,0,.03);padding:.3rem .8rem;border-radius:50px;border:1px solid rgba(0,0,0,.06)}
+
+/* HERO */
+.hero{padding:0;position:relative;overflow:hidden;min-height:85vh;display:grid;grid-template-columns:1.1fr 1fr;background:linear-gradient(170deg,#fff8f2 0%,#fef0e4 40%,#fde8d4 100%)}
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:7rem 0 4rem;padding-left:max(2rem,calc((100vw - 1400px)/2 + 2rem));padding-right:3rem;position:relative;z-index:3}
+.hero-right{position:relative;overflow:hidden;clip-path:polygon(12% 0,100% 0,100% 100%,0% 100%)}
+.hero-right-inner{position:relative;width:100%;height:100%;overflow:hidden}
+.hero-scroll-col{position:absolute;top:0;display:flex;flex-direction:column;gap:8px;animation:heroScroll var(--dur) linear infinite}
+.hero-scroll-col-1{left:0;width:50%;padding-right:4px;--dur:40s}
+.hero-scroll-col-2{left:50%;width:50%;padding-left:4px;--dur:48s;animation-direction:reverse}
+@keyframes heroScroll{0%{transform:translateY(0)}100%{transform:translateY(-50%)}}
+.hero-thumb{overflow:hidden;position:relative;border-radius:10px;flex-shrink:0;height:220px}
+.hero-thumb iframe{width:300%;height:300%;border:none;transform:scale(.333);transform-origin:top left;pointer-events:none}
+.hero-thumb::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(232,93,38,.06),rgba(244,160,62,.04));pointer-events:none;transition:opacity .3s}
+.hero-thumb:hover::after{opacity:0}
+.hero-accent-line{position:absolute;top:0;left:0;width:4px;height:0;background:linear-gradient(to bottom,#e85d26,#f4a03e,transparent);z-index:4;border-radius:2px}
+.hero-diagonal{position:absolute;bottom:-2px;left:0;right:0;height:80px;background:#faf6f1;clip-path:polygon(0 60%,100% 0,100% 100%,0 100%);z-index:5}
+.hero-bg{position:absolute;inset:0;pointer-events:none;z-index:1}
+.hero-blob{position:absolute;border-radius:50%;filter:blur(100px);opacity:.5;animation:blobDrift 12s ease-in-out infinite alternate}
+.hero-blob-1{width:500px;height:500px;background:linear-gradient(135deg,#f9a85c,#f47e3e);top:-20%;left:-10%;animation-delay:0s}
+.hero-blob-2{width:400px;height:400px;background:linear-gradient(135deg,#fcd49a,#f7b955);top:5%;right:-10%;animation-delay:-4s}
+.hero-blob-3{width:350px;height:350px;background:linear-gradient(135deg,#f2c9a8,#e8a87c);bottom:-15%;left:25%;animation-delay:-8s}
+@keyframes blobDrift{0%{transform:translate(0,0) scale(1) rotate(0deg)}33%{transform:translate(40px,-30px) scale(1.1) rotate(5deg)}66%{transform:translate(-20px,40px) scale(.9) rotate(-3deg)}100%{transform:translate(30px,20px) scale(1.05) rotate(2deg)}}
+.hero-noise{position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.02'/%3E%3C/svg%3E");pointer-events:none}
+.hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.6rem,6vw,5rem);font-weight:800;line-height:.95;letter-spacing:-.03em}
+.hero h1 .line{display:block;overflow:hidden}
+.hero h1 .line-inner{display:block;transform:translateY(110%)}
+.hero h1 .pop{background:linear-gradient(135deg,#e85d26,#ea7c32,#f4a03e);-webkit-background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 4px 20px rgba(232,93,38,.15))}
+.hero h1 .dim{color:#c8b8a8}
+.hero-tagline{font-size:1rem;color:#a09080;max-width:400px;line-height:1.7;font-weight:300;margin-top:1.5rem;opacity:0;transform:translateY(20px)}
+.hero-cta{display:inline-flex;align-items:center;gap:.6rem;margin-top:2rem;padding:.8rem 2rem;background:#e85d26;color:#fff;border-radius:50px;font-size:.8rem;font-weight:600;letter-spacing:.05em;opacity:0;transform:translateY(20px);transition:background .3s;box-shadow:0 8px 30px rgba(232,93,38,.2)}
+.hero-cta:hover{background:#d4511e}
+.hero-cta svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.hero-counter{display:flex;gap:2.5rem;margin-top:2.5rem;opacity:0}
+.hero-counter div strong{display:block;font-family:'Space Grotesk',sans-serif;font-size:1.8rem;font-weight:700;color:#e85d26}
+.hero-counter div span{font-size:.65rem;color:#b8a898;letter-spacing:.1em;text-transform:uppercase}
+
+/* FILTERS */
+.filters{padding:0 2rem;margin-bottom:2rem;position:sticky;top:52px;z-index:90;background:rgba(250,246,241,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,.05);padding-top:1rem;padding-bottom:1rem}
+.filter-wrap{position:relative;max-width:1400px;margin:0 auto}
+.filter-scroll{display:flex;gap:.5rem;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;scroll-behavior:smooth;mask-image:linear-gradient(to right,transparent 0%,black 40px,black calc(100% - 40px),transparent 100%);-webkit-mask-image:linear-gradient(to right,transparent 0%,black 40px,black calc(100% - 40px),transparent 100%)}
+.filter-scroll.at-start{mask-image:linear-gradient(to right,black,black calc(100% - 40px),transparent 100%);-webkit-mask-image:linear-gradient(to right,black,black calc(100% - 40px),transparent 100%)}
+.filter-scroll.at-end{mask-image:linear-gradient(to right,transparent 0%,black 40px,black);-webkit-mask-image:linear-gradient(to right,transparent 0%,black 40px,black)}
+.filter-scroll.at-start.at-end{mask-image:none;-webkit-mask-image:none}
+.filter-scroll::-webkit-scrollbar{display:none}
+.filter-arrow{position:absolute;top:50%;transform:translateY(-50%);width:32px;height:32px;border-radius:50%;background:rgba(234,124,50,.08);border:1px solid rgba(234,124,50,.2);color:#d4763a;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.75rem;z-index:5;transition:all .3s;backdrop-filter:blur(8px)}
+.filter-arrow:hover{background:rgba(234,124,50,.15);border-color:rgba(234,124,50,.4);color:#c45a20}
+.filter-arrow.hidden{opacity:0;pointer-events:none}
+.filter-arrow-left{left:-4px}
+.filter-arrow-right{right:-4px}
+.filter-btn{padding:.5rem 1.2rem;border-radius:50px;font-size:.75rem;font-weight:500;letter-spacing:.05em;border:1px solid rgba(0,0,0,.08);background:transparent;color:#8a7a6a;cursor:pointer;transition:all .3s;white-space:nowrap;font-family:inherit}
+.filter-btn:hover{border-color:rgba(234,124,50,.25);color:#6a5a4a;background:rgba(234,124,50,.04)}
+.filter-btn.active{background:#e85d26;border-color:#e85d26;color:#fff}
+.filter-hint{text-align:center;margin-top:.4rem;font-size:.6rem;color:#c8b8a8;letter-spacing:.1em;transition:opacity .5s}
+.filter-hint.hidden{opacity:0}
+
+/* GRID */
+.grid-section{max-width:1400px;margin:0 auto;padding:0 2rem 4rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.5rem}
+
+/* CARD */
+.card{position:relative;border-radius:16px;overflow:hidden;border:1px solid rgba(0,0,0,.06);background:#fff;transition:all .4s;cursor:pointer;box-shadow:0 2px 12px rgba(0,0,0,.04)}
+.card:hover{border-color:rgba(234,124,50,.2);transform:translateY(-4px);box-shadow:0 20px 50px rgba(234,124,50,.08)}
+.card-img{position:relative;height:220px;overflow:hidden;background:#f5ede4}
+.card-img iframe{width:200%;height:200%;border:none;transform:scale(.5);transform-origin:top left;pointer-events:none}
+.card-img .overlay{position:absolute;inset:0;background:linear-gradient(to top,#fff,transparent 60%);z-index:2;pointer-events:none}
+.card-body{padding:1.25rem;position:relative;z-index:3}
+.card-cat{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:#e85d26;font-weight:600;margin-bottom:.5rem}
+.card-title{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:600;margin-bottom:.35rem;color:#2d2520}
+.card-type{font-size:.75rem;color:#a09080}
+.card-tags{display:flex;gap:.4rem;margin-top:.75rem;flex-wrap:wrap}
+.card-tag{padding:.2rem .6rem;border-radius:50px;font-size:.6rem;border:1px solid rgba(0,0,0,.07);color:#a09080;background:rgba(0,0,0,.02)}
+.card-badge{display:inline-block;padding:.25rem .7rem;border-radius:50px;font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:linear-gradient(135deg,#e85d26,#f4a03e);color:#fff;margin-top:.75rem}
+.card-link{position:absolute;inset:0;z-index:5}
+
+/* VIEWER */
+.viewer{display:none;position:fixed;inset:0;z-index:200;background:rgba(250,246,241,.95);backdrop-filter:blur(8px)}
+.viewer.open{display:flex;flex-direction:column}
+.viewer-bar{display:flex;align-items:center;justify-content:space-between;padding:.75rem 1.5rem;background:rgba(255,255,255,.95);border-bottom:1px solid rgba(0,0,0,.08)}
+.viewer-bar h3{font-family:'Space Grotesk',sans-serif;font-size:.9rem;font-weight:600;color:#2d2520}
+.viewer-bar span{font-size:.7rem;color:#a09080}
+.viewer-close{background:none;border:1px solid rgba(0,0,0,.12);color:#6a5a4a;padding:.4rem 1rem;border-radius:8px;font-size:.75rem;cursor:pointer;font-family:inherit;transition:all .3s}
+.viewer-close:hover{background:rgba(0,0,0,.05);color:#2d2520}
+.viewer iframe{flex:1;width:100%;border:none}
+
+/* FOOTER */
+.footer{padding:3rem 2rem;border-top:1px solid rgba(0,0,0,.06);text-align:center;background:#faf6f1}
+.footer p{font-size:.75rem;color:#c8b8a8}
+
+@media(max-width:768px){
+.grid{grid-template-columns:1fr}
+.hero{padding:0;min-height:auto}
+.hero-blob{opacity:.3}
+.hero-right{display:none}
+.hero-left{padding:5rem 1.5rem 3rem}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+<div class="nav-brand"><span class="dot"></span>Bianca Enemuo</div>
+<div class="nav-count" id="countLabel">50+ designs</div>
+</nav>
+
+<section class="hero">
+<div class="hero-bg">
+<div class="hero-blob hero-blob-1"></div>
+<div class="hero-blob hero-blob-2"></div>
+<div class="hero-blob hero-blob-3"></div>
+<div class="hero-noise"></div>
+</div>
+<div class="hero-accent-line" id="accentLine"></div>
+<div class="hero-left">
+<h1>
+<span class="line"><span class="line-inner dim">I don't just build</span></span>
+<span class="line"><span class="line-inner pop">websites.</span></span>
+<span class="line"><span class="line-inner dim">I build experiences.</span></span>
+</h1>
+<p class="hero-tagline" id="heroTagline">Every template below is a real, working site — animated, responsive, and ready to become yours</p>
+<a href="#grid" class="hero-cta" id="heroCta">Browse all designs <svg viewBox="0 0 24 24"><path d="M7 17l9.2-5L7 7z"/></svg></a>
+<div class="hero-counter" id="heroCounter">
+<div><strong id="hcTemplates">0</strong><span>Templates</span></div>
+<div><strong id="hcCats">0</strong><span>Categories</span></div>
+<div><strong>100%</strong><span>Responsive</span></div>
+</div>
+</div>
+<div class="hero-right">
+<div class="hero-right-inner">
+<div class="hero-scroll-col hero-scroll-col-1" id="scrollCol1">
+<!-- filled by JS -->
+</div>
+<div class="hero-scroll-col hero-scroll-col-2" id="scrollCol2">
+<!-- filled by JS -->
+</div>
+</div>
+</div>
+<div class="hero-diagonal"></div>
+</section>
+
+<div class="filters">
+<div class="filter-wrap">
+<button class="filter-arrow filter-arrow-left hidden" id="filterLeft" aria-label="Scroll left">&#8249;</button>
+<div class="filter-scroll at-start" id="filterScroll">
+<!-- filters injected by JS -->
+</div>
+<button class="filter-arrow filter-arrow-right" id="filterRight" aria-label="Scroll right">&#8250;</button>
+</div>
+<div class="filter-hint" id="filterHint">&#8592; swipe or use arrows to see more categories &#8594;</div>
+</div>
+
+<section class="grid-section" id="grid">
+<div class="grid" id="templateGrid">
+<!-- cards injected by JS -->
+</div>
+</section>
+
+<div class="viewer" id="viewer">
+<div class="viewer-bar">
+<div><h3 id="viewerTitle">Template</h3><span id="viewerType"></span></div>
+<button class="viewer-close" onclick="closeViewer(true)">✕ Close</button>
+</div>
+<iframe id="viewerFrame" src=""></iframe>
+</div>
+
+<footer class="footer"><p>&copy; 2025 Template Portfolio. All rights reserved.</p></footer>
+
+<script>
+const T=[
+// GSAP SITES
+{name:'VOXEL',type:'Creative Agency',cat:'Agency',path:'../voxel-agency/index.html',tags:['Dark','Custom Cursor'],premium:true},
+{name:'MONOLITH',type:'Architecture Studio',cat:'Architecture',path:'../monolith-architecture/index.html',tags:['Horizontal Scroll','Elegant'],premium:true},
+{name:'PULSE',type:'Analytics Platform',cat:'SaaS',path:'../pulse-saas/index.html',tags:['Dark','Glassmorphism'],premium:true},
+{name:'ATELIER',type:'Fashion House',cat:'Fashion',path:'../atelier-fashion/index.html',tags:['Luxury','Parallax'],premium:true},
+{name:'RESONANCE',type:'Music Festival',cat:'Events',path:'../resonance-festival/index.html',tags:['Neon','Countdown'],premium:true},
+{name:'CRUMB',type:'Artisan Bakery',cat:'Food & Drink',path:'../crumb-bakery/index.html',tags:['Flip','Warm'],premium:true},
+{name:'STERLING',type:'Law Firm',cat:'Professional',path:'../sterling-law/index.html',tags:['Typewriter','Corporate'],premium:true},
+{name:'FORGE',type:'Performance Gym',cat:'Fitness',path:'../forge-gym/index.html',tags:['MotionPath','Bold'],premium:true},
+{name:'DOMAINE',type:'Estate Winery',cat:'Food & Drink',path:'../domaine-winery/index.html',tags:['SVG Draw','Luxury'],premium:true},
+{name:'AETHER',type:'Space Tourism',cat:'SaaS',path:'../aether-space/index.html',tags:['Rocket','Sci-Fi'],premium:true},
+{name:'HAUS',type:'Interior Design',cat:'Architecture',path:'../haus-interiors/index.html',tags:['Observer','Full-Screen'],premium:true},
+{name:'PAWSOME',type:'Pet Care',cat:'Services',path:'../pawsome-petcare/index.html',tags:['Playful','Colorful'],premium:true},
+{name:'NEXUS',type:'DeFi Protocol',cat:'SaaS',path:'../nexus-defi/index.html',tags:['Crypto','Grid BG'],premium:true},
+{name:'EMBER',type:'Specialty Coffee',cat:'Food & Drink',path:'../ember-coffee/index.html',tags:['Draggable','Moody'],premium:true},
+{name:'LUMEN',type:'Photography',cat:'Portfolio',path:'../lumen-photography/index.html',tags:['ScrollTo','Masonry'],premium:true},
+{name:'CLARITY',type:'Dental Studio',cat:'Healthcare',path:'../clarity-dental/index.html',tags:['Clean','Medical'],premium:true},
+{name:'HAVEN',type:'Luxury Real Estate',cat:'Real Estate',path:'../haven-realestate/index.html',tags:['Parallax','Gold'],premium:true},
+{name:'SAFFRON',type:'Modern Bistro',cat:'Food & Drink',path:'../saffron-bistro/index.html',tags:['Clip-Path','Warm'],premium:true},
+{name:'ĀSANA',type:'Yoga & Wellness',cat:'Wellness',path:'../asana-yoga/index.html',tags:['Breathing','Serene'],premium:true},
+{name:'PIXEL FORGE',type:'Game Studio',cat:'Entertainment',path:'../pixelforge-games/index.html',tags:['Retro','Neon'],premium:true},
+{name:'DRIFT',type:'Travel Collective',cat:'Travel',path:'../drift-travel/index.html',tags:['3D Spin','Cards'],premium:true},
+{name:'NOVA',type:'Creative Studio',cat:'Agency',path:'../nova-studio/index.html',tags:['Drop-In','Spin'],premium:true},
+{name:'THREAD',type:'Modern Fashion',cat:'Fashion',path:'../thread-fashion/index.html',tags:['E-Commerce','Minimal'],premium:true},
+{name:'FORM',type:'Architecture & Design',cat:'Architecture',path:'../form-architecture/index.html',tags:['Hybrid','Drop-In'],premium:true},
+{name:'Margot\'s Journal',type:'Personal Blog',cat:'Blog',path:'../margot-blog/index.html',tags:['matchMedia','Handwritten'],premium:true},
+{name:'VOID',type:'Photography',cat:'Portfolio',path:'../void-photography/index.html',tags:['Snap Scroll','Cinematic'],premium:true},
+{name:'ZEPHYR',type:'Music Artist',cat:'Entertainment',path:'../zephyr-music/index.html',tags:['quickTo','Neon'],premium:true},
+{name:'Sage & Spoon',type:'Recipe Blog',cat:'Food & Drink',path:'../sage-recipes/index.html',tags:['Batch','Masonry'],premium:true},
+{name:'RAW',type:'Design Portfolio',cat:'Portfolio',path:'../raw-portfolio/index.html',tags:['registerEffect','Brutalist'],premium:true},
+{name:'Sparks!',type:'Kids Learning',cat:'Education',path:'../sparks-kids/index.html',tags:['Random','Colorful'],premium:true},
+{name:'KAEL',type:'Film Director',cat:'Portfolio',path:'../kael-director/index.html',tags:['containerAnimation','Cinema'],premium:true},
+{name:'RELIC',type:'Vintage Shop',cat:'E-Commerce',path:'../relic-vintage/index.html',tags:['Skew','Sepia'],premium:true},
+{name:'Ink & Silence',type:'Poetry Journal',cat:'Blog',path:'../ink-poetry/index.html',tags:['distribute','Minimal'],premium:true},
+{name:'BLVCK',type:'Streetwear',cat:'Fashion',path:'../blvck-streetwear/index.html',tags:['toggleClass','Clip-Path'],premium:true},
+{name:'KILN',type:'Ceramics Studio',cat:'E-Commerce',path:'../kiln-ceramics/index.html',tags:['Blob Morph','Organic'],premium:true},
+{name:'Wanderlog',type:'Travel Journal',cat:'Travel',path:'../wanderlog-travel/index.html',tags:['Draggable','Polaroid'],premium:true},
+{name:'CANVAS',type:'Art Gallery',cat:'Portfolio',path:'../canvas-gallery/index.html',tags:['Progress','Horizontal'],premium:true},
+{name:'GRIND',type:'Skate Shop',cat:'E-Commerce',path:'../grind-skate/index.html',tags:['RoughEase','Skew'],premium:true},
+{name:'CELESTIA',type:'Astrology',cat:'Entertainment',path:'../celestia-astrology/index.html',tags:['SVG Draw','Mystical'],premium:true},
+{name:'SPLICE',type:'Digital Zine',cat:'Blog',path:'../splice-zine/index.html',tags:['Keyframes','Editorial'],premium:true},
+// HK THERAPY
+{name:'HK Editorial Green',type:'Massage Therapy',cat:'Wellness',path:'../HK therapy templates/template-2/single.html',tags:['Green','Editorial'],premium:false},
+{name:'HK 3D Premium',type:'Massage Therapy',cat:'Wellness',path:'../HK therapy templates/template-5/single.html',tags:['Dark','3D Tilt'],premium:false},
+{name:'HK Minimal Coral',type:'Massage Therapy',cat:'Wellness',path:'../HK therapy templates/template-7/single.html',tags:['Coral','Gradient'],premium:false},
+{name:'HK Earthy Elegant',type:'Massage Therapy',cat:'Wellness',path:'../HK therapy templates/template-9/single.html',tags:['Earthy','Side Menu'],premium:false},
+{name:'HK Dark Botanical',type:'Massage Therapy',cat:'Wellness',path:'../HK therapy templates/template-10/single.html',tags:['Dark','Particles'],premium:false},
+{name:'HK Coastal Teal',type:'Massage Therapy',cat:'Wellness',path:'../HK therapy templates/template-13/single.html',tags:['Teal','Blur Anim'],premium:false},
+{name:'HK Bold Dark',type:'Massage Therapy',cat:'Wellness',path:'../HK therapy templates/template-19/single.html',tags:['Dark','Loader'],premium:false},
+// PREMIUM NO GSAP
+{name:'IRON ELITE',type:'Performance Gym',cat:'Fitness',path:'../premium with no gsap/gym-iron-elite/single.html',tags:['Red','Military'],premium:false},
+{name:'TITAN FORGE',type:'Training Ground',cat:'Fitness',path:'../premium with no gsap/gym-titan-forge/single.html',tags:['Orange','Forge'],premium:false},
+{name:'SUMMIT',type:'Luxury Real Estate',cat:'Real Estate',path:'../premium with no gsap/premium-realestate-summit/single.html',tags:['Gold','Luxury'],premium:false},
+{name:'NOIR',type:'Fine Dining',cat:'Food & Drink',path:'../premium with no gsap/premium-restaurant-noir/single.html',tags:['Gold','Michelin'],premium:false},
+{name:'QUANTUM',type:'Developer Platform',cat:'SaaS',path:'../premium with no gsap/premium-saas-quantum/single.html',tags:['Cyan','Terminal'],premium:false},
+];
+
+// ========== STATE ==========
+let currentFilter = 'All';
+let viewerOpen = false;
+
+// ========== CATEGORIES & FILTER BUTTONS ==========
+const cats=['All',...[...new Set(T.map(t=>t.cat))].sort()];
+const filterScroll=document.getElementById('filterScroll');
+cats.forEach(c=>{
+const btn=document.createElement('button');
+btn.className='filter-btn'+(c==='All'?' active':'');
+btn.textContent=c;
+btn.dataset.cat=c;
+btn.onclick=()=>filterBy(c,true);
+filterScroll.appendChild(btn);
+});
+
+// ========== RENDER CARDS ==========
+const grid=document.getElementById('templateGrid');
+function renderCards(filter){
+grid.innerHTML='';
+const filtered=filter==='All'?T:T.filter(t=>t.cat===filter);
+filtered.forEach((t,i)=>{
+const card=document.createElement('div');
+card.className='card';
+card.setAttribute('data-cat',t.cat);
+card.innerHTML=`
+<div class="card-img"><iframe src="${t.path}" loading="lazy" sandbox="allow-scripts allow-same-origin" tabindex="-1"></iframe><div class="overlay"></div></div>
+<div class="card-body">
+<div class="card-cat">${t.cat}</div>
+<div class="card-title">${t.name}</div>
+<div class="card-type">${t.type}</div>
+<div class="card-tags">${t.tags.map(tag=>`<span class="card-tag">${tag}</span>`).join('')}</div>
+${t.premium?'<span class="card-badge">Premium</span>':''}
+</div>
+`;
+card.addEventListener('click',()=>openViewer(i,filter,true));
+grid.appendChild(card);
+});
+}
+
+// ========== FILTER (with history) ==========
+function filterBy(cat,pushState){
+currentFilter=cat;
+document.querySelectorAll('.filter-btn').forEach(b=>b.classList.toggle('active',b.dataset.cat===cat));
+renderCards(cat);
+if(pushState){
+const url=cat==='All'?location.pathname:location.pathname+'?cat='+encodeURIComponent(cat);
+history.pushState({view:'grid',cat:cat},'',(url));
+}
+}
+
+// ========== VIEWER (with history) ==========
+function openViewer(index,filter,pushState){
+const list=filter==='All'?T:T.filter(t=>t.cat===filter);
+const t=list[index];
+if(!t)return;
+viewerOpen=true;
+document.getElementById('viewer').classList.add('open');
+document.getElementById('viewerTitle').textContent=t.name;
+document.getElementById('viewerType').textContent=t.type;
+document.getElementById('viewerFrame').src=t.path;
+document.body.style.overflow='hidden';
+if(pushState){
+history.pushState({view:'viewer',index:index,cat:filter},'',location.pathname+'?view='+encodeURIComponent(t.name));
+}
+}
+
+function closeViewer(pushState){
+if(!viewerOpen)return;
+viewerOpen=false;
+document.getElementById('viewer').classList.remove('open');
+document.getElementById('viewerFrame').src='';
+document.body.style.overflow='';
+if(pushState!==false){
+// Go back to the grid state
+const url=currentFilter==='All'?location.pathname:location.pathname+'?cat='+encodeURIComponent(currentFilter);
+history.pushState({view:'grid',cat:currentFilter},'',url);
+}
+}
+
+// ========== BROWSER BACK/FORWARD ==========
+window.addEventListener('popstate',(e)=>{
+const state=e.state;
+if(!state||state.view==='grid'){
+// Close viewer if open, restore filter
+if(viewerOpen){
+viewerOpen=false;
+document.getElementById('viewer').classList.remove('open');
+document.getElementById('viewerFrame').src='';
+document.body.style.overflow='';
+}
+const cat=(state&&state.cat)||getUrlCat()||'All';
+filterBy(cat,false);
+} else if(state.view==='viewer'){
+// Open the viewer without pushing another state
+const cat=state.cat||'All';
+currentFilter=cat;
+document.querySelectorAll('.filter-btn').forEach(b=>b.classList.toggle('active',b.dataset.cat===cat));
+renderCards(cat);
+openViewer(state.index,cat,false);
+}
+});
+
+// ========== ESC KEY ==========
+document.addEventListener('keydown',e=>{
+if(e.key==='Escape'&&viewerOpen)closeViewer(true);
+});
+
+// ========== URL PARSING ==========
+function getUrlCat(){
+const p=new URLSearchParams(location.search);
+return p.get('cat')||null;
+}
+function getUrlView(){
+const p=new URLSearchParams(location.search);
+return p.get('view')||null;
+}
+
+// ========== INITIAL LOAD ==========
+(function init(){
+const urlCat=getUrlCat();
+const urlView=getUrlView();
+if(urlView){
+// Find template by name and open it
+const idx=T.findIndex(t=>t.name===urlView);
+if(idx>=0){
+const cat=urlCat||'All';
+filterBy(cat,false);
+const list=cat==='All'?T:T.filter(t=>t.cat===cat);
+const listIdx=list.findIndex(t=>t.name===urlView);
+openViewer(listIdx>=0?listIdx:0,cat,false);
+history.replaceState({view:'viewer',index:listIdx>=0?listIdx:0,cat:cat},'',location.href);
+} else {
+filterBy(urlCat||'All',false);
+history.replaceState({view:'grid',cat:urlCat||'All'},'',location.href);
+}
+} else {
+const cat=urlCat||'All';
+filterBy(cat,false);
+history.replaceState({view:'grid',cat:cat},'',location.href);
+}
+})();
+
+// ========== COUNTERS ==========
+document.getElementById('countLabel').textContent=T.length+' designs';
+
+// ========== HERO GSAP ANIMATION ==========
+(function heroAnim(){
+// Populate scrolling columns
+const col1Sites=['../site1/index.html','../site5/index.html','../site17/index.html','../site4/index.html','../site18/index.html','../site3/index.html'];
+const col2Sites=['../site10/index.html','../site20/index.html','../site9/index.html','../site14/index.html','../site8/index.html','../site21/index.html'];
+function fillCol(id,sites){
+const col=document.getElementById(id);
+// Double the items so the loop is seamless
+const all=[...sites,...sites];
+all.forEach(src=>{
+const div=document.createElement('div');
+div.className='hero-thumb';
+div.innerHTML='<iframe src="'+src+'" loading="lazy" tabindex="-1"></iframe>';
+col.appendChild(div);
+});
+}
+fillCol('scrollCol1',col1Sites);
+fillCol('scrollCol2',col2Sites);
+
+const tl=gsap.timeline({defaults:{ease:'power4.out'}});
+tl.to('#accentLine',{height:'70%',duration:1.2,ease:'power2.inOut'},0);
+tl.to('.hero h1 .line-inner',{y:'0%',duration:1,stagger:.12},.3);
+tl.to('#heroTagline',{opacity:1,y:0,duration:.8},.9);
+tl.to('#heroCta',{opacity:1,y:0,duration:.7},1.1);
+tl.to('#heroCounter',{opacity:1,duration:.8},1.3);
+// Scroll columns fade in from right
+tl.fromTo('.hero-right',{opacity:0,x:60},{opacity:1,x:0,duration:1},.4);
+// Counter number animation
+const total=T.length;
+const catTotal=cats.length-1;
+tl.to({v:0},{v:total,duration:1.5,ease:'power2.out',onUpdate:function(){document.getElementById('hcTemplates').textContent=Math.round(this.targets()[0].v)}},1.3);
+tl.to({v:0},{v:catTotal,duration:1.2,ease:'power2.out',onUpdate:function(){document.getElementById('hcCats').textContent=Math.round(this.targets()[0].v)}},1.4);
+})();
+
+// ========== FILTER SCROLL ARROWS ==========
+(function initFilterScroll(){
+const scroll=document.getElementById('filterScroll');
+const leftBtn=document.getElementById('filterLeft');
+const rightBtn=document.getElementById('filterRight');
+const hint=document.getElementById('filterHint');
+const STEP=200;
+
+function updateArrows(){
+const atStart=scroll.scrollLeft<=4;
+const atEnd=scroll.scrollLeft+scroll.clientWidth>=scroll.scrollWidth-4;
+leftBtn.classList.toggle('hidden',atStart);
+rightBtn.classList.toggle('hidden',atEnd);
+scroll.classList.toggle('at-start',atStart);
+scroll.classList.toggle('at-end',atEnd);
+}
+
+leftBtn.addEventListener('click',()=>{scroll.scrollBy({left:-STEP,behavior:'smooth'})});
+rightBtn.addEventListener('click',()=>{scroll.scrollBy({left:STEP,behavior:'smooth'})});
+scroll.addEventListener('scroll',updateArrows);
+window.addEventListener('resize',updateArrows);
+
+// Hide hint after first interaction
+let hintDismissed=false;
+function dismissHint(){if(!hintDismissed){hintDismissed=true;hint.classList.add('hidden')}}
+scroll.addEventListener('scroll',dismissHint,{once:true});
+leftBtn.addEventListener('click',dismissHint,{once:true});
+rightBtn.addEventListener('click',dismissHint,{once:true});
+
+// Auto-hide hint after 5s
+setTimeout(()=>dismissHint(),5000);
+
+// Initial check
+setTimeout(updateArrows,100);
+})();
+</script>
+</body>
+</html>

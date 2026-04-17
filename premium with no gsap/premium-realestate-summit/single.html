@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SUMMIT — Luxury Real Estate</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@200;300;400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{background:#080a0c;color:#fff;font-family:'Inter',sans-serif;font-weight:300;overflow-x:hidden}img{display:block;max-width:100%}a{color:inherit;text-decoration:none}.playfair{font-family:'Playfair Display',serif}
+@keyframes fadeSlideUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes lineGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes panSlow{0%{transform:scale(1.1) translateX(0)}100%{transform:scale(1.1) translateX(-3%)}}
+.gold{color:#d4af37}
+/* NAV */
+.nav{position:absolute;top:2rem;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;z-index:20;animation:fadeIn 1s ease .3s both}.nav-links{display:flex;gap:2rem}.nav-links a{color:rgba(255,255,255,.2);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;transition:color .3s}.nav-links a:hover{color:rgba(212,175,55,.6)}
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}.hero-bg{position:absolute;inset:0}.hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.3;animation:panSlow 20s ease-in-out infinite alternate}.hero-grad1{position:absolute;inset:0;background:linear-gradient(to right,#080a0c,rgba(8,10,12,.8),rgba(8,10,12,.3))}.hero-grad2{position:absolute;inset:0;background:linear-gradient(to top,#080a0c,transparent,rgba(8,10,12,.6))}
+.hero-content{position:relative;z-index:10;max-width:80rem;margin:0 auto;padding:7rem 2rem 2rem;width:100%}
+.hero-label{color:rgba(212,175,55,.5);font-size:.7rem;letter-spacing:.5em;text-transform:uppercase;margin-bottom:1.5rem;animation:fadeSlideUp .7s ease .5s both}
+.hero-title{font-size:clamp(2.5rem,7vw,4.5rem);line-height:.95;margin-bottom:1.5rem;animation:fadeSlideUp .8s ease .7s both}
+.hero-line{width:5rem;height:1px;background:rgba(212,175,55,.3);margin-bottom:2rem;transform-origin:left;animation:lineGrow .8s ease 1.3s both}
+.hero-sub{color:rgba(255,255,255,.3);font-size:.9rem;max-width:32rem;line-height:1.7;margin-bottom:2.5rem;animation:fadeSlideUp .6s ease 1.5s both}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeSlideUp .5s ease 1.8s both}
+.btn-gold{position:relative;padding:1rem 2.5rem;font-size:.8rem;letter-spacing:.3em;text-transform:uppercase;border:1px solid rgba(212,175,55,.3);border-radius:.5rem;overflow:hidden;transition:color .3s}.btn-gold span{position:relative;z-index:1;color:#d4af37}.btn-gold .fill{position:absolute;inset:0;background:#d4af37;transform:translateX(-100%);transition:transform .3s}.btn-gold:hover .fill{transform:translateX(0)}.btn-gold:hover span{color:#000}
+.btn-ghost{padding:1rem 2.5rem;color:rgba(255,255,255,.2);font-size:.8rem;letter-spacing:.3em;text-transform:uppercase;border:1px solid rgba(255,255,255,.05);border-radius:.5rem;transition:all .3s}.btn-ghost:hover{border-color:rgba(255,255,255,.15)}
+.hero-stats{display:flex;flex-wrap:wrap;gap:2rem;margin-top:4rem;border-top:1px solid rgba(255,255,255,.05);padding-top:2rem;animation:fadeIn .8s ease 2.2s both}.hero-stats div p:first-child{color:#d4af37;font-size:1.5rem;font-weight:700}.hero-stats div p:last-child{color:rgba(255,255,255,.2);font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;margin-top:.25rem}
+/* PROPERTIES */
+.properties{padding:5rem 2rem;background:#0a0c0e}.prop-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;max-width:72rem;margin:0 auto}.prop-card{position:relative;border-radius:1rem;overflow:hidden;border:1px solid rgba(255,255,255,.05);cursor:pointer;transition:border-color .5s}.prop-card:hover{border-color:rgba(212,175,55,.15)}.prop-card .img-wrap{aspect-ratio:3/2;overflow:hidden}.prop-card img{width:100%;height:100%;object-fit:cover;transition:transform .7s}.prop-card:hover img{transform:scale(1.05)}.prop-card .grad{position:absolute;inset:0;background:linear-gradient(to top,#080a0c,rgba(8,10,12,.3),transparent)}.prop-card .price-tag{position:absolute;top:1rem;right:1rem;background:rgba(212,175,55,.1);backdrop-filter:blur(8px);border:1px solid rgba(212,175,55,.2);border-radius:.5rem;padding:.25rem .75rem}.prop-card .price-tag span{color:#d4af37;font-size:.75rem;font-weight:700}.prop-card .info{position:absolute;bottom:0;left:0;right:0;padding:1.5rem}.prop-card h3{font-size:1.2rem;font-weight:700;transition:color .3s}.prop-card:hover h3{color:#d4af37}.prop-card .meta{color:rgba(255,255,255,.3);font-size:.7rem;margin-top:.25rem}
+/* CONTACT */
+.contact{padding:5rem 2rem;background:#080a0c}.contact-form{max-width:48rem;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:1rem}.contact-form input,.contact-form textarea{width:100%;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);color:#fff;font-size:.85rem;padding:.75rem 1.25rem;border-radius:.75rem;outline:none;transition:border-color .3s;font-family:inherit}.contact-form input:focus,.contact-form textarea:focus{border-color:rgba(212,175,55,.3)}.contact-form textarea{grid-column:span 2;resize:none}.contact-form button{grid-column:span 2;padding:.75rem;font-size:.8rem;letter-spacing:.3em;text-transform:uppercase;border-radius:.5rem;border:1px solid rgba(212,175,55,.3);color:#d4af37;background:transparent;cursor:pointer;transition:all .3s;font-family:inherit}.contact-form button:hover{background:#d4af37;color:#000}
+/* FOOTER */
+.footer{padding:3rem 2rem;border-top:1px solid rgba(255,255,255,.05);background:#080a0c}.footer-inner{max-width:72rem;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem}.footer-links{display:flex;gap:2rem}.footer-links a{color:rgba(255,255,255,.15);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;transition:color .3s}.footer-links a:hover{color:rgba(212,175,55,.4)}
+.section-label{color:rgba(212,175,55,.5);font-size:.7rem;letter-spacing:.4em;text-transform:uppercase;margin-bottom:.75rem}
+.section-title{font-size:clamp(2rem,5vw,3.5rem);margin-bottom:3rem}
+.text-center{text-align:center}
+@media(max-width:768px){.prop-grid{grid-template-columns:1fr}.contact-form{grid-template-columns:1fr}.contact-form textarea,.contact-form button{grid-column:span 1}.nav-links{display:none}.hero-stats{gap:1.5rem}}
+</style>
+</head>
+<body>
+<section class="hero">
+<div class="hero-bg"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1600&h=1000&fit=crop" alt=""></div>
+<div class="hero-grad1"></div><div class="hero-grad2"></div>
+<div class="hero-content">
+<nav class="nav"><span class="playfair gold" style="font-size:1.1rem;font-weight:700;letter-spacing:.1em">Summit</span><div class="nav-links"><a href="#properties">Properties</a><a href="#contact">Contact</a></div></nav>
+<div style="padding-top:5rem">
+<p class="hero-label">Luxury Real Estate</p>
+<h1 class="hero-title playfair"><span>Exceptional</span><br><span class="gold" style="font-style:italic">Properties</span></h1>
+<div class="hero-line"></div>
+<p class="hero-sub">Curating the world's most extraordinary homes for discerning buyers. From penthouses to private estates.</p>
+<div class="hero-btns"><a href="#properties" class="btn-gold"><span>View Properties</span><div class="fill"></div></a><a href="#contact" class="btn-ghost">Schedule Viewing</a></div>
+<div class="hero-stats"><div><p class="playfair">$250M+</p><p>Portfolio Value</p></div><div><p class="playfair">98%</p><p>Client Satisfaction</p></div><div><p class="playfair">15+</p><p>Years Experience</p></div></div>
+</div>
+</div>
+</section>
+
+<section class="properties" id="properties">
+<div style="max-width:72rem;margin:0 auto"><p class="section-label">Featured</p><h2 class="section-title playfair"><span>Exclusive </span><span class="gold" style="font-style:italic">Listings</span></h2></div>
+<div class="prop-grid">
+<div class="prop-card"><div class="img-wrap"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&h=400&fit=crop" alt=""></div><div class="grad"></div><div class="price-tag"><span>$12.5M</span></div><div class="info"><h3 class="playfair">Skyline Penthouse</h3><p class="meta">Manhattan, NY · 4 Bedrooms</p></div></div>
+<div class="prop-card"><div class="img-wrap"><img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600&h=400&fit=crop" alt=""></div><div class="grad"></div><div class="price-tag"><span>$28M</span></div><div class="info"><h3 class="playfair">Oceanfront Villa</h3><p class="meta">Malibu, CA · 6 Bedrooms</p></div></div>
+<div class="prop-card"><div class="img-wrap"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&h=400&fit=crop" alt=""></div><div class="grad"></div><div class="price-tag"><span>$18.9M</span></div><div class="info"><h3 class="playfair">Modern Estate</h3><p class="meta">Beverly Hills, CA · 5 Bedrooms</p></div></div>
+<div class="prop-card"><div class="img-wrap"><img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&h=400&fit=crop" alt=""></div><div class="grad"></div><div class="price-tag"><span>$8.2M</span></div><div class="info"><h3 class="playfair">Lake House</h3><p class="meta">Lake Tahoe, NV · 4 Bedrooms</p></div></div>
+</div>
+</section>
+
+<section class="contact" id="contact">
+<div class="text-center" style="max-width:72rem;margin:0 auto"><p class="section-label">Contact</p><h2 class="section-title playfair"><span>Schedule a </span><span class="gold" style="font-style:italic">Viewing</span></h2><p style="color:rgba(255,255,255,.2);font-size:.85rem;margin-top:-2rem;margin-bottom:3rem">Our team is ready to show you your next home.</p></div>
+<form class="contact-form"><input type="text" placeholder="Name"><input type="email" placeholder="Email"><input type="text" placeholder="Phone"><input type="text" placeholder="Budget Range"><textarea rows="4" placeholder="What are you looking for?"></textarea><button type="submit">Request Viewing</button></form>
+</section>
+
+<footer class="footer"><div class="footer-inner"><span class="playfair gold" style="font-size:1.1rem;font-weight:700;letter-spacing:.1em">Summit</span><div class="footer-links"><a href="#properties">Properties</a><a href="#contact">Contact</a></div><span style="color:rgba(255,255,255,.1);font-size:.7rem">&copy; 2024 Summit Realty</span></div></footer>
+</body>
+</html>

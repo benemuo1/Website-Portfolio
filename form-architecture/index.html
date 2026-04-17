@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FORM — Architecture & Design</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0e0e0e;--fg:#f0ece4;--accent:#c8a97e;--muted:#6a6560;--card:#161616}
+body{background:var(--bg);color:var(--fg);font-family:'DM Sans',sans-serif;overflow-x:hidden}
+nav{position:fixed;top:0;width:100%;padding:1.5rem 4rem;display:flex;justify-content:space-between;align-items:center;z-index:100;mix-blend-mode:difference}
+nav .logo{font-family:'DM Serif Display',serif;font-size:1.6rem}
+nav ul{display:flex;gap:2.5rem;list-style:none}
+nav a{color:var(--fg);text-decoration:none;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase}
+
+.hero{height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=1400') center/cover;opacity:.3}
+.hero-content{position:relative;z-index:2}
+.hero-content h1{font-family:'DM Serif Display',serif;font-size:clamp(3rem,7vw,6.5rem);line-height:1;font-weight:400}
+.hero-content h1 em{color:var(--accent);font-style:italic}
+.hero-content p{color:var(--muted);margin-top:1.5rem;font-weight:300;letter-spacing:.05em}
+.hero-content .btn{display:inline-block;margin-top:2.5rem;padding:1rem 3rem;border:1px solid var(--accent);color:var(--accent);text-decoration:none;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;transition:all .3s}
+.hero-content .btn:hover{background:var(--accent);color:var(--bg)}
+
+/* Drop-in project gallery */
+.projects{padding:8rem 4rem}
+.projects h2{font-family:'DM Serif Display',serif;font-size:3rem;margin-bottom:4rem;font-weight:400}
+.proj-grid{display:grid;grid-template-columns:1.5fr 1fr;grid-template-rows:400px 350px;gap:1.5rem}
+.proj-item{position:relative;overflow:hidden;border-radius:12px}
+.proj-item img{width:100%;height:100%;object-fit:cover;transform-origin:top center}
+.proj-item:nth-child(1){grid-row:span 2}
+.proj-item .info{position:absolute;bottom:0;left:0;right:0;padding:2rem;background:linear-gradient(transparent,rgba(0,0,0,.85));z-index:2;opacity:0;transform:translateY(10px);transition:all .4s}
+.proj-item:hover .info{opacity:1;transform:translateY(0)}
+.proj-item .info h3{font-family:'DM Serif Display',serif;font-size:1.4rem;font-weight:400}
+.proj-item .info span{color:var(--accent);font-size:.7rem;letter-spacing:.15em;text-transform:uppercase}
+.proj-item .splash{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:100%;height:40px;pointer-events:none;z-index:3}
+.splash-ring{position:absolute;bottom:0;left:50%;transform:translateX(-50%);border:2px solid rgba(200,169,126,.2);border-radius:50%;width:0;height:0;opacity:0}
+
+/* Spin-in service cards */
+.services{padding:8rem 4rem}
+.services h2{font-family:'DM Serif Display',serif;font-size:3rem;margin-bottom:4rem;font-weight:400}
+.srv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;perspective:1200px}
+.srv-card{background:var(--card);border:1px solid #222;border-radius:16px;padding:3rem 2rem;transform-style:preserve-3d;will-change:transform;transition:border-color .3s}
+.srv-card:hover{border-color:var(--accent)}
+.srv-card .num{font-family:'DM Serif Display',serif;font-size:4rem;color:#222;line-height:1}
+.srv-card h3{font-size:1.2rem;font-weight:700;margin:1.5rem 0 .8rem}
+.srv-card p{color:var(--muted);font-size:.85rem;line-height:1.7;font-weight:300}
+
+/* Drop-in awards */
+.awards{padding:6rem 4rem;border-top:1px solid #1a1a1a}
+.awards h2{font-family:'DM Serif Display',serif;font-size:2.5rem;margin-bottom:3rem;font-weight:400}
+.award-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+.award-card{background:var(--card);border:1px solid #222;border-radius:12px;padding:2rem;display:flex;gap:1.5rem;align-items:center;transform-origin:top center}
+.award-card .year{font-family:'DM Serif Display',serif;font-size:2rem;color:var(--accent);min-width:80px}
+.award-card h3{font-size:1rem;font-weight:600}
+.award-card span{color:var(--muted);font-size:.8rem}
+
+/* Spin-in stats */
+.stats{padding:6rem 4rem;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;perspective:1200px}
+.stat-card{background:var(--card);border:1px solid #222;border-radius:16px;padding:2.5rem;text-align:center;transform-style:preserve-3d;will-change:transform}
+.stat-card h3{font-family:'DM Serif Display',serif;font-size:3rem;color:var(--accent)}
+.stat-card p{color:var(--muted);font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;margin-top:.5rem}
+
+/* Drop-in team photos */
+.team{padding:8rem 4rem}
+.team h2{font-family:'DM Serif Display',serif;font-size:3rem;margin-bottom:4rem;font-weight:400}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+.team-item{position:relative;overflow:hidden;border-radius:12px;height:450px}
+.team-item img{width:100%;height:100%;object-fit:cover;filter:grayscale(60%);transition:filter .5s;transform-origin:top center}
+.team-item:hover img{filter:grayscale(0%)}
+.team-item .info{position:absolute;bottom:0;left:0;right:0;padding:1.5rem;background:linear-gradient(transparent,rgba(0,0,0,.85))}
+.team-item h3{font-family:'DM Serif Display',serif;font-size:1.2rem;font-weight:400}
+.team-item span{color:var(--accent);font-size:.7rem;letter-spacing:.15em;text-transform:uppercase}
+.team-item .splash{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:100%;height:40px;pointer-events:none;z-index:3}
+
+.contact{padding:8rem 4rem;text-align:center;border-top:1px solid #1a1a1a}
+.contact h2{font-family:'DM Serif Display',serif;font-size:3.5rem;font-weight:400;margin-bottom:1rem}
+.contact h2 em{color:var(--accent);font-style:italic}
+.contact p{color:var(--muted);margin-bottom:2.5rem;font-weight:300}
+.contact a{padding:1rem 3rem;border:1px solid var(--accent);color:var(--accent);text-decoration:none;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;transition:all .3s}
+.contact a:hover{background:var(--accent);color:var(--bg)}
+footer{padding:3rem 4rem;display:flex;justify-content:space-between;font-size:.75rem;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<nav><div class="logo">Form</div><ul><li><a href="#">Projects</a></li><li><a href="#">Services</a></li><li><a href="#">Team</a></li><li><a href="#">Contact</a></li></ul></nav>
+
+<section class="hero">
+<div class="hero-bg"></div>
+<div class="hero-content">
+<h1>Architecture<br>of <em>intention</em></h1>
+<p>Designing spaces that shape how people live, work, and feel.</p>
+<a href="#" class="btn">View Projects</a>
+</div>
+</section>
+
+<section class="projects">
+<h2>Selected Projects</h2>
+<div class="proj-grid">
+<div class="proj-item"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800" alt=""><div class="splash"></div><div class="info"><h3>The Glass Residence</h3><span>Residential · Malibu</span></div></div>
+<div class="proj-item"><img src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?w=500" alt=""><div class="splash"></div><div class="info"><h3>Horizon Museum</h3><span>Cultural · Oslo</span></div></div>
+<div class="proj-item"><img src="https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=500" alt=""><div class="splash"></div><div class="info"><h3>Vertex Tower</h3><span>Commercial · Dubai</span></div></div>
+</div>
+</section>
+
+<section class="services">
+<h2>What We Do</h2>
+<div class="srv-grid">
+<div class="srv-card"><div class="num">01</div><h3>Architecture</h3><p>From concept to completion — residential, commercial, and cultural buildings that define skylines.</p></div>
+<div class="srv-card"><div class="num">02</div><h3>Interior Design</h3><p>Spaces that feel as good as they look. Material, light, and proportion in perfect harmony.</p></div>
+<div class="srv-card"><div class="num">03</div><h3>Urban Planning</h3><p>Master plans that create thriving communities and sustainable neighborhoods.</p></div>
+</div>
+</section>
+
+<section class="awards">
+<h2>Recognition</h2>
+<div class="award-grid">
+<div class="award-card"><div class="year">2024</div><div><h3>Architecture of the Year</h3><span>Dezeen Awards</span></div></div>
+<div class="award-card"><div class="year">2024</div><div><h3>Best Residential Design</h3><span>World Architecture Festival</span></div></div>
+<div class="award-card"><div class="year">2023</div><div><h3>Sustainable Innovation</h3><span>AIA Gold Medal</span></div></div>
+<div class="award-card"><div class="year">2023</div><div><h3>Cultural Building Prize</h3><span>RIBA International</span></div></div>
+</div>
+</section>
+
+<section class="stats">
+<div class="stat-card"><h3>120+</h3><p>Projects</p></div>
+<div class="stat-card"><h3>18</h3><p>Countries</p></div>
+<div class="stat-card"><h3>35</h3><p>Awards</p></div>
+<div class="stat-card"><h3>92</h3><p>Team Members</p></div>
+</section>
+
+<section class="team">
+<h2>Leadership</h2>
+<div class="team-grid">
+<div class="team-item"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400" alt=""><div class="splash"></div><div class="info"><h3>James Whitfield</h3><span>Founding Partner</span></div></div>
+<div class="team-item"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400" alt=""><div class="splash"></div><div class="info"><h3>Elena Vasquez</h3><span>Design Director</span></div></div>
+<div class="team-item"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400" alt=""><div class="splash"></div><div class="info"><h3>Kenji Tanaka</h3><span>Head of Urbanism</span></div></div>
+</div>
+</section>
+
+<section class="contact">
+<h2>Let's build<br>something <em>timeless</em></h2>
+<p>We're always looking for visionary collaborators.</p>
+<a href="#">Start a Conversation</a>
+</section>
+
+<footer><span>© 2024 Form Architecture</span><span>New York · London · Tokyo</span></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+function onScroll(sel,cb,thr=0.1){
+  const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){cb(e.target);obs.unobserve(e.target)}})},{threshold:thr});
+  document.querySelectorAll(sel).forEach(e=>obs.observe(e));
+}
+
+// ========== HERO (GSAP) ==========
+gsap.from('.hero-content h1',{y:60,opacity:0,duration:1.5,delay:.3,ease:'power3.out'});
+gsap.from('.hero-content p',{y:30,opacity:0,duration:1,delay:.8});
+gsap.from('.hero-content .btn',{y:20,opacity:0,duration:.8,delay:1.1});
+gsap.to('.hero-bg',{scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true},y:150,scale:1.1});
+
+// ========== SECTION HEADINGS (GSAP) ==========
+gsap.utils.toArray('.projects h2, .services h2, .awards h2, .team h2').forEach(h=>{
+  gsap.from(h,{scrollTrigger:{trigger:h,start:'top 85%'},y:30,opacity:0,duration:.8});
+});
+
+// ========== DROP-IN-BUCKET — PROJECT PHOTOS (anime.js) ==========
+function dropInBucket(el, idx, opts={}) {
+  const img = el.querySelector('img');
+  const splash = el.querySelector('.splash');
+  if(splash) for(let r=0;r<4;r++){const ring=document.createElement('div');ring.classList.add('splash-ring');splash.appendChild(ring);}
+
+  anime({
+    targets: img,
+    translateY: [opts.dropHeight || -500, 0],
+    rotateZ: [(idx%2===0 ? -8 : 8) * (opts.rotateScale||1), 0],
+    rotateX: [opts.rotateX || 20, 0],
+    scale: [opts.startScale || 0.6, 1],
+    opacity: [0, 1],
+    duration: opts.duration || 1400,
+    delay: (opts.baseDelay||0) + idx * (opts.stagger||200),
+    easing: 'easeOutBounce',
+    complete: () => {
+      if(splash) {
+        anime({
+          targets: splash.querySelectorAll('.splash-ring'),
+          width: [0, opts.rippleSize||220],
+          height: [0, (opts.rippleSize||220)*0.2],
+          opacity: [.5, 0],
+          borderWidth: [3, 0],
+          duration: 1000,
+          delay: anime.stagger(200),
+          easing: 'easeOutCubic'
+        });
+      }
+      // Impact squash
+      anime({
+        targets: img,
+        scaleY: [1, 0.95, 1],
+        scaleX: [1, 1.04, 1],
+        duration: 450,
+        easing: 'easeOutElastic(1,.5)'
+      });
+    }
+  });
+}
+
+onScroll('.proj-item', (el) => {
+  const idx = [...el.parentElement.children].indexOf(el);
+  dropInBucket(el, idx, {dropHeight:-600, rotateScale:1.5, rippleSize:250, stagger:250});
+});
+
+// ========== SPIN-IN SERVICE CARDS (GSAP scrub-linked) ==========
+gsap.utils.toArray('.srv-card').forEach((card,i) => {
+  const dir = i%2===0 ? 1 : -1;
+  gsap.fromTo(card,
+    {rotationY:dir*720, rotationX:dir*-15, rotationZ:dir*8, x:dir*80, y:120, opacity:0, scale:.4, transformPerspective:1200},
+    {rotationY:0, rotationX:0, rotationZ:0, x:0, y:0, opacity:1, scale:1, duration:1,
+      scrollTrigger:{trigger:card, start:'top 95%', end:'top 35%', scrub:1.5}
+    }
+  );
+  // Inner elements after spin
+  gsap.from(card.querySelectorAll('.num, h3, p'),{
+    scrollTrigger:{trigger:card,start:'top 40%'},
+    y:15,opacity:0,stagger:.08,duration:.4
+  });
+});
+
+// ========== DROP-IN-BUCKET — AWARD CARDS (anime.js) ==========
+onScroll('.award-card', (el) => {
+  const idx = [...el.parentElement.children].indexOf(el);
+  anime({
+    targets: el,
+    translateY: [-400, 0],
+    rotateZ: [(idx%2===0?-5:5), 0],
+    rotateX: [15, 0],
+    scale: [0.7, 1],
+    opacity: [0, 1],
+    duration: 1200,
+    delay: idx * 180,
+    easing: 'easeOutBounce',
+    complete: () => {
+      anime({targets:el, scaleY:[1,.97,1], scaleX:[1,1.02,1], duration:350, easing:'easeOutElastic(1,.6)'});
+    }
+  });
+  anime({targets:el.querySelectorAll('.year, h3, span'), translateY:[10,0], opacity:[0,1], delay:anime.stagger(60,{start:idx*180+700}), duration:400, easing:'easeOutCubic'});
+});
+
+// ========== SPIN-IN STAT CARDS (GSAP scrub-linked) ==========
+gsap.utils.toArray('.stat-card').forEach((card,i) => {
+  const dir = [1,-1,1,-1][i];
+  gsap.fromTo(card,
+    {rotationY:dir*540, rotationX:10, y:100, opacity:0, scale:.5, transformPerspective:1200},
+    {rotationY:0, rotationX:0, y:0, opacity:1, scale:1, duration:1,
+      scrollTrigger:{trigger:card, start:'top 95%', end:'top 45%', scrub:1.2}
+    }
+  );
+});
+
+// ========== DROP-IN-BUCKET — TEAM PHOTOS (anime.js) ==========
+onScroll('.team-item', (el) => {
+  const idx = [...el.parentElement.children].indexOf(el);
+  dropInBucket(el, idx, {dropHeight:-550, rotateX:25, startScale:0.55, stagger:220, rippleSize:200});
+  // Info slides up after drop
+  anime({
+    targets: el.querySelector('.info'),
+    translateY: [20, 0],
+    opacity: [0, 1],
+    duration: 600,
+    delay: idx * 220 + 1000,
+    easing: 'easeOutCubic'
+  });
+});
+
+// ========== CONTACT (GSAP) ==========
+gsap.from('.contact h2',{scrollTrigger:{trigger:'.contact',start:'top 70%'},y:50,opacity:0,duration:1});
+gsap.from('.contact p',{scrollTrigger:{trigger:'.contact',start:'top 65%'},y:25,opacity:0,duration:.7,delay:.2});
+gsap.from('.contact a',{scrollTrigger:{trigger:'.contact',start:'top 60%'},y:15,opacity:0,scale:.9,duration:.6,delay:.4});
+</script>
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THREAD — Modern Fashion</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;600;800&family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#faf9f7;--fg:#1a1a1a;--accent:#1a1a1a;--muted:#999;--card:#fff}
+body{background:var(--bg);color:var(--fg);font-family:'Outfit',sans-serif;overflow-x:hidden}
+nav{position:fixed;top:0;width:100%;padding:1.2rem 4rem;display:flex;justify-content:space-between;align-items:center;z-index:100;background:rgba(250,249,247,.92);backdrop-filter:blur(12px);border-bottom:1px solid #eee}
+nav .logo{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700}
+nav ul{display:flex;gap:2rem;list-style:none}
+nav a{color:var(--fg);text-decoration:none;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase}
+nav .bag{padding:.5rem 1.2rem;border:1px solid var(--fg);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase}
+
+.hero{height:100vh;display:grid;grid-template-columns:1fr 1fr;overflow:hidden}
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:0 5rem}
+.hero-left h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,5.5vw,5rem);line-height:1.05;font-weight:400}
+.hero-left h1 em{font-style:italic}
+.hero-left p{color:var(--muted);margin-top:1.5rem;line-height:1.7;max-width:380px;font-weight:200}
+.hero-left .btn{display:inline-block;margin-top:2rem;padding:1rem 2.5rem;background:var(--fg);color:#fff;text-decoration:none;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600}
+.hero-right{position:relative;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:.5rem;padding:1rem}
+.hero-right .drop-img{overflow:hidden;border-radius:8px;position:relative}
+.hero-right .drop-img img{width:100%;height:100%;object-fit:cover;transform-origin:top center}
+.hero-right .drop-img:nth-child(1){grid-row:span 2}
+.hero-right .drop-img .splash{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:100%;height:30px;pointer-events:none}
+.hero-right .drop-img .splash-ring{position:absolute;bottom:0;left:50%;transform:translateX(-50%);border:2px solid rgba(0,0,0,.08);border-radius:50%;width:0;height:0;opacity:0}
+
+.products{padding:6rem 4rem}
+.products h2{font-family:'Cormorant Garamond',serif;font-size:2.8rem;text-align:center;margin-bottom:1rem;font-weight:400}
+.products .sub{text-align:center;color:var(--muted);margin-bottom:3rem;font-weight:200}
+.product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;perspective:1200px}
+.product-card{background:var(--card);border-radius:12px;overflow:hidden;transform-style:preserve-3d;will-change:transform;cursor:pointer;transition:box-shadow .3s}
+.product-card:hover{box-shadow:0 12px 40px rgba(0,0,0,.08)}
+.product-card img{width:100%;height:320px;object-fit:cover;transition:transform .5s}
+.product-card:hover img{transform:scale(1.04)}
+.product-card .info{padding:1.2rem}
+.product-card h3{font-size:.95rem;font-weight:600}
+.product-card .price{color:var(--muted);font-size:.9rem;margin-top:.3rem}
+.product-card .colors{display:flex;gap:.4rem;margin-top:.6rem}
+.product-card .dot{width:12px;height:12px;border-radius:50%;border:1px solid #ddd}
+
+.lookbook{padding:6rem 4rem}
+.lookbook h2{font-family:'Cormorant Garamond',serif;font-size:2.8rem;text-align:center;margin-bottom:3rem;font-weight:400}
+.look-grid{display:grid;grid-template-columns:1fr 1.5fr 1fr;grid-template-rows:300px 300px;gap:1rem}
+.look-item{overflow:hidden;border-radius:12px;position:relative}
+.look-item img{width:100%;height:100%;object-fit:cover;transform-origin:top center}
+.look-item:nth-child(2){grid-row:span 2}
+.look-item .splash{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:100%;height:30px;pointer-events:none}
+.look-item .splash-ring{position:absolute;bottom:0;left:50%;transform:translateX(-50%);border:2px solid rgba(0,0,0,.06);border-radius:50%;width:0;height:0;opacity:0}
+
+.features{padding:6rem 4rem;background:var(--fg);color:#fff;border-radius:24px;margin:2rem}
+.features h2{font-family:'Cormorant Garamond',serif;font-size:2.5rem;text-align:center;margin-bottom:3rem;font-weight:400}
+.feat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;perspective:1200px}
+.feat-card{text-align:center;padding:2rem;transform-style:preserve-3d;will-change:transform}
+.feat-card .icon{font-size:2rem;margin-bottom:1rem}
+.feat-card h3{font-size:.95rem;font-weight:600;margin-bottom:.5rem}
+.feat-card p{color:#888;font-size:.8rem;line-height:1.5;font-weight:200}
+
+.newsletter{padding:6rem 4rem;text-align:center}
+.newsletter h2{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:400;margin-bottom:1rem}
+.newsletter p{color:var(--muted);margin-bottom:2rem;font-weight:200}
+.newsletter a{padding:1rem 3rem;background:var(--fg);color:#fff;text-decoration:none;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600}
+footer{padding:3rem 4rem;border-top:1px solid #eee;display:flex;justify-content:space-between;font-size:.8rem;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<nav><div class="logo">Thread</div><ul><li><a href="#">Shop</a></li><li><a href="#">Lookbook</a></li><li><a href="#">About</a></li></ul><a href="#" class="bag">Bag (0)</a></nav>
+
+<section class="hero">
+<div class="hero-left">
+<h1>The new<br><em>essentials</em><br>collection</h1>
+<p>Timeless pieces designed for modern life. Sustainably made, effortlessly styled.</p>
+<a href="#" class="btn">Shop Now</a>
+</div>
+<div class="hero-right">
+<div class="drop-img"><img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500" alt=""><div class="splash"></div></div>
+<div class="drop-img"><img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=400" alt=""><div class="splash"></div></div>
+<div class="drop-img"><img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=400" alt=""><div class="splash"></div></div>
+</div>
+</section>
+
+<section class="products">
+<h2>New Arrivals</h2>
+<p class="sub">Just dropped. Limited quantities.</p>
+<div class="product-grid">
+<div class="product-card"><img src="https://images.unsplash.com/photo-1434389677669-e08b4cda3a0a?w=400" alt=""><div class="info"><h3>Oversized Linen Blazer</h3><div class="price">$185</div><div class="colors"><span class="dot" style="background:#e8ddd0"></span><span class="dot" style="background:#2c2c2c"></span><span class="dot" style="background:#8b7e6a"></span></div></div></div>
+<div class="product-card"><img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=400" alt=""><div class="info"><h3>Silk Midi Skirt</h3><div class="price">$120</div><div class="colors"><span class="dot" style="background:#1a1a1a"></span><span class="dot" style="background:#c4a882"></span></div></div></div>
+<div class="product-card"><img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400" alt=""><div class="info"><h3>Cotton Trench Coat</h3><div class="price">$240</div><div class="colors"><span class="dot" style="background:#d4c5a9"></span><span class="dot" style="background:#2c2c2c"></span></div></div></div>
+<div class="product-card"><img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400" alt=""><div class="info"><h3>Merino Knit Sweater</h3><div class="price">$95</div><div class="colors"><span class="dot" style="background:#f0ece4"></span><span class="dot" style="background:#6b5b4e"></span><span class="dot" style="background:#2c2c2c"></span></div></div></div>
+</div>
+</section>
+
+<section class="lookbook">
+<h2>The Lookbook</h2>
+<div class="look-grid">
+<div class="look-item"><img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=400" alt=""><div class="splash"></div></div>
+<div class="look-item"><img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600" alt=""><div class="splash"></div></div>
+<div class="look-item"><img src="https://images.unsplash.com/photo-1495385794356-15371f348c31?w=400" alt=""><div class="splash"></div></div>
+<div class="look-item"><img src="https://images.unsplash.com/photo-1558171813-4c088753af8f?w=400" alt=""><div class="splash"></div></div>
+</div>
+</section>
+
+<section class="features">
+<h2>Why Thread</h2>
+<div class="feat-grid">
+<div class="feat-card"><div class="icon">🌿</div><h3>Sustainable</h3><p>Organic fabrics, ethical factories, carbon-neutral shipping.</p></div>
+<div class="feat-card"><div class="icon">✂️</div><h3>Tailored Fit</h3><p>Designed on real bodies. Every size fits like it was made for you.</p></div>
+<div class="feat-card"><div class="icon">🔄</div><h3>Free Returns</h3><p>30-day returns, no questions. We want you to love it.</p></div>
+<div class="feat-card"><div class="icon">📦</div><h3>Fast Shipping</h3><p>Free express shipping on orders over $100. 2-day delivery.</p></div>
+</div>
+</section>
+
+<section class="newsletter">
+<h2>Stay in the loop</h2>
+<p>Early access, exclusive drops, and 10% off your first order.</p>
+<a href="#">Subscribe</a>
+</section>
+
+<footer><span>© 2024 Thread</span><span>Sustainability · Sizing · Contact</span></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+<script>
+function onScroll(sel, cb, threshold=0.12){
+  const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){cb(e.target);obs.unobserve(e.target)}})},{threshold});
+  document.querySelectorAll(sel).forEach(e=>obs.observe(e));
+}
+
+// ========== HERO TEXT ==========
+anime.timeline({easing:'easeOutExpo',delay:300})
+  .add({targets:'.hero-left h1',translateY:[70,0],opacity:[0,1],duration:1300})
+  .add({targets:'.hero-left p',translateY:[35,0],opacity:[0,1],duration:900},'-=700')
+  .add({targets:'.hero-left .btn',translateY:[25,0],opacity:[0,1],duration:700},'-=500');
+
+// ========== HERO DROP-IN-BUCKET IMAGES ==========
+document.querySelectorAll('.hero-right .drop-img').forEach((item,i)=>{
+  const img=item.querySelector('img');
+  const splash=item.querySelector('.splash');
+  for(let r=0;r<3;r++){const ring=document.createElement('div');ring.classList.add('splash-ring');splash.appendChild(ring);}
+
+  anime({
+    targets:img,
+    translateY:[-500,0],
+    rotateZ:[i%2===0?-10:10,0],
+    scale:[0.6,1],
+    opacity:[0,1],
+    duration:1400,
+    delay:600+i*250,
+    easing:'easeOutBounce',
+    complete:()=>{
+      anime({targets:splash.querySelectorAll('.splash-ring'),width:[0,180],height:[0,30],opacity:[.5,0],duration:800,delay:anime.stagger(180),easing:'easeOutCubic'});
+      anime({targets:img,scaleY:[1,.97,1],scaleX:[1,1.02,1],duration:350,easing:'easeOutElastic(1,.6)'});
+    }
+  });
+});
+
+// ========== PRODUCT CARDS — SPIN IN ==========
+onScroll('.product-card',(el)=>{
+  const idx=[...el.parentElement.children].indexOf(el);
+  const dir=idx%2===0?1:-1;
+
+  anime({
+    targets:el,
+    rotateY:[dir*600,0],
+    rotateX:[-12,0],
+    rotateZ:[dir*5,0],
+    translateY:[80,0],
+    translateX:[dir*50,0],
+    opacity:[0,1],
+    scale:[0.5,1],
+    duration:1500,
+    delay:idx*150,
+    easing:'easeOutExpo'
+  });
+
+  anime({targets:el.querySelectorAll('.info > *'),translateY:[15,0],opacity:[0,1],delay:anime.stagger(60,{start:idx*150+800}),duration:500,easing:'easeOutCubic'});
+});
+
+// ========== LOOKBOOK — DROP-IN-BUCKET ==========
+onScroll('.look-item',(el)=>{
+  const idx=[...el.parentElement.children].indexOf(el);
+  const img=el.querySelector('img');
+  const splash=el.querySelector('.splash');
+  for(let r=0;r<3;r++){const ring=document.createElement('div');ring.classList.add('splash-ring');splash.appendChild(ring);}
+
+  anime({
+    targets:img,
+    translateY:[-450,0],
+    rotateZ:[(idx%2===0?-6:6),0],
+    rotateX:[15,0],
+    scale:[0.65,1],
+    opacity:[0,1],
+    duration:1300,
+    delay:idx*200,
+    easing:'easeOutBounce',
+    complete:()=>{
+      anime({targets:splash.querySelectorAll('.splash-ring'),width:[0,160],height:[0,25],opacity:[.4,0],duration:700,delay:anime.stagger(150),easing:'easeOutCubic'});
+      anime({targets:img,scaleY:[1,.97,1],scaleX:[1,1.02,1],duration:300,easing:'easeOutElastic(1,.6)'});
+    }
+  });
+},0.08);
+
+// ========== FEATURES — SPIN IN ==========
+onScroll('.feat-card',(el)=>{
+  const idx=[...el.parentElement.children].indexOf(el);
+  const dir=idx%2===0?1:-1;
+
+  anime({
+    targets:el,
+    rotateY:[dir*540,0],
+    rotateX:[15,0],
+    translateY:[60,0],
+    opacity:[0,1],
+    scale:[0.6,1],
+    duration:1200,
+    delay:idx*140,
+    easing:'easeOutExpo'
+  });
+
+  anime({targets:el.querySelectorAll('.icon, h3, p'),translateY:[15,0],opacity:[0,1],delay:anime.stagger(70,{start:idx*140+600}),duration:500,easing:'easeOutCubic'});
+});
+
+// ========== SECTION HEADINGS ==========
+onScroll('.products h2, .products .sub, .lookbook h2, .features h2, .newsletter h2, .newsletter p',(el)=>{
+  anime({targets:el,translateY:[35,0],opacity:[0,1],duration:800,easing:'easeOutCubic'});
+});
+
+// ========== NEWSLETTER CTA ==========
+onScroll('.newsletter a',(el)=>{
+  anime({targets:el,translateY:[20,0],opacity:[0,1],scale:[.9,1],duration:600,easing:'easeOutCubic'});
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SPLICE — Digital Zine</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono&family=Inter:wght@300;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#f0ece4;color:#1a1a1a;font-family:'Inter',sans-serif;overflow-x:hidden}
+nav{padding:1.2rem 2rem;display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #1a1a1a}
+nav .logo{font-family:'Archivo Black',sans-serif;font-size:1.5rem;letter-spacing:.05em}
+nav .logo span{color:#e63946}
+nav .issue{font-family:'Space Mono',monospace;font-size:.6rem;color:#888;letter-spacing:.15em}
+.hero{min-height:100vh;position:relative;padding:4rem 2rem;display:grid;grid-template-columns:1.5fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:1rem}
+.hero-title{grid-column:1;grid-row:1/3;display:flex;flex-direction:column;justify-content:center;padding-right:2rem}
+.hero-title h1{font-family:'Archivo Black',sans-serif;font-size:clamp(3rem,6vw,5rem);line-height:.95;text-transform:uppercase}
+.hero-title h1 .red{color:#e63946}
+.hero-title p{font-family:'Space Mono',monospace;font-size:.7rem;color:#888;margin-top:1.5rem;line-height:1.8}
+.hero-img{overflow:hidden;position:relative}
+.hero-img img{width:100%;height:100%;object-fit:cover}
+.hero-img .label{position:absolute;bottom:.8rem;left:.8rem;font-family:'Space Mono',monospace;font-size:.5rem;color:#fff;background:#e63946;padding:.2rem .5rem;letter-spacing:.1em;text-transform:uppercase}
+.collage{padding:2rem;display:grid;grid-template-columns:1fr 2fr 1fr;grid-template-rows:300px 250px 350px;gap:1rem}
+.collage-item{overflow:hidden;position:relative}
+.collage-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.collage-item:hover img{transform:scale(1.05)}
+.collage-item:nth-child(1){grid-row:span 2}
+.collage-item:nth-child(3){grid-row:span 2}
+.collage-item .tag{position:absolute;top:.8rem;left:.8rem;font-family:'Archivo Black',sans-serif;font-size:.6rem;background:#1a1a1a;color:#f0ece4;padding:.3rem .6rem;letter-spacing:.1em;text-transform:uppercase}
+.collage-item .tag.red{background:#e63946}
+.articles{padding:4rem 2rem}
+.articles h2{font-family:'Archivo Black',sans-serif;font-size:2rem;text-transform:uppercase;margin-bottom:2rem;border-bottom:3px solid #1a1a1a;padding-bottom:1rem}
+.article-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:1.5rem}
+.article-card{border:2px solid #1a1a1a;transition:all .3s}
+.article-card:hover{transform:rotate(-1deg);box-shadow:6px 6px 0 #1a1a1a}
+.article-card img{width:100%;height:200px;object-fit:cover}
+.article-card .info{padding:1.2rem}
+.article-card .cat{font-family:'Space Mono',monospace;font-size:.55rem;color:#e63946;letter-spacing:.15em;text-transform:uppercase}
+.article-card h3{font-family:'Archivo Black',sans-serif;font-size:1rem;text-transform:uppercase;margin:.4rem 0;line-height:1.2}
+.article-card p{font-size:.75rem;color:#888;line-height:1.5}
+.article-card:first-child{grid-row:span 2}
+.article-card:first-child img{height:300px}
+.pull-quote{padding:4rem 2rem;text-align:center;border-top:3px solid #1a1a1a;border-bottom:3px solid #1a1a1a;margin:2rem 0}
+.pull-quote p{font-family:'Archivo Black',sans-serif;font-size:clamp(1.5rem,3vw,2.5rem);text-transform:uppercase;line-height:1.3;max-width:700px;margin:0 auto}
+.pull-quote p .red{color:#e63946}
+.pull-quote cite{display:block;font-family:'Space Mono',monospace;font-size:.6rem;color:#888;margin-top:1rem;font-style:normal;letter-spacing:.15em}
+.subscribe{padding:4rem 2rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.subscribe h2{font-family:'Archivo Black',sans-serif;font-size:2rem;text-transform:uppercase}
+.subscribe p{color:#888;font-size:.8rem;line-height:1.7;margin-top:1rem}
+.subscribe a{display:inline-block;margin-top:1.5rem;padding:.8rem 2rem;background:#e63946;color:#fff;text-decoration:none;font-family:'Archivo Black',sans-serif;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase}
+.subscribe img{width:100%;height:300px;object-fit:cover;border:2px solid #1a1a1a}
+footer{padding:2rem;border-top:3px solid #1a1a1a;display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:.55rem;color:#888;letter-spacing:.1em}
+</style>
+</head>
+<body>
+<nav><div class="logo">SP<span>L</span>ICE</div><div class="issue">ISSUE 12 · WINTER 2024</div></nav>
+
+<section class="hero">
+<div class="hero-title"><h1>The <span class="red">future</span> is already here</h1><p>A digital zine about culture, technology, and the spaces between. Issue 12 explores AI art, underground music, and the death of the algorithm.</p></div>
+<div class="hero-img"><img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=500" alt=""><div class="label">Cover Story</div></div>
+<div class="hero-img"><img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=500" alt=""><div class="label">Feature</div></div>
+<div class="hero-img"><img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=500" alt=""><div class="label">Photo Essay</div></div>
+<div class="hero-img"><img src="https://images.unsplash.com/photo-1614854262318-831574f15f1f?w=500" alt=""><div class="label">Interview</div></div>
+</section>
+
+<section class="collage">
+<div class="collage-item"><img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=500" alt=""><div class="tag red">Tech</div></div>
+<div class="collage-item"><img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=500" alt=""><div class="tag">Music</div></div>
+<div class="collage-item"><img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=500" alt=""><div class="tag">Art</div></div>
+<div class="collage-item"><img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500" alt=""><div class="tag red">Retro</div></div>
+<div class="collage-item"><img src="https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=500" alt=""><div class="tag">Culture</div></div>
+</section>
+
+<section class="articles">
+<h2>In This Issue</h2>
+<div class="article-grid">
+<div class="article-card"><img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=500" alt=""><div class="info"><div class="cat">Cover Story</div><h3>When machines dream: the AI art revolution</h3><p>Is it art if a human didn't make it? We spent a month inside the studios of AI artists to find out.</p></div></div>
+<div class="article-card"><img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=400" alt=""><div class="info"><div class="cat">Music</div><h3>The underground is alive</h3><p>How bedroom producers are bypassing labels entirely.</p></div></div>
+<div class="article-card"><img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400" alt=""><div class="info"><div class="cat">Gaming</div><h3>Indie games that matter</h3><p>Small studios making big statements.</p></div></div>
+</div>
+</section>
+
+<section class="pull-quote"><p>"The algorithm is dead. <span class="red">Long live the algorithm.</span>"</p><cite>— From "Post-Feed Culture," pg. 34</cite></section>
+
+<section class="subscribe">
+<div><h2>Subscribe to Splice</h2><p>Four issues a year. Digital-first, print-optional. Culture that doesn't fit in a feed.</p><a href="#">Subscribe — $24/yr</a></div>
+<img src="https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?w=500" alt="">
+</section>
+
+<footer><span>SPLICE ZINE © 2024</span><span>BROOKLYN · BERLIN · TOKYO</span></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+// Hero — keyframes array for multi-step entrance
+gsap.from('.hero-title h1',{
+  keyframes:[
+    {y:80,opacity:0,skewX:-8,rotation:-3},
+    {y:-5,opacity:1,skewX:2,rotation:.5,duration:.8,ease:'power3.out'},
+    {y:0,skewX:0,rotation:0,duration:.4}
+  ],delay:.2
+});
+gsap.from('.hero-title p',{keyframes:[{x:-30,opacity:0},{x:3,opacity:1,duration:.6},{x:0,duration:.3}],delay:.6});
+
+// Hero images — staggered with keyframes + overwrite
+gsap.utils.toArray('.hero-img').forEach((img,i)=>{
+  gsap.from(img,{
+    keyframes:[
+      {y:60,opacity:0,scale:.85,rotation:gsap.utils.random(-5,5)},
+      {y:-3,opacity:1,scale:1.01,rotation:0,duration:.7,ease:'power3.out'},
+      {y:0,scale:1,duration:.3}
+    ],
+    delay:.4+i*.12,
+    overwrite:'auto'
+  });
+});
+
+// Collage — asymmetric keyframe entrances
+gsap.utils.toArray('.collage-item').forEach((item,i)=>{
+  const dirs=[[-60,30],[40,-20],[-30,50],[50,-30],[-40,20]];
+  gsap.from(item,{
+    scrollTrigger:{trigger:item,start:'top 85%'},
+    keyframes:[
+      {x:dirs[i%5][0],y:dirs[i%5][1],opacity:0,rotation:gsap.utils.random(-6,6),scale:.8},
+      {x:0,y:0,opacity:1,rotation:0,scale:1,duration:.8,ease:'power3.out'}
+    ]
+  });
+  gsap.from(item.querySelector('.tag'),{scrollTrigger:{trigger:item,start:'top 80%'},scale:0,duration:.4,ease:'back.out(2)',delay:.4});
+});
+
+// Articles — keyframe wobble
+gsap.utils.toArray('.article-card').forEach((card,i)=>{
+  gsap.from(card,{
+    scrollTrigger:{trigger:card,start:'top 85%'},
+    keyframes:[
+      {y:50,opacity:0,rotation:i%2===0?-4:4},
+      {y:-3,opacity:1,rotation:i%2===0?1:-1,duration:.6,ease:'power3.out'},
+      {y:0,rotation:0,duration:.3}
+    ],
+    delay:i*.1
+  });
+});
+
+// Pull quote
+gsap.from('.pull-quote p',{scrollTrigger:{trigger:'.pull-quote',start:'top 70%'},keyframes:[{y:40,opacity:0,skewX:-5},{y:0,opacity:1,skewX:0,duration:.8}]});
+gsap.from('.pull-quote cite',{scrollTrigger:{trigger:'.pull-quote',start:'top 65%'},y:15,opacity:0,duration:.5,delay:.3});
+
+// Subscribe
+gsap.from('.subscribe > div > *',{scrollTrigger:{trigger:'.subscribe',start:'top 70%'},x:-30,opacity:0,stagger:.12,duration:.7});
+gsap.from('.subscribe img',{scrollTrigger:{trigger:'.subscribe',start:'top 70%'},x:30,opacity:0,rotation:3,duration:.8});
+</script>
+</body>
+</html>

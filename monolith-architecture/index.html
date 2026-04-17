@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MONOLITH — Architecture Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=DM+Sans:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#f5f0eb;--fg:#1a1a1a;--accent:#c8553d;--muted:#a09888}
+body{background:var(--bg);color:var(--fg);font-family:'DM Sans',sans-serif;overflow-x:hidden}
+
+nav{position:fixed;top:0;width:100%;padding:2rem 4rem;display:flex;justify-content:space-between;align-items:center;z-index:100;mix-blend-mode:difference;color:#fff}
+nav .logo{font-family:'Instrument Serif',serif;font-size:2rem}
+nav ul{display:flex;gap:2rem;list-style:none}
+nav a{color:inherit;text-decoration:none;font-size:.85rem;letter-spacing:.15em;text-transform:uppercase}
+
+/* Hero — massive type with organic blob */
+.hero{height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.hero-bg{position:absolute;width:55vw;height:55vw;border-radius:40% 60% 55% 45%/55% 40% 60% 45%;background:var(--accent);opacity:.08;right:-10vw;top:-10vw;animation:morph 15s ease-in-out infinite}
+@keyframes morph{50%{border-radius:55% 45% 40% 60%/40% 55% 45% 60%;transform:rotate(30deg) scale(1.05)}}
+.hero h1{font-family:'Instrument Serif',serif;font-size:clamp(4rem,12vw,14rem);line-height:.85;text-align:center;position:relative;z-index:2}
+.hero h1 div{overflow:hidden}
+.hero h1 div span{display:inline-block}
+.hero .scroll-hint{position:absolute;bottom:3rem;left:50%;transform:translateX(-50%);font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.hero .scroll-hint::after{content:'';display:block;width:1px;height:60px;background:var(--muted);margin:1rem auto 0;animation:scrollDown 2s ease infinite}
+@keyframes scrollDown{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* Horizontal scroll section */
+.horizontal-section{overflow:hidden}
+.horizontal-wrap{display:flex;width:fit-content}
+.h-panel{width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;padding:4rem;flex-shrink:0}
+.h-panel:nth-child(odd){flex-direction:row}
+.h-panel:nth-child(even){flex-direction:row-reverse}
+.h-panel .img-side{flex:1.2;height:80%;position:relative;overflow:hidden}
+.h-panel .img-side img{width:100%;height:100%;object-fit:cover}
+.h-panel .img-side .reveal{position:absolute;inset:0;background:var(--bg);z-index:2}
+.h-panel .text-side{flex:1;padding:0 5rem}
+.h-panel .text-side .label{font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem}
+.h-panel .text-side h2{font-family:'Instrument Serif',serif;font-size:3.5rem;line-height:1.1;margin-bottom:1.5rem}
+.h-panel .text-side p{color:var(--muted);line-height:1.8;max-width:400px}
+.h-panel .text-side .tags{display:flex;gap:.8rem;margin-top:2rem;flex-wrap:wrap}
+.h-panel .text-side .tag{padding:.5rem 1.2rem;border:1px solid #ccc;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase}
+
+/* Philosophy — offset text blocks */
+.philosophy{padding:12rem 4rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem;position:relative}
+.philosophy::before{content:'';position:absolute;left:50%;top:0;width:1px;height:100%;background:#ddd}
+.phil-block{padding:3rem}
+.phil-block:nth-child(1){grid-column:1;transform:translateY(80px)}
+.phil-block:nth-child(2){grid-column:2/4;text-align:right}
+.phil-block:nth-child(3){grid-column:1/3;transform:translateY(-40px)}
+.phil-block h3{font-family:'Instrument Serif',serif;font-size:2.5rem;margin-bottom:1rem}
+.phil-block p{color:var(--muted);line-height:1.8;max-width:450px}
+.phil-block:nth-child(2) p{margin-left:auto}
+.phil-num{font-size:8rem;font-family:'Instrument Serif',serif;color:rgba(200,85,61,.1);line-height:1;margin-bottom:-2rem}
+
+/* Awards — asymmetric list */
+.awards{padding:8rem 4rem;background:var(--fg);color:var(--bg)}
+.awards h2{font-family:'Instrument Serif',serif;font-size:5rem;margin-bottom:4rem;text-align:center}
+.award-row{display:grid;grid-template-columns:1fr 2fr 1fr;padding:2rem 0;border-top:1px solid #333;align-items:center}
+.award-row .year{font-size:.85rem;color:var(--muted)}
+.award-row .title{font-family:'Instrument Serif',serif;font-size:1.8rem}
+.award-row .org{text-align:right;color:var(--accent);font-size:.9rem}
+
+/* Contact */
+.contact{padding:12rem 4rem;text-align:center;position:relative}
+.contact h2{font-family:'Instrument Serif',serif;font-size:clamp(3rem,8vw,8rem);line-height:1}
+.contact h2 em{color:var(--accent);font-style:italic}
+.contact p{color:var(--muted);margin-top:2rem;font-size:1.1rem}
+.contact a.email{display:inline-block;margin-top:3rem;font-size:1.3rem;color:var(--fg);text-decoration:none;border-bottom:2px solid var(--accent);padding-bottom:.3rem;transition:color .3s}
+.contact a.email:hover{color:var(--accent)}
+
+footer{padding:3rem 4rem;display:flex;justify-content:space-between;border-top:1px solid #ddd;font-size:.85rem;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">MONOLITH</div>
+  <ul>
+    <li><a href="#">Projects</a></li>
+    <li><a href="#">Philosophy</a></li>
+    <li><a href="#">Awards</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <h1>
+    <div><span>Shaping</span></div>
+    <div><span>Space &</span></div>
+    <div><span style="color:var(--accent)">Light</span></div>
+  </h1>
+  <div class="scroll-hint">Scroll to explore</div>
+</section>
+
+<section class="horizontal-section">
+  <div class="horizontal-wrap">
+    <div class="h-panel">
+      <div class="img-side">
+        <img src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=800" alt="Architecture">
+        <div class="reveal"></div>
+      </div>
+      <div class="text-side">
+        <div class="label">Residential</div>
+        <h2>The Glass Pavilion</h2>
+        <p>A seamless dialogue between interior and landscape. Floor-to-ceiling glass walls dissolve the boundary between built and natural environments.</p>
+        <div class="tags"><span class="tag">Residential</span><span class="tag">2024</span><span class="tag">Tokyo</span></div>
+      </div>
+    </div>
+    <div class="h-panel">
+      <div class="img-side">
+        <img src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?w=800" alt="Architecture">
+        <div class="reveal"></div>
+      </div>
+      <div class="text-side">
+        <div class="label">Cultural</div>
+        <h2>Horizon Museum</h2>
+        <p>Cantilevered volumes create dramatic overhangs that frame curated views of the surrounding cityscape, blurring art and architecture.</p>
+        <div class="tags"><span class="tag">Museum</span><span class="tag">2023</span><span class="tag">Oslo</span></div>
+      </div>
+    </div>
+    <div class="h-panel">
+      <div class="img-side">
+        <img src="https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=800" alt="Architecture">
+        <div class="reveal"></div>
+      </div>
+      <div class="text-side">
+        <div class="label">Commercial</div>
+        <h2>Vertex Tower</h2>
+        <p>A twisting 40-story tower that redefines the skyline. Each floor rotates 1.5° creating a dynamic, ever-changing silhouette.</p>
+        <div class="tags"><span class="tag">Tower</span><span class="tag">2023</span><span class="tag">Dubai</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="philosophy">
+  <div class="phil-block">
+    <div class="phil-num">01</div>
+    <h3>Form follows emotion</h3>
+    <p>We believe architecture should evoke feeling. Every curve, angle, and material choice is intentional — designed to create visceral human experiences.</p>
+  </div>
+  <div class="phil-block">
+    <div class="phil-num">02</div>
+    <h3>Context is everything</h3>
+    <p>Our buildings don't exist in isolation. They respond to climate, culture, and community — becoming inseparable from their environment.</p>
+  </div>
+  <div class="phil-block">
+    <div class="phil-num">03</div>
+    <h3>Sustainable by nature</h3>
+    <p>Sustainability isn't an afterthought. It's embedded in our design DNA — from passive cooling strategies to locally sourced materials.</p>
+  </div>
+</section>
+
+<section class="awards">
+  <h2>Recognition</h2>
+  <div class="award-row"><span class="year">2024</span><span class="title">Architecture of the Year</span><span class="org">Dezeen Awards</span></div>
+  <div class="award-row"><span class="year">2024</span><span class="title">Best Residential Design</span><span class="org">World Architecture Festival</span></div>
+  <div class="award-row"><span class="year">2023</span><span class="title">Emerging Studio</span><span class="org">Pritzker Foundation</span></div>
+  <div class="award-row"><span class="year">2023</span><span class="title">Sustainable Innovation</span><span class="org">AIA Gold Medal</span></div>
+  <div class="award-row"><span class="year">2022</span><span class="title">Cultural Building Prize</span><span class="org">RIBA International</span></div>
+</section>
+
+<section class="contact">
+  <h2>Let's create<br>something <em>timeless</em></h2>
+  <p>We're always looking for visionary collaborators.</p>
+  <a href="#" class="email">studio@monolith-arch.com</a>
+</section>
+
+<footer>
+  <span>MONOLITH © 2024</span>
+  <span>New York · Tokyo · Oslo</span>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+// Hero text
+gsap.from('.hero h1 div span', {
+  y: '110%', duration: 1.5, stagger: .2, ease: 'power4.out', delay: .3
+});
+gsap.from('.scroll-hint', {opacity: 0, y: 20, duration: 1, delay: 2});
+
+// Horizontal scroll
+const hWrap = document.querySelector('.horizontal-wrap');
+const hPanels = gsap.utils.toArray('.h-panel');
+gsap.to(hWrap, {
+  x: () => -(hWrap.scrollWidth - window.innerWidth),
+  ease: 'none',
+  scrollTrigger: {
+    trigger: '.horizontal-section',
+    pin: true,
+    scrub: 1,
+    end: () => '+=' + hWrap.scrollWidth,
+    invalidateOnRefresh: true
+  }
+});
+
+// Image reveals inside horizontal panels
+hPanels.forEach((panel, i) => {
+  const reveal = panel.querySelector('.reveal');
+  const textEls = panel.querySelectorAll('.text-side > *');
+  gsap.to(reveal, {
+    scaleX: 0, transformOrigin: i % 2 === 0 ? 'right' : 'left',
+    scrollTrigger: {
+      trigger: panel,
+      containerAnimation: gsap.getById ? undefined : undefined,
+      start: 'left 80%',
+      end: 'left 30%',
+      scrub: 1,
+      horizontal: true
+    },
+    duration: 1
+  });
+  // Fallback: trigger reveals on scroll position
+  ScrollTrigger.create({
+    trigger: '.horizontal-section',
+    start: () => `top+=${i * window.innerWidth * .8} top`,
+    onEnter: () => {
+      gsap.to(reveal, {scaleX: 0, transformOrigin: i % 2 === 0 ? 'right' : 'left', duration: 1, ease: 'power3.inOut'});
+      gsap.from(textEls, {y: 40, opacity: 0, stagger: .1, duration: .8, delay: .3});
+    },
+    once: true
+  });
+});
+
+// Philosophy blocks
+gsap.from('.phil-block', {
+  scrollTrigger: {trigger: '.philosophy', start: 'top 60%'},
+  y: 80, opacity: 0, stagger: .25, duration: 1.2, ease: 'power3.out'
+});
+
+// Award rows
+gsap.from('.award-row', {
+  scrollTrigger: {trigger: '.awards', start: 'top 60%'},
+  x: -60, opacity: 0, stagger: .12, duration: .8, ease: 'power3.out'
+});
+
+// Contact
+gsap.from('.contact h2, .contact p, .contact a', {
+  scrollTrigger: {trigger: '.contact', start: 'top 60%'},
+  y: 60, opacity: 0, stagger: .2, duration: 1
+});
+</script>
+</body>
+</html>

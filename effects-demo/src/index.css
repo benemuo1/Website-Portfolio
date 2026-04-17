@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: #000; }
+
+@keyframes auroraWave {
+  0%   { transform: translateX(-10%) skewX(-5deg) scaleY(1); opacity: 0.5; }
+  50%  { transform: translateX(10%) skewX(5deg) scaleY(1.1); opacity: 0.8; }
+  100% { transform: translateX(-10%) skewX(-5deg) scaleY(1); opacity: 0.5; }
+}
+@keyframes auroraWave2 {
+  0%   { transform: translateX(8%) skewX(4deg) scaleY(0.95); opacity: 0.4; }
+  50%  { transform: translateX(-8%) skewX(-4deg) scaleY(1.05); opacity: 0.7; }
+  100% { transform: translateX(8%) skewX(4deg) scaleY(0.95); opacity: 0.4; }
+}
+@keyframes godRayPulse {
+  0%, 100% { opacity: 0.15; transform: translateX(-50%) scaleX(1); }
+  50%       { opacity: 0.35; transform: translateX(-50%) scaleX(1.1); }
+}
+@keyframes warpStar {
+  0%   { transform: translateZ(0px) scale(0.2); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translateZ(800px) scale(2); opacity: 0; }
+}
+@keyframes blobFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(20px, -15px) scale(1.05); }
+  66%       { transform: translate(-15px, 10px) scale(0.97); }
+}
+@keyframes geometryRotate {
+  from { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+  to   { transform: rotateX(360deg) rotateY(240deg) rotateZ(120deg); }
+}
+@keyframes liquidShimmer {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes smokeDrift {
+  0%   { transform: translateX(0) translateY(0) scale(1); opacity: 0; }
+  20%  { opacity: 0.15; }
+  80%  { opacity: 0.1; }
+  100% { transform: translateX(60px) translateY(-80px) scale(1.4); opacity: 0; }
+}
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  10%       { transform: scale(1.08); opacity: 1; }
+  20%       { transform: scale(1); opacity: 0.7; }
+  30%       { transform: scale(1.04); opacity: 0.9; }
+  40%       { transform: scale(1); opacity: 0.7; }
+}
+@keyframes fieldLine {
+  0%   { stroke-dashoffset: 1000; opacity: 0; }
+  20%  { opacity: 0.6; }
+  80%  { opacity: 0.6; }
+  100% { stroke-dashoffset: 0; opacity: 0; }
+}
+@keyframes rippleExpand {
+  0%   { transform: scale(0); opacity: 0.8; }
+  100% { transform: scale(4); opacity: 0; }
+}
+@keyframes chromaticShift {
+  0%, 100% { text-shadow: -2px 0 2px rgba(255,0,0,0.6), 2px 0 2px rgba(0,255,255,0.6); }
+  50%       { text-shadow: 2px 0 3px rgba(255,0,0,0.8), -2px 0 3px rgba(0,255,255,0.8); }
+}
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes noiseWarp {
+  0%   { filter: url(#noise) blur(0px); transform: translate(0,0); }
+  25%  { filter: url(#noise) blur(1px); transform: translate(3px,-2px); }
+  50%  { filter: url(#noise) blur(0px); transform: translate(-2px,3px); }
+  75%  { filter: url(#noise) blur(1px); transform: translate(2px,2px); }
+  100% { filter: url(#noise) blur(0px); transform: translate(0,0); }
+}

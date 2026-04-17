@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PULSE — Analytics Platform</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#06060e;--surface:#0d0d1a;--glass:rgba(255,255,255,.04);--border:rgba(255,255,255,.06);--fg:#e8e8f0;--muted:#6b6b80;--purple:#8b5cf6;--blue:#3b82f6;--cyan:#06b6d4;--pink:#ec4899;--grad:linear-gradient(135deg,var(--purple),var(--blue),var(--cyan))}
+body{background:var(--bg);color:var(--fg);font-family:'Inter',sans-serif;overflow-x:hidden}
+
+nav{position:fixed;top:0;width:100%;padding:1.5rem 4rem;display:flex;justify-content:space-between;align-items:center;z-index:100;backdrop-filter:blur(20px);background:rgba(6,6,14,.7);border-bottom:1px solid var(--border)}
+nav .logo{font-size:1.4rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+nav ul{display:flex;gap:2rem;list-style:none}
+nav a{color:var(--muted);text-decoration:none;font-size:.85rem;transition:color .3s}
+nav a:hover{color:var(--fg)}
+nav .cta-btn{padding:.6rem 1.5rem;background:var(--grad);border-radius:100px;color:#fff;font-weight:600;font-size:.85rem}
+
+/* Hero — asymmetric with floating UI elements */
+.hero{min-height:100vh;display:grid;grid-template-columns:1.1fr 1fr;align-items:center;padding:8rem 4rem 4rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(139,92,246,.15),transparent 70%);top:-100px;right:-100px}
+.hero::after{content:'';position:absolute;width:400px;height:400px;background:radial-gradient(circle,rgba(6,182,212,.1),transparent 70%);bottom:0;left:20%}
+.hero-text{position:relative;z-index:2}
+.hero-text .badge{display:inline-flex;align-items:center;gap:.5rem;padding:.4rem 1rem;background:var(--glass);border:1px solid var(--border);border-radius:100px;font-size:.8rem;color:var(--muted);margin-bottom:2rem}
+.hero-text .badge .dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.hero-text h1{font-size:clamp(2.5rem,5vw,4.5rem);font-weight:800;line-height:1.1;letter-spacing:-.03em}
+.hero-text h1 span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-text p{color:var(--muted);font-size:1.1rem;line-height:1.7;margin-top:1.5rem;max-width:480px}
+.hero-btns{display:flex;gap:1rem;margin-top:2.5rem}
+.hero-btns .primary{padding:.9rem 2rem;background:var(--grad);border-radius:12px;color:#fff;font-weight:600;text-decoration:none;font-size:.9rem}
+.hero-btns .secondary{padding:.9rem 2rem;background:var(--glass);border:1px solid var(--border);border-radius:12px;color:var(--fg);text-decoration:none;font-size:.9rem}
+
+.hero-visual{position:relative;z-index:2;display:flex;justify-content:center;align-items:center;height:500px}
+/* Floating UI cards */
+.float-card{position:absolute;background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:16px;padding:1.5rem}
+.float-card.card1{top:10%;right:5%;width:220px}
+.float-card.card2{bottom:15%;left:0;width:260px}
+.float-card.card3{top:40%;right:25%;width:200px}
+.float-card .card-label{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+.float-card .card-value{font-size:2rem;font-weight:800;margin:.5rem 0}
+.float-card .card-value.grad{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.float-card .mini-chart{display:flex;align-items:flex-end;gap:3px;height:40px;margin-top:.5rem}
+.float-card .mini-chart .bar{width:8px;border-radius:4px;background:var(--grad)}
+.float-card .card-change{font-size:.8rem;color:#22c55e;margin-top:.3rem}
+
+/* Bento grid features */
+.bento{padding:8rem 4rem}
+.bento h2{font-size:3rem;font-weight:800;text-align:center;margin-bottom:1rem;letter-spacing:-.02em}
+.bento .sub{text-align:center;color:var(--muted);margin-bottom:4rem;font-size:1.05rem}
+.bento-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:280px 280px;gap:1.5rem}
+.bento-item{background:var(--glass);border:1px solid var(--border);border-radius:20px;padding:2rem;position:relative;overflow:hidden;transition:border-color .4s,transform .3s}
+.bento-item:hover{border-color:rgba(139,92,246,.3);transform:translateY(-4px)}
+.bento-item::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--grad);opacity:0;transition:opacity .4s}
+.bento-item:hover::before{opacity:1}
+.bento-item.wide{grid-column:span 2}
+.bento-item.tall{grid-row:span 2}
+.bento-item .icon{width:48px;height:48px;border-radius:12px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:1.5rem}
+.bento-item h3{font-size:1.2rem;font-weight:700;margin-bottom:.8rem}
+.bento-item p{color:var(--muted);font-size:.9rem;line-height:1.6}
+.bento-item .visual{position:absolute;bottom:0;right:0;width:60%;height:50%;opacity:.15;background:var(--grad);border-radius:20px 0 20px 0;filter:blur(40px)}
+
+/* Stats — counter section */
+.stats{padding:6rem 4rem;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem}
+.stat-card{text-align:center;padding:3rem 2rem;background:var(--glass);border:1px solid var(--border);border-radius:20px;position:relative}
+.stat-card::after{content:'';position:absolute;inset:0;border-radius:20px;background:var(--grad);opacity:0;transition:opacity .4s;z-index:-1}
+.stat-card:hover::after{opacity:.08}
+.stat-card h3{font-size:3.5rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-card p{color:var(--muted);font-size:.85rem;margin-top:.5rem;text-transform:uppercase;letter-spacing:.1em}
+
+/* Pricing — tilted cards */
+.pricing{padding:8rem 4rem;text-align:center}
+.pricing h2{font-size:3rem;font-weight:800;margin-bottom:4rem;letter-spacing:-.02em}
+.pricing-grid{display:flex;gap:2rem;justify-content:center;perspective:1000px}
+.price-card{background:var(--glass);border:1px solid var(--border);border-radius:24px;padding:3rem 2.5rem;width:320px;text-align:left;position:relative;transition:transform .5s,border-color .4s}
+.price-card:nth-child(1){transform:rotateY(5deg) translateX(20px)}
+.price-card:nth-child(3){transform:rotateY(-5deg) translateX(-20px)}
+.price-card.featured{border-color:rgba(139,92,246,.4);background:linear-gradient(180deg,rgba(139,92,246,.08),var(--glass))}
+.price-card .tier{font-size:.8rem;text-transform:uppercase;letter-spacing:.15em;color:var(--muted)}
+.price-card .price{font-size:3.5rem;font-weight:800;margin:1rem 0}
+.price-card .price span{font-size:1rem;color:var(--muted);font-weight:400}
+.price-card ul{list-style:none;margin:2rem 0}
+.price-card li{padding:.6rem 0;color:var(--muted);font-size:.9rem;border-bottom:1px solid var(--border)}
+.price-card li::before{content:'✓';color:var(--cyan);margin-right:.8rem;font-weight:700}
+.price-card .btn{display:block;text-align:center;padding:1rem;border-radius:12px;text-decoration:none;font-weight:600;font-size:.9rem;transition:all .3s}
+.price-card .btn.outline{border:1px solid var(--border);color:var(--fg)}
+.price-card .btn.fill{background:var(--grad);color:#fff}
+.price-card .btn:hover{transform:translateY(-2px)}
+
+/* CTA */
+.cta-section{padding:10rem 4rem;text-align:center;position:relative}
+.cta-section::before{content:'';position:absolute;width:800px;height:400px;background:radial-gradient(ellipse,rgba(139,92,246,.12),transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%)}
+.cta-section h2{font-size:clamp(2.5rem,5vw,4rem);font-weight:800;line-height:1.15;position:relative;z-index:2}
+.cta-section h2 span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.cta-section a{display:inline-block;margin-top:2.5rem;padding:1rem 3rem;background:var(--grad);border-radius:14px;color:#fff;text-decoration:none;font-weight:700;font-size:1rem;position:relative;z-index:2}
+
+footer{padding:3rem 4rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;color:var(--muted);font-size:.85rem}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">PULSE</div>
+  <ul>
+    <li><a href="#">Features</a></li>
+    <li><a href="#">Pricing</a></li>
+    <li><a href="#">Docs</a></li>
+    <li><a href="#">Blog</a></li>
+  </ul>
+  <a href="#" class="cta-btn">Get Started</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-text">
+    <div class="badge"><span class="dot"></span> Now in public beta</div>
+    <h1>Analytics that<br><span>actually make sense.</span></h1>
+    <p>Real-time insights, predictive models, and beautiful dashboards — all in one platform built for modern teams.</p>
+    <div class="hero-btns">
+      <a href="#" class="primary">Start free trial</a>
+      <a href="#" class="secondary">Watch demo →</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="float-card card1">
+      <div class="card-label">Revenue</div>
+      <div class="card-value grad">$48.2K</div>
+      <div class="card-change">↑ 24.5% vs last month</div>
+    </div>
+    <div class="float-card card2">
+      <div class="card-label">Active Users</div>
+      <div class="card-value">12,847</div>
+      <div class="mini-chart">
+        <div class="bar" style="height:30%"></div>
+        <div class="bar" style="height:50%"></div>
+        <div class="bar" style="height:35%"></div>
+        <div class="bar" style="height:70%"></div>
+        <div class="bar" style="height:55%"></div>
+        <div class="bar" style="height:80%"></div>
+        <div class="bar" style="height:65%"></div>
+        <div class="bar" style="height:90%"></div>
+        <div class="bar" style="height:75%"></div>
+        <div class="bar" style="height:95%"></div>
+      </div>
+    </div>
+    <div class="float-card card3">
+      <div class="card-label">Conversion</div>
+      <div class="card-value grad">8.7%</div>
+      <div class="card-change">↑ 3.2%</div>
+    </div>
+  </div>
+</section>
+
+<section class="bento">
+  <h2>Everything you need</h2>
+  <p class="sub">Powerful features, zero complexity.</p>
+  <div class="bento-grid">
+    <div class="bento-item wide">
+      <div class="icon">📊</div>
+      <h3>Real-time Dashboards</h3>
+      <p>Live data streams with sub-second latency. Build custom views with drag-and-drop widgets.</p>
+      <div class="visual"></div>
+    </div>
+    <div class="bento-item">
+      <div class="icon">🤖</div>
+      <h3>AI Predictions</h3>
+      <p>ML-powered forecasting that learns from your data patterns.</p>
+    </div>
+    <div class="bento-item">
+      <div class="icon">🔗</div>
+      <h3>200+ Integrations</h3>
+      <p>Connect every tool in your stack with one click.</p>
+    </div>
+    <div class="bento-item">
+      <div class="icon">🛡️</div>
+      <h3>Enterprise Security</h3>
+      <p>SOC2, GDPR, and HIPAA compliant out of the box.</p>
+    </div>
+    <div class="bento-item">
+      <div class="icon">⚡</div>
+      <h3>Blazing Fast</h3>
+      <p>Query billions of rows in milliseconds with our columnar engine.</p>
+    </div>
+    <div class="bento-item wide">
+      <div class="icon">👥</div>
+      <h3>Team Collaboration</h3>
+      <p>Share dashboards, annotate insights, and build reports together in real-time with your entire team.</p>
+      <div class="visual"></div>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="stat-card"><h3 class="counter" data-target="99.9">0</h3><p>Uptime %</p></div>
+  <div class="stat-card"><h3 class="counter" data-target="50">0</h3><p>Billion events/day</p></div>
+  <div class="stat-card"><h3 class="counter" data-target="4200">0</h3><p>Companies</p></div>
+  <div class="stat-card"><h3 class="counter" data-target="12">0</h3><p>ms avg query</p></div>
+</section>
+
+<section class="pricing">
+  <h2>Simple, transparent pricing</h2>
+  <div class="pricing-grid">
+    <div class="price-card">
+      <div class="tier">Starter</div>
+      <div class="price">$0<span>/mo</span></div>
+      <ul>
+        <li>10K events/month</li>
+        <li>3 dashboards</li>
+        <li>7-day retention</li>
+        <li>Email support</li>
+      </ul>
+      <a href="#" class="btn outline">Get started</a>
+    </div>
+    <div class="price-card featured">
+      <div class="tier">Pro</div>
+      <div class="price">$49<span>/mo</span></div>
+      <ul>
+        <li>1M events/month</li>
+        <li>Unlimited dashboards</li>
+        <li>1-year retention</li>
+        <li>AI predictions</li>
+        <li>Priority support</li>
+      </ul>
+      <a href="#" class="btn fill">Start free trial</a>
+    </div>
+    <div class="price-card">
+      <div class="tier">Enterprise</div>
+      <div class="price">Custom</div>
+      <ul>
+        <li>Unlimited events</li>
+        <li>Dedicated infrastructure</li>
+        <li>Custom retention</li>
+        <li>SSO & SAML</li>
+        <li>24/7 SLA</li>
+      </ul>
+      <a href="#" class="btn outline">Contact sales</a>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <h2>Ready to unlock your<br><span>data's potential?</span></h2>
+  <a href="#">Start your free trial →</a>
+</section>
+
+<footer>
+  <span>© 2024 Pulse Analytics</span>
+  <span>Privacy · Terms · Status</span>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+// Hero entrance
+const tl = gsap.timeline({delay: .3});
+tl.from('.hero-text .badge', {y: 20, opacity: 0, duration: .6})
+  .from('.hero-text h1', {y: 40, opacity: 0, duration: .8}, '-=.3')
+  .from('.hero-text p', {y: 30, opacity: 0, duration: .6}, '-=.4')
+  .from('.hero-btns a', {y: 20, opacity: 0, stagger: .15, duration: .5}, '-=.3');
+
+// Floating cards entrance + continuous float
+gsap.from('.float-card', {y: 60, opacity: 0, stagger: .2, duration: 1, delay: 1, ease: 'power3.out'});
+document.querySelectorAll('.float-card').forEach((card, i) => {
+  gsap.to(card, {
+    y: `${i % 2 === 0 ? '-' : '+'}=15`,
+    duration: 2.5 + i * .5,
+    ease: 'sine.inOut',
+    repeat: -1,
+    yoyo: true
+  });
+});
+
+// Bento items
+gsap.from('.bento-item', {
+  scrollTrigger: {trigger: '.bento-grid', start: 'top 75%'},
+  y: 60, opacity: 0, stagger: {amount: .8, from: 'random'}, duration: .8, ease: 'power3.out'
+});
+
+// 3D tilt on bento items
+document.querySelectorAll('.bento-item').forEach(item => {
+  item.addEventListener('mousemove', e => {
+    const rect = item.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - .5;
+    const y = (e.clientY - rect.top) / rect.height - .5;
+    gsap.to(item, {rotateY: x * 8, rotateX: -y * 8, duration: .3, transformPerspective: 800});
+  });
+  item.addEventListener('mouseleave', () => {
+    gsap.to(item, {rotateY: 0, rotateX: 0, duration: .5});
+  });
+});
+
+// Counter animation
+ScrollTrigger.create({
+  trigger: '.stats',
+  start: 'top 75%',
+  once: true,
+  onEnter: () => {
+    document.querySelectorAll('.counter').forEach(el => {
+      const target = parseFloat(el.dataset.target);
+      const isDecimal = target % 1 !== 0;
+      gsap.to({val: 0}, {
+        val: target, duration: 2, ease: 'power2.out',
+        onUpdate: function() {
+          el.textContent = isDecimal ? this.targets()[0].val.toFixed(1) : Math.floor(this.targets()[0].val).toLocaleString();
+        }
+      });
+    });
+  }
+});
+
+// Stat cards
+gsap.from('.stat-card', {
+  scrollTrigger: {trigger: '.stats', start: 'top 75%'},
+  y: 50, opacity: 0, stagger: .12, duration: .8
+});
+
+// Pricing cards
+gsap.from('.price-card', {
+  scrollTrigger: {trigger: '.pricing-grid', start: 'top 75%'},
+  y: 80, opacity: 0, rotateY: 10, stagger: .2, duration: 1, ease: 'power3.out'
+});
+
+// CTA
+gsap.from('.cta-section h2, .cta-section a', {
+  scrollTrigger: {trigger: '.cta-section', start: 'top 65%'},
+  y: 50, opacity: 0, stagger: .2, duration: 1
+});
+</script>
+</body>
+</html>

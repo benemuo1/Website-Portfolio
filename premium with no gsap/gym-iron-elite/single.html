@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IRON ELITE — Performance Gym</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{background:#0a0a0a;color:#fff;font-family:'Inter',sans-serif;overflow-x:hidden}img{display:block;max-width:100%}a{color:inherit;text-decoration:none}
+@keyframes dustFloat{0%,100%{transform:translateY(0) translateX(0);opacity:0}30%{opacity:.6}70%{opacity:.3}100%{transform:translateY(-100vh) translateX(30px);opacity:0}}
+@keyframes slideUp{from{opacity:0;transform:translateY(80px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes redPulse{0%,100%{box-shadow:0 0 20px rgba(220,38,38,.2)}50%{box-shadow:0 0 60px rgba(220,38,38,.5)}}
+@keyframes lineGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes scanline{from{top:-10%}to{top:110%}}
+.bebas{font-family:'Bebas Neue',sans-serif}
+/* NAV */
+.nav{position:absolute;top:2rem;left:2rem;right:2rem;display:flex;align-items:center;justify-content:space-between;z-index:20;animation:fadeIn .8s ease .2s both}
+.nav-links{display:flex;gap:2rem}.nav-links a{color:rgba(255,255,255,.3);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;transition:color .3s}.nav-links a:hover{color:rgba(255,255,255,.8)}
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}.hero-bg{position:absolute;inset:0}.hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.2}.hero-grad1{position:absolute;inset:0;background:linear-gradient(to right,#000,rgba(0,0,0,.8),transparent)}.hero-grad2{position:absolute;inset:0;background:linear-gradient(to top,#000,transparent,rgba(0,0,0,.5))}.hero-scan{position:absolute;left:0;right:0;height:1px;background:rgba(220,38,38,.2);animation:scanline 4s linear infinite}.hero-orb{position:absolute;top:25%;right:25%;width:24rem;height:24rem;border-radius:50%;background:radial-gradient(circle,rgba(220,38,38,.15),transparent 70%);filter:blur(60px)}.hero-content{position:relative;z-index:10;max-width:80rem;margin:0 auto;padding:8rem 2rem 2rem;width:100%}
+.hero-title{font-size:clamp(4rem,12vw,10rem);line-height:.9;margin-bottom:1.5rem}
+.hero-line{width:8rem;height:4px;background:#dc2626;margin-bottom:2rem;transform-origin:left;animation:lineGrow .8s cubic-bezier(.16,1,.3,1) 1.5s both}
+.hero-sub{color:rgba(255,255,255,.4);font-size:1.1rem;max-width:32rem;margin-bottom:2.5rem;font-weight:300;animation:slideUp .7s ease 1.8s both}
+.hero-btns{display:flex;gap:1rem;animation:slideUp .6s ease 2.1s both}.btn-red{background:#dc2626;color:#fff;padding:1rem 2.5rem;font-weight:900;font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;animation:redPulse 3s ease-in-out infinite;transition:background .3s}.btn-red:hover{background:#ef4444}.btn-outline{border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.6);padding:1rem 2.5rem;font-weight:700;font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;transition:all .3s}.btn-outline:hover{border-color:rgba(255,255,255,.6);color:#fff}
+.hero-stats{display:flex;gap:3rem;margin-top:4rem;border-top:1px solid rgba(255,255,255,.05);padding-top:2rem;animation:fadeIn .8s ease 2.5s both}.hero-stats div p:first-child{font-size:1.5rem;font-weight:900;color:#dc2626}.hero-stats div p:last-child{font-size:.7rem;color:rgba(255,255,255,.25);text-transform:uppercase;letter-spacing:.15em}
+/* PROGRAMS */
+.programs{padding:5rem 2rem;background:#0a0a0a}.programs-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;max-width:72rem;margin:0 auto}.prog-card{position:relative;aspect-ratio:4/3;border-radius:.5rem;overflow:hidden;border:1px solid rgba(255,255,255,.05);cursor:pointer;transition:border-color .3s}.prog-card:hover{border-color:rgba(220,38,38,.2)}.prog-card img{width:100%;height:100%;object-fit:cover;transition:transform .7s}.prog-card:hover img{transform:scale(1.1)}.prog-card .overlay{position:absolute;inset:0;background:linear-gradient(to top,#000,rgba(0,0,0,.5),transparent);transition:all .5s}.prog-card:hover .overlay{background:linear-gradient(to top,#000,rgba(0,0,0,.7),transparent)}.prog-card .tag{position:absolute;top:.75rem;right:.75rem;background:#dc2626;padding:.25rem .75rem}.prog-card .tag span{color:#fff;font-size:.6rem;font-weight:900;letter-spacing:.15em}.prog-card .num{position:absolute;top:.75rem;left:.75rem;color:rgba(255,255,255,.05);font-size:3.5rem;font-weight:900}.prog-card .info{position:absolute;bottom:0;left:0;right:0;padding:1.5rem}.prog-card h3{font-size:1.3rem;font-weight:900;letter-spacing:.05em}.prog-card .desc{color:transparent;font-size:.85rem;max-height:0;overflow:hidden;transition:all .5s}.prog-card:hover .desc{color:rgba(255,255,255,.5);max-height:5rem}
+/* TRAINERS */
+.trainers{padding:5rem 2rem;background:#0d0d0d}.trainers-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;max-width:72rem;margin:0 auto}.trainer{position:relative;overflow:hidden;border-radius:.5rem;border:1px solid rgba(255,255,255,.05);transition:border-color .3s}.trainer:hover{border-color:rgba(220,38,38,.2)}.trainer .img-wrap{aspect-ratio:3/4;overflow:hidden}.trainer img{width:100%;height:100%;object-fit:cover;filter:grayscale(1);transition:all .7s}.trainer:hover img{filter:grayscale(0);transform:scale(1.05)}.trainer .grad{position:absolute;inset:0;background:linear-gradient(to top,#000,rgba(0,0,0,.2),transparent)}.trainer .line{position:absolute;bottom:0;left:0;width:0;height:2px;background:#dc2626;transition:width .5s}.trainer:hover .line{width:100%}.trainer .info{position:absolute;bottom:0;left:0;right:0;padding:1rem}.trainer h3{font-size:.85rem;font-weight:900;letter-spacing:.1em}.trainer .role{color:rgba(220,38,38,.7);font-size:.7rem}.trainer .spec{color:rgba(255,255,255,.2);font-size:.6rem}
+/* PRICING */
+.pricing{padding:5rem 2rem;background:#0a0a0a}.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:72rem;margin:0 auto}.price-card{position:relative;border:1px solid rgba(255,255,255,.04);border-radius:.5rem;padding:2rem;transition:all .5s}.price-card:hover,.price-card.featured{border-color:rgba(220,38,38,.3);background:rgba(220,38,38,.03);transform:translateY(-4px);box-shadow:0 20px 60px rgba(220,38,38,.1)}.price-card .badge{position:absolute;top:-.75rem;left:1.5rem;background:#dc2626;padding:.25rem .75rem}.price-card .badge span{color:#fff;font-size:.6rem;font-weight:900;letter-spacing:.15em}.price-card .tier{color:rgba(255,255,255,.25);font-size:.7rem;letter-spacing:.15em;margin-bottom:1.5rem}.price-card .amount{font-size:3rem;font-weight:900;margin-bottom:2rem}.price-card .amount span{font-size:.85rem;color:rgba(255,255,255,.2);font-weight:400}.price-card .features{margin-bottom:2rem}.price-card .feat{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:.75rem}.price-card .dot{width:6px;height:6px;border-radius:50%;margin-top:.5rem;flex-shrink:0;background:rgba(255,255,255,.1);transition:background .3s}.price-card:hover .dot,.price-card.featured .dot{background:#dc2626}.price-card .feat span{color:rgba(255,255,255,.3);font-size:.85rem}.price-card .cta{display:block;text-align:center;padding:.75rem;font-size:.85rem;font-weight:900;letter-spacing:.15em;text-transform:uppercase;border:1px solid rgba(255,255,255,.08);color:rgba(255,255,255,.25);transition:all .3s}.price-card:hover .cta,.price-card.featured .cta{border-color:#dc2626;color:#fff;background:#dc2626}
+/* CONTACT */
+.contact{padding:5rem 2rem;background:#0d0d0d}.contact-form{max-width:48rem;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:1rem}.contact-form input,.contact-form textarea{width:100%;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);color:#fff;font-size:.85rem;padding:.75rem 1.25rem;outline:none;transition:border-color .3s;font-family:inherit}.contact-form input:focus,.contact-form textarea:focus{border-color:rgba(220,38,38,.3)}.contact-form textarea{grid-column:span 2;resize:none}.contact-form button{grid-column:span 2;background:#dc2626;color:#fff;padding:.75rem;font-weight:900;font-size:1.1rem;letter-spacing:.15em;text-transform:uppercase;border:none;cursor:pointer;transition:background .3s}.contact-form button:hover{background:#ef4444}
+/* FOOTER */
+.footer{padding:3rem 2rem;border-top:1px solid rgba(255,255,255,.05);background:#0a0a0a}.footer-inner{max-width:72rem;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem}.footer-links{display:flex;gap:1.5rem}.footer-links a{color:rgba(255,255,255,.15);font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;transition:color .3s}.footer-links a:hover{color:rgba(220,38,38,.5)}
+.section-label{font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:#dc2626;margin-bottom:.75rem}
+.section-title{font-size:clamp(2.5rem,5vw,3.5rem);font-weight:900;color:#fff;margin-bottom:3rem}
+.text-center{text-align:center}
+@media(max-width:768px){.programs-grid{grid-template-columns:1fr}.trainers-grid{grid-template-columns:repeat(2,1fr)}.pricing-grid{grid-template-columns:1fr}.contact-form{grid-template-columns:1fr}.contact-form textarea,.contact-form button{grid-column:span 1}.nav-links{display:none}.hero-stats{flex-wrap:wrap;gap:1.5rem}}
+</style>
+</head>
+<body>
+<section class="hero">
+<div class="hero-bg"><img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1600&h=900&fit=crop" alt=""></div>
+<div class="hero-grad1"></div><div class="hero-grad2"></div><div class="hero-scan"></div><div class="hero-orb"></div>
+<div class="hero-content">
+<nav class="nav"><span class="bebas" style="color:#dc2626;font-size:1.2rem;letter-spacing:.15em">IRON ELITE</span><div class="nav-links"><a href="#programs">Programs</a><a href="#trainers">Trainers</a><a href="#pricing">Pricing</a><a href="#contact">Contact</a></div></nav>
+<div style="padding-top:4rem">
+<h1 class="hero-title bebas">IRON ELITE</h1>
+<div class="hero-line"></div>
+<p class="hero-sub">Where weakness dies and legends are forged. No excuses. No shortcuts. Just results.</p>
+<div class="hero-btns"><a href="#contact" class="btn-red">JOIN THE ELITE</a><a href="#programs" class="btn-outline">VIEW PROGRAMS</a></div>
+<div class="hero-stats"><div><p class="bebas">15K+</p><p>Members</p></div><div><p class="bebas">200+</p><p>Programs</p></div><div><p class="bebas">50+</p><p>Trainers</p></div><div><p class="bebas">24/7</p><p>Access</p></div></div>
+</div>
+</div>
+</section>
+
+<section class="programs" id="programs">
+<div style="max-width:72rem;margin:0 auto"><p class="section-label bebas">Programs</p><h2 class="section-title bebas">CHOOSE YOUR WEAPON</h2></div>
+<div class="programs-grid">
+<div class="prog-card"><img src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=600&h=400&fit=crop" alt=""><div class="overlay"></div><div class="tag"><span>STRENGTH</span></div><span class="num bebas">01</span><div class="info"><h3 class="bebas">POWERLIFTING</h3><p class="desc">Squat, bench, deadlift. Progressive overload programming for raw strength gains.</p></div></div>
+<div class="prog-card"><img src="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?w=600&h=400&fit=crop" alt=""><div class="overlay"></div><div class="tag"><span>CARDIO</span></div><span class="num bebas">02</span><div class="info"><h3 class="bebas">HIIT WARFARE</h3><p class="desc">High-intensity circuits designed to destroy fat and build relentless endurance.</p></div></div>
+<div class="prog-card"><img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=600&h=400&fit=crop" alt=""><div class="overlay"></div><div class="tag"><span>HYPERTROPHY</span></div><span class="num bebas">03</span><div class="info"><h3 class="bebas">BODYBUILDING</h3><p class="desc">Hypertrophy-focused splits with periodized volume for maximum muscle growth.</p></div></div>
+<div class="prog-card"><img src="https://images.unsplash.com/photo-1615117972428-28de87e68d5b?w=600&h=400&fit=crop" alt=""><div class="overlay"></div><div class="tag"><span>COMBAT</span></div><span class="num bebas">04</span><div class="info"><h3 class="bebas">COMBAT FIT</h3><p class="desc">Boxing, kickboxing, and MMA conditioning for fighters and enthusiasts.</p></div></div>
+</div>
+</section>
+
+<section class="trainers" id="trainers">
+<div style="max-width:72rem;margin:0 auto"><p class="section-label bebas">The Team</p><h2 class="section-title bebas">ELITE TRAINERS</h2></div>
+<div class="trainers-grid">
+<div class="trainer"><div class="img-wrap"><img src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?w=400&h=500&fit=crop" alt=""></div><div class="grad"></div><div class="line"></div><div class="info"><h3 class="bebas">DEREK STONE</h3><p class="role">Head Coach</p><p class="spec">Powerlifting</p></div></div>
+<div class="trainer"><div class="img-wrap"><img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?w=400&h=500&fit=crop" alt=""></div><div class="grad"></div><div class="line"></div><div class="info"><h3 class="bebas">MAYA REYES</h3><p class="role">HIIT Specialist</p><p class="spec">Conditioning</p></div></div>
+<div class="trainer"><div class="img-wrap"><img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=400&h=500&fit=crop" alt=""></div><div class="grad"></div><div class="line"></div><div class="info"><h3 class="bebas">TYRONE JACKSON</h3><p class="role">Combat Coach</p><p class="spec">MMA / Boxing</p></div></div>
+<div class="trainer"><div class="img-wrap"><img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=400&h=500&fit=crop" alt=""></div><div class="grad"></div><div class="line"></div><div class="info"><h3 class="bebas">SARAH VOLKOV</h3><p class="role">Physique Coach</p><p class="spec">Bodybuilding</p></div></div>
+</div>
+</section>
+
+<section class="pricing" id="pricing">
+<div class="text-center" style="max-width:72rem;margin:0 auto"><p class="section-label bebas">Pricing</p><h2 class="section-title bebas">PICK YOUR RANK</h2></div>
+<div class="pricing-grid">
+<div class="price-card"><p class="tier bebas">RECRUIT</p><p class="amount bebas">$49<span>/mo</span></p><div class="features"><div class="feat"><div class="dot"></div><span>Gym floor access</span></div><div class="feat"><div class="dot"></div><span>Basic equipment</span></div><div class="feat"><div class="dot"></div><span>Open gym hours</span></div></div><a href="#contact" class="cta bebas">ENLIST NOW</a></div>
+<div class="price-card"><p class="tier bebas">SOLDIER</p><p class="amount bebas">$89<span>/mo</span></p><div class="features"><div class="feat"><div class="dot"></div><span>Full facility access</span></div><div class="feat"><div class="dot"></div><span>All group classes</span></div><div class="feat"><div class="dot"></div><span>Locker room</span></div><div class="feat"><div class="dot"></div><span>Sauna access</span></div></div><a href="#contact" class="cta bebas">ENLIST NOW</a></div>
+<div class="price-card featured"><div class="badge"><span>BEST VALUE</span></div><p class="tier bebas">COMMANDER</p><p class="amount bebas" style="color:#dc2626">$149<span>/mo</span></p><div class="features"><div class="feat"><div class="dot"></div><span>Everything in Soldier</span></div><div class="feat"><div class="dot"></div><span>2x PT sessions/month</span></div><div class="feat"><div class="dot"></div><span>Nutrition guidance</span></div><div class="feat"><div class="dot"></div><span>Priority booking</span></div><div class="feat"><div class="dot"></div><span>Guest passes</span></div></div><a href="#contact" class="cta bebas">ENLIST NOW</a></div>
+</div>
+</section>
+
+<section class="contact" id="contact">
+<div class="text-center" style="max-width:72rem;margin:0 auto"><p class="section-label bebas">Contact</p><h2 class="section-title bebas">READY TO START?</h2><p style="color:rgba(255,255,255,.2);font-size:.85rem;margin-top:-2rem;margin-bottom:2rem">Drop us a message and we'll get you set up within 24 hours.</p></div>
+<form class="contact-form"><input type="text" placeholder="Name"><input type="email" placeholder="Email"><input type="text" placeholder="Phone"><input type="text" placeholder="Goal"><textarea rows="4" placeholder="Anything else?"></textarea><button type="submit" class="bebas">SEND MESSAGE</button></form>
+</section>
+
+<footer class="footer"><div class="footer-inner"><span class="bebas" style="color:#dc2626;font-size:1.1rem;letter-spacing:.15em">IRON ELITE</span><div class="footer-links"><a href="#programs">Programs</a><a href="#trainers">Trainers</a><a href="#pricing">Pricing</a><a href="#contact">Contact</a></div><span style="color:rgba(255,255,255,.1);font-size:.7rem">&copy; 2024 Iron Elite</span></div></footer>
+</body>
+</html>

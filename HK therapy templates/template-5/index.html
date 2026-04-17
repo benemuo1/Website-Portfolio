@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HK Therapeutics | Template 5 — 3D Premium</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@200;300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- LOADER -->
+  <div class="loader" id="loader">
+    <div class="loader-inner">
+      <svg class="loader-leaf" viewBox="0 0 60 80" width="60" height="80">
+        <path d="M30,75 Q5,50 10,25 Q15,5 30,2 Q45,5 50,25 Q55,50 30,75Z" fill="none" stroke="#bddd97" stroke-width="1.5"/>
+        <path d="M30,68 L30,10 M30,25 Q18,20 12,16 M30,38 Q42,33 48,29 M30,50 Q20,46 14,43" fill="none" stroke="#88b454" stroke-width="1" class="loader-veins"/>
+      </svg>
+      <span>HK Therapeutics</span>
+    </div>
+  </div>
+
+  <!-- SMOOTH SCROLL WRAPPER -->
+  <div class="smooth-wrap" id="smoothWrap">
+
+  <!-- NAV -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="logo">
+        <div class="logo-mark">
+          <svg viewBox="0 0 36 36" width="36" height="36"><circle cx="18" cy="18" r="17" fill="none" stroke="currentColor" stroke-width="1"/><path d="M18,6 Q8,16 10,26 Q12,33 18,33 Q24,33 26,26 Q28,16 18,6Z" fill="none" stroke="currentColor" stroke-width="1"/></svg>
+        </div>
+        <span>HK</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about" data-text="About">About</a></li>
+        <li><a href="#services" data-text="Services">Services</a></li>
+        <li><a href="#journey" data-text="Journey">Journey</a></li>
+        <li><a href="#reviews" data-text="Reviews">Reviews</a></li>
+      </ul>
+      <a href="#contact" class="nav-cta">
+        <span>Book Now</span>
+        <div class="nav-cta-bg"></div>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- HERO — 3D layered depth -->
+  <section class="hero" id="hero">
+    <div class="hero-depth-layer hdl-back">
+      <img src="https://images.unsplash.com/photo-1540555700478-4be289fbec6d?w=1600&q=80" alt="Botanical">
+    </div>
+    <div class="hero-depth-layer hdl-mid">
+      <div class="hero-orb hero-orb--1"></div>
+      <div class="hero-orb hero-orb--2"></div>
+      <div class="hero-orb hero-orb--3"></div>
+    </div>
+    <div class="hero-depth-layer hdl-front">
+      <div class="hero-content">
+        <div class="hero-overline">
+          <div class="ho-line"></div>
+          <span>Therapeutic Massage & Botanical Wellness</span>
+          <div class="ho-line"></div>
+        </div>
+        <h1>
+          <span class="h1-line"><span class="h1-word">Experience</span></span>
+          <span class="h1-line"><span class="h1-word"><em>True</em> Restoration</span></span>
+        </h1>
+        <p class="hero-sub">A luxury wellness sanctuary where skilled hands and nature's wisdom converge to restore your body's natural harmony.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn-3d">
+            <span class="btn-3d-face btn-3d-front">Reserve Your Session</span>
+            <span class="btn-3d-face btn-3d-bottom">Reserve Your Session</span>
+          </a>
+          <a href="#about" class="btn-ghost-3d">
+            <span>Discover More</span>
+            <i class="fas fa-arrow-down"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-gradient"></div>
+    <div class="hero-bottom">
+      <div class="hb-stat"><strong>10+</strong><span>Years of Practice</span></div>
+      <div class="hb-divider"></div>
+      <div class="hb-stat"><strong>2,500+</strong><span>Sessions Completed</span></div>
+      <div class="hb-divider"></div>
+      <div class="hb-stat"><strong>5.0★</strong><span>Client Rating</span></div>
+    </div>
+  </section>
+
+  <!-- SECTION TRANSITION — reveal wipe -->
+  <div class="section-transition st-1">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0,120 C360,20 1080,20 1440,120 L1440,0 L0,0Z" fill="currentColor"/></svg>
+  </div>
+
+  <!-- ABOUT — 3D card flip reveal -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-visual">
+          <div class="about-card-3d" data-tilt>
+            <div class="ac3d-inner">
+              <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&q=80" alt="Massage therapy">
+              <div class="ac3d-shine"></div>
+            </div>
+            <div class="ac3d-shadow"></div>
+          </div>
+          <div class="about-float-badge" data-anim="pop">
+            <div class="afb-icon"><i class="fas fa-award"></i></div>
+            <div><strong>Certified</strong><span>Licensed Therapist</span></div>
+          </div>
+        </div>
+        <div class="about-text">
+          <div class="section-tag" data-anim="slide-up"><span class="st-dot"></span>About Us</div>
+          <h2 data-anim="slide-up" data-delay="100">Healing Rooted in <em>Nature's Wisdom</em></h2>
+          <p data-anim="slide-up" data-delay="200">With over a decade of dedicated practice, I've developed an intuitive approach to bodywork that honors your body's innate ability to heal. Every session is a bespoke experience — thoughtfully crafted to address your unique needs.</p>
+          <p data-anim="slide-up" data-delay="250">My plant-filled studio is designed as a complete sensory retreat. From the botanical aromatics to the warm, earthy textures — healing begins the moment you walk through the door.</p>
+          <div class="about-features" data-anim="slide-up" data-delay="350">
+            <div class="af-item">
+              <div class="af-icon"><i class="fas fa-leaf"></i></div>
+              <div><strong>Organic Products</strong><span>100% botanical-grade oils</span></div>
+            </div>
+            <div class="af-item">
+              <div class="af-icon"><i class="fas fa-hand-holding-heart"></i></div>
+              <div><strong>Personalized Care</strong><span>Every session is custom</span></div>
+            </div>
+            <div class="af-item">
+              <div class="af-icon"><i class="fas fa-spa"></i></div>
+              <div><strong>Serene Space</strong><span>Plant-filled sanctuary</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES — 3D perspective tilt cards -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-tag center" data-anim="slide-up"><span class="st-dot"></span>Our Services</div>
+      <h2 class="section-title center" data-anim="slide-up" data-delay="100">Treatments Designed <em>for You</em></h2>
+      <p class="section-sub center" data-anim="slide-up" data-delay="150">Hover to explore each treatment in 3D.</p>
+      <div class="services-grid">
+        <div class="service-card-3d" data-tilt data-anim="flip-in" data-delay="0">
+          <div class="sc3d-inner">
+            <div class="sc3d-front">
+              <div class="sc3d-icon"><i class="fas fa-hand-holding-heart"></i></div>
+              <h3>Swedish Massage</h3>
+              <p>Gentle, flowing strokes for full-body relaxation and deep stress relief.</p>
+              <div class="sc3d-meta"><span><i class="far fa-clock"></i> 60/90 min</span><strong>$85+</strong></div>
+            </div>
+            <div class="sc3d-glow"></div>
+          </div>
+        </div>
+        <div class="service-card-3d" data-tilt data-anim="flip-in" data-delay="80">
+          <div class="sc3d-inner">
+            <div class="sc3d-front">
+              <div class="sc3d-icon"><i class="fas fa-hands"></i></div>
+              <h3>Deep Tissue</h3>
+              <p>Targeted pressure to release chronic tension in deeper muscle layers.</p>
+              <div class="sc3d-meta"><span><i class="far fa-clock"></i> 60/90 min</span><strong>$95+</strong></div>
+            </div>
+            <div class="sc3d-glow"></div>
+          </div>
+        </div>
+        <div class="service-card-3d" data-tilt data-anim="flip-in" data-delay="160">
+          <div class="sc3d-inner">
+            <div class="sc3d-front">
+              <div class="sc3d-icon"><i class="fas fa-fire"></i></div>
+              <h3>Hot Stone Therapy</h3>
+              <p>Heated basalt stones melt away stress and promote deep circulation.</p>
+              <div class="sc3d-meta"><span><i class="far fa-clock"></i> 75/90 min</span><strong>$110+</strong></div>
+            </div>
+            <div class="sc3d-glow"></div>
+          </div>
+        </div>
+        <div class="service-card-3d" data-tilt data-anim="flip-in" data-delay="240">
+          <div class="sc3d-inner">
+            <div class="sc3d-front">
+              <div class="sc3d-icon"><i class="fas fa-leaf"></i></div>
+              <h3>Aromatherapy</h3>
+              <p>Essential oils paired with therapeutic touch for mind-body harmony.</p>
+              <div class="sc3d-meta"><span><i class="far fa-clock"></i> 60/90 min</span><strong>$90+</strong></div>
+            </div>
+            <div class="sc3d-glow"></div>
+          </div>
+        </div>
+        <div class="service-card-3d" data-tilt data-anim="flip-in" data-delay="320">
+          <div class="sc3d-inner">
+            <div class="sc3d-front">
+              <div class="sc3d-icon"><i class="fas fa-baby"></i></div>
+              <h3>Prenatal Massage</h3>
+              <p>Gentle, nurturing bodywork for the unique needs of expecting mothers.</p>
+              <div class="sc3d-meta"><span><i class="far fa-clock"></i> 60 min</span><strong>$90+</strong></div>
+            </div>
+            <div class="sc3d-glow"></div>
+          </div>
+        </div>
+        <div class="service-card-3d" data-tilt data-anim="flip-in" data-delay="400">
+          <div class="sc3d-inner">
+            <div class="sc3d-front">
+              <div class="sc3d-icon"><i class="fas fa-bolt"></i></div>
+              <h3>Sports Recovery</h3>
+              <p>Performance-focused techniques to accelerate recovery and flexibility.</p>
+              <div class="sc3d-meta"><span><i class="far fa-clock"></i> 60/90 min</span><strong>$100+</strong></div>
+            </div>
+            <div class="sc3d-glow"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION TRANSITION -->
+  <div class="section-transition st-2">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0,0 C360,100 1080,100 1440,0 L1440,120 L0,120Z" fill="currentColor"/></svg>
+  </div>
+
+  <!-- JOURNEY — 3D rotating steps -->
+  <section class="journey" id="journey">
+    <div class="container">
+      <div class="section-tag center" data-anim="slide-up"><span class="st-dot"></span>Your Journey</div>
+      <h2 class="section-title center" data-anim="slide-up" data-delay="100">From Booking to <em>Bliss</em></h2>
+      <div class="journey-track">
+        <div class="journey-line" id="journeyLine"></div>
+        <div class="journey-step" data-anim="rotate-in" data-delay="0">
+          <div class="js-card" data-tilt>
+            <div class="js-num">01</div>
+            <div class="js-icon"><i class="fas fa-calendar-check"></i></div>
+            <h3>Book Online</h3>
+            <p>Choose your treatment and preferred time slot.</p>
+          </div>
+        </div>
+        <div class="journey-step" data-anim="rotate-in" data-delay="150">
+          <div class="js-card" data-tilt>
+            <div class="js-num">02</div>
+            <div class="js-icon"><i class="fas fa-comments"></i></div>
+            <h3>Consultation</h3>
+            <p>We discuss your goals and customize your session.</p>
+          </div>
+        </div>
+        <div class="journey-step" data-anim="rotate-in" data-delay="300">
+          <div class="js-card" data-tilt>
+            <div class="js-num">03</div>
+            <div class="js-icon"><i class="fas fa-spa"></i></div>
+            <h3>Treatment</h3>
+            <p>Relax in our botanical sanctuary as healing unfolds.</p>
+          </div>
+        </div>
+        <div class="journey-step" data-anim="rotate-in" data-delay="450">
+          <div class="js-card" data-tilt>
+            <div class="js-num">04</div>
+            <div class="js-icon"><i class="fas fa-heart"></i></div>
+            <h3>Aftercare</h3>
+            <p>Leave with a personalized wellness plan for lasting results.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARALLAX QUOTE -->
+  <section class="parallax-quote">
+    <div class="pq-bg" data-parallax-speed="0.3"></div>
+    <div class="pq-overlay"></div>
+    <div class="pq-content" data-anim="slide-up">
+      <i class="fas fa-quote-left"></i>
+      <blockquote>"The body holds infinite wisdom. My role is simply to help you <em>listen</em>."</blockquote>
+      <cite>— HK Therapeutics</cite>
+    </div>
+  </section>
+
+  <!-- REVIEWS — 3D carousel -->
+  <section class="reviews" id="reviews">
+    <div class="container">
+      <div class="section-tag center" data-anim="slide-up"><span class="st-dot"></span>Client Love</div>
+      <h2 class="section-title center" data-anim="slide-up" data-delay="100">What People <em>Say</em></h2>
+      <div class="review-carousel" data-anim="slide-up" data-delay="200">
+        <div class="rc-viewport" id="rcViewport">
+          <div class="rc-card rc-active" data-tilt>
+            <div class="rc-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <p>"Absolutely transformative. I walked in carrying months of tension and walked out feeling completely reborn. The space is gorgeous."</p>
+            <div class="rc-author"><div class="rc-av">S</div><div><strong>Sarah M.</strong><span>Deep Tissue Client</span></div></div>
+          </div>
+          <div class="rc-card" data-tilt>
+            <div class="rc-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <p>"The prenatal massage was exactly what my body needed. So gentle, so intuitive. I felt completely safe and deeply cared for."</p>
+            <div class="rc-author"><div class="rc-av">J</div><div><strong>Jessica L.</strong><span>Prenatal Client</span></div></div>
+          </div>
+          <div class="rc-card" data-tilt>
+            <div class="rc-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <p>"As a marathon runner, recovery is everything. These sessions have cut my downtime in half. This is performance medicine."</p>
+            <div class="rc-author"><div class="rc-av">D</div><div><strong>David R.</strong><span>Sports Recovery Client</span></div></div>
+          </div>
+        </div>
+        <div class="rc-nav">
+          <button id="rcPrev"><i class="fas fa-arrow-left"></i></button>
+          <div class="rc-dots" id="rcDots"></div>
+          <button id="rcNext"><i class="fas fa-arrow-right"></i></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT — 3D form card -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-3d" data-anim="slide-up">
+        <div class="c3d-info">
+          <div class="section-tag light" data-anim="slide-up"><span class="st-dot light"></span>Book a Session</div>
+          <h2 data-anim="slide-up" data-delay="100">Begin Your <em>Healing</em></h2>
+          <p data-anim="slide-up" data-delay="150">Ready to feel the difference? Reach out and we'll craft the perfect session for you.</p>
+          <div class="c3d-details" data-anim="slide-up" data-delay="200">
+            <div class="cd-row"><i class="fas fa-map-marker-alt"></i><span>123 Botanical Lane, Suite 4, NY 10001</span></div>
+            <div class="cd-row"><i class="fas fa-phone-alt"></i><span>(555) 123-4567</span></div>
+            <div class="cd-row"><i class="fas fa-envelope"></i><span>hello@hktherapeutics.com</span></div>
+            <div class="cd-row"><i class="fas fa-clock"></i><span>Mon–Fri 9am–7pm · Sat 10am–5pm</span></div>
+          </div>
+          <div class="c3d-socials" data-anim="slide-up" data-delay="250">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-pinterest-p"></i></a>
+          </div>
+        </div>
+        <div class="c3d-form-wrap" data-tilt data-tilt-max="4">
+          <form class="c3d-form" id="contactForm">
+            <div class="f-row">
+              <div class="f-group"><label>First Name</label><input type="text" required></div>
+              <div class="f-group"><label>Last Name</label><input type="text" required></div>
+            </div>
+            <div class="f-group"><label>Email</label><input type="email" required></div>
+            <div class="f-group"><label>Phone</label><input type="tel"></div>
+            <div class="f-group">
+              <label>Service</label>
+              <select><option value="">Select a service...</option><option>Swedish Massage</option><option>Deep Tissue</option><option>Hot Stone Therapy</option><option>Aromatherapy</option><option>Prenatal Massage</option><option>Sports Recovery</option></select>
+            </div>
+            <div class="f-group"><label>Message</label><textarea rows="3" placeholder="Tell us about your needs..."></textarea></div>
+            <button type="submit" class="btn-3d btn-3d-submit">
+              <span class="btn-3d-face btn-3d-front">Request Appointment</span>
+              <span class="btn-3d-face btn-3d-bottom">Request Appointment</span>
+            </button>
+          </form>
+          <div class="c3d-form-shine"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="ft-brand">
+          <a href="#hero" class="logo">
+            <div class="logo-mark"><svg viewBox="0 0 36 36" width="32" height="32"><circle cx="18" cy="18" r="17" fill="none" stroke="currentColor" stroke-width="1"/><path d="M18,6 Q8,16 10,26 Q12,33 18,33 Q24,33 26,26 Q28,16 18,6Z" fill="none" stroke="currentColor" stroke-width="1"/></svg></div>
+            <span>HK</span>
+          </a>
+          <p>Therapeutic massage rooted in nature, designed for your complete restoration.</p>
+        </div>
+        <div class="ft-col">
+          <h4>Navigate</h4>
+          <a href="#about">About</a><a href="#services">Services</a><a href="#journey">Journey</a><a href="#reviews">Reviews</a><a href="#contact">Contact</a>
+        </div>
+        <div class="ft-col">
+          <h4>Services</h4>
+          <a href="#services">Swedish Massage</a><a href="#services">Deep Tissue</a><a href="#services">Hot Stone</a><a href="#services">Aromatherapy</a><a href="#services">Sports Recovery</a>
+        </div>
+        <div class="ft-col">
+          <h4>Connect</h4>
+          <a href="#">Instagram</a><a href="#">Facebook</a><a href="#">Pinterest</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 HK Therapeutics. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  </div><!-- /smooth-wrap -->
+
+  <script src="js/main.js"></script>
+</body>
+</html>

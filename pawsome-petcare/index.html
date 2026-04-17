@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PAWSOME — Pet Care</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#fffbf5;--fg:#2d2d2d;--orange:#ff8c42;--teal:#2ec4b6;--pink:#ff6b9d;--yellow:#ffd166;--card:#fff}
+body{background:var(--bg);color:var(--fg);font-family:'Nunito',sans-serif;overflow-x:hidden}
+nav{position:fixed;top:0;width:100%;padding:1.2rem 4rem;display:flex;justify-content:space-between;align-items:center;z-index:100;background:rgba(255,251,245,.9);backdrop-filter:blur(10px)}
+nav .logo{font-family:'Fredoka',sans-serif;font-size:1.8rem;font-weight:700;color:var(--orange)}
+nav .logo span{color:var(--teal)}
+nav ul{display:flex;gap:2rem;list-style:none}
+nav a{color:var(--fg);text-decoration:none;font-size:.9rem;font-weight:600}
+nav .cta{padding:.6rem 1.5rem;background:var(--orange);color:#fff;border-radius:50px;font-weight:700}
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:6rem 4rem 4rem}
+.hero-text h1{font-family:'Fredoka',sans-serif;font-size:clamp(2.5rem,5vw,4rem);line-height:1.15}
+.hero-text h1 span{color:var(--orange)}
+.hero-text p{color:#888;margin-top:1rem;line-height:1.7;max-width:420px}
+.hero-text .btns{display:flex;gap:1rem;margin-top:2rem}
+.hero-text .btns a{padding:.9rem 2rem;border-radius:50px;text-decoration:none;font-weight:700;font-size:.9rem}
+.hero-text .btns .primary{background:var(--orange);color:#fff}
+.hero-text .btns .secondary{border:2px solid var(--teal);color:var(--teal)}
+.hero-visual{position:relative;display:flex;justify-content:center}
+.hero-visual img{width:80%;border-radius:30px}
+.paw{position:absolute;font-size:2rem;opacity:.3}
+.services{padding:6rem 4rem;text-align:center}
+.services h2{font-family:'Fredoka',sans-serif;font-size:2.5rem;margin-bottom:3rem}
+.services h2 span{color:var(--teal)}
+.srv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+.srv-card{background:var(--card);border-radius:20px;padding:2.5rem 1.5rem;box-shadow:0 4px 20px rgba(0,0,0,.05);transition:transform .3s;cursor:pointer}
+.srv-card:hover{transform:translateY(-8px)}
+.srv-card .icon{font-size:3rem;margin-bottom:1rem}
+.srv-card h3{font-family:'Fredoka',sans-serif;font-size:1.1rem;margin-bottom:.5rem}
+.srv-card p{color:#888;font-size:.85rem;line-height:1.5}
+.srv-card:nth-child(1){border-bottom:4px solid var(--orange)}
+.srv-card:nth-child(2){border-bottom:4px solid var(--teal)}
+.srv-card:nth-child(3){border-bottom:4px solid var(--pink)}
+.srv-card:nth-child(4){border-bottom:4px solid var(--yellow)}
+.testimonials{padding:6rem 4rem;background:var(--teal);color:#fff;border-radius:40px;margin:0 2rem}
+.testimonials h2{font-family:'Fredoka',sans-serif;font-size:2.5rem;text-align:center;margin-bottom:3rem}
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.test-card{background:rgba(255,255,255,.15);backdrop-filter:blur(10px);border-radius:20px;padding:2rem}
+.test-card .stars{color:var(--yellow);font-size:1.2rem;margin-bottom:1rem}
+.test-card p{font-size:.9rem;line-height:1.6;opacity:.9}
+.test-card .author{margin-top:1.5rem;display:flex;align-items:center;gap:.8rem}
+.test-card .avatar{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.3)}
+.test-card .name{font-weight:700;font-size:.9rem}
+.test-card .pet{font-size:.75rem;opacity:.7}
+.pricing{padding:6rem 4rem;text-align:center}
+.pricing h2{font-family:'Fredoka',sans-serif;font-size:2.5rem;margin-bottom:3rem}
+.price-grid{display:flex;gap:1.5rem;justify-content:center}
+.price-card{background:var(--card);border-radius:24px;padding:2.5rem;width:300px;box-shadow:0 4px 20px rgba(0,0,0,.05);text-align:left;transition:transform .3s}
+.price-card:hover{transform:scale(1.03)}
+.price-card.featured{background:var(--orange);color:#fff}
+.price-card .tier{font-family:'Fredoka',sans-serif;font-size:1rem}
+.price-card .price{font-family:'Fredoka',sans-serif;font-size:2.5rem;margin:.5rem 0}
+.price-card ul{list-style:none;margin:1.5rem 0}
+.price-card li{padding:.4rem 0;font-size:.85rem}
+.price-card li::before{content:'✓ ';font-weight:700}
+.price-card .btn{display:block;text-align:center;padding:.8rem;border-radius:50px;text-decoration:none;font-weight:700;font-size:.85rem}
+.price-card .btn.outline{border:2px solid var(--orange);color:var(--orange)}
+.price-card.featured .btn{background:#fff;color:var(--orange)}
+footer{padding:3rem 4rem;text-align:center;color:#aaa;font-size:.85rem;margin-top:4rem}
+</style>
+</head>
+<body>
+<nav><div class="logo">Paw<span>some</span></div><ul><li><a href="#">Services</a></li><li><a href="#">Pricing</a></li><li><a href="#">About</a></li></ul><a href="#" class="cta">Book Now</a></nav>
+<section class="hero">
+<div class="hero-text">
+<h1>Happy pets, <span>happy life</span> 🐾</h1>
+<p>Premium pet care services — from grooming to daycare — because your furry family deserves the best.</p>
+<div class="btns"><a href="#" class="primary">Book a Visit</a><a href="#" class="secondary">Our Services</a></div>
+</div>
+<div class="hero-visual">
+<img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600" alt="Happy dog">
+<span class="paw" style="top:10%;left:10%">🐾</span>
+<span class="paw" style="top:60%;right:5%">🐾</span>
+<span class="paw" style="bottom:10%;left:30%">🐾</span>
+</div>
+</section>
+<section class="services">
+<h2>Our <span>Services</span></h2>
+<div class="srv-grid">
+<div class="srv-card"><div class="icon">✂️</div><h3>Grooming</h3><p>Full spa treatment — bath, haircut, nail trim, and ear cleaning.</p></div>
+<div class="srv-card"><div class="icon">🏠</div><h3>Daycare</h3><p>Supervised play, socialization, and rest in our climate-controlled facility.</p></div>
+<div class="srv-card"><div class="icon">🚶</div><h3>Walking</h3><p>Daily walks tailored to your pet's energy level and needs.</p></div>
+<div class="srv-card"><div class="icon">🏥</div><h3>Wellness</h3><p>Regular check-ups, vaccinations, and preventive care.</p></div>
+</div>
+</section>
+<section class="testimonials">
+<h2>Pet Parents Love Us</h2>
+<div class="test-grid">
+<div class="test-card"><div class="stars">★★★★★</div><p>"Max used to hate baths. Now he gets excited when we pull into the Pawsome parking lot!"</p><div class="author"><div class="avatar"></div><div><div class="name">Sarah K.</div><div class="pet">Max, Golden Retriever</div></div></div></div>
+<div class="test-card"><div class="stars">★★★★★</div><p>"The daycare staff sends us photos throughout the day. Luna is always having the time of her life."</p><div class="author"><div class="avatar"></div><div><div class="name">James T.</div><div class="pet">Luna, Labrador</div></div></div></div>
+<div class="test-card"><div class="stars">★★★★★</div><p>"Professional, caring, and genuinely passionate about animals. Wouldn't trust anyone else with Mochi."</p><div class="author"><div class="avatar"></div><div><div class="name">Emily R.</div><div class="pet">Mochi, Shiba Inu</div></div></div></div>
+</div>
+</section>
+<section class="pricing">
+<h2>Simple Pricing</h2>
+<div class="price-grid">
+<div class="price-card"><div class="tier">Basic</div><div class="price">$29/mo</div><ul><li>Monthly grooming</li><li>2 walks/week</li><li>Basic wellness check</li></ul><a href="#" class="btn outline">Choose Plan</a></div>
+<div class="price-card featured"><div class="tier">Premium ⭐</div><div class="price">$59/mo</div><ul><li>Bi-weekly grooming</li><li>Daily walks</li><li>Daycare access</li><li>Full wellness</li></ul><a href="#" class="btn">Choose Plan</a></div>
+<div class="price-card"><div class="tier">VIP</div><div class="price">$99/mo</div><ul><li>Weekly grooming</li><li>Unlimited daycare</li><li>Priority booking</li><li>24/7 vet hotline</li></ul><a href="#" class="btn outline">Choose Plan</a></div>
+</div>
+</section>
+<footer>© 2024 Pawsome Pet Care · Made with ❤️ for pets</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(CustomEase, ScrollTrigger);
+CustomEase.create('bounce','M0,0 C0.14,0 0.27,0.87 0.32,1 0.35,1.09 0.38,1.14 0.42,1.14 0.46,1.14 0.47,1.1 0.5,1 0.53,0.92 0.55,0.9 0.58,0.9 0.61,0.9 0.63,0.95 0.67,1 0.71,1.04 0.73,1.04 0.76,1.04 0.79,1.04 0.8,1.02 0.83,1 0.86,0.98 0.87,0.99 0.9,1 0.93,1.01 0.95,1 1,1');
+
+gsap.from('.hero-text h1',{y:60,opacity:0,duration:1,ease:'bounce',delay:.3});
+gsap.from('.hero-text p',{y:30,opacity:0,duration:.8,delay:.7});
+gsap.from('.hero-text .btns a',{y:20,opacity:0,stagger:.15,duration:.6,ease:'bounce',delay:.9});
+gsap.from('.hero-visual img',{scale:.8,opacity:0,duration:1.2,ease:'bounce',delay:.4});
+
+// Floating paws
+gsap.utils.toArray('.paw').forEach((p,i)=>{
+  gsap.to(p,{y:-20,duration:1.5+i*.3,ease:'sine.inOut',repeat:-1,yoyo:true,delay:i*.2});
+  gsap.from(p,{scale:0,opacity:0,duration:.8,ease:'bounce',delay:1+i*.2});
+});
+
+gsap.from('.srv-card',{scrollTrigger:{trigger:'.srv-grid',start:'top 75%'},y:60,opacity:0,scale:.8,stagger:.12,duration:.8,ease:'bounce'});
+gsap.from('.test-card',{scrollTrigger:{trigger:'.test-grid',start:'top 75%'},y:50,opacity:0,rotation:i=>[-5,3,-4][i],stagger:.15,duration:.8,ease:'bounce'});
+gsap.from('.price-card',{scrollTrigger:{trigger:'.price-grid',start:'top 75%'},y:80,opacity:0,stagger:.15,duration:.9,ease:'bounce'});
+</script>
+</body>
+</html>

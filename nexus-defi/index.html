@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXUS — DeFi Protocol</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;500;700&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#08080c;--fg:#e4e4e8;--green:#00ff9d;--purple:#a855f7;--dark:#0c0c12;--glass:rgba(255,255,255,.03)}
+body{background:var(--bg);color:var(--fg);font-family:'Space Grotesk',sans-serif;overflow-x:hidden}
+.grid-bg{position:fixed;inset:0;background-image:linear-gradient(rgba(0,255,157,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,157,.03) 1px,transparent 1px);background-size:60px 60px;z-index:0}
+nav{position:fixed;top:0;width:100%;padding:1.2rem 4rem;display:flex;justify-content:space-between;align-items:center;z-index:100;background:rgba(8,8,12,.8);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,255,157,.08)}
+nav .logo{font-family:'JetBrains Mono',monospace;font-size:1.1rem;font-weight:700;color:var(--green)}
+nav ul{display:flex;gap:2rem;list-style:none}
+nav a{color:#888;text-decoration:none;font-size:.8rem;transition:color .3s}
+nav a:hover{color:var(--green)}
+nav .connect{padding:.5rem 1.5rem;border:1px solid var(--green);color:var(--green);font-family:'JetBrains Mono',monospace;font-size:.75rem;transition:all .3s;cursor:pointer;background:transparent}
+nav .connect:hover{background:var(--green);color:var(--bg)}
+.hero{height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;z-index:1}
+.hero h1{font-size:clamp(3rem,7vw,6rem);font-weight:700;line-height:1.05;letter-spacing:-.02em}
+.hero h1 .glow{color:var(--green);text-shadow:0 0 40px rgba(0,255,157,.3)}
+.hero p{color:#666;font-family:'JetBrains Mono',monospace;font-size:.85rem;margin-top:1.5rem;letter-spacing:.05em}
+.hero .stats-row{display:flex;gap:3rem;justify-content:center;margin-top:3rem}
+.hero .stat-pill{padding:.8rem 1.5rem;background:var(--glass);border:1px solid rgba(0,255,157,.1);border-radius:12px}
+.hero .stat-pill h3{font-family:'JetBrains Mono',monospace;font-size:1.5rem;color:var(--green)}
+.hero .stat-pill span{font-size:.7rem;color:#555;letter-spacing:.1em;text-transform:uppercase}
+.features{padding:8rem 4rem;position:relative;z-index:1}
+.features h2{font-size:2.5rem;font-weight:700;text-align:center;margin-bottom:4rem}
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.feat-card{background:var(--glass);border:1px solid rgba(255,255,255,.05);border-radius:16px;padding:2.5rem;transition:border-color .4s}
+.feat-card:hover{border-color:rgba(0,255,157,.2)}
+.feat-card .icon{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,rgba(0,255,157,.15),rgba(168,85,247,.15));display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:1.5rem}
+.feat-card h3{font-size:1.1rem;font-weight:700;margin-bottom:.8rem}
+.feat-card p{color:#666;font-size:.85rem;line-height:1.6}
+.ticker{padding:2rem 0;border-top:1px solid rgba(0,255,157,.08);border-bottom:1px solid rgba(0,255,157,.08);overflow:hidden;position:relative;z-index:1}
+.ticker-inner{display:flex;gap:3rem;white-space:nowrap;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#555}
+.ticker-inner .up{color:var(--green)}
+.ticker-inner .down{color:#ff4444}
+.how{padding:8rem 4rem;position:relative;z-index:1}
+.how h2{font-size:2.5rem;font-weight:700;text-align:center;margin-bottom:5rem}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.step{padding:2.5rem;border-left:1px solid rgba(255,255,255,.05);position:relative}
+.step:first-child{border-left:none}
+.step .num{font-family:'JetBrains Mono',monospace;font-size:3rem;color:rgba(0,255,157,.15);font-weight:700}
+.step h3{font-size:1rem;font-weight:700;margin:1rem 0 .5rem}
+.step p{color:#666;font-size:.85rem;line-height:1.6}
+.step::after{content:'→';position:absolute;right:-12px;top:50%;color:rgba(0,255,157,.2);font-size:1.5rem}
+.step:last-child::after{display:none}
+.cta{padding:10rem 4rem;text-align:center;position:relative;z-index:1}
+.cta h2{font-size:clamp(2rem,5vw,3.5rem);font-weight:700;line-height:1.2}
+.cta h2 span{color:var(--green)}
+.cta .btn{display:inline-block;margin-top:2rem;padding:1rem 3rem;background:var(--green);color:var(--bg);text-decoration:none;font-weight:700;font-size:.9rem;border-radius:12px;transition:box-shadow .3s}
+.cta .btn:hover{box-shadow:0 0 30px rgba(0,255,157,.3)}
+footer{padding:3rem 4rem;border-top:1px solid rgba(255,255,255,.05);display:flex;justify-content:space-between;font-size:.75rem;color:#444;position:relative;z-index:1}
+</style>
+</head>
+<body>
+<div class="grid-bg"></div>
+<nav><div class="logo">[NEXUS]</div><ul><li><a href="#">Protocol</a></li><li><a href="#">Docs</a></li><li><a href="#">Governance</a></li></ul><button class="connect">Connect Wallet</button></nav>
+<section class="hero">
+<div>
+<h1>The Future of<br><span class="glow">Decentralized</span> Finance</h1>
+<p>// Permissionless · Trustless · Composable</p>
+<div class="stats-row">
+<div class="stat-pill"><h3>$2.4B</h3><span>Total Value Locked</span></div>
+<div class="stat-pill"><h3>847K</h3><span>Unique Wallets</span></div>
+<div class="stat-pill"><h3>0.01%</h3><span>Protocol Fee</span></div>
+</div>
+</div>
+</section>
+<div class="ticker"><div class="ticker-inner" id="ticker">NXS/USD $42.87 <span class="up">+12.4%</span> &nbsp;·&nbsp; ETH/USD $3,241 <span class="up">+3.2%</span> &nbsp;·&nbsp; BTC/USD $67,420 <span class="up">+1.8%</span> &nbsp;·&nbsp; SOL/USD $148 <span class="down">-2.1%</span> &nbsp;·&nbsp; TVL $2.4B <span class="up">+8.7%</span> &nbsp;·&nbsp; NXS/USD $42.87 <span class="up">+12.4%</span> &nbsp;·&nbsp; ETH/USD $3,241 <span class="up">+3.2%</span> &nbsp;·&nbsp; BTC/USD $67,420 <span class="up">+1.8%</span> &nbsp;·&nbsp;</div></div>
+<section class="features">
+<h2>Protocol Features</h2>
+<div class="feat-grid">
+<div class="feat-card"><div class="icon">⚡</div><h3>Flash Swaps</h3><p>Execute atomic swaps across any token pair with zero slippage on orders under $100K.</p></div>
+<div class="feat-card"><div class="icon">🔒</div><h3>Audited Security</h3><p>Triple-audited by leading firms. $10M bug bounty program. Battle-tested since 2022.</p></div>
+<div class="feat-card"><div class="icon">🏛️</div><h3>DAO Governance</h3><p>NXS holders vote on protocol upgrades, fee structures, and treasury allocation.</p></div>
+<div class="feat-card"><div class="icon">📊</div><h3>Yield Vaults</h3><p>Auto-compounding strategies that optimize returns across DeFi protocols.</p></div>
+<div class="feat-card"><div class="icon">🌐</div><h3>Cross-Chain</h3><p>Native bridges to 12 chains. Move assets seamlessly without wrapped tokens.</p></div>
+<div class="feat-card"><div class="icon">🔑</div><h3>Self-Custody</h3><p>Your keys, your crypto. Non-custodial by design. Always.</p></div>
+</div>
+</section>
+<section class="how">
+<h2>How It Works</h2>
+<div class="steps">
+<div class="step"><div class="num">01</div><h3>Connect</h3><p>Link your wallet in one click. We support MetaMask, WalletConnect, and 20+ wallets.</p></div>
+<div class="step"><div class="num">02</div><h3>Deposit</h3><p>Add liquidity to any pool or deposit into yield-optimized vaults.</p></div>
+<div class="step"><div class="num">03</div><h3>Earn</h3><p>Earn trading fees, NXS rewards, and auto-compounded yield.</p></div>
+<div class="step"><div class="num">04</div><h3>Govern</h3><p>Stake NXS to vote on proposals and shape the protocol's future.</p></div>
+</div>
+</section>
+<section class="cta">
+<h2>Start earning with<br><span>zero barriers</span></h2>
+<a href="#" class="btn">Launch App →</a>
+</section>
+<footer><span>© 2024 Nexus Protocol</span><span>Docs · GitHub · Discord</span></footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/EasePack.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(EasePack, ScrollTrigger);
+
+// Hero with RoughEase glitch entrance
+gsap.from('.hero h1',{y:80,opacity:0,duration:1.5,ease:RoughEase.ease.config({strength:2,points:20,template:'power2.out',taper:'out'})});
+gsap.from('.hero p',{y:20,opacity:0,duration:.8,delay:.8});
+gsap.from('.stat-pill',{y:30,opacity:0,stagger:.15,duration:.7,delay:1,ease:'power3.out'});
+
+// Ticker with SlowMo ease
+gsap.to('#ticker',{x:'-50%',duration:30,ease:'none',repeat:-1});
+
+// Feature cards with ExpoScaleEase
+gsap.from('.feat-card',{scrollTrigger:{trigger:'.feat-grid',start:'top 70%'},scale:.7,opacity:0,stagger:{amount:.6,from:'edges'},duration:.9,ease:ExpoScaleEase.config(.7,1)});
+
+// Steps with RoughEase
+gsap.from('.step',{scrollTrigger:{trigger:'.steps',start:'top 70%'},y:50,opacity:0,stagger:.15,duration:.8,ease:RoughEase.ease.config({strength:1,points:10,template:'power3.out',taper:'out'})});
+
+// CTA
+gsap.from('.cta h2, .cta .btn',{scrollTrigger:{trigger:'.cta',start:'top 65%'},y:50,opacity:0,stagger:.2,duration:1});
+
+// Glowing grid pulse
+gsap.to('.grid-bg',{backgroundPosition:'60px 60px',duration:20,ease:'none',repeat:-1});
+</script>
+</body>
+</html>

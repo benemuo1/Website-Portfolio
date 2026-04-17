@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wanderlog — Travel Journal</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Inter:wght@300;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#f5f0e8;color:#3a3530;font-family:'Inter',sans-serif;overflow-x:hidden}
+nav{padding:1.5rem 3rem;display:flex;justify-content:space-between;align-items:baseline}
+nav .logo{font-family:'Caveat',cursive;font-size:2.2rem;color:#c47a5a}
+nav a{color:#999;text-decoration:none;font-size:.75rem;letter-spacing:.1em}
+nav ul{display:flex;gap:2rem;list-style:none}
+.hero{padding:4rem 3rem;text-align:center}
+.hero h1{font-family:'Caveat',cursive;font-size:clamp(3rem,7vw,5rem);line-height:1.1}
+.hero p{color:#8a7e70;font-size:.9rem;margin-top:1rem;font-weight:300}
+.scatter-zone{position:relative;min-height:80vh;padding:4rem 3rem;overflow:visible}
+.polaroid{position:absolute;background:#fff;padding:.8rem .8rem 3rem;box-shadow:0 4px 20px rgba(0,0,0,.1);cursor:grab;user-select:none;z-index:2;transition:box-shadow .3s}
+.polaroid:active{cursor:grabbing;box-shadow:0 8px 30px rgba(0,0,0,.15);z-index:10}
+.polaroid img{width:220px;height:180px;object-fit:cover;display:block}
+.polaroid .caption{font-family:'Caveat',cursive;font-size:1rem;color:#6a5e50;text-align:center;margin-top:.5rem}
+.entries{padding:4rem 3rem;max-width:800px;margin:0 auto}
+.entry{margin-bottom:4rem;padding-bottom:3rem;border-bottom:1px dashed #d4c8b8}
+.entry .date{font-family:'Caveat',cursive;font-size:1.2rem;color:#c47a5a}
+.entry h2{font-family:'Caveat',cursive;font-size:2rem;margin:.3rem 0}
+.entry p{color:#6a5e50;line-height:1.9;font-weight:300;font-size:.9rem}
+.entry img{width:100%;border-radius:8px;margin:1.5rem 0}
+.map-section{padding:4rem 3rem;text-align:center}
+.map-section h2{font-family:'Caveat',cursive;font-size:2.5rem;margin-bottom:1rem;color:#c47a5a}
+.map-section p{color:#8a7e70;font-size:.85rem;margin-bottom:2rem;font-weight:300}
+.map-placeholder{width:100%;height:300px;background:#e8dfd4;border-radius:16px;display:flex;align-items:center;justify-content:center;font-family:'Caveat',cursive;font-size:1.5rem;color:#b8a898}
+footer{padding:3rem;text-align:center;font-family:'Caveat',cursive;font-size:1rem;color:#b8a898}
+</style>
+</head>
+<body>
+<nav><div class="logo">Wanderlog</div><ul><li><a href="#">Journal</a></li><li><a href="#">Photos</a></li><li><a href="#">Map</a></li></ul></nav>
+
+<section class="hero"><h1>Stories from the road</h1><p>A visual journal of places, people, and the moments in between.</p></section>
+
+<section class="scatter-zone" id="scatterZone">
+<div class="polaroid" style="top:5%;left:8%"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300" alt=""><div class="caption">Dolomites, Italy</div></div>
+<div class="polaroid" style="top:10%;left:55%"><img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=300" alt=""><div class="caption">Lake Braies</div></div>
+<div class="polaroid" style="top:35%;left:25%"><img src="https://images.unsplash.com/photo-1504893524553-b855bce32c67?w=300" alt=""><div class="caption">Cliffs of Moher</div></div>
+<div class="polaroid" style="top:40%;left:65%"><img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=300" alt=""><div class="caption">Starry night</div></div>
+<div class="polaroid" style="top:60%;left:10%"><img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=300" alt=""><div class="caption">Morning fog</div></div>
+<div class="polaroid" style="top:55%;left:48%"><img src="https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=300" alt=""><div class="caption">Waterfall</div></div>
+</section>
+
+<section class="entries">
+<article class="entry"><div class="date">October 2024</div><h2>Lost in the Dolomites</h2><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=700" alt=""><p>We took a wrong turn on the trail and ended up at a viewpoint that wasn't on any map. The clouds parted for exactly three minutes. I've never pressed the shutter faster.</p></article>
+<article class="entry"><div class="date">September 2024</div><h2>The fisherman's morning</h2><img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=700" alt=""><p>He was there every morning at 5am, same spot, same rod. On the last day he finally spoke to me: "The fish don't matter. It's the quiet I come for."</p></article>
+</section>
+
+<section class="map-section"><h2>Where I've been</h2><p>23 countries and counting.</p><div class="map-placeholder">🗺️ Interactive map coming soon</div></section>
+
+<footer>Made with ✈️ and too much coffee · Wanderlog 2024</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Draggable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(Draggable, ScrollTrigger);
+
+gsap.from('.hero h1',{y:40,opacity:0,duration:1,delay:.2});
+gsap.from('.hero p',{y:20,opacity:0,duration:.6,delay:.5});
+
+// Polaroids — scatter in with random rotation, then make draggable
+const polaroids = gsap.utils.toArray('.polaroid');
+polaroids.forEach((p,i) => {
+  gsap.set(p, {rotation: gsap.utils.random(-12, 12)});
+  gsap.from(p, {
+    y: 'random(-300, -150)',
+    x: 'random(-100, 100)',
+    rotation: 'random(-40, 40)',
+    opacity: 0,
+    scale: .6,
+    duration: 1,
+    delay: .5 + i * .15,
+    ease: 'power3.out'
+  });
+});
+
+// Make all polaroids draggable
+Draggable.create('.polaroid', {
+  bounds: '#scatterZone',
+  inertia: true,
+  onDragStart: function() { gsap.to(this.target, {scale:1.05, boxShadow:'0 12px 40px rgba(0,0,0,.2)', duration:.2}); },
+  onDragEnd: function() { gsap.to(this.target, {scale:1, boxShadow:'0 4px 20px rgba(0,0,0,.1)', duration:.3}); }
+});
+
+// Journal entries
+gsap.utils.toArray('.entry').forEach(entry => {
+  gsap.from(entry, {scrollTrigger:{trigger:entry,start:'top 80%'}, y:40, opacity:0, duration:.8});
+  const img = entry.querySelector('img');
+  if(img) gsap.from(img, {scrollTrigger:{trigger:img,start:'top 85%'}, scale:1.1, opacity:0, rotation: gsap.utils.random(-3,3), duration:1, ease:'power3.out'});
+});
+
+gsap.from('.map-section > *',{scrollTrigger:{trigger:'.map-section',start:'top 75%'},y:30,opacity:0,stagger:.12,duration:.7});
+</script>
+</body>
+</html>

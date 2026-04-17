@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATELIER — Fashion House</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0c0b0b;--fg:#ede8e0;--accent:#c9a96e;--muted:#7a7570}
+body{background:var(--bg);color:var(--fg);font-family:'Outfit',sans-serif;overflow-x:hidden}
+
+nav{position:fixed;top:0;width:100%;padding:2rem 4rem;display:flex;justify-content:space-between;align-items:center;z-index:100;mix-blend-mode:difference}
+nav .logo{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase}
+nav ul{display:flex;gap:2.5rem;list-style:none}
+nav a{color:var(--fg);text-decoration:none;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase}
+
+/* Hero — full bleed with split reveal */
+.hero{height:100vh;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:4rem}
+.hero-img{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1509631179647-0177331693ae?w=1200') center/cover}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(transparent 30%,rgba(12,11,11,.85))}
+.hero-split-left,.hero-split-right{position:absolute;top:0;width:50%;height:100%;background:var(--bg);z-index:5}
+.hero-split-left{left:0}
+.hero-split-right{right:0}
+.hero-content{position:relative;z-index:2;max-width:700px}
+.hero-content h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,8vw,7rem);font-weight:300;line-height:1;letter-spacing:-.02em}
+.hero-content h1 em{font-style:italic;color:var(--accent)}
+.hero-content p{color:var(--muted);font-size:1rem;margin-top:1.5rem;font-weight:300;letter-spacing:.05em}
+.hero-content .line-btn{display:inline-flex;align-items:center;gap:1rem;margin-top:2rem;color:var(--accent);text-decoration:none;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase}
+.hero-content .line-btn::after{content:'';width:60px;height:1px;background:var(--accent);transition:width .4s}
+.hero-content .line-btn:hover::after{width:100px}
+
+/* Lookbook — stacked pinned panels */
+.lookbook{position:relative}
+.look-panel{height:100vh;position:relative;overflow:hidden;display:flex;align-items:center}
+.look-panel .bg{position:absolute;inset:-10%;background-size:cover;background-position:center}
+.look-panel:nth-child(1) .bg{background-image:url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1000')}
+.look-panel:nth-child(2) .bg{background-image:url('https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=1000')}
+.look-panel:nth-child(3) .bg{background-image:url('https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=1000')}
+.look-panel .content{position:relative;z-index:2;padding:0 6rem}
+.look-panel .content .collection{font-size:.75rem;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem}
+.look-panel .content h2{font-family:'Cormorant Garamond',serif;font-size:5rem;font-weight:300;line-height:1}
+.look-panel .content p{color:var(--muted);max-width:350px;margin-top:1rem;line-height:1.7;font-weight:300}
+.look-panel .overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(12,11,11,.8) 40%,transparent);z-index:1}
+
+/* Editorial grid — organic asymmetric */
+.editorial{padding:10rem 4rem}
+.editorial h2{font-family:'Cormorant Garamond',serif;font-size:4rem;font-weight:300;text-align:center;margin-bottom:5rem}
+.editorial h2 em{color:var(--accent);font-style:italic}
+.ed-grid{display:grid;grid-template-columns:1fr 1.5fr 1fr;grid-template-rows:350px 250px 350px;gap:1.5rem}
+.ed-item{position:relative;overflow:hidden}
+.ed-item img{width:100%;height:100%;object-fit:cover;transition:transform .8s}
+.ed-item:hover img{transform:scale(1.06)}
+.ed-item .ed-overlay{position:absolute;inset:0;background:linear-gradient(transparent 50%,rgba(0,0,0,.7));opacity:0;transition:opacity .4s;display:flex;flex-direction:column;justify-content:flex-end;padding:1.5rem}
+.ed-item:hover .ed-overlay{opacity:1}
+.ed-item .ed-overlay h3{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300}
+.ed-item .ed-overlay span{color:var(--accent);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;margin-top:.3rem}
+.ed-item:nth-child(1){grid-row:span 2;clip-path:polygon(0 0,100% 3%,97% 100%,0 97%)}
+.ed-item:nth-child(2){clip-path:polygon(3% 0,100% 0,100% 97%,0 100%)}
+.ed-item:nth-child(3){grid-row:span 2;clip-path:polygon(0 0,100% 0,100% 100%,4% 96%)}
+.ed-item:nth-child(4){clip-path:polygon(0 4%,100% 0,97% 100%,0 100%)}
+.ed-item:nth-child(5){clip-path:polygon(2% 0,100% 3%,100% 100%,0 97%)}
+
+/* Manifesto — large text parallax */
+.manifesto{padding:12rem 4rem;position:relative;overflow:hidden}
+.manifesto .big-text{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,4.5rem);font-weight:300;line-height:1.4;max-width:900px;margin:0 auto;text-align:center}
+.manifesto .big-text em{color:var(--accent);font-style:italic}
+.manifesto .big-text .word{display:inline-block;opacity:.15;transition:opacity .3s}
+.manifesto::before{content:'"';position:absolute;top:4rem;left:50%;transform:translateX(-50%);font-family:'Cormorant Garamond',serif;font-size:20rem;color:rgba(201,169,110,.05);line-height:1}
+
+/* Process — horizontal steps */
+.process{padding:8rem 4rem;border-top:1px solid #1a1a1a}
+.process h2{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:300;margin-bottom:4rem}
+.process-steps{display:flex;gap:0}
+.step{flex:1;padding:3rem;border-left:1px solid #222;position:relative}
+.step:first-child{border-left:none}
+.step .step-num{font-family:'Cormorant Garamond',serif;font-size:4rem;color:var(--accent);opacity:.3;line-height:1}
+.step h3{font-size:1.1rem;font-weight:500;margin:1.5rem 0 1rem;letter-spacing:.05em}
+.step p{color:var(--muted);font-size:.9rem;line-height:1.7;font-weight:300}
+.step::after{content:'';position:absolute;top:0;left:0;width:0;height:2px;background:var(--accent);transition:width .6s}
+.step:hover::after{width:100%}
+
+/* Contact */
+.contact{padding:12rem 4rem;text-align:center}
+.contact h2{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,7vw,6rem);font-weight:300;line-height:1.1}
+.contact h2 em{color:var(--accent);font-style:italic}
+.contact a{display:inline-block;margin-top:3rem;padding:1.2rem 3.5rem;border:1px solid var(--accent);color:var(--accent);text-decoration:none;font-size:.8rem;letter-spacing:.25em;text-transform:uppercase;transition:all .4s}
+.contact a:hover{background:var(--accent);color:var(--bg)}
+
+footer{padding:3rem 4rem;border-top:1px solid #1a1a1a;display:flex;justify-content:space-between;font-size:.8rem;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Atelier</div>
+  <ul>
+    <li><a href="#">Collections</a></li>
+    <li><a href="#">Lookbook</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Stockists</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-img"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-split-left"></div>
+  <div class="hero-split-right"></div>
+  <div class="hero-content">
+    <h1>The art of<br><em>quiet luxury</em></h1>
+    <p>Autumn/Winter 2024 — A meditation on form, fabric, and the beauty of restraint.</p>
+    <a href="#" class="line-btn">Explore collection</a>
+  </div>
+</section>
+
+<section class="lookbook">
+  <div class="look-panel">
+    <div class="bg"></div>
+    <div class="overlay"></div>
+    <div class="content">
+      <div class="collection">Look 01 / 12</div>
+      <h2>Silhouette</h2>
+      <p>Deconstructed tailoring meets fluid draping. Each piece is cut to move with the body, never against it.</p>
+    </div>
+  </div>
+  <div class="look-panel">
+    <div class="bg"></div>
+    <div class="overlay"></div>
+    <div class="content">
+      <div class="collection">Look 05 / 12</div>
+      <h2>Texture</h2>
+      <p>Raw silk, brushed cashmere, hand-woven linen. Materials that tell a story through touch.</p>
+    </div>
+  </div>
+  <div class="look-panel">
+    <div class="bg"></div>
+    <div class="overlay"></div>
+    <div class="content">
+      <div class="collection">Look 09 / 12</div>
+      <h2>Palette</h2>
+      <p>Earth, stone, and sky. A chromatic journey through the muted tones of the natural world.</p>
+    </div>
+  </div>
+</section>
+
+<section class="editorial">
+  <h2>The <em>Editorial</em></h2>
+  <div class="ed-grid">
+    <div class="ed-item"><img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600" alt=""><div class="ed-overlay"><h3>Ethereal Layers</h3><span>Editorial · AW24</span></div></div>
+    <div class="ed-item"><img src="https://images.unsplash.com/photo-1558171813-4c088753af8f?w=600" alt=""><div class="ed-overlay"><h3>Urban Nomad</h3><span>Campaign · AW24</span></div></div>
+    <div class="ed-item"><img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=600" alt=""><div class="ed-overlay"><h3>Monochrome</h3><span>Lookbook · AW24</span></div></div>
+    <div class="ed-item"><img src="https://images.unsplash.com/photo-1495385794356-15371f348c31?w=600" alt=""><div class="ed-overlay"><h3>Raw Elegance</h3><span>Editorial · AW24</span></div></div>
+    <div class="ed-item"><img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600" alt=""><div class="ed-overlay"><h3>After Dark</h3><span>Campaign · AW24</span></div></div>
+  </div>
+</section>
+
+<section class="manifesto">
+  <div class="big-text">
+    We believe fashion is not about <em>following trends</em> — it's about creating a personal language of style that transcends seasons and speaks to the <em>soul of the wearer</em>.
+  </div>
+</section>
+
+<section class="process">
+  <h2>Our Craft</h2>
+  <div class="process-steps">
+    <div class="step"><div class="step-num">I</div><h3>Concept</h3><p>Every collection begins with a story — a mood, a place, a feeling that becomes the foundation.</p></div>
+    <div class="step"><div class="step-num">II</div><h3>Material</h3><p>We source exclusively from heritage mills and artisan workshops across Italy, Japan, and Scotland.</p></div>
+    <div class="step"><div class="step-num">III</div><h3>Pattern</h3><p>Each pattern is drafted by hand, refined through dozens of iterations until the silhouette is perfect.</p></div>
+    <div class="step"><div class="step-num">IV</div><h3>Atelier</h3><p>Our master tailors bring each piece to life with techniques passed down through generations.</p></div>
+  </div>
+</section>
+
+<section class="contact">
+  <h2>Visit the <em>Atelier</em></h2>
+  <a href="#">Book an appointment</a>
+</section>
+
+<footer>
+  <span>© 2024 Atelier</span>
+  <span>Paris · Milan · Tokyo</span>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+// Hero split reveal
+const heroTl = gsap.timeline({delay: .5});
+heroTl.to('.hero-split-left', {xPercent: -100, duration: 1.5, ease: 'power4.inOut'})
+      .to('.hero-split-right', {xPercent: 100, duration: 1.5, ease: 'power4.inOut'}, '<')
+      .from('.hero-content h1', {y: 60, opacity: 0, duration: 1}, '-=.5')
+      .from('.hero-content p, .hero-content .line-btn', {y: 30, opacity: 0, stagger: .2, duration: .8}, '-=.5');
+
+// Parallax hero image
+gsap.to('.hero-img', {
+  scrollTrigger: {trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true},
+  y: 150, scale: 1.1
+});
+
+// Lookbook pinned panels
+const panels = gsap.utils.toArray('.look-panel');
+panels.forEach((panel, i) => {
+  if (i < panels.length - 1) {
+    ScrollTrigger.create({
+      trigger: panel,
+      start: 'top top',
+      pin: true,
+      pinSpacing: false
+    });
+  }
+  // Parallax bg
+  gsap.to(panel.querySelector('.bg'), {
+    scrollTrigger: {trigger: panel, start: 'top bottom', end: 'bottom top', scrub: true},
+    y: -80
+  });
+  // Content reveal
+  gsap.from(panel.querySelectorAll('.content > *'), {
+    scrollTrigger: {trigger: panel, start: 'top 60%'},
+    y: 50, opacity: 0, stagger: .15, duration: 1
+  });
+});
+
+// Editorial grid
+gsap.from('.ed-item', {
+  scrollTrigger: {trigger: '.ed-grid', start: 'top 70%'},
+  y: 80, opacity: 0, stagger: {amount: .6, from: 'random'}, duration: 1, ease: 'power3.out'
+});
+
+// Manifesto word reveal on scroll
+const words = document.querySelector('.big-text').innerHTML;
+document.querySelector('.big-text').innerHTML = words.replace(/(\S+)/g, '<span class="word">$1</span>');
+const wordEls = document.querySelectorAll('.word');
+gsap.to(wordEls, {
+  scrollTrigger: {trigger: '.manifesto', start: 'top 70%', end: 'bottom 40%', scrub: true},
+  opacity: 1, stagger: .05
+});
+
+// Process steps
+gsap.from('.step', {
+  scrollTrigger: {trigger: '.process-steps', start: 'top 70%'},
+  y: 60, opacity: 0, stagger: .15, duration: .8
+});
+
+// Contact
+gsap.from('.contact h2, .contact a', {
+  scrollTrigger: {trigger: '.contact', start: 'top 60%'},
+  y: 60, opacity: 0, stagger: .2, duration: 1
+});
+</script>
+</body>
+</html>

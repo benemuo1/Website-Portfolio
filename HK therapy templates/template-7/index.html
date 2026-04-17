@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HK Therapeutics</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <span class="nav-brand">HK THERAPEUTICS</span>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#offerings">OFFERINGS</a></li>
+      <li><a href="#about">ABOUT</a></li>
+      <li><a href="#contact">CONTACT</a></li>
+      <li><a href="#contact" class="nav-book">BOOK A SESSION</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span></button>
+  </nav>
+
+  <!-- HERO — soft gradient with centered text -->
+  <section class="hero" id="hero">
+    <div class="hero-gradient"></div>
+    <div class="hero-content">
+      <h1>HK THERAPEUTICS</h1>
+      <p class="hero-sub">Massage · Botanical Wellness · Restoration</p>
+      <div class="hero-symbol">
+        <svg viewBox="0 0 120 140" width="120" height="140">
+          <polygon points="60,10 110,100 10,100" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1"/>
+          <circle cx="60" cy="90" r="25" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1"/>
+          <line x1="60" y1="65" x2="60" y2="115" stroke="rgba(255,255,255,.3)" stroke-width="1"/>
+          <line x1="35" y1="90" x2="85" y2="90" stroke="rgba(255,255,255,.3)" stroke-width="1"/>
+        </svg>
+      </div>
+    </div>
+    <div class="hero-img">
+      <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&q=80" alt="Wellness">
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="intro">
+    <div class="container">
+      <p class="intro-text" data-reveal>A sanctuary where skilled hands and nature's wisdom converge to restore your body's natural harmony. Every session is a bespoke journey back to yourself.</p>
+    </div>
+  </section>
+
+  <!-- OFFERINGS -->
+  <section class="offerings" id="offerings">
+    <div class="container">
+      <h2 data-reveal>Offerings</h2>
+      <div class="off-grid">
+        <div class="off-card" data-reveal>
+          <span class="off-num">01</span>
+          <h3>Swedish Massage</h3>
+          <p>Gentle, flowing strokes for full-body relaxation.</p>
+          <span class="off-price">$85+</span>
+        </div>
+        <div class="off-card" data-reveal>
+          <span class="off-num">02</span>
+          <h3>Deep Tissue</h3>
+          <p>Targeted pressure for chronic tension release.</p>
+          <span class="off-price">$95+</span>
+        </div>
+        <div class="off-card" data-reveal>
+          <span class="off-num">03</span>
+          <h3>Hot Stone Therapy</h3>
+          <p>Heated stones for deep relaxation and circulation.</p>
+          <span class="off-price">$110+</span>
+        </div>
+        <div class="off-card" data-reveal>
+          <span class="off-num">04</span>
+          <h3>Aromatherapy</h3>
+          <p>Essential oils paired with therapeutic touch.</p>
+          <span class="off-price">$90+</span>
+        </div>
+        <div class="off-card" data-reveal>
+          <span class="off-num">05</span>
+          <h3>Prenatal Massage</h3>
+          <p>Nurturing bodywork for expecting mothers.</p>
+          <span class="off-price">$90+</span>
+        </div>
+        <div class="off-card" data-reveal>
+          <span class="off-num">06</span>
+          <h3>Sports Recovery</h3>
+          <p>Performance-focused recovery techniques.</p>
+          <span class="off-price">$100+</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-layout">
+        <div class="about-img" data-reveal><img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&q=80" alt="Therapy"></div>
+        <div class="about-text">
+          <h2 data-reveal>About</h2>
+          <p data-reveal>With over a decade of practice, I've refined an intuitive approach that listens to your body. My botanical-infused studio engages all your senses — warm light, organic aromatics, and textures that ground you.</p>
+          <p data-reveal>Every session is deeply personal, thoughtfully crafted to honor your body's innate ability to heal.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="reviews">
+    <div class="container">
+      <h2 data-reveal>Kind Words</h2>
+      <div class="rev-grid">
+        <div class="rev-card" data-reveal>
+          <p>"Absolutely transformative. I walked in carrying months of tension and walked out feeling completely reborn."</p>
+          <cite>— Sarah M.</cite>
+        </div>
+        <div class="rev-card" data-reveal>
+          <p>"The prenatal massage was exactly what my body needed. So gentle, so intuitive."</p>
+          <cite>— Jessica L.</cite>
+        </div>
+        <div class="rev-card" data-reveal>
+          <p>"These sessions have cut my recovery downtime in half. This is performance medicine."</p>
+          <cite>— David R.</cite>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <h2 data-reveal>Get in Touch</h2>
+      <form class="contact-form" id="contactForm" data-reveal>
+        <div class="cf-row"><input type="text" placeholder="Name" required><input type="email" placeholder="Email" required></div>
+        <select><option value="">Select a service...</option><option>Swedish Massage</option><option>Deep Tissue</option><option>Hot Stone Therapy</option><option>Aromatherapy</option><option>Prenatal Massage</option><option>Sports Recovery</option></select>
+        <textarea rows="4" placeholder="Your message..."></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+      <div class="contact-details" data-reveal>
+        <span><i class="fas fa-map-marker-alt"></i> 123 Botanical Lane, NY</span>
+        <span><i class="fas fa-phone-alt"></i> (555) 123-4567</span>
+        <span><i class="fas fa-envelope"></i> hello@hktherapeutics.com</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>&copy; 2025 HK Therapeutics</p>
+    <div class="f-socials"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-pinterest-p"></i></a></div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

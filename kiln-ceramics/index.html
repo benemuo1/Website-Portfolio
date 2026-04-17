@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KILN — Ceramics Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Jost:wght@200;400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#f5ede4;color:#3a2e24;font-family:'Jost',sans-serif;overflow-x:hidden}
+nav{padding:1.5rem 3rem;display:flex;justify-content:space-between;align-items:center}
+nav .logo{font-family:'Tenor Sans',serif;font-size:1.4rem;letter-spacing:.2em}
+nav a{color:#3a2e24;text-decoration:none;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase}
+nav ul{display:flex;gap:2rem;list-style:none}
+.hero{height:90vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:0 3rem;gap:3rem}
+.hero-text h1{font-family:'Tenor Sans',serif;font-size:clamp(2.5rem,5vw,4rem);line-height:1.2}
+.hero-text h1 em{color:#b5694d;font-style:normal}
+.hero-text p{color:#8a7a6a;margin-top:1rem;line-height:1.8;font-weight:200;max-width:400px}
+.hero-text a{display:inline-block;margin-top:2rem;padding:.8rem 2rem;border:1px solid #b5694d;color:#b5694d;text-decoration:none;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;border-radius:50px;transition:all .3s}
+.hero-text a:hover{background:#b5694d;color:#fff}
+.hero-img{height:500px;overflow:hidden;border-radius:60% 40% 50% 50%/50% 60% 40% 50%}
+.hero-img img{width:100%;height:100%;object-fit:cover}
+.pieces{padding:6rem 3rem}
+.pieces h2{font-family:'Tenor Sans',serif;font-size:2.5rem;text-align:center;margin-bottom:3rem}
+.piece-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+.piece-card{background:#fff;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.04);transition:transform .3s}
+.piece-card:hover{transform:translateY(-6px)}
+.piece-card .img-wrap{height:350px;overflow:hidden;border-radius:50% 50% 0 0/30% 30% 0 0}
+.piece-card .img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.piece-card:hover .img-wrap img{transform:scale(1.05)}
+.piece-card .info{padding:1.5rem}
+.piece-card h3{font-family:'Tenor Sans',serif;font-size:1.1rem}
+.piece-card .price{color:#b5694d;font-weight:600;margin-top:.3rem}
+.piece-card span{font-size:.7rem;color:#aaa;letter-spacing:.1em}
+.process{padding:6rem 3rem}
+.process h2{font-family:'Tenor Sans',serif;font-size:2.5rem;text-align:center;margin-bottom:4rem}
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem}
+.process-step{text-align:center}
+.process-step .shape{width:120px;height:120px;margin:0 auto 1.5rem;overflow:hidden;border-radius:50%;transition:border-radius 1s}
+.process-step .shape img{width:100%;height:100%;object-fit:cover}
+.process-step h3{font-family:'Tenor Sans',serif;font-size:1rem;margin-bottom:.3rem}
+.process-step p{color:#8a7a6a;font-size:.8rem;line-height:1.5;font-weight:200}
+.classes{padding:6rem 3rem;background:#3a2e24;color:#f5ede4;border-radius:30px;margin:0 2rem}
+.classes h2{font-family:'Tenor Sans',serif;font-size:2.5rem;text-align:center;margin-bottom:3rem}
+.class-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+.class-card{border:1px solid rgba(245,237,228,.1);border-radius:20px;padding:2rem;transition:border-color .3s}
+.class-card:hover{border-color:rgba(181,105,77,.5)}
+.class-card h3{font-family:'Tenor Sans',serif;font-size:1.1rem;margin-bottom:.5rem}
+.class-card p{color:rgba(245,237,228,.5);font-size:.8rem;line-height:1.6;font-weight:200}
+.class-card .meta{margin-top:1rem;font-size:.7rem;color:#b5694d;letter-spacing:.1em}
+footer{padding:3rem;text-align:center;font-size:.75rem;color:#aaa}
+</style>
+</head>
+<body>
+<nav><div class="logo">KILN</div><ul><li><a href="#">Pieces</a></li><li><a href="#">Process</a></li><li><a href="#">Classes</a></li></ul></nav>
+
+<section class="hero">
+<div class="hero-text"><h1>Handmade ceramics for <em>everyday ritual</em></h1><p>Each piece is thrown, glazed, and fired by hand in our Portland studio. No two are alike.</p><a href="#">Shop Collection</a></div>
+<div class="hero-img"><img src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=600" alt=""></div>
+</section>
+
+<section class="pieces">
+<h2>The Collection</h2>
+<div class="piece-grid">
+<div class="piece-card"><div class="img-wrap"><img src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=400" alt=""></div><div class="info"><span>Stoneware</span><h3>Morning Mug</h3><div class="price">$38</div></div></div>
+<div class="piece-card"><div class="img-wrap"><img src="https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?w=400" alt=""></div><div class="info"><span>Porcelain</span><h3>Dinner Plate Set</h3><div class="price">$120</div></div></div>
+<div class="piece-card"><div class="img-wrap"><img src="https://images.unsplash.com/photo-1493106641515-6b5631de4bb9?w=400" alt=""></div><div class="info"><span>Earthenware</span><h3>Bud Vase</h3><div class="price">$28</div></div></div>
+</div>
+</section>
+
+<section class="process">
+<h2>Our Process</h2>
+<div class="process-grid">
+<div class="process-step"><div class="shape"><img src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=200" alt=""></div><h3>Throw</h3><p>Each piece begins on the wheel, shaped by hand.</p></div>
+<div class="process-step"><div class="shape"><img src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=200" alt=""></div><h3>Trim</h3><p>Refined and smoothed once leather-hard.</p></div>
+<div class="process-step"><div class="shape"><img src="https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?w=200" alt=""></div><h3>Glaze</h3><p>Dipped in our signature glazes, each unique.</p></div>
+<div class="process-step"><div class="shape"><img src="https://images.unsplash.com/photo-1493106641515-6b5631de4bb9?w=200" alt=""></div><h3>Fire</h3><p>Kiln-fired at 2,300°F for strength and beauty.</p></div>
+</div>
+</section>
+
+<section class="classes">
+<h2>Take a Class</h2>
+<div class="class-grid">
+<div class="class-card"><h3>Beginner Wheel</h3><p>Learn the basics of throwing on the potter's wheel. No experience needed.</p><div class="meta">Saturdays · 10am · $85</div></div>
+<div class="class-card"><h3>Glaze Workshop</h3><p>Explore color, texture, and chemistry. Mix and test your own glazes.</p><div class="meta">Sundays · 2pm · $65</div></div>
+<div class="class-card"><h3>Hand Building</h3><p>Coil, slab, and pinch techniques for sculptural forms.</p><div class="meta">Wednesdays · 6pm · $75</div></div>
+</div>
+</section>
+
+<footer>© 2024 Kiln Ceramics · Portland, OR</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.from('.hero-text > *',{y:40,opacity:0,stagger:.15,duration:.8,delay:.3});
+// Hero image organic blob morph
+gsap.to('.hero-img',{borderRadius:'40% 60% 60% 40%/60% 40% 60% 40%',duration:4,ease:'sine.inOut',repeat:-1,yoyo:true});
+gsap.from('.hero-img',{scale:.8,opacity:0,duration:1.2,delay:.2});
+
+// Piece cards — borderRadius morph from circle to rounded rect
+gsap.utils.toArray('.piece-card .img-wrap').forEach((wrap,i)=>{
+  gsap.from(wrap,{
+    scrollTrigger:{trigger:wrap,start:'top 80%'},
+    borderRadius:'50%/50%',
+    scale:.7,opacity:0,
+    duration:1.2,ease:'power3.out',delay:i*.15
+  });
+});
+gsap.from('.piece-card .info > *',{scrollTrigger:{trigger:'.piece-grid',start:'top 65%'},y:10,opacity:0,stagger:.04,duration:.4,delay:.6});
+
+// Process shapes — morph from square to circle to blob
+gsap.utils.toArray('.process-step .shape').forEach((shape,i)=>{
+  gsap.from(shape,{scrollTrigger:{trigger:shape,start:'top 80%'},borderRadius:'10%',scale:.5,opacity:0,rotation:90,duration:1,ease:'power3.out',delay:i*.15});
+  // Continuous organic morph
+  gsap.to(shape,{borderRadius:'40% 60% 55% 45%/55% 40% 60% 45%',duration:3+i*.5,ease:'sine.inOut',repeat:-1,yoyo:true,delay:i*.3});
+});
+gsap.from('.process-step h3, .process-step p',{scrollTrigger:{trigger:'.process-grid',start:'top 70%'},y:15,opacity:0,stagger:.05,duration:.5,delay:.5});
+
+// Classes
+gsap.from('.classes',{scrollTrigger:{trigger:'.classes',start:'top 80%'},y:40,opacity:0,scale:.97,duration:.8});
+gsap.from('.class-card',{scrollTrigger:{trigger:'.class-grid',start:'top 75%'},y:40,opacity:0,stagger:.12,duration:.7,delay:.3});
+</script>
+</body>
+</html>

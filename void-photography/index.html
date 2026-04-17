@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VOID — Photography</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono&family=Inter:wght@200;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#000;color:#fff;font-family:'Inter',sans-serif;overflow-x:hidden}
+.panel{height:100vh;width:100%;position:relative;overflow:hidden}
+.panel img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.7;transition:opacity .5s}
+.panel .caption{position:absolute;bottom:8vh;left:5vw;z-index:2;max-width:500px}
+.panel .caption .num{font-family:'Space Mono',monospace;font-size:.7rem;color:rgba(255,255,255,.4);letter-spacing:.3em;margin-bottom:1rem}
+.panel .caption h2{font-size:clamp(2rem,4vw,3.5rem);font-weight:600;line-height:1.1;letter-spacing:-.02em}
+.panel .caption p{color:rgba(255,255,255,.5);font-size:.85rem;line-height:1.7;margin-top:1rem;font-weight:200}
+.panel .meta{position:absolute;bottom:8vh;right:5vw;text-align:right;z-index:2}
+.panel .meta span{display:block;font-family:'Space Mono',monospace;font-size:.65rem;color:rgba(255,255,255,.3);letter-spacing:.15em;line-height:2}
+.progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#fff,rgba(255,255,255,.3));z-index:100;transform-origin:left;transform:scaleX(0)}
+nav{position:fixed;top:0;width:100%;padding:1.5rem 3rem;display:flex;justify-content:space-between;align-items:center;z-index:100;mix-blend-mode:difference}
+nav .logo{font-family:'Space Mono',monospace;font-size:.9rem;letter-spacing:.3em}
+nav span{font-family:'Space Mono',monospace;font-size:.65rem;color:rgba(255,255,255,.4);letter-spacing:.2em}
+</style>
+</head>
+<body>
+<div class="progress-bar" id="prog"></div>
+<nav><div class="logo">VOID</div><span id="counter">01 / 06</span></nav>
+
+<section class="panel"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1400" alt=""><div class="caption"><div class="num">001</div><h2>The weight of silence</h2><p>Dolomites, Italy — 3,200m above sea level. The air thins and the world goes quiet.</p></div><div class="meta"><span>48.5°N 11.8°E</span><span>f/8 · 1/250s · ISO 100</span></div></section>
+
+<section class="panel"><img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1400" alt=""><div class="caption"><div class="num">002</div><h2>Infinite above</h2><p>Milky Way over the Sahara. No light pollution for 200km in any direction.</p></div><div class="meta"><span>31.2°N 7.9°W</span><span>f/1.4 · 25s · ISO 3200</span></div></section>
+
+<section class="panel"><img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1400" alt=""><div class="caption"><div class="num">003</div><h2>Morning fog</h2><p>Pacific Northwest old growth. The forest breathes in the first light.</p></div><div class="meta"><span>47.7°N 123.5°W</span><span>f/5.6 · 1/60s · ISO 400</span></div></section>
+
+<section class="panel"><img src="https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=1400" alt=""><div class="caption"><div class="num">004</div><h2>Vertical world</h2><p>A waterfall carves through basalt. Time made visible.</p></div><div class="meta"><span>64.1°N 21.9°W</span><span>f/11 · 2s · ISO 50</span></div></section>
+
+<section class="panel"><img src="https://images.unsplash.com/photo-1504893524553-b855bce32c67?w=1400" alt=""><div class="caption"><div class="num">005</div><h2>Edge of the world</h2><p>Cliffs of Moher at dawn. Where land surrenders to the Atlantic.</p></div><div class="meta"><span>52.9°N 9.4°W</span><span>f/8 · 1/125s · ISO 200</span></div></section>
+
+<section class="panel"><img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1400" alt=""><div class="caption"><div class="num">006</div><h2>Still water</h2><p>Lago di Braies before sunrise. The mountains hold their breath.</p></div><div class="meta"><span>46.7°N 12.1°E</span><span>f/8 · 1/30s · ISO 200</span></div></section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+const panels = gsap.utils.toArray('.panel');
+const total = panels.length;
+const counter = document.getElementById('counter');
+
+// Snap-to-section scrolling
+ScrollTrigger.create({
+  snap: 1 / (total - 1),
+  duration: {min:.2, max:.8},
+  ease: 'power2.inOut'
+});
+
+// Progress bar
+gsap.to('#prog', {
+  scaleX: 1,
+  ease: 'none',
+  scrollTrigger: {trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: .3}
+});
+
+// Per-panel animations
+panels.forEach((panel, i) => {
+  const img = panel.querySelector('img');
+  const caption = panel.querySelector('.caption');
+  const meta = panel.querySelector('.meta');
+  const num = panel.querySelector('.num');
+
+  // Parallax zoom on image
+  gsap.fromTo(img, {scale:1.15}, {scale:1, ease:'none',
+    scrollTrigger:{trigger:panel, start:'top bottom', end:'bottom top', scrub:true}
+  });
+
+  // Caption entrance
+  gsap.from(caption.querySelectorAll('.num, h2, p'), {
+    scrollTrigger:{trigger:panel, start:'top 60%'},
+    y:40, opacity:0, stagger:.12, duration:.8, ease:'power3.out'
+  });
+
+  // Meta entrance from right
+  gsap.from(meta.querySelectorAll('span'), {
+    scrollTrigger:{trigger:panel, start:'top 60%'},
+    x:30, opacity:0, stagger:.1, duration:.6, delay:.3
+  });
+
+  // Update counter
+  ScrollTrigger.create({
+    trigger: panel,
+    start: 'top center',
+    onEnter: () => { counter.textContent = `${String(i+1).padStart(2,'0')} / ${String(total).padStart(2,'0')}`; },
+    onEnterBack: () => { counter.textContent = `${String(i+1).padStart(2,'0')} / ${String(total).padStart(2,'0')}`; }
+  });
+});
+
+// First panel entrance
+gsap.from(panels[0].querySelector('img'), {scale:1.3, opacity:0, duration:2, delay:.2, ease:'power3.out'});
+</script>
+</body>
+</html>

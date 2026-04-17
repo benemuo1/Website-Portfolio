@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TITAN FORGE — Training Ground</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{background:#0c0c0c;color:#fff;font-family:'Inter',sans-serif;overflow-x:hidden}img{display:block;max-width:100%}a{color:inherit;text-decoration:none}.oswald{font-family:'Oswald',sans-serif}
+@keyframes hammerSlam{0%{transform:translateY(-100px) scaleY(1.3);opacity:0}60%{transform:translateY(5px) scaleY(.95);opacity:1}100%{transform:translateY(0) scaleY(1);opacity:1}}
+@keyframes fadeSlideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes orangeGlow{0%,100%{box-shadow:0 0 20px rgba(249,115,22,.2)}50%{box-shadow:0 0 50px rgba(249,115,22,.5)}}
+@keyframes tiltIn{from{opacity:0;transform:perspective(800px) rotateY(-15deg) translateX(-40px)}to{opacity:1;transform:perspective(800px) rotateY(0) translateX(0)}}
+/* NAV */
+.nav{position:absolute;top:2rem;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;z-index:20;animation:fadeSlideUp .6s ease 1s both}
+.nav-brand{display:flex;align-items:center;gap:.75rem}.nav-icon{width:2rem;height:2rem;background:#f97316;display:flex;align-items:center;justify-content:center}.nav-icon span{color:#000;font-size:.65rem;font-weight:900}.nav-name{color:rgba(255,255,255,.6);font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;font-weight:300}
+.nav-links{display:flex;gap:2rem}.nav-links a{color:rgba(255,255,255,.25);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;transition:color .3s}.nav-links a:hover{color:#f97316}
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}.hero-bg{position:absolute;inset:0}.hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.25}.hero-grad{position:absolute;inset:0;background:linear-gradient(to right,#0c0c0c,rgba(12,12,12,.7),transparent)}.hero-texture{position:absolute;inset:0;opacity:.1;background-image:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(255,255,255,.03) 2px,rgba(255,255,255,.03) 4px)}.hero-glow{position:absolute;bottom:0;left:33%;width:600px;height:300px;background:radial-gradient(ellipse,rgba(249,115,22,.15),transparent 70%);filter:blur(40px)}
+.hero-content{position:relative;z-index:10;max-width:80rem;margin:0 auto;padding:8rem 2rem 2rem;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.hero-title span{display:block;font-size:clamp(3.5rem,10vw,8rem);font-weight:700;line-height:.95;text-transform:uppercase}.hero-title .orange{color:#f97316;text-shadow:0 0 40px rgba(249,115,22,.4)}
+.hero-divider{display:flex;align-items:center;gap:1rem;margin:2rem 0}.hero-divider .line{width:3rem;height:2px;background:#f97316}.hero-divider span{color:rgba(249,115,22,.6);font-size:.7rem;letter-spacing:.3em;text-transform:uppercase}
+.hero-sub{color:rgba(255,255,255,.35);font-size:1rem;max-width:28rem;margin-bottom:2.5rem;font-weight:300;line-height:1.6;animation:fadeSlideUp .6s ease 2s both}
+.hero-btns{display:flex;gap:1rem;animation:fadeSlideUp .5s ease 2.2s both}.btn-orange{background:#f97316;color:#000;padding:1rem 2.5rem;font-weight:700;font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;transition:background .3s;animation:orangeGlow 3s ease-in-out infinite}.btn-orange:hover{background:#fb923c}.btn-ghost{border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.4);padding:1rem 2.5rem;font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;transition:all .3s}.btn-ghost:hover{border-color:rgba(249,115,22,.5);color:rgba(255,255,255,.8)}
+.hero-img{animation:tiltIn 1s cubic-bezier(.16,1,.3,1) 1.2s both}.hero-img-wrap{position:relative;border-radius:1rem;overflow:hidden}.hero-img-wrap img{width:100%;height:500px;object-fit:cover}.hero-img-wrap .grad{position:absolute;inset:0;background:linear-gradient(to top,#0c0c0c,transparent)}.hero-stat-card{position:absolute;bottom:1.5rem;left:1.5rem;right:1.5rem;background:rgba(0,0,0,.6);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-radius:.75rem;padding:1rem;display:flex;justify-content:space-between}.hero-stat-card div{text-align:center}.hero-stat-card p:first-child{color:#f97316;font-weight:700;font-size:1.1rem}.hero-stat-card p:last-child{color:rgba(255,255,255,.3);font-size:.7rem}
+/* TRAINING */
+.training{padding:5rem 2rem;background:#0c0c0c}.training-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;max-width:72rem;margin:0 auto}.train-card{position:relative;aspect-ratio:4/3;border-radius:.75rem;overflow:hidden;border:1px solid rgba(255,255,255,.05);cursor:pointer;transition:border-color .5s}.train-card:hover{border-color:rgba(249,115,22,.2)}.train-card img{width:100%;height:100%;object-fit:cover;opacity:.4;transition:all .7s}.train-card:hover img{opacity:.6;transform:scale(1.1)}.train-card .overlay{position:absolute;inset:0;background:linear-gradient(to top,#0c0c0c,rgba(12,12,12,.5),transparent)}.train-card .texture{position:absolute;inset:0;opacity:.05;background-image:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(255,255,255,.03) 2px,rgba(255,255,255,.03) 4px)}.train-card .num{position:absolute;top:.75rem;left:.75rem;color:rgba(249,115,22,.2);font-size:3rem;font-weight:700}.train-card .weeks{position:absolute;top:.75rem;right:.75rem;background:rgba(255,255,255,.05);backdrop-filter:blur(8px);padding:.25rem .75rem;border-radius:.25rem}.train-card .weeks span{color:rgba(255,255,255,.3);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase}.train-card .info{position:absolute;bottom:0;left:0;right:0;padding:1.5rem}.train-card h3{font-size:1.2rem;font-weight:700;transition:color .3s}.train-card:hover h3{color:#f97316}.train-card .desc{color:transparent;font-size:.85rem;max-height:0;overflow:hidden;transition:all .5s}.train-card:hover .desc{color:rgba(255,255,255,.4);max-height:4rem}.train-card .bottom-line{position:absolute;bottom:0;left:0;width:0;height:2px;background:#f97316;transition:width .5s}.train-card:hover .bottom-line{width:100%}
+/* COACHES */
+.coaches{padding:5rem 2rem;background:#0e0e0e}.coaches-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;max-width:72rem;margin:0 auto}.coach{position:relative;border-radius:.75rem;overflow:hidden;border:1px solid rgba(255,255,255,.05);transition:border-color .5s}.coach:hover{border-color:rgba(249,115,22,.2)}.coach .img-wrap{aspect-ratio:3/4;overflow:hidden}.coach img{width:100%;height:100%;object-fit:cover;filter:grayscale(1);transition:all .7s}.coach:hover img{filter:grayscale(0);transform:scale(1.05)}.coach .grad{position:absolute;inset:0;background:linear-gradient(to top,#0e0e0e,rgba(14,14,14,.3),transparent)}.coach .bottom-line{position:absolute;bottom:0;left:0;width:0;height:2px;background:#f97316;transition:width .5s}.coach:hover .bottom-line{width:100%}.coach .info{position:absolute;bottom:0;left:0;right:0;padding:1.5rem}.coach h3{font-size:.9rem;font-weight:700;letter-spacing:.1em}.coach .role{color:rgba(249,115,22,.6);font-size:.75rem}.coach .bio{color:transparent;font-size:.7rem;max-height:0;overflow:hidden;transition:all .5s;margin-top:.25rem}.coach:hover .bio{color:rgba(255,255,255,.25);max-height:3rem}
+/* PLANS */
+.plans{padding:5rem 2rem;background:#0c0c0c}.plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:72rem;margin:0 auto}.plan{position:relative;border:1px solid rgba(255,255,255,.04);padding:2rem;transition:all .5s}.plan:hover,.plan.pop{border-color:rgba(249,115,22,.3);background:rgba(249,115,22,.03);transform:translateY(-4px);box-shadow:0 20px 60px rgba(249,115,22,.08)}.plan .badge{position:absolute;top:-.75rem;left:1.5rem;background:#f97316;padding:.25rem .75rem}.plan .badge span{color:#000;font-size:.6rem;font-weight:700;letter-spacing:.15em}.plan .tier{color:rgba(255,255,255,.25);font-size:.7rem;letter-spacing:.15em;margin-bottom:1.5rem}.plan .amount{font-size:3rem;font-weight:700;margin-bottom:2rem}.plan .amount small{font-size:.85rem;color:rgba(255,255,255,.2);font-weight:400}.plan .features{margin-bottom:2rem}.plan .feat{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:.75rem}.plan .dash{width:6px;height:2px;margin-top:.7rem;flex-shrink:0;background:rgba(255,255,255,.1);transition:background .3s}.plan:hover .dash,.plan.pop .dash{background:#f97316}.plan .feat span{color:rgba(255,255,255,.3);font-size:.85rem}.plan .cta{display:block;text-align:center;padding:.75rem;font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;border:1px solid rgba(255,255,255,.08);color:rgba(255,255,255,.25);transition:all .3s}.plan:hover .cta,.plan.pop .cta{border-color:#f97316;color:#000;background:#f97316}
+/* CONTACT */
+.contact{padding:5rem 2rem;background:#0e0e0e}.contact-form{max-width:48rem;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:1rem}.contact-form input,.contact-form textarea{width:100%;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);color:#fff;font-size:.85rem;padding:.75rem 1.25rem;outline:none;transition:border-color .3s;font-family:inherit}.contact-form input:focus,.contact-form textarea:focus{border-color:rgba(249,115,22,.3)}.contact-form textarea{grid-column:span 2;resize:none}.contact-form button{grid-column:span 2;background:#f97316;color:#000;padding:.75rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;border:none;cursor:pointer;transition:background .3s;font-family:'Oswald',sans-serif;font-size:1rem}.contact-form button:hover{background:#fb923c}
+/* FOOTER */
+.footer{padding:3rem 2rem;border-top:1px solid rgba(255,255,255,.05);background:#0c0c0c}.footer-inner{max-width:72rem;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem}.footer-links{display:flex;gap:1.5rem}.footer-links a{color:rgba(255,255,255,.15);font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;transition:color .3s}.footer-links a:hover{color:rgba(249,115,22,.5)}
+.section-label{display:flex;align-items:center;gap:1rem;margin-bottom:3rem}.section-label .line{width:2rem;height:2px;background:#f97316}.section-label span{color:#f97316;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase}
+.section-title{font-size:clamp(2rem,5vw,3.5rem);font-weight:700;color:#fff;margin-bottom:3rem;text-align:center}
+.text-center{text-align:center}
+@media(max-width:1024px){.hero-content{grid-template-columns:1fr}.hero-img{display:none}}
+@media(max-width:768px){.training-grid{grid-template-columns:1fr}.coaches-grid{grid-template-columns:1fr}.plans-grid{grid-template-columns:1fr}.contact-form{grid-template-columns:1fr}.contact-form textarea,.contact-form button{grid-column:span 1}.nav-links{display:none}}
+</style>
+</head>
+<body>
+<section class="hero">
+<div class="hero-bg"><img src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=1600&h=900&fit=crop" alt=""></div>
+<div class="hero-grad"></div><div class="hero-texture"></div><div class="hero-glow"></div>
+<div class="hero-content">
+<div>
+<nav class="nav"><div class="nav-brand"><div class="nav-icon"><span>TF</span></div><span class="nav-name">Titan Forge</span></div><div class="nav-links"><a href="#training">Training</a><a href="#coaches">Coaches</a><a href="#plans">Plans</a><a href="#join">Join</a></div></nav>
+<div style="padding-top:4rem">
+<h1 class="hero-title oswald"><span style="animation:hammerSlam .5s cubic-bezier(.16,1,.3,1) 1s both">FORGED</span><span style="animation:hammerSlam .5s cubic-bezier(.16,1,.3,1) 1.15s both">IN</span><span class="orange" style="animation:hammerSlam .5s cubic-bezier(.16,1,.3,1) 1.3s both">IRON</span></h1>
+<div class="hero-divider" style="animation:fadeSlideUp .6s ease 1.8s both"><div class="line"></div><span>Est. 2019</span></div>
+<p class="hero-sub">Raw. Relentless. Real. A training ground built for those who refuse to settle for average.</p>
+<div class="hero-btns"><a href="#join" class="btn-orange">Start Forging</a><a href="#training" class="btn-ghost">Programs</a></div>
+</div>
+</div>
+<div class="hero-img"><div class="hero-img-wrap"><img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=500&h=600&fit=crop" alt=""><div class="grad"></div><div class="hero-stat-card"><div><p>98%</p><p>Retention</p></div><div><p>4.9</p><p>Rating</p></div><div><p>12</p><p>Weeks</p></div></div></div></div>
+</div>
+</section>
+
+<section class="training" id="training">
+<div style="max-width:72rem;margin:0 auto"><div class="section-label"><div class="line"></div><span class="oswald">Programs</span></div></div>
+<div class="training-grid">
+<div class="train-card"><img src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=600&h=400&fit=crop" alt=""><div class="overlay"></div><div class="texture"></div><span class="num oswald">01</span><div class="weeks"><span>12 weeks</span></div><div class="info"><h3 class="oswald">Forge Strength</h3><p class="desc">Barbell-focused progressive overload. Squat, press, pull. No machines, no shortcuts.</p></div><div class="bottom-line"></div></div>
+<div class="train-card"><img src="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?w=600&h=400&fit=crop" alt=""><div class="overlay"></div><div class="texture"></div><span class="num oswald">02</span><div class="weeks"><span>8 weeks</span></div><div class="info"><h3 class="oswald">Anvil Conditioning</h3><p class="desc">Brutal metabolic circuits that build work capacity and mental toughness.</p></div><div class="bottom-line"></div></div>
+<div class="train-card"><img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=600&h=400&fit=crop" alt=""><div class="overlay"></div><div class="texture"></div><span class="num oswald">03</span><div class="weeks"><span>16 weeks</span></div><div class="info"><h3 class="oswald">Steel Physique</h3><p class="desc">Hypertrophy programming with periodized volume for serious muscle growth.</p></div><div class="bottom-line"></div></div>
+<div class="train-card"><img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&h=400&fit=crop" alt=""><div class="overlay"></div><div class="texture"></div><span class="num oswald">04</span><div class="weeks"><span>10 weeks</span></div><div class="info"><h3 class="oswald">Iron Endurance</h3><p class="desc">Hybrid training combining strength with cardiovascular performance.</p></div><div class="bottom-line"></div></div>
+</div>
+</section>
+
+<section class="coaches" id="coaches">
+<div style="max-width:72rem;margin:0 auto"><div class="section-label"><div class="line"></div><span class="oswald">Coaches</span></div></div>
+<div class="coaches-grid">
+<div class="coach"><div class="img-wrap"><img src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?w=400&h=500&fit=crop" alt=""></div><div class="grad"></div><div class="bottom-line"></div><div class="info"><h3 class="oswald">JAKE HAMMER</h3><p class="role">Founder & Head Coach</p><p class="bio">20 years forging athletes. Former competitive strongman.</p></div></div>
+<div class="coach"><div class="img-wrap"><img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?w=400&h=500&fit=crop" alt=""></div><div class="grad"></div><div class="bottom-line"></div><div class="info"><h3 class="oswald">NINA STEEL</h3><p class="role">Strength Coach</p><p class="bio">Specializes in powerlifting and Olympic weightlifting technique.</p></div></div>
+<div class="coach"><div class="img-wrap"><img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=400&h=500&fit=crop" alt=""></div><div class="grad"></div><div class="bottom-line"></div><div class="info"><h3 class="oswald">RAY FORGE</h3><p class="role">Conditioning Specialist</p><p class="bio">Builds unbreakable endurance through intelligent programming.</p></div></div>
+</div>
+</section>
+
+<section class="plans" id="plans">
+<div class="text-center"><p style="color:#f97316;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;margin-bottom:.75rem" class="oswald">Pricing</p><h2 class="section-title oswald">CHOOSE YOUR PATH</h2></div>
+<div class="plans-grid">
+<div class="plan"><p class="tier oswald">APPRENTICE</p><p class="amount oswald">$59<small>/mo</small></p><div class="features"><div class="feat"><div class="dash"></div><span>Open gym access</span></div><div class="feat"><div class="dash"></div><span>Basic programming</span></div><div class="feat"><div class="dash"></div><span>Community forum</span></div></div><a href="#join" class="cta oswald">JOIN</a></div>
+<div class="plan pop"><div class="badge"><span>POPULAR</span></div><p class="tier oswald">BLACKSMITH</p><p class="amount oswald" style="color:#f97316">$109<small>/mo</small></p><div class="features"><div class="feat"><div class="dash"></div><span>Full access</span></div><div class="feat"><div class="dash"></div><span>All group sessions</span></div><div class="feat"><div class="dash"></div><span>Monthly assessment</span></div><div class="feat"><div class="dash"></div><span>Nutrition basics</span></div></div><a href="#join" class="cta oswald">JOIN</a></div>
+<div class="plan"><p class="tier oswald">MASTER FORGER</p><p class="amount oswald">$179<small>/mo</small></p><div class="features"><div class="feat"><div class="dash"></div><span>Everything above</span></div><div class="feat"><div class="dash"></div><span>Weekly 1-on-1</span></div><div class="feat"><div class="dash"></div><span>Custom programming</span></div><div class="feat"><div class="dash"></div><span>Recovery protocols</span></div><div class="feat"><div class="dash"></div><span>Priority access</span></div></div><a href="#join" class="cta oswald">JOIN</a></div>
+</div>
+</section>
+
+<section class="contact" id="join">
+<div class="text-center"><p style="color:#f97316;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;margin-bottom:.75rem" class="oswald">Join</p><h2 class="section-title oswald">ENTER THE FORGE</h2><p style="color:rgba(255,255,255,.2);font-size:.85rem;margin-top:-2rem;margin-bottom:2rem">Ready to be forged? Fill out the form and we'll get you started.</p></div>
+<form class="contact-form"><input type="text" placeholder="Name"><input type="email" placeholder="Email"><input type="text" placeholder="Phone"><input type="text" placeholder="Experience Level"><textarea rows="4" placeholder="Your goals"></textarea><button type="submit" class="oswald">START FORGING</button></form>
+</section>
+
+<footer class="footer"><div class="footer-inner"><div class="nav-brand"><div class="nav-icon"><span>TF</span></div><span class="nav-name">Titan Forge</span></div><div class="footer-links"><a href="#training">Training</a><a href="#coaches">Coaches</a><a href="#plans">Plans</a><a href="#join">Join</a></div><span style="color:rgba(255,255,255,.1);font-size:.7rem">&copy; 2024 Titan Forge</span></div></footer>
+</body>
+</html>

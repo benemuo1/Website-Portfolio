@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOIR — Fine Dining</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@200;300;400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{background:#0a0806;color:#f5efe6;font-family:'Inter',sans-serif;font-weight:300;letter-spacing:.03em;overflow-x:hidden}img{display:block;max-width:100%}a{color:inherit;text-decoration:none}.cg{font-family:'Cormorant Garamond',serif}
+@keyframes fadeSlideUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes lineGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes particleRise{0%{transform:translateY(0) scale(1);opacity:0}20%{opacity:.8}100%{transform:translateY(-100vh) scale(.3);opacity:0}}
+.gold{color:#d4af37}
+/* NAV */
+.nav{position:absolute;top:1.5rem;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;z-index:20;animation:fadeIn 1s ease .3s both}.nav-links{display:flex;align-items:center;gap:2rem}.nav-links a{color:rgba(255,255,255,.2);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;font-weight:300;transition:color .3s}.nav-links a:hover{color:rgba(212,175,55,.6)}.nav-reserve{color:rgba(212,175,55,.5);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;border:1px solid rgba(212,175,55,.2);padding:.5rem 1.25rem;transition:all .3s}.nav-reserve:hover{background:rgba(212,175,55,.1)}
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}.hero-bg{position:absolute;inset:0}.hero-bg img{width:100%;height:110%;object-fit:cover;opacity:.25}.hero-grad1{position:absolute;inset:0;background:linear-gradient(to right,#0a0806,rgba(10,8,6,.8),rgba(10,8,6,.4))}.hero-grad2{position:absolute;inset:0;background:linear-gradient(to top,#0a0806,transparent,rgba(10,8,6,.6))}.hero-orb{position:absolute;top:33%;right:25%;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(212,175,55,.06),transparent 70%);filter:blur(60px)}.hero-particle{position:absolute;border-radius:50%;background:#d4af37;box-shadow:0 0 8px #d4af37;opacity:0}
+.hero-content{position:relative;z-index:10;max-width:80rem;margin:0 auto;padding:7rem 2rem 2rem;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.hero-label{color:rgba(212,175,55,.5);font-size:.7rem;letter-spacing:.5em;text-transform:uppercase;margin-bottom:1.5rem;animation:fadeSlideUp .7s ease .5s both}
+.hero-decoded{font-size:clamp(5rem,14vw,10rem);font-weight:300;line-height:1;margin-bottom:.5rem}
+.hero-tagline{font-size:clamp(1.5rem,3vw,2rem);font-weight:300;font-style:italic;color:rgba(212,175,55,.5);margin-bottom:2rem;animation:fadeSlideUp .6s ease 1.2s both}
+.hero-line{width:5rem;height:1px;background:rgba(212,175,55,.3);margin-bottom:2rem;transform-origin:left;animation:lineGrow .8s ease 1.5s both}
+.hero-sub{color:rgba(255,255,255,.3);font-size:.9rem;max-width:28rem;line-height:1.7;margin-bottom:2.5rem;animation:fadeSlideUp .6s ease 1.7s both}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeSlideUp .5s ease 2s both}
+.btn-gold{position:relative;padding:1rem 2.5rem;font-size:.8rem;letter-spacing:.3em;text-transform:uppercase;font-weight:300;border:1px solid rgba(212,175,55,.3);overflow:hidden;transition:color .3s}.btn-gold span{position:relative;z-index:1;color:#d4af37}.btn-gold .fill{position:absolute;inset:0;background:#d4af37;transform:translateX(-100%);transition:transform .3s}.btn-gold:hover .fill{transform:translateX(0)}.btn-gold:hover span{color:#000}
+.btn-ghost{padding:1rem 2.5rem;color:rgba(255,255,255,.2);font-size:.8rem;letter-spacing:.3em;text-transform:uppercase;font-weight:300;border:1px solid rgba(255,255,255,.05);transition:all .3s}.btn-ghost:hover{border-color:rgba(255,255,255,.15);color:rgba(255,255,255,.5)}
+.hero-dish{animation:fadeSlideUp 1s ease .8s both}.hero-dish-wrap{position:relative;border-radius:1rem;overflow:hidden;aspect-ratio:3/4;box-shadow:0 30px 80px rgba(0,0,0,.5)}.hero-dish-wrap img{width:100%;height:100%;object-fit:cover}.hero-dish-wrap .grad{position:absolute;inset:0;background:linear-gradient(to top,#0a0806,transparent);opacity:.6}.hero-dish-card{position:absolute;bottom:-1rem;left:-1rem;background:rgba(10,8,6,.9);backdrop-filter:blur(20px);border:1px solid rgba(212,175,55,.15);border-radius:.75rem;padding:1.25rem;animation:fadeSlideUp .6s ease 1.8s both}.hero-dish-card p:first-child{color:#d4af37;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;margin-bottom:.25rem}.hero-dish-card .stars{color:#d4af37;font-size:.85rem}
+.hero-stats{display:flex;flex-wrap:wrap;justify-content:center;gap:2rem;margin-top:4rem;border-top:1px solid rgba(255,255,255,.05);padding-top:2rem;animation:fadeIn .8s ease 2.3s both;grid-column:span 2}.hero-stats div{text-align:center}.hero-stats p:first-child{color:rgba(212,175,55,.4);font-size:.7rem;letter-spacing:.3em;text-transform:uppercase}.hero-stats p:last-child{color:rgba(255,255,255,.6);font-size:1.1rem;font-weight:300;margin-top:.25rem}
+/* MENU */
+.menu{padding:5rem 2rem;background:#0d0a07}.menu-tabs{display:flex;gap:2rem;margin-bottom:3rem}.menu-tabs button{background:none;border:none;color:rgba(255,255,255,.2);font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;cursor:pointer;padding-bottom:.5rem;transition:all .3s;font-family:inherit;border-bottom:1px solid transparent}.menu-tabs button.active{color:#d4af37;border-bottom-color:rgba(212,175,55,.4)}.menu-tabs button:hover{color:rgba(255,255,255,.4)}.menu-items{max-width:60rem;margin:0 auto}.menu-item{display:flex;align-items:center;justify-content:space-between;padding:1.5rem 1rem;border-bottom:1px solid rgba(255,255,255,.05);transition:background .3s;gap:1rem}.menu-item:hover{background:rgba(255,255,255,.01)}.menu-item h3{font-size:1.1rem;font-weight:400;transition:color .3s}.menu-item:hover h3{color:#d4af37}.menu-item .desc{color:rgba(255,255,255,.25);font-size:.8rem;margin-top:.25rem}.menu-item .price{color:rgba(212,175,55,.6);font-size:1.1rem;font-weight:300;flex-shrink:0}
+/* ABOUT */
+.about{padding:5rem 2rem;background:#0a0806}.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;max-width:72rem;margin:0 auto}.about-img{position:relative;aspect-ratio:4/5;border-radius:1rem;overflow:hidden}.about-img img{width:100%;height:100%;object-fit:cover}.about-img .grad{position:absolute;inset:0;background:linear-gradient(to top,#0a0806,transparent);border-radius:1rem}.about-img .card{position:absolute;bottom:1.5rem;left:1.5rem;right:1.5rem;background:rgba(10,8,6,.8);backdrop-filter:blur(20px);border:1px solid rgba(212,175,55,.1);border-radius:.75rem;padding:1rem}.about-img .card p:first-child{color:#d4af37;font-size:.85rem}.about-img .card p:last-child{color:rgba(255,255,255,.25);font-size:.7rem}.about-text h2{font-size:clamp(2rem,4vw,3rem);font-weight:300;margin-bottom:1.5rem}.about-text .line{width:4rem;height:1px;background:rgba(212,175,55,.3);margin-bottom:2rem}.about-text p{color:rgba(255,255,255,.3);font-size:.85rem;line-height:1.7;margin-bottom:1rem}.about-pills{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2rem}.about-pill{border:1px solid rgba(255,255,255,.05);border-radius:.75rem;padding:1rem;text-align:center;transition:border-color .3s}.about-pill:hover{border-color:rgba(212,175,55,.15)}.about-pill p:first-child{color:rgba(212,175,55,.6);font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.25rem}.about-pill p:last-child{color:rgba(255,255,255,.2);font-size:.6rem}
+/* RESERVATIONS */
+.reservations{padding:5rem 2rem;background:#0d0a07}.res-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;max-width:60rem;margin:0 auto}.res-form{display:flex;flex-direction:column;gap:1rem}.res-form .row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}.res-form input,.res-form textarea{width:100%;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);color:#fff;font-size:.85rem;padding:.75rem 1.25rem;border-radius:.75rem;outline:none;transition:border-color .3s;font-family:inherit;resize:none}.res-form input:focus,.res-form textarea:focus{border-color:rgba(212,175,55,.3)}.res-form button{padding:.75rem;font-size:.8rem;letter-spacing:.3em;text-transform:uppercase;font-weight:300;border-radius:.5rem;border:1px solid rgba(212,175,55,.3);color:#d4af37;background:transparent;cursor:pointer;transition:all .3s;font-family:inherit;margin-top:.5rem}.res-form button:hover{background:#d4af37;color:#000}.res-info{display:flex;flex-direction:column;gap:1rem}.res-card{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);border-radius:.75rem;padding:1.25rem;transition:border-color .3s}.res-card:hover{border-color:rgba(212,175,55,.15)}.res-card p:first-child{color:rgba(212,175,55,.4);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.25rem}.res-card p:last-child{color:rgba(255,255,255,.5);font-size:.85rem}
+/* FOOTER */
+.footer{padding:3rem 2rem;border-top:1px solid rgba(255,255,255,.05);background:#0a0806}.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem;max-width:72rem;margin:0 auto;margin-bottom:2.5rem}.footer-grid p{color:rgba(255,255,255,.2);font-size:.75rem;line-height:1.6;max-width:280px;margin-top:.75rem}.f-col h4{color:rgba(212,175,55,.4);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:1rem}.f-col a{display:block;color:rgba(255,255,255,.2);font-size:.85rem;padding:.2rem 0;transition:color .3s}.f-col a:hover{color:rgba(255,255,255,.5)}.footer-bottom{border-top:1px solid rgba(255,255,255,.05);padding-top:1.5rem;display:flex;align-items:center;justify-content:space-between;max-width:72rem;margin:0 auto;flex-wrap:wrap;gap:1rem}.footer-bottom span{color:rgba(255,255,255,.1);font-size:.7rem}.footer-bottom .socials{display:flex;gap:1.5rem}.footer-bottom .socials a{color:rgba(255,255,255,.15);font-size:.7rem;transition:color .3s}.footer-bottom .socials a:hover{color:rgba(212,175,55,.4)}
+.section-label{color:rgba(212,175,55,.5);font-size:.7rem;letter-spacing:.4em;text-transform:uppercase;margin-bottom:.75rem}
+.section-title{font-size:clamp(2rem,5vw,3rem);font-weight:300;margin-bottom:1.5rem}
+.section-line{width:4rem;height:1px;background:rgba(212,175,55,.3);margin-bottom:2.5rem}
+.text-center{text-align:center}
+@media(max-width:1024px){.hero-content{grid-template-columns:1fr}.hero-dish{display:none}.hero-stats{grid-column:span 1}}
+@media(max-width:768px){.nav-links,.nav-reserve{display:none}.about-grid,.res-grid{grid-template-columns:1fr}.about-pills{grid-template-columns:1fr}.res-form .row{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr}.menu-tabs{flex-wrap:wrap;gap:1rem}}
+</style>
+</head>
+<body>
+<section class="hero">
+<div class="hero-bg"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&h=1000&fit=crop" alt=""></div>
+<div class="hero-grad1"></div><div class="hero-grad2"></div><div class="hero-orb"></div>
+<div class="hero-content">
+<div>
+<nav class="nav"><span style="color:rgba(212,175,55,.6);font-size:.7rem;letter-spacing:.4em;text-transform:uppercase;font-weight:300">Noir</span><div class="nav-links"><a href="#menu">Menu</a><a href="#about">About</a><a href="#reservations">Reservations</a></div><a href="#reservations" class="nav-reserve">Reserve</a></nav>
+<div style="padding-top:5rem">
+<p class="hero-label">Fine Dining Experience</p>
+<h1 class="hero-decoded cg">NOIR</h1>
+<p class="hero-tagline cg">Where Art Meets Appetite</p>
+<div class="hero-line"></div>
+<p class="hero-sub">An intimate culinary journey through seasonal ingredients, masterful technique, and the art of hospitality.</p>
+<div class="hero-btns"><a href="#reservations" class="btn-gold"><span>Reserve a Table</span><div class="fill"></div></a><a href="#menu" class="btn-ghost">View Menu</a></div>
+</div>
+</div>
+<div class="hero-dish"><div class="hero-dish-wrap"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=500&h=650&fit=crop" alt=""><div class="grad"></div></div><div class="hero-dish-card"><p>Michelin Starred</p><div class="stars">★★★</div></div></div>
+<div class="hero-stats"><div><p>Est.</p><p class="cg">2018</p></div><div><p>Seats</p><p class="cg">48</p></div><div><p>Courses</p><p class="cg">12</p></div><div><p>Stars</p><p class="cg">★★★</p></div></div>
+</div>
+</section>
+
+<section class="menu" id="menu">
+<div style="max-width:60rem;margin:0 auto"><p class="section-label">The Menu</p><h2 class="section-title cg">Seasonal <span class="gold" style="font-style:italic">Selections</span></h2><div class="section-line"></div>
+<div class="menu-tabs"><button class="active" onclick="showCat(this,'starters')">Starters</button><button onclick="showCat(this,'mains')">Mains</button><button onclick="showCat(this,'desserts')">Desserts</button></div>
+<div class="menu-items" id="menuItems">
+<div class="menu-item" data-cat="starters"><div><h3 class="cg">Tuna Tartare</h3><p class="desc">Sesame, avocado, citrus ponzu, crispy wonton</p></div><span class="price cg">$28</span></div>
+<div class="menu-item" data-cat="starters"><div><h3 class="cg">Foie Gras Torchon</h3><p class="desc">Brioche, fig compote, Sauternes gelée</p></div><span class="price cg">$34</span></div>
+<div class="menu-item" data-cat="starters"><div><h3 class="cg">Burrata</h3><p class="desc">Heirloom tomato, basil oil, aged balsamic</p></div><span class="price cg">$24</span></div>
+<div class="menu-item" data-cat="mains" style="display:none"><div><h3 class="cg">Wagyu Ribeye</h3><p class="desc">A5 grade, bone marrow butter, truffle jus</p></div><span class="price cg">$95</span></div>
+<div class="menu-item" data-cat="mains" style="display:none"><div><h3 class="cg">Dover Sole</h3><p class="desc">Brown butter, capers, lemon, haricots verts</p></div><span class="price cg">$68</span></div>
+<div class="menu-item" data-cat="mains" style="display:none"><div><h3 class="cg">Duck Breast</h3><p class="desc">Cherry gastrique, parsnip purée, micro greens</p></div><span class="price cg">$52</span></div>
+<div class="menu-item" data-cat="desserts" style="display:none"><div><h3 class="cg">Chocolate Soufflé</h3><p class="desc">Valrhona 70%, crème anglaise, gold leaf</p></div><span class="price cg">$22</span></div>
+<div class="menu-item" data-cat="desserts" style="display:none"><div><h3 class="cg">Crème Brûlée</h3><p class="desc">Tahitian vanilla, caramelized sugar, berries</p></div><span class="price cg">$18</span></div>
+<div class="menu-item" data-cat="desserts" style="display:none"><div><h3 class="cg">Cheese Selection</h3><p class="desc">Artisanal cheeses, honeycomb, walnut bread</p></div><span class="price cg">$26</span></div>
+</div>
+</div>
+</section>
+
+<section class="about" id="about">
+<div class="about-grid">
+<div class="about-img"><img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=500&h=600&fit=crop" alt=""><div class="grad"></div><div class="card"><p class="cg">Chef Laurent Dubois</p><p>Executive Chef, 3 Michelin Stars</p></div></div>
+<div class="about-text"><p class="section-label">Our Story</p><h2 class="section-title cg">A Legacy of <span class="gold" style="font-style:italic">Excellence</span></h2><div class="line"></div><p>Founded in 2018, Noir represents the culmination of Chef Laurent's lifelong dedication to the culinary arts. Every dish tells a story of provenance, technique, and passion.</p><p>Our ingredients are sourced from local farms and artisan producers, ensuring each plate reflects the season's finest offerings.</p><div class="about-pills"><div class="about-pill"><p>Farm to Table</p><p>Locally sourced</p></div><div class="about-pill"><p>Seasonal</p><p>Rotating menu</p></div><div class="about-pill"><p>Intimate</p><p>48 seats</p></div></div></div>
+</div>
+</section>
+
+<section class="reservations" id="reservations">
+<div class="text-center" style="max-width:72rem;margin:0 auto"><p class="section-label">Reservations</p><h2 class="section-title cg">Reserve Your <span class="gold" style="font-style:italic">Evening</span></h2><p style="color:rgba(255,255,255,.2);font-size:.85rem;margin-bottom:3rem">Seatings available Wednesday through Sunday. Private dining available upon request.</p></div>
+<div class="res-grid">
+<form class="res-form"><div class="row"><input type="text" placeholder="Full Name"><input type="email" placeholder="Email"></div><div class="row"><input type="text" placeholder="Date"><input type="text" placeholder="Party Size"></div><input type="text" placeholder="Special Requests"><textarea rows="3" placeholder="Dietary requirements or occasion details..."></textarea><button type="submit">Request Reservation</button></form>
+<div class="res-info"><div class="res-card"><p>Hours</p><p>Wed-Sun, 6PM - 11PM</p></div><div class="res-card"><p>Dress Code</p><p>Smart Casual</p></div><div class="res-card"><p>Location</p><p>123 Culinary Ave, Downtown</p></div><div class="res-card"><p>Phone</p><p>+1 (555) 234-NOIR</p></div></div>
+</div>
+</section>
+
+<footer class="footer">
+<div class="footer-grid"><div><span class="cg gold" style="font-size:1.5rem;font-weight:300">Noir</span><p>An intimate culinary journey through seasonal ingredients and masterful technique.</p></div><div class="f-col"><h4>Navigate</h4><a href="#menu">Menu</a><a href="#about">About</a><a href="#reservations">Reservations</a></div><div class="f-col"><h4>Hours</h4><p style="color:rgba(255,255,255,.2);font-size:.85rem">Wed - Sun<br>6:00 PM - 11:00 PM</p></div><div class="f-col"><h4>Contact</h4><p style="color:rgba(255,255,255,.2);font-size:.85rem">hello@noir-dining.com<br>+1 (555) 234-NOIR</p></div></div>
+<div class="footer-bottom"><span>&copy; 2024 Noir Restaurant. All rights reserved.</span><div class="socials"><a href="#">Instagram</a><a href="#">Facebook</a><a href="#">TripAdvisor</a></div></div>
+</footer>
+
+<script>
+function showCat(btn,cat){document.querySelectorAll('.menu-tabs button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.menu-item').forEach(i=>{i.style.display=i.dataset.cat===cat?'flex':'none'})}
+</script>
+</body>
+</html>

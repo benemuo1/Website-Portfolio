@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CLARITY — Dental Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#f8fbff;--fg:#1a2332;--blue:#2563eb;--light:#e8f0fe;--mint:#10b981}
+body{background:var(--bg);color:var(--fg);font-family:'Plus Jakarta Sans',sans-serif;overflow-x:hidden}
+nav{position:fixed;top:0;width:100%;padding:1.2rem 4rem;display:flex;justify-content:space-between;align-items:center;z-index:100;background:rgba(248,251,255,.9);backdrop-filter:blur(12px);border-bottom:1px solid #e8edf5}
+nav .logo{font-size:1.4rem;font-weight:800;color:var(--blue)}
+nav ul{display:flex;gap:2rem;list-style:none}
+nav a{color:var(--fg);text-decoration:none;font-size:.85rem;font-weight:500}
+nav .cta{padding:.6rem 1.5rem;background:var(--blue);color:#fff;border-radius:8px;font-weight:700;font-size:.85rem}
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:6rem 4rem 4rem;gap:4rem}
+.hero-text h1{font-size:clamp(2.5rem,4.5vw,3.8rem);font-weight:800;line-height:1.15}
+.hero-text h1 span{color:var(--blue)}
+.hero-text p{color:#6b7b8d;margin-top:1.5rem;line-height:1.7;max-width:450px}
+.hero-text .btns{display:flex;gap:1rem;margin-top:2rem}
+.hero-text .btns a{padding:.9rem 2rem;border-radius:10px;text-decoration:none;font-weight:700;font-size:.9rem}
+.hero-text .btns .primary{background:var(--blue);color:#fff}
+.hero-text .btns .secondary{border:1px solid #d0d8e4;color:var(--fg)}
+.hero-visual{position:relative}
+.hero-visual img{width:100%;border-radius:24px}
+.trust-bar{display:flex;gap:3rem;padding:1.5rem 0;margin-top:2rem}
+.trust-bar .item{display:flex;align-items:center;gap:.5rem;font-size:.85rem;color:#6b7b8d}
+.trust-bar .item strong{color:var(--fg)}
+.services{padding:6rem 4rem}
+.services h2{font-size:2.5rem;font-weight:800;text-align:center;margin-bottom:1rem}
+.services .sub{text-align:center;color:#6b7b8d;margin-bottom:3rem}
+.srv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.srv-card{background:#fff;border-radius:16px;padding:2.5rem;border:1px solid #e8edf5;transition:all .3s}
+.srv-card:hover{border-color:var(--blue);transform:translateY(-4px);box-shadow:0 12px 40px rgba(37,99,235,.08)}
+.srv-card .icon{width:50px;height:50px;border-radius:12px;background:var(--light);display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:1.5rem}
+.srv-card h3{font-size:1.1rem;font-weight:700;margin-bottom:.5rem}
+.srv-card p{color:#6b7b8d;font-size:.85rem;line-height:1.6}
+.process{padding:6rem 4rem;background:var(--fg);color:#fff;border-radius:24px;margin:0 2rem}
+.process h2{font-size:2.5rem;font-weight:800;text-align:center;margin-bottom:4rem}
+.process-line{display:flex;justify-content:space-between;position:relative;max-width:900px;margin:0 auto}
+.process-line::before{content:'';position:absolute;top:25px;left:10%;right:10%;height:2px;background:linear-gradient(90deg,var(--blue),var(--mint))}
+.p-step{text-align:center;position:relative;z-index:2;flex:1}
+.p-step .circle{width:50px;height:50px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;margin:0 auto 1.5rem;font-size:1.1rem}
+.p-step h3{font-size:.95rem;font-weight:700;margin-bottom:.3rem}
+.p-step p{color:#8899aa;font-size:.8rem}
+.reviews{padding:6rem 4rem}
+.reviews h2{font-size:2.5rem;font-weight:800;text-align:center;margin-bottom:3rem}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.rev-card{background:#fff;border-radius:16px;padding:2rem;border:1px solid #e8edf5}
+.rev-card .stars{color:#fbbf24;margin-bottom:1rem}
+.rev-card p{color:#6b7b8d;font-size:.9rem;line-height:1.6;margin-bottom:1.5rem}
+.rev-card .author{font-weight:700;font-size:.9rem}
+.rev-card .role{color:#9aa5b4;font-size:.8rem}
+.cta-section{padding:6rem 4rem;text-align:center}
+.cta-section h2{font-size:2.5rem;font-weight:800;margin-bottom:1rem}
+.cta-section p{color:#6b7b8d;margin-bottom:2rem}
+.cta-section a{padding:1rem 3rem;background:var(--blue);color:#fff;text-decoration:none;border-radius:12px;font-weight:700;font-size:.95rem}
+footer{padding:3rem 4rem;border-top:1px solid #e8edf5;display:flex;justify-content:space-between;font-size:.8rem;color:#9aa5b4}
+</style>
+</head>
+<body>
+<nav><div class="logo">Clarity</div><ul><li><a href="#">Services</a></li><li><a href="#">Process</a></li><li><a href="#">Reviews</a></li></ul><a href="#" class="cta">Book Now</a></nav>
+<section class="hero">
+<div class="hero-text">
+<h1>Your smile deserves <span>expert care</span></h1>
+<p>Modern dentistry with a gentle touch. Advanced technology, compassionate team, beautiful results.</p>
+<div class="btns"><a href="#" class="primary">Book Appointment</a><a href="#" class="secondary">Virtual Tour</a></div>
+<div class="trust-bar"><div class="item">⭐ <strong>4.9</strong>/5 Rating</div><div class="item">🏆 <strong>15+</strong> Years</div><div class="item">😊 <strong>10K+</strong> Patients</div></div>
+</div>
+<div class="hero-visual"><img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=600" alt="Dental"></div>
+</section>
+<section class="services">
+<h2>Our Services</h2>
+<p class="sub">Comprehensive care for the whole family.</p>
+<div class="srv-grid">
+<div class="srv-card"><div class="icon">🦷</div><h3>General Dentistry</h3><p>Cleanings, fillings, and preventive care to keep your smile healthy.</p></div>
+<div class="srv-card"><div class="icon">✨</div><h3>Cosmetic</h3><p>Veneers, whitening, and bonding for the smile you've always wanted.</p></div>
+<div class="srv-card"><div class="icon">📐</div><h3>Orthodontics</h3><p>Invisalign and clear aligners for discreet, comfortable straightening.</p></div>
+<div class="srv-card"><div class="icon">🔬</div><h3>Implants</h3><p>Permanent tooth replacement with natural-looking, long-lasting implants.</p></div>
+<div class="srv-card"><div class="icon">😴</div><h3>Sedation</h3><p>Anxiety-free dentistry with safe, comfortable sedation options.</p></div>
+<div class="srv-card"><div class="icon">👶</div><h3>Pediatric</h3><p>Fun, gentle care designed to make kids love visiting the dentist.</p></div>
+</div>
+</section>
+<section class="process">
+<h2>How It Works</h2>
+<div class="process-line">
+<div class="p-step"><div class="circle">1</div><h3>Book Online</h3><p>Pick a time that works</p></div>
+<div class="p-step"><div class="circle">2</div><h3>Consultation</h3><p>Meet your care team</p></div>
+<div class="p-step"><div class="circle">3</div><h3>Treatment</h3><p>Personalized care plan</p></div>
+<div class="p-step"><div class="circle">4</div><h3>Smile</h3><p>Love your results</p></div>
+</div>
+</section>
+<section class="reviews">
+<h2>Patient Reviews</h2>
+<div class="rev-grid">
+<div class="rev-card"><div class="stars">★★★★★</div><p>"First time in years I wasn't anxious at the dentist. The team is incredible."</p><div class="author">Maria S.</div><div class="role">General Dentistry</div></div>
+<div class="rev-card"><div class="stars">★★★★★</div><p>"My veneers look completely natural. I can't stop smiling."</p><div class="author">David L.</div><div class="role">Cosmetic</div></div>
+<div class="rev-card"><div class="stars">★★★★★</div><p>"My kids actually ask to go to the dentist now. That says everything."</p><div class="author">Jennifer K.</div><div class="role">Pediatric</div></div>
+</div>
+</section>
+<section class="cta-section">
+<h2>Ready for your best smile?</h2>
+<p>New patients welcome. Most insurance accepted.</p>
+<a href="#">Book Your Visit</a>
+</section>
+<footer><span>© 2024 Clarity Dental Studio</span><span>San Francisco, CA</span></footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+const htl=gsap.timeline({delay:.3});
+htl.from('.hero-text h1',{y:50,opacity:0,duration:.8})
+   .from('.hero-text p',{y:30,opacity:0,duration:.6},'-=.3')
+   .from('.hero-text .btns a',{y:20,opacity:0,stagger:.1,duration:.5},'-=.3')
+   .from('.trust-bar .item',{y:15,opacity:0,stagger:.1,duration:.4},'-=.2')
+   .from('.hero-visual img',{scale:1.1,opacity:0,duration:1,ease:'power3.out'},'-=.8');
+
+gsap.from('.srv-card',{scrollTrigger:{trigger:'.srv-grid',start:'top 75%'},y:50,opacity:0,stagger:{amount:.6,grid:[2,3],from:'start'},duration:.7});
+gsap.from('.srv-card .icon',{scrollTrigger:{trigger:'.srv-grid',start:'top 70%'},scale:0,rotation:-180,stagger:{amount:.6,grid:[2,3],from:'start'},duration:.6,ease:'back.out(1.7)',delay:.3});
+gsap.from('.srv-card h3, .srv-card p',{scrollTrigger:{trigger:'.srv-grid',start:'top 65%'},y:10,opacity:0,stagger:.03,duration:.4,delay:.5});
+
+gsap.from('.process',{scrollTrigger:{trigger:'.process',start:'top 80%'},y:40,opacity:0,scale:.97,duration:1});
+gsap.from('.process h2',{scrollTrigger:{trigger:'.process',start:'top 75%'},y:20,opacity:0,duration:.6,delay:.3});
+gsap.from('.p-step',{scrollTrigger:{trigger:'.process-line',start:'top 75%'},scale:0,opacity:0,stagger:.2,duration:.6,ease:'back.out(1.7)',delay:.5});
+gsap.from('.p-step .circle',{scrollTrigger:{trigger:'.process-line',start:'top 70%'},scale:0,rotation:360,stagger:.2,duration:.7,ease:'back.out(2)',delay:.7});
+gsap.from('.p-step h3, .p-step p',{scrollTrigger:{trigger:'.process-line',start:'top 65%'},y:10,opacity:0,stagger:.05,duration:.4,delay:.9});
+
+gsap.from('.reviews h2',{scrollTrigger:{trigger:'.reviews',start:'top 80%'},y:30,opacity:0,duration:.7});
+gsap.from('.rev-card',{scrollTrigger:{trigger:'.rev-grid',start:'top 75%'},y:40,opacity:0,stagger:.12,duration:.7});
+gsap.from('.rev-card .stars',{scrollTrigger:{trigger:'.rev-grid',start:'top 70%'},scale:0,stagger:.12,duration:.5,ease:'back.out(1.7)',delay:.3});
+gsap.from('.rev-card p, .rev-card .author, .rev-card .role',{scrollTrigger:{trigger:'.rev-grid',start:'top 65%'},y:10,opacity:0,stagger:.03,duration:.4,delay:.5});
+
+gsap.from('.cta-section h2',{scrollTrigger:{trigger:'.cta-section',start:'top 70%'},y:30,opacity:0,duration:.7});
+gsap.from('.cta-section p',{scrollTrigger:{trigger:'.cta-section',start:'top 70%'},y:20,opacity:0,duration:.6,delay:.2});
+gsap.from('.cta-section a',{scrollTrigger:{trigger:'.cta-section',start:'top 65%'},y:15,opacity:0,scale:.9,duration:.5,ease:'back.out(1.7)',delay:.4});
+</script>
+</body>
+</html>

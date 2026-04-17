@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZEPHYR — Artist</title>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;700;900&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0010;color:#f0e8ff;font-family:'Space Mono',monospace;overflow-x:hidden;cursor:none}
+.cursor-blob{position:fixed;width:30px;height:30px;border-radius:50%;background:radial-gradient(circle,rgba(255,0,200,.8),rgba(120,0,255,.4));pointer-events:none;z-index:9999;mix-blend-mode:screen;filter:blur(2px)}
+.cursor-ring{position:fixed;width:80px;height:80px;border:1px solid rgba(255,0,200,.3);border-radius:50%;pointer-events:none;z-index:9998;mix-blend-mode:screen}
+nav{position:fixed;top:0;width:100%;padding:1.5rem 3rem;display:flex;justify-content:space-between;align-items:center;z-index:100}
+nav .logo{font-family:'Unbounded',sans-serif;font-size:1rem;font-weight:900;color:#ff00c8;text-shadow:0 0 20px rgba(255,0,200,.5)}
+nav a{color:rgba(240,232,255,.4);text-decoration:none;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase}
+nav ul{display:flex;gap:2rem;list-style:none}
+.hero{height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative}
+.hero h1{font-family:'Unbounded',sans-serif;font-size:clamp(4rem,12vw,10rem);font-weight:900;line-height:.85;background:linear-gradient(180deg,#ff00c8,#7c00ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 40px rgba(255,0,200,.3))}
+.hero .sub{font-size:.75rem;letter-spacing:.4em;color:rgba(255,0,200,.5);margin-top:2rem;text-transform:uppercase}
+.releases{padding:8rem 3rem}
+.releases h2{font-family:'Unbounded',sans-serif;font-size:2rem;font-weight:900;color:#ff00c8;margin-bottom:3rem}
+.release-row{display:flex;gap:2rem;margin-bottom:2rem;padding:2rem;border:1px solid rgba(255,0,200,.08);background:rgba(255,0,200,.02);transition:all .3s}
+.release-row:hover{background:rgba(255,0,200,.06);border-color:rgba(255,0,200,.2)}
+.release-row img{width:150px;height:150px;object-fit:cover;flex-shrink:0}
+.release-row .info{display:flex;flex-direction:column;justify-content:center}
+.release-row .info .year{font-size:.6rem;color:rgba(255,0,200,.5);letter-spacing:.2em}
+.release-row .info h3{font-family:'Unbounded',sans-serif;font-size:1.5rem;font-weight:700;margin:.3rem 0}
+.release-row .info p{color:rgba(240,232,255,.4);font-size:.75rem;line-height:1.6}
+.release-row .play{margin-left:auto;align-self:center;width:60px;height:60px;border:1px solid rgba(255,0,200,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#ff00c8;font-size:1.2rem;flex-shrink:0;transition:all .3s}
+.release-row:hover .play{background:rgba(255,0,200,.15);box-shadow:0 0 20px rgba(255,0,200,.2)}
+.shows{padding:6rem 3rem}
+.shows h2{font-family:'Unbounded',sans-serif;font-size:2rem;font-weight:900;color:#7c00ff;margin-bottom:3rem}
+.show-item{display:grid;grid-template-columns:120px 1fr 150px;align-items:center;padding:1.5rem 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.show-item .date{font-family:'Unbounded',sans-serif;font-size:1.5rem;font-weight:700;color:#ff00c8}
+.show-item .date small{display:block;font-size:.6rem;color:rgba(255,0,200,.4);font-weight:300;letter-spacing:.15em}
+.show-item .venue h3{font-size:.9rem;font-weight:700}
+.show-item .venue span{color:rgba(240,232,255,.3);font-size:.7rem}
+.show-item .tix{text-align:right}
+.show-item .tix a{color:#ff00c8;text-decoration:none;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;border:1px solid rgba(255,0,200,.3);padding:.5rem 1rem;transition:all .3s}
+.show-item .tix a:hover{background:#ff00c8;color:#0a0010}
+.visual{padding:6rem 3rem;display:flex;gap:1rem;height:60vh}
+.visual img{flex:1;object-fit:cover;filter:saturate(1.5) contrast(1.1);transition:flex .5s}
+.visual img:hover{flex:2}
+footer{padding:3rem;text-align:center;font-size:.6rem;color:rgba(240,232,255,.2);letter-spacing:.2em}
+</style>
+</head>
+<body>
+<div class="cursor-blob" id="blob"></div>
+<div class="cursor-ring" id="ring"></div>
+<nav><div class="logo">ZEPHYR</div><ul><li><a href="#">Music</a></li><li><a href="#">Shows</a></li><li><a href="#">Visuals</a></li></ul></nav>
+
+<section class="hero">
+<div><h1>ZEPHYR</h1><div class="sub">New album · Neon Abyss · Out now</div></div>
+</section>
+
+<section class="releases">
+<h2>RELEASES</h2>
+<div class="release-row"><img src="https://images.unsplash.com/photo-1614854262318-831574f15f1f?w=200" alt=""><div class="info"><div class="year">2024</div><h3>Neon Abyss</h3><p>12 tracks · 48 min · Produced by ZEPHYR & Ghost Circuit</p></div><div class="play">▶</div></div>
+<div class="release-row"><img src="https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=200" alt=""><div class="info"><div class="year">2023</div><h3>Phantom Frequency</h3><p>9 tracks · 36 min · Featuring VOID & Crystal Maze</p></div><div class="play">▶</div></div>
+<div class="release-row"><img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=200" alt=""><div class="info"><div class="year">2022</div><h3>Static Dreams EP</h3><p>5 tracks · 22 min · Debut release</p></div><div class="play">▶</div></div>
+</section>
+
+<section class="shows">
+<h2>UPCOMING SHOWS</h2>
+<div class="show-item"><div class="date">15<small>JAN 2025</small></div><div class="venue"><h3>Warehouse Project</h3><span>Manchester, UK</span></div><div class="tix"><a href="#">Tickets</a></div></div>
+<div class="show-item"><div class="date">28<small>JAN 2025</small></div><div class="venue"><h3>Berghain</h3><span>Berlin, DE</span></div><div class="tix"><a href="#">Tickets</a></div></div>
+<div class="show-item"><div class="date">14<small>FEB 2025</small></div><div class="venue"><h3>Fabric</h3><span>London, UK</span></div><div class="tix"><a href="#">Sold Out</a></div></div>
+<div class="show-item"><div class="date">01<small>MAR 2025</small></div><div class="venue"><h3>Output</h3><span>Brooklyn, NY</span></div><div class="tix"><a href="#">Tickets</a></div></div>
+</section>
+
+<section class="visual">
+<img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=500" alt="">
+<img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=500" alt="">
+<img src="https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=500" alt="">
+</section>
+
+<footer>© 2024 ZEPHYR · MGMT: GHOST CIRCUIT · BOOKING: NEON AGENCY</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+// quickTo cursor follower — blob follows fast, ring follows slow
+const blobX = gsap.quickTo('#blob', 'x', {duration:.15, ease:'power3'});
+const blobY = gsap.quickTo('#blob', 'y', {duration:.15, ease:'power3'});
+const ringX = gsap.quickTo('#ring', 'x', {duration:.5, ease:'power3'});
+const ringY = gsap.quickTo('#ring', 'y', {duration:.5, ease:'power3'});
+
+let lastX=0, lastY=0;
+window.addEventListener('mousemove', e => {
+  blobX(e.clientX - 15);
+  blobY(e.clientY - 15);
+  ringX(e.clientX - 40);
+  ringY(e.clientY - 40);
+  // Velocity-driven blur on blob
+  const vx = e.clientX - lastX, vy = e.clientY - lastY;
+  const speed = Math.min(Math.sqrt(vx*vx + vy*vy), 60);
+  gsap.to('#blob', {filter:`blur(${2 + speed*.3}px)`, width:30+speed*.5, height:30+speed*.5, duration:.2});
+  lastX = e.clientX; lastY = e.clientY;
+});
+
+// Hero
+gsap.from('.hero h1', {scale:.3, opacity:0, duration:2, ease:'power4.out', delay:.2});
+gsap.from('.hero .sub', {y:20, opacity:0, duration:.8, delay:1});
+
+// Releases — slide in with velocity feel
+gsap.utils.toArray('.release-row').forEach((row,i) => {
+  gsap.from(row, {scrollTrigger:{trigger:row,start:'top 85%'}, x:i%2===0?-100:100, opacity:0, duration:.8, ease:'power3.out'});
+  gsap.from(row.querySelector('img'), {scrollTrigger:{trigger:row,start:'top 85%'}, scale:1.3, filter:'blur(10px)', duration:1, ease:'power3.out'});
+  gsap.from(row.querySelector('.play'), {scrollTrigger:{trigger:row,start:'top 80%'}, scale:0, duration:.5, ease:'back.out(2)', delay:.3});
+});
+
+// Shows
+gsap.utils.toArray('.show-item').forEach((item,i) => {
+  gsap.from(item, {scrollTrigger:{trigger:item,start:'top 85%'}, y:30, opacity:0, duration:.6, delay:i*.08});
+  gsap.from(item.querySelector('.date'), {scrollTrigger:{trigger:item,start:'top 85%'}, scale:0, duration:.5, ease:'back.out(2)', delay:i*.08+.2});
+});
+
+// Visual images
+gsap.from('.visual img', {scrollTrigger:{trigger:'.visual',start:'top 70%'}, y:80, opacity:0, filter:'blur(15px) saturate(0)', stagger:.15, duration:1, ease:'power3.out'});
+</script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AETHER — Space Tourism</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@200;400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#020108;--fg:#e0e0f0;--blue:#4a6cf7;--cyan:#00d4ff;--purple:#7c3aed}
+body{background:var(--bg);color:var(--fg);font-family:'Exo 2',sans-serif;overflow-x:hidden}
+.stars{position:fixed;inset:0;background:radial-gradient(1px 1px at 20% 30%,#fff 50%,transparent),radial-gradient(1px 1px at 40% 70%,rgba(255,255,255,.5) 50%,transparent),radial-gradient(1.5px 1.5px at 60% 20%,#fff 50%,transparent),radial-gradient(1px 1px at 80% 90%,rgba(255,255,255,.4) 50%,transparent);background-size:250px 250px,300px 300px,200px 200px,350px 350px;z-index:0;animation:twinkle 8s ease-in-out infinite alternate}
+@keyframes twinkle{to{opacity:.7}}
+nav{position:fixed;top:0;width:100%;padding:1.5rem 4rem;display:flex;justify-content:space-between;align-items:center;z-index:100}
+nav .logo{font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:900;letter-spacing:.2em;background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+nav ul{display:flex;gap:2rem;list-style:none}
+nav a{color:var(--fg);text-decoration:none;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;opacity:.6;transition:opacity .3s}
+nav a:hover{opacity:1}
+.hero{height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;z-index:1}
+.hero h1{font-family:'Orbitron',sans-serif;font-size:clamp(3rem,8vw,7rem);font-weight:900;line-height:1;letter-spacing:.05em}
+.hero h1 .scramble{color:var(--cyan);display:inline-block;min-width:300px}
+.hero .sub{font-size:1rem;color:rgba(224,224,240,.4);margin-top:2rem;letter-spacing:.3em;text-transform:uppercase;font-weight:200}
+.hero .launch-btn{display:inline-block;margin-top:3rem;padding:1rem 3rem;border:1px solid var(--cyan);color:var(--cyan);text-decoration:none;font-family:'Orbitron',sans-serif;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;position:relative;overflow:hidden;transition:color .4s}
+.hero .launch-btn::before{content:'';position:absolute;inset:0;background:var(--cyan);transform:translateX(-101%);transition:transform .4s;z-index:-1}
+.hero .launch-btn:hover{color:var(--bg)}
+.hero .launch-btn:hover::before{transform:translateX(0)}
+.launch-zone{height:150vh;position:relative;z-index:1}
+.rocket-container{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.rocket-wrap{position:relative;display:flex;flex-direction:column;align-items:center;z-index:2}
+.rocket{filter:drop-shadow(0 0 20px rgba(0,212,255,.4))}
+.flame{position:absolute;bottom:-15px;left:50%;transform:translateX(-50%);width:40px;height:80px;background:radial-gradient(ellipse at center bottom,#fff 0%,#ff6b00 20%,#ff4500 45%,rgba(255,200,0,.6) 70%,transparent);border-radius:50% 50% 50% 50%/30% 30% 70% 70%;filter:blur(5px);opacity:0;z-index:-1}
+.exhaust{position:absolute;bottom:-100px;left:50%;transform:translateX(-50%);width:80px;height:120px;pointer-events:none;opacity:0}
+.particle{position:absolute;width:8px;height:8px;border-radius:50%;background:rgba(255,150,0,.9);bottom:0;left:50%;filter:blur(2px)}
+.smoke-particle{position:absolute;border-radius:50%;background:rgba(200,200,220,.15);bottom:0;left:50%;filter:blur(8px)}
+.launch-text{position:absolute;bottom:15vh;left:50%;transform:translateX(-50%);font-family:'Orbitron',sans-serif;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(0,212,255,.4);white-space:nowrap}
+.destinations{padding:10rem 4rem;position:relative;z-index:1}
+.destinations h2{font-family:'Orbitron',sans-serif;font-size:2rem;text-align:center;margin-bottom:5rem;letter-spacing:.15em}
+.dest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+.dest-card{border:1px solid rgba(74,108,247,.15);border-radius:20px;overflow:hidden;position:relative;transition:border-color .4s,transform .4s}
+.dest-card:hover{border-color:var(--cyan);transform:translateY(-8px)}
+.dest-card img{width:100%;height:250px;object-fit:cover;filter:brightness(.7)}
+.dest-card .info{padding:2rem}
+.dest-card .tag{font-family:'Orbitron',sans-serif;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan)}
+.dest-card h3{font-family:'Orbitron',sans-serif;font-size:1.3rem;margin:.8rem 0 .5rem}
+.dest-card p{color:rgba(224,224,240,.4);font-size:.85rem;line-height:1.6}
+.dest-card .price{font-family:'Orbitron',sans-serif;font-size:1.5rem;color:var(--cyan);margin-top:1rem;display:block}
+.timeline{padding:10rem 4rem;position:relative;z-index:1}
+.timeline h2{font-family:'Orbitron',sans-serif;font-size:2rem;text-align:center;margin-bottom:5rem;letter-spacing:.15em}
+.tl-line{position:relative;max-width:800px;margin:0 auto}
+.tl-line::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:1px;background:linear-gradient(var(--cyan),var(--purple));transform:translateX(-50%)}
+.tl-item{display:flex;align-items:center;margin-bottom:4rem;position:relative}
+.tl-item:nth-child(odd){flex-direction:row-reverse;text-align:right}
+.tl-item .content{flex:1;padding:0 3rem}
+.tl-item .dot{width:16px;height:16px;border-radius:50%;background:var(--cyan);border:3px solid var(--bg);z-index:2;box-shadow:0 0 15px rgba(0,212,255,.5);flex-shrink:0}
+.tl-item .spacer{flex:1}
+.tl-item h3{font-family:'Orbitron',sans-serif;font-size:1rem;margin-bottom:.5rem}
+.tl-item p{color:rgba(224,224,240,.4);font-size:.85rem;line-height:1.6}
+.cta{padding:10rem 4rem;text-align:center;position:relative;z-index:1}
+.cta h2{font-family:'Orbitron',sans-serif;font-size:clamp(2rem,5vw,3.5rem);line-height:1.3;letter-spacing:.1em}
+.cta h2 span{color:var(--cyan)}
+.cta a{display:inline-block;margin-top:2.5rem;padding:1rem 3rem;background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;text-decoration:none;font-family:'Orbitron',sans-serif;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;border-radius:50px}
+footer{padding:3rem 4rem;border-top:1px solid rgba(74,108,247,.1);display:flex;justify-content:space-between;font-size:.75rem;color:rgba(224,224,240,.3);position:relative;z-index:1}
+</style>
+</head>
+<body>
+<div class="stars"></div>
+<nav><div class="logo">AETHER</div><ul><li><a href="#">Destinations</a></li><li><a href="#">Timeline</a></li><li><a href="#">Book</a></li></ul></nav>
+<section class="hero">
+<div>
+<h1>BEYOND<br><span class="scramble" id="scrambleText">THE STARS</span></h1>
+<div class="sub">Commercial Space Travel · 2025</div>
+<a href="#" class="launch-btn">Reserve Your Seat</a>
+</div>
+</section>
+
+<section class="launch-zone" id="launchZone">
+<div class="rocket-container">
+<div class="rocket-wrap" id="rocketWrap">
+<div class="flame" id="flame"></div>
+<svg class="rocket" id="rocket" viewBox="0 0 80 200" width="120" height="300">
+<defs><linearGradient id="bodyGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e0e0f0"/><stop offset="100%" stop-color="#8888aa"/></linearGradient></defs>
+<!-- nose cone -->
+<path d="M40 0 C40 0 20 40 20 60 L60 60 C60 40 40 0 40 0Z" fill="url(#bodyGrad)"/>
+<!-- body -->
+<rect x="20" y="60" width="40" height="90" rx="2" fill="url(#bodyGrad)"/>
+<!-- window -->
+<circle cx="40" cy="95" r="12" fill="#020108" stroke="#00d4ff" stroke-width="2"/>
+<circle cx="40" cy="95" r="6" fill="rgba(0,212,255,.15)"/>
+<!-- fins -->
+<path d="M20 130 L5 170 L20 155Z" fill="#4a6cf7"/>
+<path d="M60 130 L75 170 L60 155Z" fill="#4a6cf7"/>
+<!-- nozzle -->
+<path d="M25 150 L22 170 L58 170 L55 150Z" fill="#555"/>
+</svg>
+<div class="exhaust" id="exhaust">
+<div class="particle"></div><div class="particle"></div><div class="particle"></div>
+<div class="particle"></div><div class="particle"></div><div class="particle"></div>
+<div class="particle"></div><div class="particle"></div><div class="particle"></div>
+<div class="particle"></div><div class="particle"></div><div class="particle"></div>
+<div class="smoke-particle" style="width:20px;height:20px"></div>
+<div class="smoke-particle" style="width:30px;height:30px"></div>
+<div class="smoke-particle" style="width:25px;height:25px"></div>
+<div class="smoke-particle" style="width:35px;height:35px"></div>
+<div class="smoke-particle" style="width:28px;height:28px"></div>
+</div>
+</div>
+<div class="launch-text" id="launchText">INITIATING LAUNCH SEQUENCE</div>
+</div>
+</section>
+<section class="destinations">
+<h2>DESTINATIONS</h2>
+<div class="dest-grid">
+<div class="dest-card"><img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=500" alt=""><div class="info"><div class="tag">Low Earth Orbit</div><h3>ORBITAL SUNRISE</h3><p>90-minute orbit with 16 sunrises. Experience weightlessness 400km above Earth.</p><span class="price">$250,000</span></div></div>
+<div class="dest-card"><img src="https://images.unsplash.com/photo-1614728263952-84ea256f9679?w=500" alt=""><div class="info"><div class="tag">Lunar Flyby</div><h3>MOONSHOT</h3><p>7-day journey around the Moon. See the far side that no tourist has witnessed.</p><span class="price">$2,500,000</span></div></div>
+<div class="dest-card"><img src="https://images.unsplash.com/photo-1614313913007-2b4ae8ce32d6?w=500" alt=""><div class="info"><div class="tag">Space Station</div><h3>STATION ALPHA</h3><p>14-day stay aboard our luxury orbital habitat. Zero-G spa included.</p><span class="price">$5,000,000</span></div></div>
+</div>
+</section>
+<section class="timeline">
+<h2>YOUR JOURNEY</h2>
+<div class="tl-line">
+<div class="tl-item"><div class="content"><h3>T-180 DAYS</h3><p>Medical screening and fitness assessment at our Houston facility.</p></div><div class="dot"></div><div class="spacer"></div></div>
+<div class="tl-item"><div class="content"><h3>T-90 DAYS</h3><p>Zero-G training in our parabolic flight simulator.</p></div><div class="dot"></div><div class="spacer"></div></div>
+<div class="tl-item"><div class="content"><h3>T-7 DAYS</h3><p>Arrive at launch site. Final suit fitting and crew bonding.</p></div><div class="dot"></div><div class="spacer"></div></div>
+<div class="tl-item"><div class="content"><h3>LAUNCH DAY</h3><p>Ignition. 8 minutes to orbit. Your life changes forever.</p></div><div class="dot"></div><div class="spacer"></div></div>
+</div>
+</section>
+<section class="cta">
+<h2>THE UNIVERSE IS<br><span>WAITING FOR YOU</span></h2>
+<a href="#">Apply Now</a>
+</section>
+<footer><span>© 2025 AETHER SPACE</span><span>FAA Licensed · Safety First</span></footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+// Custom scramble text effect
+const chars='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%';
+const target='THE STARS';
+const el=document.getElementById('scrambleText');
+const phrases=['THE STARS','THE MOON','THE VOID','INFINITY'];
+let pIdx=0;
+function scrambleTo(text){
+  let iteration=0;
+  const interval=setInterval(()=>{
+    el.textContent=text.split('').map((c,i)=>i<iteration?c:chars[Math.floor(Math.random()*chars.length)]).join('');
+    if(iteration>=text.length)clearInterval(interval);
+    iteration+=1/3;
+  },30);
+}
+gsap.from('.hero h1',{y:60,opacity:0,duration:1.5,delay:.3,onComplete:()=>scrambleTo(target)});
+
+// Rocket idle hover
+gsap.to('#rocket',{y:-12,duration:2.5,ease:'sine.inOut',repeat:-1,yoyo:true});
+
+// Rocket + flame + exhaust refs
+const flame=document.getElementById('flame');
+const exhaust=document.getElementById('exhaust');
+const particles=document.querySelectorAll('.particle');
+const smokeParticles=document.querySelectorAll('.smoke-particle');
+const launchText=document.getElementById('launchText');
+
+// Fire particles loop
+particles.forEach((pt,i)=>{
+  gsap.to(pt,{y:()=>80+Math.random()*60,x:()=>(Math.random()-.5)*60,opacity:0,scale:0,duration:.5+Math.random()*.5,repeat:-1,delay:i*.08,ease:'power1.in'});
+});
+// Smoke particles loop
+smokeParticles.forEach((pt,i)=>{
+  gsap.to(pt,{y:()=>100+Math.random()*80,x:()=>(Math.random()-.5)*120,opacity:0,scale:2,duration:1.2+Math.random()*.6,repeat:-1,delay:i*.15,ease:'power1.out'});
+});
+
+// === LAUNCH SEQUENCE — tied to the launch-zone scroll ===
+const launchTl=gsap.timeline({
+  scrollTrigger:{
+    trigger:'#launchZone',
+    start:'top top',
+    end:'bottom top',
+    scrub:1,
+    pin:false,
+  }
+});
+
+// Phase 1 (0-20%): Rumble + ignition
+launchTl.fromTo(flame,{opacity:0,height:20,width:20},{opacity:1,height:60,width:35,duration:.2,ease:'power2.in'})
+  .fromTo(exhaust,{opacity:0},{opacity:.6,duration:.1},'<')
+  .to('#launchText',{opacity:0,duration:.1},.15)
+
+// Phase 2 (20-50%): Flame grows, shake intensifies
+  .to(flame,{height:140,width:50,duration:.3,ease:'power2.in'})
+  .to(exhaust,{opacity:1,duration:.2},'<')
+
+// Phase 3 (50-100%): Liftoff — rocket flies up and away
+  .to('#rocketWrap',{y:'-120vh',scale:.3,duration:.5,ease:'power2.in'})
+  .to(flame,{height:200,width:60,duration:.5},'<');
+
+// Shake effect — separate from timeline so it's continuous during scroll
+ScrollTrigger.create({
+  trigger:'#launchZone',
+  start:'top top',
+  end:'bottom top',
+  onUpdate:self=>{
+    const p=self.progress;
+    const shake=p<.5?p*12:6;
+    gsap.set('#rocket',{x:(Math.random()-.5)*shake,rotation:(Math.random()-.5)*shake*.3});
+  }
+});
+
+// Launch text pulse
+gsap.to('#launchText',{opacity:.8,duration:1,repeat:-1,yoyo:true,ease:'sine.inOut'});
+setInterval(()=>{pIdx=(pIdx+1)%phrases.length;scrambleTo(phrases[pIdx]);},4000);
+
+gsap.from('.hero .sub',{y:20,opacity:0,duration:.8,delay:1.2});
+gsap.from('.hero .launch-btn',{y:20,opacity:0,duration:.8,delay:1.5});
+
+gsap.from('.dest-card',{scrollTrigger:{trigger:'.dest-grid',start:'top 70%'},y:80,opacity:0,stagger:.2,duration:1,ease:'power3.out'});
+gsap.from('.dest-card img',{scrollTrigger:{trigger:'.dest-grid',start:'top 70%'},scale:1.2,stagger:.2,duration:1.3,ease:'power3.out'});
+gsap.from('.dest-card .info > *',{scrollTrigger:{trigger:'.dest-grid',start:'top 60%'},y:15,opacity:0,stagger:.04,duration:.4,delay:.5});
+gsap.from('.dest-card .price',{scrollTrigger:{trigger:'.dest-grid',start:'top 55%'},scale:0,opacity:0,stagger:.2,duration:.6,ease:'back.out(1.7)',delay:.7});
+gsap.from('.destinations h2',{scrollTrigger:{trigger:'.destinations',start:'top 80%'},y:30,opacity:0,duration:.7});
+
+gsap.from('.timeline h2',{scrollTrigger:{trigger:'.timeline',start:'top 80%'},y:30,opacity:0,duration:.7});
+gsap.utils.toArray('.tl-item').forEach((item,i)=>{
+  gsap.from(item.querySelector('.content'),{scrollTrigger:{trigger:item,start:'top 80%'},x:i%2===0?-60:60,opacity:0,duration:.8,ease:'power3.out'});
+  gsap.from(item.querySelector('.dot'),{scrollTrigger:{trigger:item,start:'top 80%'},scale:0,duration:.5,delay:.3,ease:'back.out(2)'});
+  gsap.from(item.querySelectorAll('.content > *'),{scrollTrigger:{trigger:item,start:'top 75%'},y:10,opacity:0,stagger:.1,duration:.4,delay:.4});
+});
+
+gsap.from('.cta h2',{scrollTrigger:{trigger:'.cta',start:'top 65%'},y:50,opacity:0,duration:1});
+gsap.from('.cta a',{scrollTrigger:{trigger:'.cta',start:'top 60%'},y:30,opacity:0,scale:.8,duration:.7,ease:'back.out(1.7)',delay:.3});
+</script>
+</body>
+</html>

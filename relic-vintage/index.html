@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RELIC — Vintage Finds</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,900;1,400&family=IBM+Plex+Mono:wght@300;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#f5efe6;color:#3a3020;font-family:'IBM Plex Mono',monospace;overflow-x:hidden}
+nav{padding:1.5rem 3rem;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #3a3020}
+nav .logo{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;font-style:italic}
+nav a{color:#3a3020;text-decoration:none;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase}
+nav ul{display:flex;gap:2rem;list-style:none}
+.hero{height:90vh;display:grid;grid-template-columns:1fr 1.2fr;overflow:hidden}
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:0 4rem}
+.hero-left h1{font-family:'Playfair Display',serif;font-size:clamp(3rem,6vw,5rem);font-weight:900;line-height:1;font-style:italic}
+.hero-left p{color:#8a7a60;margin-top:1.5rem;line-height:1.8;font-size:.85rem;font-weight:300}
+.hero-left a{display:inline-block;margin-top:2rem;padding:.8rem 2rem;border:2px solid #3a3020;font-family:inherit;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;color:#3a3020;transition:all .2s}
+.hero-left a:hover{background:#3a3020;color:#f5efe6}
+.hero-right{position:relative;overflow:hidden}
+.hero-right img{width:100%;height:100%;object-fit:cover;filter:sepia(40%) contrast(1.1)}
+.marquee{padding:1.5rem 0;border-top:2px solid #3a3020;border-bottom:2px solid #3a3020;overflow:hidden}
+.marquee-inner{display:flex;gap:3rem;white-space:nowrap;font-family:'Playfair Display',serif;font-size:2rem;font-style:italic;color:#c8b898}
+.products{padding:6rem 3rem}
+.products h2{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:900;font-style:italic;margin-bottom:3rem}
+.prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+.prod-card{background:#ede5d8;border:2px solid #d4c8b0;padding:1rem;transition:transform .3s}
+.prod-card:hover{transform:rotate(-1deg)}
+.prod-card img{width:100%;height:300px;object-fit:cover;filter:sepia(30%);transition:filter .4s}
+.prod-card:hover img{filter:sepia(0%)}
+.prod-card .info{padding:1rem 0 0}
+.prod-card .era{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:#a09070}
+.prod-card h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-style:italic;margin:.3rem 0}
+.prod-card .price{font-weight:500;color:#6a5a40}
+.story{padding:8rem 3rem;display:grid;grid-template-columns:1.5fr 1fr;gap:4rem;align-items:center}
+.story-text h2{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:900;font-style:italic;margin-bottom:1.5rem}
+.story-text p{color:#8a7a60;line-height:2;font-size:.85rem;font-weight:300}
+.story-img{height:500px;overflow:hidden;border:2px solid #d4c8b0}
+.story-img img{width:100%;height:100%;object-fit:cover;filter:sepia(50%)}
+.categories{padding:4rem 3rem;display:flex;gap:1.5rem}
+.cat-card{flex:1;height:300px;position:relative;overflow:hidden;border:2px solid #d4c8b0}
+.cat-card img{width:100%;height:100%;object-fit:cover;filter:sepia(40%);transition:all .5s}
+.cat-card:hover img{filter:sepia(0%);transform:scale(1.05)}
+.cat-card h3{position:absolute;bottom:1.5rem;left:1.5rem;font-family:'Playfair Display',serif;font-size:1.3rem;font-style:italic;color:#f5efe6;text-shadow:0 2px 8px rgba(0,0,0,.5)}
+footer{padding:2rem 3rem;border-top:2px solid #3a3020;display:flex;justify-content:space-between;font-size:.65rem;color:#a09070;letter-spacing:.1em}
+</style>
+</head>
+<body>
+<nav><div class="logo">Relic</div><ul><li><a href="#">Shop</a></li><li><a href="#">Story</a></li><li><a href="#">Visit</a></li></ul></nav>
+
+<section class="hero">
+<div class="hero-left"><h1>Treasures from another time</h1><p>Curated vintage clothing, furniture, and curiosities. Every piece has a story — we just help it find a new chapter.</p><a href="#">Browse Collection</a></div>
+<div class="hero-right"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800" alt=""></div>
+</section>
+
+<div class="marquee"><div class="marquee-inner" id="mq">Vintage ✦ Curated ✦ One-of-a-Kind ✦ Timeless ✦ Handpicked ✦ Vintage ✦ Curated ✦ One-of-a-Kind ✦ Timeless ✦ Handpicked ✦</div></div>
+
+<section class="products">
+<h2>New Arrivals</h2>
+<div class="prod-grid">
+<div class="prod-card"><img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400" alt=""><div class="info"><div class="era">1970s</div><h3>Wool Overcoat</h3><div class="price">$185</div></div></div>
+<div class="prod-card"><img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=400" alt=""><div class="info"><div class="era">1960s</div><h3>Silk Scarf</h3><div class="price">$65</div></div></div>
+<div class="prod-card"><img src="https://images.unsplash.com/photo-1434389677669-e08b4cda3a0a?w=400" alt=""><div class="info"><div class="era">1980s</div><h3>Leather Jacket</h3><div class="price">$240</div></div></div>
+</div>
+</section>
+
+<section class="story">
+<div class="story-text"><h2>Our Story</h2><p>Relic started in a flea market stall in Brooklyn. We'd wake up at 4am, drive to estate sales, and dig through decades of forgotten beauty. Now we have a shop, but the thrill of the hunt hasn't changed.</p></div>
+<div class="story-img"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600" alt=""></div>
+</section>
+
+<section class="categories">
+<div class="cat-card"><img src="https://images.unsplash.com/photo-1558171813-4c088753af8f?w=400" alt=""><h3>Clothing</h3></div>
+<div class="cat-card"><img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400" alt=""><h3>Furniture</h3></div>
+<div class="cat-card"><img src="https://images.unsplash.com/photo-1513519245088-0e12902e35ca?w=400" alt=""><h3>Curiosities</h3></div>
+</section>
+
+<footer><span>© 2024 Relic Vintage</span><span>Brooklyn, NY</span></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+// Hero — skew distortion entrance
+gsap.from('.hero-left h1',{y:60,opacity:0,skewY:8,duration:1.2,ease:'power3.out',delay:.3});
+gsap.from('.hero-left p',{y:30,opacity:0,skewX:-3,duration:.8,delay:.7});
+gsap.from('.hero-left a',{y:20,opacity:0,skewX:-5,duration:.6,delay:1});
+gsap.from('.hero-right img',{scale:1.3,filter:'sepia(100%) blur(10px)',duration:2,ease:'power3.out',delay:.2});
+
+// Marquee
+gsap.to('#mq',{x:'-50%',duration:20,ease:'none',repeat:-1});
+
+// Products — skew on scroll + filter desaturate
+gsap.utils.toArray('.prod-card').forEach((card,i)=>{
+  gsap.from(card,{scrollTrigger:{trigger:card,start:'top 85%'},y:60,opacity:0,skewY:i%2===0?6:-6,skewX:i%2===0?-3:3,duration:.8,ease:'power3.out'});
+  gsap.from(card.querySelector('img'),{scrollTrigger:{trigger:card,start:'top 85%'},filter:'sepia(100%) blur(5px)',scale:1.1,duration:1.2,ease:'power3.out'});
+});
+
+// Story — skew reveal
+gsap.from('.story-text',{scrollTrigger:{trigger:'.story',start:'top 65%'},x:-60,opacity:0,skewX:5,duration:1});
+gsap.from('.story-text h2',{scrollTrigger:{trigger:'.story',start:'top 60%'},skewY:-4,y:20,opacity:0,duration:.7,delay:.3});
+gsap.from('.story-text p',{scrollTrigger:{trigger:'.story',start:'top 55%'},skewX:-2,y:15,opacity:0,duration:.6,delay:.5});
+gsap.from('.story-img',{scrollTrigger:{trigger:'.story',start:'top 65%'},x:60,opacity:0,skewX:-5,duration:1});
+gsap.from('.story-img img',{scrollTrigger:{trigger:'.story',start:'top bottom',end:'bottom top',scrub:true},y:-40,filter:'sepia(80%)'});
+
+// Categories — skew + filter on scroll
+gsap.utils.toArray('.cat-card').forEach((card,i)=>{
+  gsap.from(card,{scrollTrigger:{trigger:card,start:'top 80%'},y:50,opacity:0,skewY:i%2===0?4:-4,duration:.8,delay:i*.1});
+  gsap.from(card.querySelector('img'),{scrollTrigger:{trigger:card,start:'top bottom',end:'bottom top',scrub:true},scale:1.15,filter:'sepia(80%) brightness(.8)'});
+});
+</script>
+</body>
+</html>

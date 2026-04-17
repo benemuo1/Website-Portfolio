@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DOMAINE — Estate Winery</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,600;1,300&family=Raleway:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0e0c0a;--fg:#e8e0d4;--wine:#8b2252;--gold:#c9a84c;--muted:#6b6560}
+body{background:var(--bg);color:var(--fg);font-family:'Raleway',sans-serif;overflow-x:hidden}
+nav{position:fixed;top:0;width:100%;padding:2rem 5rem;display:flex;justify-content:space-between;align-items:center;z-index:100;mix-blend-mode:difference}
+nav .logo{font-family:'Cormorant',serif;font-size:1.8rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase}
+nav ul{display:flex;gap:2.5rem;list-style:none}
+nav a{color:var(--fg);text-decoration:none;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase}
+.hero{height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=1200') center/cover;opacity:.4}
+.hero-center{text-align:center;position:relative;z-index:2}
+.hero-center svg{width:200px;height:200px;margin-bottom:2rem}
+.hero-center svg path{stroke:var(--gold);stroke-width:1.5;fill:none;stroke-dasharray:600;stroke-dashoffset:600}
+.hero-center h1{font-family:'Cormorant',serif;font-size:clamp(3rem,7vw,6rem);font-weight:300;letter-spacing:.1em}
+.hero-center h1 em{font-style:italic;color:var(--gold)}
+.hero-center p{color:var(--muted);font-size:.85rem;letter-spacing:.2em;text-transform:uppercase;margin-top:1.5rem}
+.collection{padding:10rem 5rem}
+.collection h2{font-family:'Cormorant',serif;font-size:3.5rem;font-weight:300;text-align:center;margin-bottom:5rem}
+.wine-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3rem}
+.wine-card{text-align:center;position:relative}
+.wine-card .bottle{height:350px;display:flex;align-items:flex-end;justify-content:center;margin-bottom:2rem;position:relative}
+.wine-card .bottle img{height:300px;object-fit:contain;transition:transform .6s}
+.wine-card:hover .bottle img{transform:translateY(-15px)}
+.wine-card .year{font-family:'Cormorant',serif;font-size:8rem;color:#1a1714;position:absolute;top:0;left:50%;transform:translateX(-50%);z-index:-1;font-weight:300}
+.wine-card h3{font-family:'Cormorant',serif;font-size:1.8rem;font-weight:300;letter-spacing:.05em}
+.wine-card .varietal{color:var(--gold);font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;margin-top:.5rem}
+.wine-card p{color:var(--muted);font-size:.85rem;line-height:1.7;margin-top:1rem;max-width:280px;margin-left:auto;margin-right:auto}
+.estate{padding:10rem 5rem;display:grid;grid-template-columns:1.2fr 1fr;gap:6rem;align-items:center}
+.estate-img{height:600px;overflow:hidden}
+.estate-img img{width:100%;height:100%;object-fit:cover}
+.estate-text h2{font-family:'Cormorant',serif;font-size:3rem;font-weight:300;margin-bottom:1.5rem}
+.estate-text p{color:var(--muted);line-height:1.9;font-size:.95rem;margin-bottom:1rem;font-weight:300}
+.estate-text .divider{width:60px;height:1px;background:var(--gold);margin:2rem 0}
+.visit{padding:8rem 5rem;text-align:center;border-top:1px solid #1a1714}
+.visit h2{font-family:'Cormorant',serif;font-size:3.5rem;font-weight:300;margin-bottom:1rem}
+.visit p{color:var(--muted);margin-bottom:3rem}
+.visit a{padding:1rem 3rem;border:1px solid var(--gold);color:var(--gold);text-decoration:none;font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;transition:all .4s}
+.visit a:hover{background:var(--gold);color:var(--bg)}
+footer{padding:3rem 5rem;border-top:1px solid #1a1714;display:flex;justify-content:space-between;font-size:.75rem;color:var(--muted);letter-spacing:.1em}
+</style>
+</head>
+<body>
+<nav><div class="logo">Domaine</div><ul><li><a href="#">Collection</a></li><li><a href="#">Estate</a></li><li><a href="#">Visit</a></li></ul></nav>
+<section class="hero">
+<div class="hero-bg"></div>
+<div class="hero-center">
+<svg viewBox="0 0 200 200"><path d="M100 20 C100 20 60 60 60 110 C60 140 78 170 100 180 C122 170 140 140 140 110 C140 60 100 20 100 20Z" id="grape"/><path d="M100 20 C100 20 100 5 110 0" id="stem"/></svg>
+<h1>Domaine <em>Éternelle</em></h1>
+<p>Napa Valley · Since 1962</p>
+</div>
+</section>
+<section class="collection">
+<h2>The Collection</h2>
+<div class="wine-grid">
+<div class="wine-card"><div class="bottle"><span class="year">2019</span><img src="https://images.unsplash.com/photo-1586370434639-0fe43b2d32e6?w=200" alt="Wine"></div><h3>Réserve Rouge</h3><div class="varietal">Cabernet Sauvignon</div><p>Dark fruit, cedar, and a whisper of vanilla. Aged 22 months in French oak.</p></div>
+<div class="wine-card"><div class="bottle"><span class="year">2021</span><img src="https://images.unsplash.com/photo-1586370434639-0fe43b2d32e6?w=200" alt="Wine"></div><h3>Clair de Lune</h3><div class="varietal">Chardonnay</div><p>Bright citrus, white peach, and subtle minerality. Whole-cluster pressed.</p></div>
+<div class="wine-card"><div class="bottle"><span class="year">2020</span><img src="https://images.unsplash.com/photo-1586370434639-0fe43b2d32e6?w=200" alt="Wine"></div><h3>Éternelle</h3><div class="varietal">Pinot Noir</div><p>Our flagship. Red cherry, earth, and silk. Single-vineyard, hand-harvested.</p></div>
+</div>
+</section>
+<section class="estate">
+<div class="estate-img"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80" alt="Vineyard"></div>
+<div class="estate-text">
+<h2>The Estate</h2>
+<p>Nestled in the heart of Napa Valley, our 120-acre estate sits at the convergence of volcanic soils and Pacific fog — creating conditions found nowhere else on earth.</p>
+<div class="divider"></div>
+<p>Three generations of winemakers have tended these vines, guided by a single philosophy: let the land speak.</p>
+</div>
+</section>
+<section class="visit">
+<h2>Visit the Estate</h2>
+<p>Private tastings by appointment. Experience the terroir firsthand.</p>
+<a href="#">Reserve a Tasting</a>
+</section>
+<footer><span>© 2024 Domaine Éternelle</span><span>Must be 21+ to purchase</span></footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+// SVG stroke draw animation
+const tl = gsap.timeline({delay:.5});
+tl.to('#grape',{strokeDashoffset:0,duration:2.5,ease:'power2.inOut'})
+  .to('#stem',{strokeDashoffset:0,duration:.8,ease:'power2.inOut'},'-=1')
+  .from('.hero-center h1',{y:40,opacity:0,duration:1.2},'-=.5')
+  .from('.hero-center p',{y:20,opacity:0,duration:.8},'-=.4');
+
+// Parallax hero bg
+gsap.to('.hero-bg',{scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true},y:150,scale:1.1});
+
+gsap.from('.collection h2',{scrollTrigger:{trigger:'.collection',start:'top 80%'},y:30,opacity:0,duration:.8});
+gsap.from('.wine-card',{scrollTrigger:{trigger:'.wine-grid',start:'top 70%'},y:100,opacity:0,scale:.9,stagger:.2,duration:1.2,ease:'power3.out'});
+gsap.from('.wine-card .year',{scrollTrigger:{trigger:'.wine-grid',start:'top 70%'},scale:0,opacity:0,stagger:.2,duration:1,ease:'power3.out',delay:.3});
+gsap.from('.wine-card .bottle img',{scrollTrigger:{trigger:'.wine-grid',start:'top 70%'},y:60,opacity:0,stagger:.2,duration:1,delay:.2});
+gsap.from('.wine-card h3, .wine-card .varietal, .wine-card p',{scrollTrigger:{trigger:'.wine-grid',start:'top 60%'},y:15,opacity:0,stagger:.05,duration:.5,delay:.6});
+
+gsap.from('.estate-img',{scrollTrigger:{trigger:'.estate',start:'top 65%'},clipPath:'inset(100% 0 0 0)',duration:1.5,ease:'power4.inOut'});
+gsap.from('.estate-img img',{scrollTrigger:{trigger:'.estate',start:'top bottom',end:'bottom top',scrub:true},y:-50,scale:1.1});
+gsap.from('.estate-text h2',{scrollTrigger:{trigger:'.estate',start:'top 55%'},x:50,opacity:0,duration:.8});
+gsap.from('.estate-text p',{scrollTrigger:{trigger:'.estate',start:'top 55%'},x:30,opacity:0,stagger:.15,duration:.7,delay:.2});
+gsap.from('.estate-text .divider',{scrollTrigger:{trigger:'.estate',start:'top 50%'},scaleX:0,transformOrigin:'left',duration:.8,delay:.4});
+
+gsap.from('.visit h2',{scrollTrigger:{trigger:'.visit',start:'top 70%'},y:40,opacity:0,duration:.8});
+gsap.from('.visit p',{scrollTrigger:{trigger:'.visit',start:'top 70%'},y:25,opacity:0,duration:.6,delay:.2});
+gsap.from('.visit a',{scrollTrigger:{trigger:'.visit',start:'top 65%'},y:15,opacity:0,scale:.9,duration:.5,delay:.4});
+</script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HAVEN — Luxury Real Estate</title>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,700;1,400&family=Outfit:wght@200;400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0d0d0d;--fg:#f0ece4;--gold:#b8965a;--muted:#6a6560}
+body{background:var(--bg);color:var(--fg);font-family:'Outfit',sans-serif;overflow-x:hidden}
+nav{position:fixed;top:0;width:100%;padding:2rem 5rem;display:flex;justify-content:space-between;align-items:center;z-index:100;mix-blend-mode:difference}
+nav .logo{font-family:'Bodoni Moda',serif;font-size:1.6rem;letter-spacing:.15em}
+nav ul{display:flex;gap:2.5rem;list-style:none}
+nav a{color:var(--fg);text-decoration:none;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase}
+.hero{height:100vh;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.hero .layer{position:absolute;inset:0;background-size:cover;background-position:center}
+.hero .layer-bg{background-image:url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1400');filter:brightness(.4)}
+.hero .layer-mid{background-image:url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800');background-size:60%;background-repeat:no-repeat;background-position:center 60%;opacity:.15}
+.hero-content{text-align:center;position:relative;z-index:5}
+.hero-content h1{font-family:'Bodoni Moda',serif;font-size:clamp(3rem,7vw,6.5rem);font-weight:400;line-height:1;letter-spacing:.05em}
+.hero-content h1 em{color:var(--gold);font-style:italic}
+.hero-content p{color:var(--muted);margin-top:1.5rem;font-weight:200;letter-spacing:.1em}
+.hero-content .btn{display:inline-block;margin-top:2.5rem;padding:1rem 3rem;border:1px solid var(--gold);color:var(--gold);text-decoration:none;font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;transition:all .4s}
+.hero-content .btn:hover{background:var(--gold);color:var(--bg)}
+.listings{padding:8rem 5rem}
+.listings h2{font-family:'Bodoni Moda',serif;font-size:3rem;font-weight:400;margin-bottom:4rem}
+.listing-grid{display:grid;grid-template-columns:1.5fr 1fr;grid-template-rows:400px 400px;gap:1.5rem}
+.listing{position:relative;overflow:hidden}
+.listing img{width:100%;height:100%;object-fit:cover;transition:transform .8s}
+.listing:hover img{transform:scale(1.06)}
+.listing .info{position:absolute;bottom:0;left:0;right:0;padding:2rem;background:linear-gradient(transparent,rgba(0,0,0,.85));z-index:2}
+.listing .info .price{font-family:'Bodoni Moda',serif;font-size:1.8rem;color:var(--gold)}
+.listing .info h3{font-size:1.1rem;font-weight:400;margin-top:.3rem}
+.listing .info .meta{font-size:.75rem;color:var(--muted);margin-top:.5rem;letter-spacing:.1em}
+.listing:nth-child(1){grid-row:span 2}
+.stats{padding:6rem 5rem;display:grid;grid-template-columns:repeat(4,1fr);gap:3rem;border-top:1px solid #1a1a1a;border-bottom:1px solid #1a1a1a}
+.stat{text-align:center}
+.stat h3{font-family:'Bodoni Moda',serif;font-size:3rem;color:var(--gold)}
+.stat p{color:var(--muted);font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;margin-top:.5rem}
+.about{padding:10rem 5rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.about-img{height:550px;overflow:hidden}
+.about-img img{width:100%;height:100%;object-fit:cover}
+.about-text h2{font-family:'Bodoni Moda',serif;font-size:2.5rem;font-weight:400;margin-bottom:1.5rem}
+.about-text p{color:var(--muted);line-height:1.9;font-weight:200}
+.about-text .sig{font-family:'Bodoni Moda',serif;font-style:italic;color:var(--gold);font-size:1.2rem;margin-top:2rem}
+.contact{padding:8rem 5rem;text-align:center;border-top:1px solid #1a1a1a}
+.contact h2{font-family:'Bodoni Moda',serif;font-size:3.5rem;font-weight:400;margin-bottom:1rem}
+.contact h2 em{color:var(--gold);font-style:italic}
+.contact a{display:inline-block;margin-top:2rem;padding:1rem 3rem;border:1px solid var(--gold);color:var(--gold);text-decoration:none;font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;transition:all .4s}
+.contact a:hover{background:var(--gold);color:var(--bg)}
+footer{padding:3rem 5rem;display:flex;justify-content:space-between;font-size:.75rem;color:var(--muted)}
+</style>
+</head>
+<body>
+<nav><div class="logo">HAVEN</div><ul><li><a href="#">Properties</a></li><li><a href="#">About</a></li><li><a href="#">Contact</a></li></ul></nav>
+<section class="hero">
+<div class="layer layer-bg" data-speed="0.5"></div>
+<div class="layer layer-mid" data-speed="0.8"></div>
+<div class="hero-content" data-speed="1.2">
+<h1>Live in <em>extraordinary</em></h1>
+<p>Curated luxury properties in the world's most coveted addresses</p>
+<a href="#" class="btn">View Collection</a>
+</div>
+</section>
+<section class="listings">
+<h2>Featured Properties</h2>
+<div class="listing-grid">
+<div class="listing"><img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800" alt=""><div class="info"><div class="price">$12,500,000</div><h3>Cliffside Villa, Malibu</h3><div class="meta">6 Bed · 8 Bath · 9,200 sqft · Ocean View</div></div></div>
+<div class="listing"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600" alt=""><div class="info"><div class="price">$8,900,000</div><h3>The Penthouse, Manhattan</h3><div class="meta">4 Bed · 5 Bath · 5,800 sqft · Skyline</div></div></div>
+<div class="listing"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600" alt=""><div class="info"><div class="price">$15,200,000</div><h3>Estate Noir, Beverly Hills</h3><div class="meta">8 Bed · 10 Bath · 14,000 sqft · Gated</div></div></div>
+</div>
+</section>
+<section class="stats">
+<div class="stat"><h3>$4.2B</h3><p>Total Sales</p></div>
+<div class="stat"><h3>340+</h3><p>Properties Sold</p></div>
+<div class="stat"><h3>18</h3><p>Years Experience</p></div>
+<div class="stat"><h3>12</h3><p>Global Markets</p></div>
+</section>
+<section class="about">
+<div class="about-img"><img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600" alt=""></div>
+<div class="about-text">
+<h2>The Haven Difference</h2>
+<p>We don't just sell properties — we curate lifestyles. Every home in our collection is hand-selected for its architectural significance, location, and potential to become a legacy.</p>
+<div class="sig">— Victoria Haven, Founder</div>
+</div>
+</section>
+<section class="contact">
+<h2>Find your <em>haven</em></h2>
+<a href="#">Private Consultation</a>
+</section>
+<footer><span>© 2024 Haven Properties</span><span>New York · Los Angeles · London · Dubai</span></footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+// Parallax depth layers in hero
+document.querySelectorAll('[data-speed]').forEach(el=>{
+  const speed=parseFloat(el.dataset.speed);
+  gsap.to(el,{y:()=>(1-speed)*300,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+});
+
+gsap.from('.hero-content h1',{y:60,opacity:0,duration:1.5,delay:.3});
+gsap.from('.hero-content p, .hero-content .btn',{y:30,opacity:0,stagger:.2,duration:.8,delay:1});
+
+// Listings reveal with clip-path
+gsap.from('.listings h2',{scrollTrigger:{trigger:'.listings',start:'top 80%'},y:30,opacity:0,duration:.8});
+gsap.from('.listing',{scrollTrigger:{trigger:'.listing-grid',start:'top 70%'},clipPath:'inset(100% 0 0 0)',opacity:0,stagger:.2,duration:1.2,ease:'power4.inOut'});
+gsap.from('.listing .info > *',{scrollTrigger:{trigger:'.listing-grid',start:'top 60%'},y:15,opacity:0,stagger:.05,duration:.4,delay:.8});
+gsap.utils.toArray('.listing').forEach(l=>{
+  gsap.from(l.querySelector('img'),{scrollTrigger:{trigger:l,start:'top bottom',end:'bottom top',scrub:true},y:-40,scale:1.08});
+});
+
+gsap.from('.stat',{scrollTrigger:{trigger:'.stats',start:'top 80%'},y:40,opacity:0,stagger:.12,duration:.7});
+gsap.from('.stat h3',{scrollTrigger:{trigger:'.stats',start:'top 75%'},scale:.5,opacity:0,stagger:.12,duration:.6,ease:'back.out(1.7)',delay:.3});
+gsap.from('.stat p',{scrollTrigger:{trigger:'.stats',start:'top 75%'},y:10,opacity:0,stagger:.12,duration:.4,delay:.5});
+
+gsap.from('.about-img',{scrollTrigger:{trigger:'.about',start:'top 65%'},x:-80,opacity:0,clipPath:'inset(0 100% 0 0)',duration:1.2,ease:'power3.inOut'});
+gsap.from('.about-img img',{scrollTrigger:{trigger:'.about',start:'top bottom',end:'bottom top',scrub:true},y:-40,scale:1.1});
+gsap.from('.about-text h2',{scrollTrigger:{trigger:'.about',start:'top 65%'},x:50,opacity:0,duration:.8,delay:.3});
+gsap.from('.about-text p',{scrollTrigger:{trigger:'.about',start:'top 60%'},x:30,opacity:0,stagger:.15,duration:.7,delay:.5});
+gsap.from('.about-text .sig',{scrollTrigger:{trigger:'.about',start:'top 55%'},y:20,opacity:0,duration:.6,delay:.7});
+
+gsap.from('.contact h2',{scrollTrigger:{trigger:'.contact',start:'top 70%'},y:50,opacity:0,duration:1});
+gsap.from('.contact a',{scrollTrigger:{trigger:'.contact',start:'top 65%'},y:25,opacity:0,scale:.9,duration:.7,delay:.3});
+</script>
+</body>
+</html>

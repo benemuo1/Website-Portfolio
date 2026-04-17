@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EMBER — Specialty Coffee</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Work+Sans:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#1a1410;--fg:#f0e8dc;--brown:#c8956c;--dark:#120f0b;--cream:#f5efe6}
+body{background:var(--bg);color:var(--fg);font-family:'Work Sans',sans-serif;overflow-x:hidden}
+nav{position:fixed;top:0;width:100%;padding:1.5rem 4rem;display:flex;justify-content:space-between;align-items:center;z-index:100;mix-blend-mode:difference}
+nav .logo{font-family:'Lora',serif;font-size:1.6rem;font-weight:700}
+nav ul{display:flex;gap:2rem;list-style:none}
+nav a{color:var(--fg);text-decoration:none;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase}
+.hero{height:100vh;display:flex;align-items:center;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=1200') center/cover;filter:brightness(.35)}
+.hero-content{padding:0 5rem;position:relative;z-index:2;max-width:650px}
+.hero-content h1{font-family:'Lora',serif;font-size:clamp(3rem,6vw,5.5rem);line-height:1.05;font-weight:400}
+.hero-content h1 em{color:var(--brown);font-style:italic}
+.hero-content p{color:#a09080;margin-top:1.5rem;line-height:1.8;font-weight:300}
+.hero-content .btn{display:inline-block;margin-top:2rem;padding:1rem 2.5rem;border:1px solid var(--brown);color:var(--brown);text-decoration:none;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;transition:all .3s}
+.hero-content .btn:hover{background:var(--brown);color:var(--bg)}
+.beans{padding:8rem 4rem}
+.beans h2{font-family:'Lora',serif;font-size:3rem;margin-bottom:1rem}
+.beans .sub{color:#7a6e60;margin-bottom:2rem}
+.drag-hint{color:var(--brown);font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:1.5rem}
+.bean-track{display:flex;gap:2rem;cursor:grab;user-select:none;padding:1rem 0}
+.bean-track:active{cursor:grabbing}
+.bean-card{min-width:320px;background:#1e1a15;border-radius:16px;overflow:hidden;flex-shrink:0}
+.bean-card img{width:100%;height:220px;object-fit:cover}
+.bean-card .info{padding:1.5rem}
+.bean-card .origin{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--brown)}
+.bean-card h3{font-family:'Lora',serif;font-size:1.3rem;margin:.5rem 0}
+.bean-card p{color:#7a6e60;font-size:.85rem;line-height:1.6}
+.bean-card .notes{display:flex;gap:.5rem;margin-top:1rem;flex-wrap:wrap}
+.bean-card .note{padding:.3rem .8rem;border:1px solid #333;font-size:.7rem;border-radius:50px;color:#a09080}
+.process{padding:8rem 4rem;background:var(--cream);color:var(--bg);border-radius:30px;margin:0 2rem}
+.process h2{font-family:'Lora',serif;font-size:3rem;text-align:center;margin-bottom:4rem}
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem}
+.process-step{text-align:center;padding:2rem}
+.process-step .num{font-family:'Lora',serif;font-size:3rem;color:var(--brown);opacity:.4}
+.process-step h3{font-size:1rem;font-weight:700;margin:1rem 0 .5rem}
+.process-step p{color:#6a5e50;font-size:.85rem;line-height:1.6}
+.visit{padding:8rem 4rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.visit-img{height:500px;border-radius:20px;overflow:hidden}
+.visit-img img{width:100%;height:100%;object-fit:cover}
+.visit-text h2{font-family:'Lora',serif;font-size:2.5rem;margin-bottom:1.5rem}
+.visit-text p{color:#7a6e60;line-height:1.8;margin-bottom:1rem;font-weight:300}
+.visit-text .hours{margin-top:2rem;padding-top:2rem;border-top:1px solid #2a2520}
+.visit-text .hours div{display:flex;justify-content:space-between;padding:.5rem 0;font-size:.9rem}
+.visit-text .hours span:last-child{color:var(--brown)}
+footer{padding:3rem 4rem;border-top:1px solid #2a2520;display:flex;justify-content:space-between;font-size:.8rem;color:#5a5040;margin-top:4rem}
+</style>
+</head>
+<body>
+<nav><div class="logo">Ember</div><ul><li><a href="#">Beans</a></li><li><a href="#">Process</a></li><li><a href="#">Visit</a></li></ul></nav>
+<section class="hero">
+<div class="hero-bg"></div>
+<div class="hero-content">
+<h1>Coffee is a <em>ritual</em>, not a routine</h1>
+<p>Single-origin beans, roasted in small batches, brewed with intention. Every cup tells the story of its origin.</p>
+<a href="#" class="btn">Explore Our Beans</a>
+</div>
+</section>
+<section class="beans">
+<h2>Our Beans</h2>
+<p class="sub">Sourced directly from farmers. Roasted weekly.</p>
+<div class="drag-hint">← Drag to explore →</div>
+<div class="bean-track" id="beanTrack">
+<div class="bean-card"><img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400" alt=""><div class="info"><div class="origin">Ethiopia · Yirgacheffe</div><h3>Morning Light</h3><p>Bright and floral with a honey-like sweetness. Washed process.</p><div class="notes"><span class="note">Jasmine</span><span class="note">Bergamot</span><span class="note">Honey</span></div></div></div>
+<div class="bean-card"><img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefda?w=400" alt=""><div class="info"><div class="origin">Colombia · Huila</div><h3>Velvet Night</h3><p>Rich and chocolatey with a smooth, lingering finish. Natural process.</p><div class="notes"><span class="note">Dark Chocolate</span><span class="note">Caramel</span><span class="note">Walnut</span></div></div></div>
+<div class="bean-card"><img src="https://images.unsplash.com/photo-1504630083234-14187a9df0f5?w=400" alt=""><div class="info"><div class="origin">Guatemala · Antigua</div><h3>Volcanic Ash</h3><p>Smoky and complex with notes of spice. Grown at 1,800m elevation.</p><div class="notes"><span class="note">Smoke</span><span class="note">Cinnamon</span><span class="note">Brown Sugar</span></div></div></div>
+<div class="bean-card"><img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?w=400" alt=""><div class="info"><div class="origin">Kenya · Nyeri</div><h3>Red Berry</h3><p>Vibrant acidity with juicy berry notes. Double washed for clarity.</p><div class="notes"><span class="note">Blackcurrant</span><span class="note">Tomato</span><span class="note">Citrus</span></div></div></div>
+<div class="bean-card"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400" alt=""><div class="info"><div class="origin">Japan · Kyoto Blend</div><h3>Zen Garden</h3><p>Delicate and tea-like. Our signature cold-brew blend, steeped 18 hours.</p><div class="notes"><span class="note">Green Tea</span><span class="note">Stone Fruit</span><span class="note">Silk</span></div></div></div>
+</div>
+</section>
+<section class="process">
+<h2>From Seed to Cup</h2>
+<div class="process-grid">
+<div class="process-step"><div class="num">01</div><h3>Source</h3><p>Direct trade with farmers. We visit every origin, every year.</p></div>
+<div class="process-step"><div class="num">02</div><h3>Roast</h3><p>Small-batch roasting on our vintage Probat. Profiled by hand.</p></div>
+<div class="process-step"><div class="num">03</div><h3>Rest</h3><p>Each batch rests 7-14 days to reach peak flavor development.</p></div>
+<div class="process-step"><div class="num">04</div><h3>Brew</h3><p>Precision brewing at 93°C. Every variable controlled, every cup perfect.</p></div>
+</div>
+</section>
+<section class="visit">
+<div class="visit-img"><img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=600" alt="Cafe"></div>
+<div class="visit-text">
+<h2>Visit the Roastery</h2>
+<p>Our doors are open. Come watch the roasting process, sample our latest arrivals, and find your new favorite cup.</p>
+<div class="hours">
+<div><span>Monday — Friday</span><span>7am — 6pm</span></div>
+<div><span>Saturday</span><span>8am — 5pm</span></div>
+<div><span>Sunday</span><span>9am — 3pm</span></div>
+</div>
+</div>
+</section>
+<footer><span>© 2024 Ember Coffee Roasters</span><span>Brooklyn, NY</span></footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Draggable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/InertiaPlugin.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(Draggable, ScrollTrigger);
+
+gsap.from('.hero-content h1',{y:60,opacity:0,duration:1.2,delay:.3});
+gsap.from('.hero-content p, .hero-content .btn',{y:30,opacity:0,stagger:.2,duration:.8,delay:.8});
+
+// Draggable bean carousel
+Draggable.create('#beanTrack',{type:'x',bounds:{minX:-(document.getElementById('beanTrack').scrollWidth-window.innerWidth+100),maxX:0},inertia:true,edgeResistance:.65,throwResistance:2000});
+
+gsap.from('.bean-card',{scrollTrigger:{trigger:'.beans',start:'top 65%'},x:100,opacity:0,stagger:.12,duration:.8,ease:'power3.out'});
+gsap.from('.process-step',{scrollTrigger:{trigger:'.process-grid',start:'top 75%'},y:50,opacity:0,stagger:.15,duration:.8});
+gsap.from('.visit-img',{scrollTrigger:{trigger:'.visit',start:'top 65%'},x:-60,opacity:0,duration:1});
+gsap.from('.visit-text > *',{scrollTrigger:{trigger:'.visit',start:'top 65%'},x:40,opacity:0,stagger:.1,duration:.7});
+</script>
+</body>
+</html>
