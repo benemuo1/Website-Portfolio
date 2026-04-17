@@ -8,18 +8,18 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:140px}
 body{background:#faf6f1;color:#2d2520;font-family:'Inter',sans-serif;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
 ::selection{background:rgba(234,124,50,.2)}
 
 /* NAV */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 2rem;height:52px;background:rgba(255,255,255,.85);backdrop-filter:blur(24px);border-bottom:1px solid rgba(0,0,0,.06);display:flex;align-items:center;justify-content:space-between}
-.nav-brand{font-size:.8rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:#8a7060}
-.nav-brand .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,#ea7c32,#e85d26);margin-right:.5rem;animation:dotPulse 2s ease-in-out infinite}
-@keyframes dotPulse{0%,100%{opacity:.6;transform:scale(1)}50%{opacity:1;transform:scale(1.3)}}
-.nav-count{font-size:.65rem;color:#b8a898;letter-spacing:.1em;background:rgba(0,0,0,.03);padding:.3rem .8rem;border-radius:50px;border:1px solid rgba(0,0,0,.06)}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 2rem;height:52px;background:rgba(255,255,255,.85);backdrop-filter:blur(24px);border-bottom:1px solid rgba(0,0,0,.06);display:flex;align-items:center;justify-content:center;transition:transform .3s ease}
+.nav.nav-hidden{transform:translateY(-100%)}
+.nav-brand{font-size:1rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:#6a5a4a}
+
+.nav-count{position:absolute;right:2rem;font-size:.65rem;color:#b8a898;letter-spacing:.1em;background:rgba(0,0,0,.03);padding:.3rem .8rem;border-radius:50px;border:1px solid rgba(0,0,0,.06)}
 
 /* HERO */
 .hero{padding:0;position:relative;overflow:hidden;min-height:85vh;display:grid;grid-template-columns:1.1fr 1fr;background:linear-gradient(170deg,#fff8f2 0%,#fef0e4 40%,#fde8d4 100%)}
@@ -84,7 +84,7 @@ img{display:block;max-width:100%}
 .card:hover{border-color:rgba(234,124,50,.2);transform:translateY(-4px);box-shadow:0 20px 50px rgba(234,124,50,.08)}
 .card-img{position:relative;height:220px;overflow:hidden;background:#f5ede4}
 .card-img iframe{width:200%;height:200%;border:none;transform:scale(.5);transform-origin:top left;pointer-events:none}
-.card-img .overlay{position:absolute;inset:0;background:linear-gradient(to top,#fff,transparent 60%);z-index:2;pointer-events:none}
+.card-img .overlay{position:absolute;inset:0;background:linear-gradient(to top,#fff 0%,transparent 15%);z-index:2;pointer-events:none}
 .card-body{padding:1.25rem;position:relative;z-index:3}
 .card-cat{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:#e85d26;font-weight:600;margin-bottom:.5rem}
 .card-title{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:600;margin-bottom:.35rem;color:#2d2520}
@@ -95,14 +95,19 @@ img{display:block;max-width:100%}
 .card-link{position:absolute;inset:0;z-index:5}
 
 /* VIEWER */
-.viewer{display:none;position:fixed;inset:0;z-index:200;background:rgba(250,246,241,.95);backdrop-filter:blur(8px)}
-.viewer.open{display:flex;flex-direction:column}
-.viewer-bar{display:flex;align-items:center;justify-content:space-between;padding:.75rem 1.5rem;background:rgba(255,255,255,.95);border-bottom:1px solid rgba(0,0,0,.08)}
-.viewer-bar h3{font-family:'Space Grotesk',sans-serif;font-size:.9rem;font-weight:600;color:#2d2520}
-.viewer-bar span{font-size:.7rem;color:#a09080}
-.viewer-close{background:none;border:1px solid rgba(0,0,0,.12);color:#6a5a4a;padding:.4rem 1rem;border-radius:8px;font-size:.75rem;cursor:pointer;font-family:inherit;transition:all .3s}
-.viewer-close:hover{background:rgba(0,0,0,.05);color:#2d2520}
-.viewer iframe{flex:1;width:100%;border:none}
+.viewer{display:none}
+.viewer.open{display:block}
+.viewer-topbar{display:flex;align-items:center;justify-content:space-between;padding:.6rem 2rem;background:#fff;border-bottom:1px solid rgba(0,0,0,.07);position:sticky;top:0;z-index:80}
+.viewer-left{display:flex;align-items:center;gap:1rem}
+.viewer-back{display:flex;align-items:center;gap:.4rem;background:none;border:1px solid rgba(0,0,0,.1);color:#6a5a4a;padding:.35rem .9rem;border-radius:8px;font-size:.7rem;cursor:pointer;font-family:inherit;transition:all .3s;letter-spacing:.03em}
+.viewer-back:hover{background:rgba(0,0,0,.04);color:#2d2520}
+.viewer-info h3{font-family:'Space Grotesk',sans-serif;font-size:.85rem;font-weight:600;color:#2d2520}
+.viewer-info span{font-size:.65rem;color:#a09080}
+.viewer-nav{display:flex;align-items:center;gap:.5rem}
+.viewer-nav button{width:34px;height:34px;border-radius:50%;border:1px solid rgba(0,0,0,.1);background:none;color:#8a7a6a;cursor:pointer;font-size:.8rem;display:flex;align-items:center;justify-content:center;transition:all .3s;font-family:inherit}
+.viewer-nav button:hover{background:rgba(234,124,50,.08);border-color:rgba(234,124,50,.25);color:#e85d26}
+.viewer-nav .viewer-count{font-size:.65rem;color:#b8a898;min-width:3rem;text-align:center}
+.viewer-frame{width:100%;height:calc(100vh - 45px);border:none;display:block;margin-top:0}
 
 /* FOOTER */
 .footer{padding:3rem 2rem;border-top:1px solid rgba(0,0,0,.06);text-align:center;background:#faf6f1}
@@ -120,7 +125,7 @@ img{display:block;max-width:100%}
 <body>
 
 <nav class="nav">
-<div class="nav-brand"><span class="dot"></span>Bianca Enemuo</div>
+<div class="nav-brand">Bianca Enemuo</div>
 <div class="nav-count" id="countLabel">50+ designs</div>
 </nav>
 
@@ -139,7 +144,7 @@ img{display:block;max-width:100%}
 <span class="line"><span class="line-inner dim">I build experiences.</span></span>
 </h1>
 <p class="hero-tagline" id="heroTagline">Every template below is a real, working site — animated, responsive, and ready to become yours</p>
-<a href="#grid" class="hero-cta" id="heroCta">Browse all designs <svg viewBox="0 0 24 24"><path d="M7 17l9.2-5L7 7z"/></svg></a>
+<a href="#grid" class="hero-cta" id="heroCta" onclick="filterBy('All',true)">Browse all designs <svg viewBox="0 0 24 24"><path d="M7 17l9.2-5L7 7z"/></svg></a>
 <div class="hero-counter" id="heroCounter">
 <div><strong id="hcTemplates">0</strong><span>Templates</span></div>
 <div><strong id="hcCats">0</strong><span>Categories</span></div>
@@ -177,11 +182,18 @@ img{display:block;max-width:100%}
 </section>
 
 <div class="viewer" id="viewer">
-<div class="viewer-bar">
-<div><h3 id="viewerTitle">Template</h3><span id="viewerType"></span></div>
-<button class="viewer-close" onclick="closeViewer(true)">✕ Close</button>
+<div class="viewer-topbar">
+<div class="viewer-left">
+<button class="viewer-back" onclick="closeViewer(true)">← Back</button>
+<div class="viewer-info"><h3 id="viewerTitle">Template</h3><span id="viewerType"></span></div>
 </div>
-<iframe id="viewerFrame" src=""></iframe>
+<div class="viewer-nav">
+<button onclick="viewerPrev()" title="Previous">‹</button>
+<span class="viewer-count" id="viewerCount">1 / 52</span>
+<button onclick="viewerNext()" title="Next">›</button>
+</div>
+</div>
+<iframe class="viewer-frame" id="viewerFrame" src=""></iframe>
 </div>
 
 <footer class="footer"><p>&copy; 2025 Template Portfolio. All rights reserved.</p></footer>
@@ -297,19 +309,69 @@ history.pushState({view:'grid',cat:cat},'',(url));
 }
 
 // ========== VIEWER (with history) ==========
+let viewerIndex=0;
+let viewerList=[];
+
 function openViewer(index,filter,pushState){
-const list=filter==='All'?T:T.filter(t=>t.cat===filter);
-const t=list[index];
+viewerList=filter==='All'?T:T.filter(t=>t.cat===filter);
+viewerIndex=index;
+const t=viewerList[viewerIndex];
 if(!t)return;
 viewerOpen=true;
+// Hide grid content, show viewer
+document.querySelector('.hero').style.display='none';
+document.querySelector('.filters').style.display='none';
+document.querySelector('.grid-section').style.display='none';
+document.querySelector('.footer').style.display='none';
+document.querySelector('.nav').style.display='none';
 document.getElementById('viewer').classList.add('open');
-document.getElementById('viewerTitle').textContent=t.name;
-document.getElementById('viewerType').textContent=t.type;
-document.getElementById('viewerFrame').src=t.path;
-document.body.style.overflow='hidden';
+updateViewer();
+window.scrollTo(0,0);
 if(pushState){
 history.pushState({view:'viewer',index:index,cat:filter},'',location.pathname+'?view='+encodeURIComponent(t.name));
 }
+}
+
+function updateViewer(){
+const t=viewerList[viewerIndex];
+document.getElementById('viewerTitle').textContent=t.name;
+document.getElementById('viewerType').textContent=t.type;
+const frame=document.getElementById('viewerFrame');
+frame.src=t.path;
+document.getElementById('viewerCount').textContent=(viewerIndex+1)+' / '+viewerList.length;
+// Fix anchor nav inside iframe after load
+frame.onload=function(){
+try{
+const doc=frame.contentDocument||frame.contentWindow.document;
+const links=doc.querySelectorAll('a[href^="#"]');
+links.forEach(function(a){
+a.addEventListener('click',function(e){
+const id=a.getAttribute('href');
+if(!id||id==='#')return;
+const target=doc.querySelector(id);
+if(target){
+e.preventDefault();
+e.stopPropagation();
+target.scrollIntoView({behavior:'smooth'});
+}
+});
+});
+}catch(err){}
+};
+}
+
+function viewerNext(){
+viewerIndex=(viewerIndex+1)%viewerList.length;
+updateViewer();
+const t=viewerList[viewerIndex];
+history.replaceState({view:'viewer',index:viewerIndex,cat:currentFilter},'',location.pathname+'?view='+encodeURIComponent(t.name));
+}
+
+function viewerPrev(){
+viewerIndex=(viewerIndex-1+viewerList.length)%viewerList.length;
+updateViewer();
+const t=viewerList[viewerIndex];
+history.replaceState({view:'viewer',index:viewerIndex,cat:currentFilter},'',location.pathname+'?view='+encodeURIComponent(t.name));
 }
 
 function closeViewer(pushState){
@@ -317,9 +379,13 @@ if(!viewerOpen)return;
 viewerOpen=false;
 document.getElementById('viewer').classList.remove('open');
 document.getElementById('viewerFrame').src='';
-document.body.style.overflow='';
+document.querySelector('.nav').classList.remove('nav-hidden');
+document.querySelector('.nav').style.display='';
+document.querySelector('.hero').style.display='';
+document.querySelector('.filters').style.display='';
+document.querySelector('.grid-section').style.display='';
+document.querySelector('.footer').style.display='';
 if(pushState!==false){
-// Go back to the grid state
 const url=currentFilter==='All'?location.pathname:location.pathname+'?cat='+encodeURIComponent(currentFilter);
 history.pushState({view:'grid',cat:currentFilter},'',url);
 }
@@ -334,7 +400,11 @@ if(viewerOpen){
 viewerOpen=false;
 document.getElementById('viewer').classList.remove('open');
 document.getElementById('viewerFrame').src='';
-document.body.style.overflow='';
+document.querySelector('.nav').style.display='';
+document.querySelector('.hero').style.display='';
+document.querySelector('.filters').style.display='';
+document.querySelector('.grid-section').style.display='';
+document.querySelector('.footer').style.display='';
 }
 const cat=(state&&state.cat)||getUrlCat()||'All';
 filterBy(cat,false);
