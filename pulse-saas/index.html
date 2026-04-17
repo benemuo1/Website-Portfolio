@@ -96,6 +96,25 @@ nav .cta-btn{padding:.6rem 1.5rem;background:var(--grad);border-radius:100px;col
 .cta-section a{display:inline-block;margin-top:2.5rem;padding:1rem 3rem;background:var(--grad);border-radius:14px;color:#fff;text-decoration:none;font-weight:700;font-size:1rem;position:relative;z-index:2}
 
 footer{padding:3rem 4rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;color:var(--muted);font-size:.85rem}
+
+@media(max-width:768px){
+nav{padding:.8rem 1.5rem}
+nav ul{gap:1rem}
+nav a{font-size:.7rem}
+.hero{grid-template-columns:1fr;padding:6rem 1.5rem 3rem}
+.hero-text h1{font-size:clamp(1.8rem,7vw,2.5rem)}
+.hero-btns{flex-direction:column}
+.hero-visual{display:none}
+.bento-grid{grid-template-columns:1fr}
+.bento-item.wide{grid-column:1}
+.stats{grid-template-columns:1fr 1fr;padding:3rem 1.5rem}
+.pricing-grid{flex-direction:column;align-items:stretch}
+.price-card{width:100%}
+.price-card:nth-child(1),.price-card:nth-child(3){transform:none}
+.cta-section{padding:4rem 1.5rem}
+.cta-section h2{font-size:clamp(1.5rem,6vw,2.5rem)}
+footer{padding:2rem 1.5rem;flex-direction:column;gap:.5rem;text-align:center}
+}
 </style>
 </head>
 <body>

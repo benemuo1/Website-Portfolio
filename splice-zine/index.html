@@ -50,6 +50,26 @@ nav .issue{font-family:'Space Mono',monospace;font-size:.6rem;color:#888;letter-
 .subscribe a{display:inline-block;margin-top:1.5rem;padding:.8rem 2rem;background:#e63946;color:#fff;text-decoration:none;font-family:'Archivo Black',sans-serif;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase}
 .subscribe img{width:100%;height:300px;object-fit:cover;border:2px solid #1a1a1a}
 footer{padding:2rem;border-top:3px solid #1a1a1a;display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:.55rem;color:#888;letter-spacing:.1em}
+
+@media(max-width:768px){
+nav{padding:1rem 1.5rem}
+.hero{padding:3rem 1.5rem;min-height:auto}
+.hero-title h1{font-size:clamp(2rem,8vw,3rem)}
+.hero-title p{font-size:.65rem}
+.hero{grid-template-columns:1fr;grid-template-rows:auto}
+.hero-img{height:200px}
+.collage{grid-template-columns:1fr;grid-template-rows:auto;padding:1rem 1.5rem}
+.collage-item,.collage-item:nth-child(1),.collage-item:nth-child(3){grid-row:auto;grid-column:auto}
+.articles{padding:3rem 1.5rem}
+.article-grid{grid-template-columns:1fr}
+.article-card:first-child{grid-row:auto}
+.article-card:first-child img{height:200px}
+.pull-quote{padding:2rem 1.5rem}
+.pull-quote p{font-size:clamp(1rem,4vw,1.5rem)}
+.subscribe{grid-template-columns:1fr;padding:3rem 1.5rem;gap:1.5rem}
+.subscribe img{height:200px}
+footer{padding:1.5rem;flex-direction:column;gap:.5rem;text-align:center}
+}
 </style>
 </head>
 <body>

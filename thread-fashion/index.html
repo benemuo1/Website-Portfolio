@@ -64,6 +64,25 @@ nav .bag{padding:.5rem 1.2rem;border:1px solid var(--fg);font-size:.75rem;letter
 .newsletter p{color:var(--muted);margin-bottom:2rem;font-weight:200}
 .newsletter a{padding:1rem 3rem;background:var(--fg);color:#fff;text-decoration:none;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600}
 footer{padding:3rem 4rem;border-top:1px solid #eee;display:flex;justify-content:space-between;font-size:.8rem;color:var(--muted)}
+
+@media(max-width:768px){
+nav{padding:1rem 1.5rem}
+nav ul{gap:1rem}
+nav a{font-size:.65rem}
+.hero{grid-template-columns:1fr}
+.hero-left{padding:7rem 1.5rem 2rem}
+.hero-left h1{font-size:clamp(2rem,8vw,3rem)}
+.hero-right{display:none}
+.products{padding:4rem 1.5rem}
+.product-grid{grid-template-columns:1fr}
+.lookbook{padding:4rem 1.5rem}
+.look-grid{grid-template-columns:1fr;grid-template-rows:auto}
+.look-item:nth-child(2){grid-row:auto}
+.features{margin:1rem;padding:3rem 1.5rem}
+.feat-grid{grid-template-columns:1fr}
+.newsletter{padding:3rem 1.5rem}
+footer{padding:2rem 1.5rem;flex-direction:column;gap:.5rem;text-align:center}
+}
 </style>
 </head>
 <body>

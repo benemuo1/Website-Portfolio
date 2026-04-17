@@ -41,6 +41,20 @@ nav a{color:#8a7e70;text-decoration:none;font-family:'Inter',sans-serif;font-siz
 .gallery-grid{columns:3;gap:1rem}
 .gallery-grid img{width:100%;border-radius:10px;margin-bottom:1rem;break-inside:avoid;display:block}
 footer{padding:3rem;text-align:center;font-family:'Inter',sans-serif;font-size:.75rem;color:#b8a99a;border-top:1px dashed #ddd4c8;margin-top:2rem}
+
+@media(max-width:768px){
+nav{padding:1rem 1.5rem}
+nav ul{gap:1rem}
+nav a{font-size:.65rem}
+.hero{padding:4rem 1.5rem 2rem}
+.hero h1{font-size:clamp(2rem,8vw,3rem)}
+.posts{grid-template-columns:1fr;padding:2rem 1.5rem}
+.post-img{max-height:200px}
+.quote-block{margin:2rem 1.5rem;padding:1.5rem}
+.gallery{padding:2rem 1.5rem}
+.gallery-grid{columns:2}
+footer{padding:2rem 1.5rem}
+}
 @media(max-width:768px){
 .posts{grid-template-columns:1fr}
 .gallery-grid{columns:2}

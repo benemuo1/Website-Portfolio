@@ -64,6 +64,22 @@ nav .cta{padding:.6rem 1.5rem;background:var(--orange);color:#fff;border-radius:
 .price-card .btn.outline{border:2px solid var(--orange);color:var(--orange)}
 .price-card.featured .btn{background:#fff;color:var(--orange)}
 footer{padding:3rem 4rem;text-align:center;color:#aaa;font-size:.85rem;margin-top:4rem}
+
+@media(max-width:768px){
+nav{padding:1rem 1.5rem}
+nav ul{gap:1rem}
+nav a{font-size:.7rem}
+.hero{grid-template-columns:1fr;padding:6rem 1.5rem 3rem;min-height:auto}
+.hero-text h1{font-size:clamp(2rem,8vw,3rem)}
+.hero-visual{display:none}
+.hero-text .btns{flex-direction:column}
+.srv-grid{grid-template-columns:1fr}
+.testimonials{margin:0 1rem;padding:3rem 1.5rem}
+.test-grid{grid-template-columns:1fr}
+.price-grid{flex-direction:column}
+.price-card{width:100%}
+footer{padding:2rem 1.5rem}
+}
 </style>
 </head>
 <body>

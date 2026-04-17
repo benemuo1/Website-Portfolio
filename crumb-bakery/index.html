@@ -46,6 +46,27 @@ nav a{color:var(--fg);text-decoration:none;font-size:.85rem;letter-spacing:.1em;
 .hours-grid .day{font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent)}
 .hours-grid .time{font-size:1.2rem;margin-top:.5rem}
 footer{padding:4rem;text-align:center;color:#8a7e74;font-size:.85rem;margin-top:4rem}
+
+@media(max-width:768px){
+nav{padding:1rem 1.5rem}
+nav ul{gap:1rem}
+nav a{font-size:.7rem}
+.hero{grid-template-columns:1fr;height:auto}
+.hero-left{padding:7rem 1.5rem 2rem}
+.hero-left h1{font-size:clamp(2rem,8vw,3rem)}
+.hero-right{height:300px}
+.menu{padding:4rem 1.5rem}
+.menu h2{font-size:2rem}
+.menu-grid{grid-template-columns:1fr}
+.filters{justify-content:flex-start;overflow-x:auto}
+.story{grid-template-columns:1fr;padding:4rem 1.5rem;gap:2rem}
+.story-img{height:250px}
+.story-text h2{font-size:2rem}
+.hours{margin:0 1.5rem;padding:3rem 1.5rem}
+.hours h2{font-size:1.8rem}
+.hours-grid{flex-direction:column;gap:1.5rem}
+footer{padding:2rem 1.5rem}
+}
 </style>
 </head>
 <body>

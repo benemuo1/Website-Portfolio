@@ -75,6 +75,24 @@ nav a:hover{color:var(--fg)}
 .cta p{color:var(--muted);margin-top:1rem}
 .cta a{display:inline-block;margin-top:2rem;padding:1rem 3rem;background:linear-gradient(135deg,var(--violet),var(--rose));color:#fff;text-decoration:none;font-weight:700;border-radius:10px}
 footer{padding:3rem 4rem;border-top:1px solid rgba(255,255,255,.04);display:flex;justify-content:space-between;font-size:.75rem;color:#444}
+
+@media(max-width:768px){
+nav{padding:1rem 1.5rem}
+nav ul{gap:1rem}
+nav a{font-size:.65rem}
+.hero h1{font-size:clamp(2rem,8vw,3.5rem)}
+.work{padding:4rem 1.5rem}
+.bucket-grid{grid-template-columns:1fr}
+.services{padding:4rem 1.5rem}
+.spin-grid{grid-template-columns:1fr}
+.team{padding:4rem 1.5rem}
+.team-grid{grid-template-columns:1fr}
+.testimonials{padding:4rem 1.5rem}
+.test-grid{grid-template-columns:1fr}
+.cta{padding:4rem 1.5rem}
+.cta h2{font-size:clamp(1.5rem,6vw,2.5rem)}
+footer{padding:2rem 1.5rem;flex-direction:column;gap:.5rem;text-align:center}
+}
 </style>
 </head>
 <body>

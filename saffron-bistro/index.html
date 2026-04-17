@@ -61,6 +61,26 @@ nav .reserve{padding:.6rem 1.5rem;background:var(--wine);color:#fff;border-radiu
 .reserve-section p{color:rgba(255,255,255,.6);margin-bottom:2.5rem;max-width:500px;margin-left:auto;margin-right:auto}
 .reserve-section a{padding:1rem 3rem;background:var(--saffron);color:#fff;text-decoration:none;border-radius:50px;font-weight:700;font-size:.9rem}
 footer{padding:3rem 4rem;display:flex;justify-content:space-between;font-size:.8rem;color:#8a7e70;margin-top:2rem}
+
+@media(max-width:768px){
+nav{padding:1rem 1.5rem}
+nav ul{gap:1rem}
+nav a{font-size:.65rem}
+.hero{grid-template-columns:1fr}
+.hero-left{padding:7rem 1.5rem 2rem}
+.hero-left h1{font-size:clamp(2rem,8vw,3rem)}
+.hero-right{height:300px;clip-path:none}
+.menu-section{padding:4rem 1.5rem}
+.menu-grid{grid-template-columns:1fr}
+.story{grid-template-columns:1fr;padding:4rem 1.5rem;gap:2rem}
+.story-img{height:300px;border-radius:20px}
+.ambiance{padding:4rem 1.5rem}
+.amb-grid{grid-template-columns:1fr;grid-template-rows:auto}
+.amb-item:nth-child(1){grid-row:auto}
+.reserve-section{margin:2rem 1rem;padding:3rem 1.5rem}
+.reserve-section h2{font-size:2rem}
+footer{padding:2rem 1.5rem;flex-direction:column;gap:.5rem;text-align:center}
+}
 </style>
 </head>
 <body>

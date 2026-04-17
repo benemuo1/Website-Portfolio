@@ -84,7 +84,7 @@ img{display:block;max-width:100%}
 .card:hover{border-color:rgba(234,124,50,.2);transform:translateY(-4px);box-shadow:0 20px 50px rgba(234,124,50,.08)}
 .card-img{position:relative;height:220px;overflow:hidden;background:#f5ede4;clip-path:inset(0 0 0 0 round 16px 16px 0 0)}
 .card-img iframe{width:calc(200% + 20px);height:200%;border:none;transform:scale(.5);transform-origin:top left;pointer-events:none}
-.card-img .overlay{position:absolute;inset:0;background:linear-gradient(to top,#fff 0%,transparent 15%);z-index:2;pointer-events:none}
+.card-img .overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(255,255,255,.5) 0%,transparent 10%);z-index:2;pointer-events:none}
 .card-body{padding:1.25rem;position:relative;z-index:3}
 .card-cat{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:#e85d26;font-weight:600;margin-bottom:.5rem}
 .card-title{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:600;margin-bottom:.35rem;color:#2d2520}
@@ -99,8 +99,8 @@ img{display:block;max-width:100%}
 .viewer.open{display:block}
 .viewer-topbar{display:flex;align-items:center;justify-content:space-between;padding:.6rem 2rem;background:#fff;border-bottom:1px solid rgba(0,0,0,.07);position:sticky;top:0;z-index:80}
 .viewer-left{display:flex;align-items:center;gap:1rem}
-.viewer-back{display:flex;align-items:center;gap:.4rem;background:none;border:1px solid rgba(0,0,0,.1);color:#6a5a4a;padding:.35rem .9rem;border-radius:8px;font-size:.7rem;cursor:pointer;font-family:inherit;transition:all .3s;letter-spacing:.03em}
-.viewer-back:hover{background:rgba(0,0,0,.04);color:#2d2520}
+.viewer-back{display:flex;align-items:center;gap:.4rem;background:none;border:1px solid rgba(234,124,50,.25);color:#e85d26;padding:.35rem .9rem;border-radius:8px;font-size:.7rem;cursor:pointer;font-family:inherit;transition:all .3s;letter-spacing:.03em}
+.viewer-back:hover{background:rgba(234,124,50,.12);border-color:rgba(234,124,50,.4);color:#c45a20}
 .viewer-info h3{font-family:'Space Grotesk',sans-serif;font-size:.85rem;font-weight:600;color:#2d2520}
 .viewer-info span{font-size:.65rem;color:#a09080}
 .viewer-nav{display:flex;align-items:center;gap:.5rem}
@@ -144,7 +144,7 @@ img{display:block;max-width:100%}
 <span class="line"><span class="line-inner dim">I build experiences.</span></span>
 </h1>
 <p class="hero-tagline" id="heroTagline">Every template below is a real, working site — animated, responsive, and ready to become yours</p>
-<a href="#grid" class="hero-cta" id="heroCta" onclick="filterBy('All',true)">Browse all designs <svg viewBox="0 0 24 24"><path d="M7 17l9.2-5L7 7z"/></svg></a>
+<a href="#grid" class="hero-cta" id="heroCta" onclick="filterBy('All',true)">Browse all designs <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
 <div class="hero-counter" id="heroCounter">
 <div><strong id="hcTemplates">0</strong><span>Templates</span></div>
 <div><strong id="hcCats">0</strong><span>Categories</span></div>
@@ -354,6 +354,15 @@ document.getElementById('viewerCount').textContent=(viewerIndex+1)+' / '+viewerL
 frame.onload=function(){
 try{
 const doc=frame.contentDocument||frame.contentWindow.document;
+// Tame scroll speed — disable smooth scroll inside iframe
+doc.documentElement.style.scrollBehavior='auto';
+// Dampen scroll speed for trackpads
+doc.addEventListener('wheel',function(ev){
+if(Math.abs(ev.deltaY)>50){
+ev.preventDefault();
+doc.documentElement.scrollTop+=ev.deltaY*0.35;
+}
+},{passive:false});
 const links=doc.querySelectorAll('a[href^="#"]');
 links.forEach(function(a){
 a.addEventListener('click',function(e){

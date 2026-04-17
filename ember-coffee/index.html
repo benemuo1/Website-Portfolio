@@ -51,6 +51,22 @@ nav a{color:var(--fg);text-decoration:none;font-size:.8rem;letter-spacing:.15em;
 .visit-text .hours div{display:flex;justify-content:space-between;padding:.5rem 0;font-size:.9rem}
 .visit-text .hours span:last-child{color:var(--brown)}
 footer{padding:3rem 4rem;border-top:1px solid #2a2520;display:flex;justify-content:space-between;font-size:.8rem;color:#5a5040;margin-top:4rem}
+
+@media(max-width:768px){
+nav{padding:1rem 1.5rem}
+nav ul{gap:1rem}
+nav a{font-size:.65rem}
+.hero-content h1{font-size:clamp(2rem,8vw,3rem)}
+.beans{padding:4rem 1.5rem}
+.beans h2{font-size:2rem}
+.process{margin:0 1rem;padding:3rem 1.5rem}
+.process h2{font-size:2rem}
+.process-grid{grid-template-columns:1fr 1fr}
+.visit{grid-template-columns:1fr;padding:4rem 1.5rem;gap:2rem}
+.visit-img{height:250px}
+.visit-text h2{font-size:1.8rem}
+footer{padding:2rem 1.5rem;flex-direction:column;gap:.5rem;text-align:center}
+}
 </style>
 </head>
 <body>

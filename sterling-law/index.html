@@ -52,6 +52,31 @@ nav a{color:var(--fg);text-decoration:none;font-size:.8rem;letter-spacing:.12em;
 .contact a{padding:1rem 3rem;border:1px solid var(--accent);color:var(--accent);text-decoration:none;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;transition:all .3s}
 .contact a:hover{background:var(--accent);color:#fff}
 footer{padding:3rem 5rem;border-top:1px solid #eee;display:flex;justify-content:space-between;font-size:.8rem;color:var(--muted)}
+
+@media(max-width:768px){
+nav{padding:1rem 1.5rem}
+nav ul{gap:1rem}
+nav a{font-size:.65rem}
+nav .logo{font-size:1rem}
+.hero{padding:0 1.5rem}
+.hero::after{width:100%;opacity:.15}
+.hero-content h1{font-size:clamp(1.8rem,6vw,2.5rem)}
+.practices{padding:4rem 1.5rem}
+.practices h2{font-size:1.8rem;margin-bottom:2rem}
+.practice-row{grid-template-columns:40px 1fr}
+.practice-row p,.practice-row .arrow{display:none}
+.results{padding:4rem 1.5rem}
+.results h2{font-size:1.8rem;margin-bottom:2rem}
+.results-grid{grid-template-columns:1fr 1fr;gap:1.5rem}
+.result-item h3{font-size:2rem}
+.team{padding:4rem 1.5rem}
+.team h2{font-size:1.8rem;margin-bottom:2rem}
+.team-grid{grid-template-columns:1fr}
+.team-card img{height:280px}
+.contact{padding:4rem 1.5rem}
+.contact h2{font-size:2rem}
+footer{padding:2rem 1.5rem;flex-direction:column;gap:.5rem;text-align:center}
+}
 </style>
 </head>
 <body>

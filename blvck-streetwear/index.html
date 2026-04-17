@@ -40,6 +40,21 @@ nav ul{display:flex;gap:2rem;list-style:none}
 .look-img:hover img{filter:grayscale(0%)}
 .look-img .num{position:absolute;bottom:1rem;right:1rem;font-family:'Oswald',sans-serif;font-size:3rem;color:rgba(255,255,255,.1)}
 footer{padding:2rem 3rem;display:flex;justify-content:space-between;font-size:.6rem;letter-spacing:.15em;color:#888;border-top:1px solid #222}
+
+@media(max-width:768px){
+nav{padding:1rem 1.5rem}
+nav ul{display:none}
+.hero h1{font-size:clamp(3rem,12vw,6rem)}
+.drops{padding:4rem 1.5rem}
+.drop-grid{grid-template-columns:1fr}
+.drop-item{height:350px}
+.manifesto{padding:4rem 1.5rem}
+.manifesto h2{font-size:clamp(1.5rem,5vw,2.5rem)}
+.lookbook{padding:4rem 1.5rem}
+.look-row{flex-direction:column;height:auto}
+.look-img{height:250px}
+footer{padding:1.5rem;flex-direction:column;gap:.5rem;text-align:center}
+}
 </style>
 </head>
 <body>

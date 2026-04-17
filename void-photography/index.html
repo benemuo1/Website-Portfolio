@@ -20,6 +20,17 @@ body{background:#000;color:#fff;font-family:'Inter',sans-serif;overflow-x:hidden
 nav{position:fixed;top:0;width:100%;padding:1.5rem 3rem;display:flex;justify-content:space-between;align-items:center;z-index:100;mix-blend-mode:difference}
 nav .logo{font-family:'Space Mono',monospace;font-size:.9rem;letter-spacing:.3em}
 nav span{font-family:'Space Mono',monospace;font-size:.65rem;color:rgba(255,255,255,.4);letter-spacing:.2em}
+
+@media(max-width:768px){
+nav{padding:1rem 1.5rem}
+nav .logo{font-size:.7rem;letter-spacing:.15em}
+nav span{font-size:.5rem}
+.panel .caption{left:1.5rem;bottom:4vh}
+.panel .caption h2{font-size:clamp(1.5rem,6vw,2.5rem)}
+.panel .caption p{font-size:.75rem}
+.panel .meta{right:1.5rem;bottom:4vh}
+.panel .meta span{font-size:.55rem}
+}
 </style>
 </head>
 <body>

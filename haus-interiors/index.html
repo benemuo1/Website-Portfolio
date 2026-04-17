@@ -27,6 +27,16 @@ nav a{color:var(--fg);text-decoration:none;font-size:.8rem;letter-spacing:.12em;
 .progress .dot{width:8px;height:8px;border-radius:50%;border:1px solid var(--accent);cursor:pointer;transition:all .3s}
 .progress .dot.active{background:var(--accent);transform:scale(1.3)}
 .scroll-hint{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);z-index:100}
+
+@media(max-width:768px){
+nav{padding:1rem 1.5rem}
+nav ul{gap:1rem}
+nav a{font-size:.65rem}
+.section .content{padding:0 1.5rem}
+.section h1,.section h2{font-size:clamp(1.8rem,7vw,2.5rem)}
+.section .img-panel{width:100%;height:40vh;position:relative}
+.section .btn{padding:.8rem 1.5rem;font-size:.7rem}
+}
 </style>
 </head>
 <body>

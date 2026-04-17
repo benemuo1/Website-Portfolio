@@ -53,6 +53,23 @@ nav .connect:hover{background:var(--green);color:var(--bg)}
 .cta .btn{display:inline-block;margin-top:2rem;padding:1rem 3rem;background:var(--green);color:var(--bg);text-decoration:none;font-weight:700;font-size:.9rem;border-radius:12px;transition:box-shadow .3s}
 .cta .btn:hover{box-shadow:0 0 30px rgba(0,255,157,.3)}
 footer{padding:3rem 4rem;border-top:1px solid rgba(255,255,255,.05);display:flex;justify-content:space-between;font-size:.75rem;color:#444;position:relative;z-index:1}
+
+@media(max-width:768px){
+nav{padding:1rem 1.5rem}
+nav ul{gap:1rem}
+nav a{font-size:.65rem}
+.hero h1{font-size:clamp(2rem,8vw,3.5rem)}
+.hero .stats-row{flex-direction:column;gap:1rem}
+.features{padding:4rem 1.5rem}
+.feat-grid{grid-template-columns:1fr}
+.ticker-inner{font-size:.7rem}
+.how{padding:4rem 1.5rem}
+.steps{grid-template-columns:1fr}
+.step::after{display:none}
+.cta{padding:4rem 1.5rem}
+.cta h2{font-size:clamp(1.5rem,6vw,2.5rem)}
+footer{padding:2rem 1.5rem;flex-direction:column;gap:.5rem;text-align:center}
+}
 </style>
 </head>
 <body>

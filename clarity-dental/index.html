@@ -57,6 +57,26 @@ nav .cta{padding:.6rem 1.5rem;background:var(--blue);color:#fff;border-radius:8p
 .cta-section p{color:#6b7b8d;margin-bottom:2rem}
 .cta-section a{padding:1rem 3rem;background:var(--blue);color:#fff;text-decoration:none;border-radius:12px;font-weight:700;font-size:.95rem}
 footer{padding:3rem 4rem;border-top:1px solid #e8edf5;display:flex;justify-content:space-between;font-size:.8rem;color:#9aa5b4}
+
+@media(max-width:768px){
+nav{padding:1rem 1.5rem}
+nav ul{gap:1rem}
+nav a{font-size:.7rem}
+.hero{grid-template-columns:1fr;padding:6rem 1.5rem 3rem;min-height:auto}
+.hero-text h1{font-size:clamp(1.8rem,7vw,2.5rem)}
+.hero-visual img{display:none}
+.hero-text .btns{flex-direction:column}
+.hero-text .trust-bar{flex-wrap:wrap;gap:1rem}
+.services{padding:4rem 1.5rem}
+.srv-grid{grid-template-columns:1fr}
+.process{margin:0 1rem;padding:3rem 1.5rem}
+.process-line::before{display:none}
+.process-line{flex-direction:column;gap:2rem}
+.reviews{padding:4rem 1.5rem}
+.rev-grid{grid-template-columns:1fr}
+.cta-section{padding:4rem 1.5rem}
+footer{padding:2rem 1.5rem;flex-direction:column;gap:.5rem;text-align:center}
+}
 </style>
 </head>
 <body>

@@ -81,6 +81,27 @@ nav a{color:var(--fg);text-decoration:none;font-size:.75rem;letter-spacing:.2em;
 .contact a{padding:1rem 3rem;border:1px solid var(--accent);color:var(--accent);text-decoration:none;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;transition:all .3s}
 .contact a:hover{background:var(--accent);color:var(--bg)}
 footer{padding:3rem 4rem;display:flex;justify-content:space-between;font-size:.75rem;color:var(--muted)}
+
+@media(max-width:768px){
+nav{padding:1rem 1.5rem}
+nav ul{gap:1rem}
+nav a{font-size:.65rem}
+.hero-content h1{font-size:clamp(2rem,8vw,3.5rem)}
+.projects{padding:4rem 1.5rem}
+.proj-grid{grid-template-columns:1fr;grid-template-rows:auto}
+.proj-item:nth-child(1){grid-row:auto}
+.services{padding:4rem 1.5rem}
+.srv-grid{grid-template-columns:1fr}
+.awards{padding:4rem 1.5rem}
+.award-grid{grid-template-columns:1fr}
+.stats{grid-template-columns:1fr 1fr;padding:3rem 1.5rem}
+.team{padding:4rem 1.5rem}
+.team-grid{grid-template-columns:1fr}
+.team-item{height:300px}
+.contact{padding:4rem 1.5rem}
+.contact h2{font-size:clamp(2rem,8vw,3rem)}
+footer{padding:2rem 1.5rem;flex-direction:column;gap:.5rem;text-align:center}
+}
 </style>
 </head>
 <body>
