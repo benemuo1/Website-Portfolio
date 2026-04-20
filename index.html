@@ -4,8 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Template Portfolio — Web Design Showcase</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" async onload="window.gsapReady=true;document.dispatchEvent(new Event('gsapLoaded'))"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:140px}
@@ -18,8 +20,9 @@ img{display:block;max-width:100%}
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 2rem;height:52px;background:rgba(255,255,255,.85);backdrop-filter:blur(24px);border-bottom:1px solid rgba(0,0,0,.06);display:flex;align-items:center;justify-content:center;transition:transform .3s ease}
 .nav.nav-hidden{transform:translateY(-100%)}
 .nav-brand{font-size:1rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:#6a5a4a}
-
-.nav-count{position:absolute;right:2rem;font-size:.65rem;color:#b8a898;letter-spacing:.1em;background:rgba(0,0,0,.03);padding:.3rem .8rem;border-radius:50px;border:1px solid rgba(0,0,0,.06)}
+.nav-contact{color: white; position:absolute;right:2rem;font-size:.65rem;background-color:#f9a85c;letter-spacing:.1em;padding:.3rem .8rem;border-radius:50px;border:1px solid rgba(0,0,0,.06)}
+.nav-ContactMessage{position:absolute;right:calc(2rem + 85px);font-family:'Inter',sans-serif;font-size:.65rem;color:#6a5a4a;letter-spacing:.05em;white-space:nowrap;transform:translateY(-1px) translateX(-10%);}
+.nav-contact button{background:none;border:none;color:inherit;font:inherit;cursor:pointer;padding:0}
 
 /* HERO */
 .hero{padding:0;position:relative;overflow:hidden;min-height:85vh;display:grid;grid-template-columns:1.1fr 1fr;background:linear-gradient(170deg,#fff8f2 0%,#fef0e4 40%,#fde8d4 100%)}
@@ -31,7 +34,7 @@ img{display:block;max-width:100%}
 .hero-scroll-col-2{left:50%;width:50%;padding-left:4px;--dur:48s;animation-direction:reverse}
 @keyframes heroScroll{0%{transform:translateY(0)}100%{transform:translateY(-50%)}}
 .hero-thumb{overflow:hidden;position:relative;border-radius:10px;flex-shrink:0;height:220px}
-.hero-thumb iframe{width:300%;height:300%;border:none;transform:scale(.333);transform-origin:top left;pointer-events:none}
+.hero-thumb img{width:100%;height:100%;object-fit:cover;object-position:top}
 .hero-thumb::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(232,93,38,.06),rgba(244,160,62,.04));pointer-events:none;transition:opacity .3s}
 .hero-thumb:hover::after{opacity:0}
 .hero-accent-line{position:absolute;top:0;left:0;width:4px;height:0;background:linear-gradient(to bottom,#e85d26,#f4a03e,transparent);z-index:4;border-radius:2px}
@@ -52,9 +55,6 @@ img{display:block;max-width:100%}
 .hero-cta{display:inline-flex;align-items:center;gap:.6rem;margin-top:2rem;padding:.8rem 2rem;background:#e85d26;color:#fff;border-radius:50px;font-size:.8rem;font-weight:600;letter-spacing:.05em;opacity:0;transform:translateY(20px);transition:background .3s;box-shadow:0 8px 30px rgba(232,93,38,.2)}
 .hero-cta:hover{background:#d4511e}
 .hero-cta svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.hero-counter{display:flex;gap:2.5rem;margin-top:2.5rem;opacity:0}
-.hero-counter div strong{display:block;font-family:'Space Grotesk',sans-serif;font-size:1.8rem;font-weight:700;color:#e85d26}
-.hero-counter div span{font-size:.65rem;color:#b8a898;letter-spacing:.1em;text-transform:uppercase}
 
 /* FILTERS */
 .filters{padding:0 2rem;margin-bottom:2rem;position:sticky;top:52px;z-index:90;background:rgba(250,246,241,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,.05);padding-top:1rem;padding-bottom:1rem}
@@ -82,8 +82,8 @@ img{display:block;max-width:100%}
 /* CARD */
 .card{position:relative;border-radius:16px;overflow:hidden;border:1px solid rgba(0,0,0,.06);background:#fff;transition:all .4s;cursor:pointer;box-shadow:0 2px 12px rgba(0,0,0,.04)}
 .card:hover{border-color:rgba(234,124,50,.2);transform:translateY(-4px);box-shadow:0 20px 50px rgba(234,124,50,.08)}
-.card-img{position:relative;height:220px;overflow:hidden;background:#f5ede4;clip-path:inset(0 0 0 0 round 16px 16px 0 0)}
-.card-img iframe{width:calc(200% + 20px);height:200%;border:none;transform:scale(.5);transform-origin:top left;pointer-events:none}
+.card-img{position:relative;overflow:hidden;background:#f5ede4;clip-path:inset(0 0 0 0 round 16px 16px 0 0)}
+.card-img img{width:100%;display:block}
 .card-img .overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(255,255,255,.5) 0%,transparent 10%);z-index:2;pointer-events:none}
 .card-body{padding:1.25rem;position:relative;z-index:3}
 .card-cat{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:#e85d26;font-weight:600;margin-bottom:.5rem}
@@ -110,6 +110,16 @@ img{display:block;max-width:100%}
 .viewer-frame{width:100%;height:calc(100vh - 45px);border:none;display:block;margin-top:0}
 
 /* FOOTER */
+.contact-section{padding:4rem 2rem;background:linear-gradient(170deg,#fef0e4,#fde8d4);text-align:center}
+.contact-section h2{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.8rem,4vw,2.5rem);font-weight:700;color:#2d2520;margin-bottom:.5rem}
+.contact-section p{color:#a09080;font-size:.85rem;margin-bottom:2rem}
+.contact-form{max-width:500px;margin:0 auto;display:flex;flex-direction:column;gap:.8rem}
+.contact-form input,.contact-form textarea{padding:.8rem 1rem;border:1px solid rgba(0,0,0,.08);border-radius:10px;font-family:inherit;font-size:.85rem;color:#2d2520;background:#fff;outline:none;transition:border-color .3s;resize:none}
+.contact-form input:focus,.contact-form textarea:focus{border-color:#e85d26}
+.contact-form input::placeholder,.contact-form textarea::placeholder{color:#c8b8a8}
+.contact-form button{padding:.8rem;background:#e85d26;color:#fff;border:none;border-radius:50px;font-family:inherit;font-size:.8rem;font-weight:600;letter-spacing:.05em;cursor:pointer;transition:background .3s}
+.contact-form button:hover{background:#d4511e}
+.contact-sent{display:none;color:#e85d26;font-size:.85rem;font-weight:600;margin-top:.5rem}
 .footer{padding:3rem 2rem;border-top:1px solid rgba(0,0,0,.06);text-align:center;background:#faf6f1}
 .footer p{font-size:.75rem;color:#c8b8a8}
 
@@ -126,7 +136,8 @@ img{display:block;max-width:100%}
 
 <nav class="nav">
 <div class="nav-brand">Bianca Enemuo</div>
-<div class="nav-count" id="countLabel">50+ designs</div>
+<div class="nav-ContactMessage" id="nav-ContactMessage"> Want to learn more? </div>
+<div class="nav-contact" id="nav-contact"><a href="#contact" style="color:inherit;text-decoration:none">Contact Me</a></div>
 </nav>
 
 <section class="hero">
@@ -145,10 +156,7 @@ img{display:block;max-width:100%}
 </h1>
 <p class="hero-tagline" id="heroTagline">Every template below is a real, working site — animated, responsive, and ready to become yours</p>
 <a href="#grid" class="hero-cta" id="heroCta" onclick="filterBy('All',true)">Browse all designs <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-<div class="hero-counter" id="heroCounter">
-<div><strong id="hcTemplates">0</strong><span>Templates</span></div>
-<div><strong id="hcCats">0</strong><span>Categories</span></div>
-<div><strong>100%</strong><span>Responsive</span></div>
+
 </div>
 </div>
 <div class="hero-right">
@@ -196,65 +204,76 @@ img{display:block;max-width:100%}
 <iframe class="viewer-frame" id="viewerFrame" src=""></iframe>
 </div>
 
-<footer class="footer"><p>&copy; 2025 Template Portfolio. All rights reserved.</p></footer>
+<section class="contact-section" id="contact">
+<h2>Let's work together</h2>
+<p>Have a project in mind? I'd love to hear about it.</p>
+<form class="contact-form" id="contactForm" onsubmit="event.preventDefault();var n=this.querySelector('[name=name]').value;var e=this.querySelector('[name=email]').value;var m=this.querySelector('[name=message]').value;window.location.href='mailto:bianca@biancaenemuo.com?subject=Portfolio Inquiry from '+encodeURIComponent(n)+'&body='+encodeURIComponent('Name: '+n+'\nEmail: '+e+'\n\n'+m);this.querySelector('button').textContent='Opening email...';setTimeout(()=>{this.querySelector('button').textContent='Send Message'},3000)">
+<input type="text" name="name" placeholder="Your name" required>
+<input type="email" name="email" placeholder="Email" required>
+<textarea rows="4" name="message" placeholder="Tell me about your project..." required></textarea>
+<button type="submit">Send Message</button>
+</form>
+</section>
+
+<footer class="footer"><p>&copy; 2025 Bianca Enemuo. All rights reserved.</p></footer>
 
 <script>
 const T=[
 // GSAP SITES
-{name:'VOXEL',type:'Creative Agency',cat:'Agency',path:'./voxel-agency/index.html',tags:['Dark','Custom Cursor'],premium:true},
-{name:'MONOLITH',type:'Architecture Studio',cat:'Architecture',path:'./monolith-architecture/index.html',tags:['Horizontal Scroll','Elegant'],premium:true},
-{name:'PULSE',type:'Analytics Platform',cat:'SaaS',path:'./pulse-saas/index.html',tags:['Dark','Glassmorphism'],premium:true},
-{name:'ATELIER',type:'Fashion House',cat:'Fashion',path:'./atelier-fashion/index.html',tags:['Luxury','Parallax'],premium:true},
-{name:'RESONANCE',type:'Music Festival',cat:'Events',path:'./resonance-festival/index.html',tags:['Neon','Countdown'],premium:true},
-{name:'CRUMB',type:'Artisan Bakery',cat:'Food & Drink',path:'./crumb-bakery/index.html',tags:['Flip','Warm'],premium:true},
-{name:'STERLING',type:'Law Firm',cat:'Professional',path:'./sterling-law/index.html',tags:['Typewriter','Corporate'],premium:true},
-{name:'FORGE',type:'Performance Gym',cat:'Fitness',path:'./forge-gym/index.html',tags:['MotionPath','Bold'],premium:true},
-{name:'DOMAINE',type:'Estate Winery',cat:'Food & Drink',path:'./domaine-winery/index.html',tags:['SVG Draw','Luxury'],premium:true},
-{name:'AETHER',type:'Space Tourism',cat:'SaaS',path:'./aether-space/index.html',tags:['Rocket','Sci-Fi'],premium:true},
-{name:'HAUS',type:'Interior Design',cat:'Architecture',path:'./haus-interiors/index.html',tags:['Observer','Full-Screen'],premium:true},
-{name:'PAWSOME',type:'Pet Care',cat:'Services',path:'./pawsome-petcare/index.html',tags:['Playful','Colorful'],premium:true},
-{name:'NEXUS',type:'DeFi Protocol',cat:'SaaS',path:'./nexus-defi/index.html',tags:['Crypto','Grid BG'],premium:true},
-{name:'EMBER',type:'Specialty Coffee',cat:'Food & Drink',path:'./ember-coffee/index.html',tags:['Draggable','Moody'],premium:true},
-{name:'LUMEN',type:'Photography',cat:'Portfolio',path:'./lumen-photography/index.html',tags:['ScrollTo','Masonry'],premium:true},
-{name:'CLARITY',type:'Dental Studio',cat:'Healthcare',path:'./clarity-dental/index.html',tags:['Clean','Medical'],premium:true},
-{name:'HAVEN',type:'Luxury Real Estate',cat:'Real Estate',path:'./haven-realestate/index.html',tags:['Parallax','Gold'],premium:true},
-{name:'SAFFRON',type:'Modern Bistro',cat:'Food & Drink',path:'./saffron-bistro/index.html',tags:['Clip-Path','Warm'],premium:true},
-{name:'ĀSANA',type:'Yoga & Wellness',cat:'Wellness',path:'./asana-yoga/index.html',tags:['Breathing','Serene'],premium:true},
-{name:'PIXEL FORGE',type:'Game Studio',cat:'Entertainment',path:'./pixelforge-games/index.html',tags:['Retro','Neon'],premium:true},
-{name:'DRIFT',type:'Travel Collective',cat:'Travel',path:'./drift-travel/index.html',tags:['3D Spin','Cards'],premium:true},
-{name:'NOVA',type:'Creative Studio',cat:'Agency',path:'./nova-studio/index.html',tags:['Drop-In','Spin'],premium:true},
-{name:'THREAD',type:'Modern Fashion',cat:'Fashion',path:'./thread-fashion/index.html',tags:['E-Commerce','Minimal'],premium:true},
-{name:'FORM',type:'Architecture & Design',cat:'Architecture',path:'./form-architecture/index.html',tags:['Hybrid','Drop-In'],premium:true},
-{name:'Margot\'s Journal',type:'Personal Blog',cat:'Blog',path:'./margot-blog/index.html',tags:['matchMedia','Handwritten'],premium:true},
-{name:'VOID',type:'Photography',cat:'Portfolio',path:'./void-photography/index.html',tags:['Snap Scroll','Cinematic'],premium:true},
-{name:'ZEPHYR',type:'Music Artist',cat:'Entertainment',path:'./zephyr-music/index.html',tags:['quickTo','Neon'],premium:true},
-{name:'Sage & Spoon',type:'Recipe Blog',cat:'Food & Drink',path:'./sage-recipes/index.html',tags:['Batch','Masonry'],premium:true},
-{name:'RAW',type:'Design Portfolio',cat:'Portfolio',path:'./raw-portfolio/index.html',tags:['registerEffect','Brutalist'],premium:true},
-{name:'Sparks!',type:'Kids Learning',cat:'Education',path:'./sparks-kids/index.html',tags:['Random','Colorful'],premium:true},
-{name:'KAEL',type:'Film Director',cat:'Portfolio',path:'./kael-director/index.html',tags:['containerAnimation','Cinema'],premium:true},
-{name:'RELIC',type:'Vintage Shop',cat:'E-Commerce',path:'./relic-vintage/index.html',tags:['Skew','Sepia'],premium:true},
-{name:'Ink & Silence',type:'Poetry Journal',cat:'Blog',path:'./ink-poetry/index.html',tags:['distribute','Minimal'],premium:true},
-{name:'BLVCK',type:'Streetwear',cat:'Fashion',path:'./blvck-streetwear/index.html',tags:['toggleClass','Clip-Path'],premium:true},
-{name:'KILN',type:'Ceramics Studio',cat:'E-Commerce',path:'./kiln-ceramics/index.html',tags:['Blob Morph','Organic'],premium:true},
-{name:'Wanderlog',type:'Travel Journal',cat:'Travel',path:'./wanderlog-travel/index.html',tags:['Draggable','Polaroid'],premium:true},
-{name:'CANVAS',type:'Art Gallery',cat:'Portfolio',path:'./canvas-gallery/index.html',tags:['Progress','Horizontal'],premium:true},
-{name:'GRIND',type:'Skate Shop',cat:'E-Commerce',path:'./grind-skate/index.html',tags:['RoughEase','Skew'],premium:true},
-{name:'CELESTIA',type:'Astrology',cat:'Entertainment',path:'./celestia-astrology/index.html',tags:['SVG Draw','Mystical'],premium:true},
-{name:'SPLICE',type:'Digital Zine',cat:'Blog',path:'./splice-zine/index.html',tags:['Keyframes','Editorial'],premium:true},
+{name:'VOXEL',type:'Creative Agency',cat:'Agency',path:'./voxel-agency/index.html',thumb:'./Screenshots/voxel.png',tags:['Dark','Custom Cursor'],premium:true},
+{name:'MONOLITH',type:'Architecture Studio',cat:'Architecture',path:'./monolith-architecture/index.html',thumb:'./Screenshots/monolith.png',tags:['Horizontal Scroll','Elegant'],premium:true},
+{name:'PULSE',type:'Analytics Platform',cat:'SaaS',path:'./pulse-saas/index.html',thumb:'./Screenshots/pulse.png',tags:['Dark','Glassmorphism'],premium:true},
+{name:'ATELIER',type:'Fashion House',cat:'Fashion',path:'./atelier-fashion/index.html',thumb:'./Screenshots/atelier.png',tags:['Luxury','Parallax'],premium:true},
+{name:'RESONANCE',type:'Music Festival',cat:'Events',path:'./resonance-festival/index.html',thumb:'./Screenshots/resonance.png',tags:['Neon','Countdown'],premium:true},
+{name:'CRUMB',type:'Artisan Bakery',cat:'Food & Drink',path:'./crumb-bakery/index.html',thumb:'./Screenshots/crumb.png',tags:['Flip','Warm'],premium:true},
+{name:'STERLING',type:'Law Firm',cat:'Professional',path:'./sterling-law/index.html',thumb:'./Screenshots/sterling.png',tags:['Typewriter','Corporate'],premium:true},
+{name:'FORGE',type:'Performance Gym',cat:'Fitness',path:'./forge-gym/index.html',thumb:'./Screenshots/forge.png',tags:['MotionPath','Bold'],premium:true},
+{name:'DOMAINE',type:'Estate Winery',cat:'Food & Drink',path:'./domaine-winery/index.html',thumb:'./Screenshots/domaine.png',tags:['SVG Draw','Luxury'],premium:true},
+{name:'AETHER',type:'Space Tourism',cat:'SaaS',path:'./aether-space/index.html',thumb:'./Screenshots/aether.jpg',tags:['Rocket','Sci-Fi'],premium:true},
+{name:'HAUS',type:'Interior Design',cat:'Architecture',path:'./haus-interiors/index.html',thumb:'./Screenshots/haus.png',tags:['Observer','Full-Screen'],premium:true},
+{name:'PAWSOME',type:'Pet Care',cat:'Services',path:'./pawsome-petcare/index.html',thumb:'./Screenshots/pawsome.png',tags:['Playful','Colorful'],premium:true},
+{name:'NEXUS',type:'DeFi Protocol',cat:'SaaS',path:'./nexus-defi/index.html',thumb:'./Screenshots/nexus.png',tags:['Crypto','Grid BG'],premium:true},
+{name:'EMBER',type:'Specialty Coffee',cat:'Food & Drink',path:'./ember-coffee/index.html',thumb:'./Screenshots/ember.png',tags:['Draggable','Moody'],premium:true},
+{name:'LUMEN',type:'Photography',cat:'Portfolio',path:'./lumen-photography/index.html',thumb:'./Screenshots/lumen.png',tags:['ScrollTo','Masonry'],premium:true},
+{name:'CLARITY',type:'Dental Studio',cat:'Healthcare',path:'./clarity-dental/index.html',thumb:'./Screenshots/clarity.png',tags:['Clean','Medical'],premium:true},
+{name:'HAVEN',type:'Luxury Real Estate',cat:'Real Estate',path:'./haven-realestate/index.html',thumb:'./Screenshots/haven.png',tags:['Parallax','Gold'],premium:true},
+{name:'SAFFRON',type:'Modern Bistro',cat:'Food & Drink',path:'./saffron-bistro/index.html',thumb:'./Screenshots/saffron.png',tags:['Clip-Path','Warm'],premium:true},
+{name:'ĀSANA',type:'Yoga & Wellness',cat:'Wellness',path:'./asana-yoga/index.html',thumb:'./Screenshots/asana.png',tags:['Breathing','Serene'],premium:true},
+{name:'PIXEL FORGE',type:'Game Studio',cat:'Entertainment',path:'./pixelforge-games/index.html',thumb:'./Screenshots/pixel forge.png',tags:['Retro','Neon'],premium:true},
+{name:'DRIFT',type:'Travel Collective',cat:'Travel',path:'./drift-travel/index.html',thumb:'./Screenshots/drift.png',tags:['3D Spin','Cards'],premium:true},
+{name:'NOVA',type:'Creative Studio',cat:'Agency',path:'./nova-studio/index.html',thumb:'./Screenshots/nova.png',tags:['Drop-In','Spin'],premium:true},
+{name:'THREAD',type:'Modern Fashion',cat:'Fashion',path:'./thread-fashion/index.html',thumb:'./Screenshots/thread.png',tags:['E-Commerce','Minimal'],premium:true},
+{name:'FORM',type:'Architecture & Design',cat:'Architecture',path:'./form-architecture/index.html',thumb:'./Screenshots/Form.png',tags:['Hybrid','Drop-In'],premium:true},
+{name:'Margot\'s Journal',type:'Personal Blog',cat:'Blog',path:'./margot-blog/index.html',thumb:'./Screenshots/margot.png',tags:['matchMedia','Handwritten'],premium:true},
+{name:'VOID',type:'Photography',cat:'Portfolio',path:'./void-photography/index.html',thumb:'./Screenshots/void.png',tags:['Snap Scroll','Cinematic'],premium:true},
+{name:'ZEPHYR',type:'Music Artist',cat:'Entertainment',path:'./zephyr-music/index.html',thumb:'./Screenshots/zephyr.png',tags:['quickTo','Neon'],premium:true},
+{name:'Sage & Spoon',type:'Recipe Blog',cat:'Food & Drink',path:'./sage-recipes/index.html',thumb:'./Screenshots/sage.png',tags:['Batch','Masonry'],premium:true},
+{name:'RAW',type:'Design Portfolio',cat:'Portfolio',path:'./raw-portfolio/index.html',thumb:'./Screenshots/raw.png',tags:['registerEffect','Brutalist'],premium:true},
+{name:'Sparks!',type:'Kids Learning',cat:'Education',path:'./sparks-kids/index.html',thumb:'./Screenshots/sparks.png',tags:['Random','Colorful'],premium:true},
+{name:'KAEL',type:'Film Director',cat:'Portfolio',path:'./kael-director/index.html',thumb:'./Screenshots/kael.png',tags:['containerAnimation','Cinema'],premium:true},
+{name:'RELIC',type:'Vintage Shop',cat:'E-Commerce',path:'./relic-vintage/index.html',thumb:'./Screenshots/relic.png',tags:['Skew','Sepia'],premium:true},
+{name:'Ink & Silence',type:'Poetry Journal',cat:'Blog',path:'./ink-poetry/index.html',thumb:'./Screenshots/ink and silence.png',tags:['distribute','Minimal'],premium:true},
+{name:'BLVCK',type:'Streetwear',cat:'Fashion',path:'./blvck-streetwear/index.html',thumb:'./Screenshots/blvk.png',tags:['toggleClass','Clip-Path'],premium:true},
+{name:'KILN',type:'Ceramics Studio',cat:'E-Commerce',path:'./kiln-ceramics/index.html',thumb:'./Screenshots/kiln.png',tags:['Blob Morph','Organic'],premium:true},
+{name:'Wanderlog',type:'Travel Journal',cat:'Travel',path:'./wanderlog-travel/index.html',thumb:'./Screenshots/wanderlog.png',tags:['Draggable','Polaroid'],premium:true},
+{name:'CANVAS',type:'Art Gallery',cat:'Portfolio',path:'./canvas-gallery/index.html',thumb:'./Screenshots/canvas.png',tags:['Progress','Horizontal'],premium:true},
+{name:'GRIND',type:'Skate Shop',cat:'E-Commerce',path:'./grind-skate/index.html',thumb:'./Screenshots/grind.png',tags:['RoughEase','Skew'],premium:true},
+{name:'CELESTIA',type:'Astrology',cat:'Entertainment',path:'./celestia-astrology/index.html',thumb:'./Screenshots/celestia.png',tags:['SVG Draw','Mystical'],premium:true},
+{name:'SPLICE',type:'Digital Zine',cat:'Blog',path:'./splice-zine/index.html',thumb:'./Screenshots/splice.png',tags:['Keyframes','Editorial'],premium:true},
 // HK THERAPY
-{name:'HK Editorial Green',type:'Massage Therapy',cat:'Wellness',path:'./HK therapy templates/template-2/single.html',tags:['Green','Editorial'],premium:false},
-{name:'HK 3D Premium',type:'Massage Therapy',cat:'Wellness',path:'./HK therapy templates/template-5/single.html',tags:['Dark','3D Tilt'],premium:false},
-{name:'HK Minimal Coral',type:'Massage Therapy',cat:'Wellness',path:'./HK therapy templates/template-7/single.html',tags:['Coral','Gradient'],premium:false},
-{name:'HK Earthy Elegant',type:'Massage Therapy',cat:'Wellness',path:'./HK therapy templates/template-9/single.html',tags:['Earthy','Side Menu'],premium:false},
-{name:'HK Dark Botanical',type:'Massage Therapy',cat:'Wellness',path:'./HK therapy templates/template-10/single.html',tags:['Dark','Particles'],premium:false},
-{name:'HK Coastal Teal',type:'Massage Therapy',cat:'Wellness',path:'./HK therapy templates/template-13/single.html',tags:['Teal','Blur Anim'],premium:false},
-{name:'HK Bold Dark',type:'Massage Therapy',cat:'Wellness',path:'./HK therapy templates/template-19/single.html',tags:['Dark','Loader'],premium:false},
+{name:'HK Editorial Green',type:'Massage Therapy',cat:'Wellness',path:'./HK therapy templates/template-2/single.html',thumb:'./Screenshots/hk template 2.png',tags:['Green','Editorial'],premium:false},
+{name:'HK 3D Premium',type:'Massage Therapy',cat:'Wellness',path:'./HK therapy templates/template-5/single.html',thumb:'./Screenshots/hk template 5.png',tags:['Dark','3D Tilt'],premium:false},
+{name:'HK Minimal Coral',type:'Massage Therapy',cat:'Wellness',path:'./HK therapy templates/template-7/single.html',thumb:'./Screenshots/hk template 7.png',tags:['Coral','Gradient'],premium:false},
+{name:'HK Earthy Elegant',type:'Massage Therapy',cat:'Wellness',path:'./HK therapy templates/template-9/single.html',thumb:'./Screenshots/hk template 9.png',tags:['Earthy','Side Menu'],premium:false},
+{name:'HK Dark Botanical',type:'Massage Therapy',cat:'Wellness',path:'./HK therapy templates/template-10/single.html',thumb:'./Screenshots/hk template 10.png',tags:['Dark','Particles'],premium:false},
+{name:'HK Coastal Teal',type:'Massage Therapy',cat:'Wellness',path:'./HK therapy templates/template-13/single.html',thumb:'./Screenshots/hk template 13.png',tags:['Teal','Blur Anim'],premium:false},
+{name:'HK Bold Dark',type:'Massage Therapy',cat:'Wellness',path:'./HK therapy templates/template-19/single.html',thumb:'./Screenshots/hk template 19.png',tags:['Dark','Loader'],premium:false},
 // PREMIUM NO GSAP
-{name:'IRON ELITE',type:'Performance Gym',cat:'Fitness',path:'./premium with no gsap/gym-iron-elite/single.html',tags:['Red','Military'],premium:false},
-{name:'TITAN FORGE',type:'Training Ground',cat:'Fitness',path:'./premium with no gsap/gym-titan-forge/single.html',tags:['Orange','Forge'],premium:false},
-{name:'SUMMIT',type:'Luxury Real Estate',cat:'Real Estate',path:'./premium with no gsap/premium-realestate-summit/single.html',tags:['Gold','Luxury'],premium:false},
-{name:'NOIR',type:'Fine Dining',cat:'Food & Drink',path:'./premium with no gsap/premium-restaurant-noir/single.html',tags:['Gold','Michelin'],premium:false},
-{name:'QUANTUM',type:'Developer Platform',cat:'SaaS',path:'./premium with no gsap/premium-saas-quantum/single.html',tags:['Cyan','Terminal'],premium:false},
+{name:'IRON ELITE',type:'Performance Gym',cat:'Fitness',path:'./premium with no gsap/gym-iron-elite/single.html',thumb:'./Screenshots/iron elite.png',tags:['Red','Military'],premium:false},
+{name:'TITAN FORGE',type:'Training Ground',cat:'Fitness',path:'./premium with no gsap/gym-titan-forge/single.html',thumb:'./Screenshots/titan forge.png',tags:['Orange','Forge'],premium:false},
+{name:'SUMMIT',type:'Luxury Real Estate',cat:'Real Estate',path:'./premium with no gsap/premium-realestate-summit/single.html',thumb:'./Screenshots/summit.png',tags:['Gold','Luxury'],premium:false},
+{name:'NOIR',type:'Fine Dining',cat:'Food & Drink',path:'./premium with no gsap/premium-restaurant-noir/single.html',thumb:'./Screenshots/noir.png',tags:['Gold','Michelin'],premium:false},
+{name:'QUANTUM',type:'Developer Platform',cat:'SaaS',path:'./premium with no gsap/premium-saas-quantum/single.html',thumb:'./Screenshots/quantum.png',tags:['Cyan','Terminal'],premium:false},
 ];
 
 // ========== STATE ==========
@@ -283,7 +302,7 @@ const card=document.createElement('div');
 card.className='card';
 card.setAttribute('data-cat',t.cat);
 card.innerHTML=`
-<div class="card-img"><iframe src="" data-src="${t.path}" loading="lazy" sandbox="allow-scripts allow-same-origin" tabindex="-1"></iframe><div class="overlay"></div></div>
+<div class="card-img"><img src="${t.thumb}" alt="${t.name}" loading="lazy"><div class="overlay"></div></div>
 <div class="card-body">
 <div class="card-cat">${t.cat}</div>
 <div class="card-title">${t.name}</div>
@@ -295,17 +314,6 @@ ${t.premium?'<span class="card-badge">Premium</span>':''}
 card.addEventListener('click',()=>openViewer(i,filter,true));
 grid.appendChild(card);
 });
-// Lazy load card iframes — only load when near viewport
-const lazyObs=new IntersectionObserver((entries)=>{
-entries.forEach(e=>{
-if(e.isIntersecting){
-const iframe=e.target.querySelector('iframe[data-src]');
-if(iframe){iframe.src=iframe.dataset.src;iframe.removeAttribute('data-src');}
-lazyObs.unobserve(e.target);
-}
-});
-},{rootMargin:'200px'});
-grid.querySelectorAll('.card').forEach(c=>lazyObs.observe(c));
 }
 
 // ========== FILTER (with history) ==========
@@ -479,13 +487,13 @@ history.replaceState({view:'grid',cat:cat},'',location.href);
 })();
 
 // ========== COUNTERS ==========
-document.getElementById('countLabel').textContent=T.length+' designs';
 
 // ========== HERO GSAP ANIMATION ==========
-(function heroAnim(){
+function initGsap(){
+if(typeof gsap==='undefined'){document.addEventListener('gsapLoaded',initGsap,{once:true});return;}
 // Populate scrolling columns
-const col1Sites=['./voxel-agency/index.html','./resonance-festival/index.html','./haven-realestate/index.html','./atelier-fashion/index.html','./saffron-bistro/index.html','./pulse-saas/index.html'];
-const col2Sites=['./aether-space/index.html','./pixelforge-games/index.html','./domaine-winery/index.html','./ember-coffee/index.html','./forge-gym/index.html','./drift-travel/index.html'];
+const col1Sites=['./Screenshots/voxel.png','./Screenshots/resonance.png','./Screenshots/haven.png','./Screenshots/atelier.png','./Screenshots/saffron.png','./Screenshots/pulse.png'];
+const col2Sites=['./Screenshots/aether.jpg','./Screenshots/pixel forge.png','./Screenshots/ember.png','./Screenshots/forge.png','./Screenshots/drift.png','./Screenshots/celestia.png'];
 function fillCol(id,sites){
 const col=document.getElementById(id);
 // Double the items so the loop is seamless
@@ -493,16 +501,12 @@ const all=[...sites,...sites];
 all.forEach(src=>{
 const div=document.createElement('div');
 div.className='hero-thumb';
-div.innerHTML='<iframe data-src="'+src+'" loading="lazy" tabindex="-1"></iframe>';
+div.innerHTML='<img src="'+src+'" alt="" loading="lazy">';
 col.appendChild(div);
 });
 }
 fillCol('scrollCol1',col1Sites);
 fillCol('scrollCol2',col2Sites);
-// Delay hero iframe loading by 2s so main content loads first
-setTimeout(()=>{
-document.querySelectorAll('.hero-thumb iframe[data-src]').forEach(f=>{f.src=f.dataset.src;f.removeAttribute('data-src');});
-},2000);
 
 const tl=gsap.timeline({defaults:{ease:'power4.out'}});
 tl.to('#accentLine',{height:'70%',duration:1.2,ease:'power2.inOut'},0);
@@ -517,7 +521,8 @@ const total=T.length;
 const catTotal=cats.length-1;
 tl.to({v:0},{v:total,duration:1.5,ease:'power2.out',onUpdate:function(){document.getElementById('hcTemplates').textContent=Math.round(this.targets()[0].v)}},1.3);
 tl.to({v:0},{v:catTotal,duration:1.2,ease:'power2.out',onUpdate:function(){document.getElementById('hcCats').textContent=Math.round(this.targets()[0].v)}},1.4);
-})();
+}
+if(window.gsapReady)initGsap();else document.addEventListener('gsapLoaded',initGsap,{once:true});
 
 // ========== FILTER SCROLL ARROWS ==========
 (function initFilterScroll(){
