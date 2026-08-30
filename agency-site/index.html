@@ -45,7 +45,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BEMONIX — Web Design Agency</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@200;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Inter:wght@200;400;500;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 /* See the file-header comment above for what each variable controls. */
@@ -55,8 +55,8 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;overf
 /* Fixed header. Frosted-glass background (blur) so it stays legible over
    whatever scrolls underneath it — swap the logo file via nav .logo img
    src in the HTML, not here. */
-nav{position:fixed;top:0;width:100%;padding:1.5rem 3rem;display:flex;justify-content:space-between;align-items:center;z-index:200;background:rgba(255,247,226,.85);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--surface)}
-nav .logo{display:block;height:56px;width:auto} /* logo <img> height — bump this to resize the nav logo */
+nav{position:fixed;top:0;width:100%;height:90px;padding:0 3rem;display:flex;justify-content:space-between;align-items:center;z-index:200;background:rgba(255,247,226,.85);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--surface)} /* height is fixed on purpose — the logo is taller than the bar and is allowed to overflow it (see nav .logo below) rather than stretching the bar to match */
+nav .logo{display:block;height:150px;width:auto;flex-shrink:0} /* logo <img> height — intentionally bigger than nav's own height, so it overflows the bar instead of growing it; if you resize this, everything else needing to clear the nav (.hero-content, .h-section, .page-header padding-top) is keyed off nav's own 90px height, not the logo, so it does NOT need to change */
 nav ul{display:flex;gap:2.5rem;list-style:none}
 nav a{color:var(--text);text-decoration:none;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase}
 nav .nav-cta{padding:.5rem 1.5rem;border:1px solid rgba(76,16,42,.3);font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;color:var(--text)}
@@ -73,10 +73,10 @@ nav .nav-cta{padding:.5rem 1.5rem;border:1px solid rgba(76,16,42,.3);font-size:.
 .corridor-3d{position:absolute;inset:0;transform-style:preserve-3d;pointer-events:none} /* perspective/perspective-origin set inline by JS */
 .corridor-card{position:absolute;overflow:hidden;backface-visibility:hidden;background:var(--surface)}
 .corridor-card img{width:100%;height:100%;object-fit:contain;object-position:center;display:block} /* contain = never crop the screenshots */
-.corridor-logo{position:absolute;top:58%;left:50%;transform:translate(-50%,-50%);width:clamp(180px,22vw,340px);height:auto;opacity:.55;z-index:1;pointer-events:none} /* dimmed logo watermark behind the hero copy */
-.hero-overlay{position:absolute;inset:0;background:radial-gradient(ellipse at center 55%,rgba(255,247,226,.05) 0%,rgba(255,247,226,.45) 70%);z-index:2;pointer-events:none} /* vignette so the corridor cards don't fight with the hero text; keep this subtle or the cards wash out */
-.hero-content{position:relative;z-index:3;text-align:center;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:space-between;height:100vh;padding:7rem 2rem 5rem}
-.hero-content h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,6vw,5.5rem);line-height:1;letter-spacing:.08em;white-space:nowrap}
+.corridor-logo{position:absolute;top:58%;left:50%;transform:translate(-50%,-50%);width:clamp(120px,13vw,220px);height:auto;opacity:.55;z-index:1;pointer-events:none} /* dimmed cube-icon watermark, always "on" at a constant opacity — it only APPEARS to switch on/off because .corridor-wrap (the cards) sits at a higher z-index (2 vs this element's 1) and .corridor-card has an opaque background, so any card sitting over this spot fully covers the logo; no JS/opacity animation needed, it's pure natural occlusion. this file (cube logo.png) is roughly square, unlike the wide wordmark lockup, so it uses a smaller width range to avoid dominating the hero */
+.hero-overlay{position:absolute;inset:0;background:radial-gradient(ellipse at center 55%,rgba(255,247,226,0) 60%,rgba(255,247,226,.22) 100%);z-index:2;pointer-events:none} /* vignette so the corridor cards don't fight with the hero text; keep this subtle or the cards wash out */
+.hero-content{position:relative;z-index:3;text-align:center;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:space-between;height:100vh;padding:7rem 2rem 5rem} /* top padding must clear the fixed nav's own 90px height — re-check if you resize `nav`'s `height`, not the logo */
+.hero-content h1{font-family:'Jost',sans-serif;font-weight:600;font-size:clamp(1.8rem,4.2vw,3.8rem);line-height:1;letter-spacing:.08em;white-space:nowrap}
 .hero-content h1 .accent{color:var(--accent)}
 .hero-content p{font-size:.9rem;color:rgba(76,16,42,.75);letter-spacing:.2em;text-transform:uppercase;font-weight:200}
 .hero-bar{height:2px;background:linear-gradient(90deg,transparent,var(--text),transparent);width:200px;margin:.8rem auto 0}
@@ -91,25 +91,33 @@ nav .nav-cta{padding:.5rem 1.5rem;border:1px solid rgba(76,16,42,.3);font-size:.
    clip-pixels). All of the actual reveal/morph animation is JS
    (initWorkBuild in <script>) — this CSS just lays out the two columns
    and styles the active/inactive text states. */
-.h-section{overflow:hidden;border-top:1px solid var(--surface);padding-top:90px} /* padding-top clears the fixed nav */
+/* Alternating section backgrounds: cream sections use the global :root
+   colors untouched; "dark" sections (this one, Services, and Contact)
+   repaint their background to a medium wine tone and locally redefine the
+   --surface/--text/--muted/--accent custom properties for their own
+   subtree — every rule elsewhere that reads var(--text) etc. picks these
+   up automatically, so text/borders/links inside a dark section flip to
+   light without needing separate dark-mode copies of every rule. Kept
+   deliberately mid-tone ("not too dark") rather than near-black. */
+.h-section{overflow:hidden;border-top:1px solid var(--surface);padding-top:100px;background:#761941;--surface:rgba(255,247,226,.25);--text:#fff7e2;--muted:rgba(255,247,226,.65);--accent:#ffe9af} /* padding-top clears the fixed nav's own 90px height — re-check if you resize `nav`'s `height`, not the logo */
 .wb-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3rem;width:100%;padding:4rem 3rem}
 @media(min-width:900px){.wb-wrap{flex-direction:row;justify-content:space-between;gap:2rem}}
 .wb-head{width:100%;text-align:center;margin-bottom:1rem}
 @media(min-width:900px){.wb-head{display:none}}
-.wb-head h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,6vw,3.5rem);letter-spacing:.04em}
+.wb-head h2{font-family:'Jost',sans-serif;font-weight:600;font-size:clamp(2.2rem,6vw,3.5rem);letter-spacing:.04em;color:var(--text)}
 .wb-head p{color:var(--muted);font-size:.85rem;margin-top:.8rem;font-weight:200}
 .wb-menu{width:100%}
 @media(min-width:900px){.wb-menu{width:42%}}
 .wb-menu-head{display:none}
 @media(min-width:900px){.wb-menu-head{display:block;margin-bottom:2.5rem}}
-.wb-menu-head h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,4vw,3.2rem);letter-spacing:.04em}
+.wb-menu-head h2{font-family:'Jost',sans-serif;font-weight:600;font-size:clamp(2.2rem,4vw,3.2rem);letter-spacing:.04em;color:var(--text)}
 .wb-menu-head p{color:var(--muted);font-size:.85rem;margin-top:.6rem;font-weight:200}
 .wb-menu ul{list-style:none;display:flex;flex-direction:column;gap:2rem}
 .wb-item{cursor:pointer;display:flex;align-items:flex-start;gap:1.2rem}
-.wb-num{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;font-weight:700;color:var(--muted);margin-top:.3rem;transition:all .5s}
+.wb-num{font-family:'Jost',sans-serif;font-weight:600;font-size:1.5rem;font-weight:700;color:var(--muted);margin-top:.3rem;transition:all .5s}
 .wb-item.active .wb-num{color:var(--accent);transform:scale(1.1)}
 .wb-text{display:flex;flex-direction:column}
-.wb-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.8rem,5vw,3.2rem);text-transform:uppercase;letter-spacing:.02em;line-height:.95;color:var(--text);opacity:.4;transform:translateX(0);transition:all .7s cubic-bezier(.16,1,.3,1)}
+.wb-name{font-family:'Jost',sans-serif;font-weight:600;font-size:clamp(1.8rem,5vw,3.2rem);text-transform:uppercase;letter-spacing:.02em;line-height:.95;color:var(--text);opacity:.4;transform:translateX(0);transition:all .7s cubic-bezier(.16,1,.3,1)}
 .wb-item.active .wb-name{opacity:1;transform:translateX(1rem)}
 .wb-cat{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-top:.4rem;opacity:.55;transition:opacity .5s}
 .wb-item.active .wb-cat{opacity:1;color:var(--accent)}
@@ -117,8 +125,21 @@ nav .nav-cta{padding:.5rem 1.5rem;border:1px solid rgba(76,16,42,.3);font-size:.
 .wb-more-link:hover{border-color:var(--accent);color:var(--accent)}
 .wb-visual{position:relative;width:100%;display:flex;justify-content:center;align-items:center}
 @media(min-width:900px){.wb-visual{width:56%}}
-.wb-glow{position:absolute;width:120%;height:120%;background:radial-gradient(circle,rgba(118,25,65,.12),transparent 70%);filter:blur(60px);border-radius:50%}
+.wb-glow{position:absolute;width:120%;height:120%;background:radial-gradient(circle,rgba(255,233,175,.18),transparent 70%);filter:blur(60px);border-radius:50%} /* gold glow reads against this section's dark wine background — see the "Alternating section backgrounds" comment above */
 .wb-svg{position:relative;z-index:1;width:100%;max-width:600px;height:auto;filter:drop-shadow(0 20px 60px rgba(0,0,0,.5))}
+.wb-visual.is-phone .wb-svg{clip-path:inset(0 21.9% 0 21.9% round 2.4rem)} /* rounds the actual image content to match .wb-phone-bezel's border-radius/box exactly — without this, the merged image's square corners show through past the bezel's rounded corners */
+/* Decorative phone bezel, shown only over the app screenshots (see the
+   .is-phone toggle in initWorkBuild). Sized/positioned to match the same
+   square box the SVG occupies (same width/max-width), then the bezel
+   itself is inset to roughly where a 750x1334 phone screenshot actually
+   lands inside that square once "meet"-fit (~56% of the square's width,
+   full height) — it sits purely on top as an overlay and never touches
+   the clip-path reveal underneath. */
+.wb-phone-frame{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100%;max-width:600px;aspect-ratio:1/1;pointer-events:none;z-index:2;opacity:0;transition:opacity .4s}
+.wb-visual.is-phone .wb-phone-frame{opacity:1}
+.wb-phone-bezel{position:absolute;top:0;bottom:0;left:50%;width:56.2%;transform:translateX(-50%);border:8px solid var(--text);border-radius:2.4rem;box-shadow:0 20px 50px rgba(0,0,0,.4)} /* 56.2% / full height matches exactly where a 750x1334 image lands inside the 500x500 "meet" box — do the math again if you change the phone screenshots' aspect ratio */
+.wb-phone-notch{position:absolute;top:14px;left:50%;transform:translateX(-50%);width:26%;height:5px;border-radius:3px;background:var(--text);opacity:.7}
+.wb-phone-home{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);width:30%;height:4px;border-radius:2px;background:var(--text);opacity:.5}
 
 /* ABOUT.
    Two GSAP effects drive this section (see "ABOUT — scroll parallax" in
@@ -135,7 +156,7 @@ nav .nav-cta{padding:.5rem 1.5rem;border:1px solid rgba(76,16,42,.3);font-size:.
 .about-media::after{content:'';position:absolute;inset:0;border-radius:1.5rem;background:linear-gradient(160deg,rgba(255,255,255,.1),transparent 45%);pointer-events:none}
 .about-text{position:relative;z-index:1}
 .about-eyebrow{display:block;font-size:.7rem;letter-spacing:.35em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem}
-.about-lead{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.8rem,3.2vw,2.6rem);line-height:1.2;letter-spacing:.02em;color:var(--text);margin-bottom:1.5rem}
+.about-lead{font-family:'Jost',sans-serif;font-weight:600;font-size:clamp(1.8rem,3.2vw,2.6rem);line-height:1.2;letter-spacing:.02em;color:var(--text);margin-bottom:1.5rem}
 .about-text p{color:var(--muted);line-height:1.9;font-weight:200;font-size:.9rem;margin-bottom:1rem}
 .about-tags{display:flex;gap:.7rem;margin-top:2rem;flex-wrap:wrap}
 .about-tag{padding:.5rem 1.1rem;background:rgba(255,255,255,.05);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.15);border-radius:999px;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
@@ -175,13 +196,13 @@ nav .nav-cta{padding:.5rem 1.5rem;border:1px solid rgba(76,16,42,.3);font-size:.
    grid — purely decorative, but required for the backdrop-filter blur
    above to have something colorful to pick up. They drift continuously
    via GSAP (see "SERVICES — ambient drifting blobs"). */
-.services{position:relative;overflow:hidden;padding:5rem 3rem;border-top:1px solid var(--surface)}
+.services{position:relative;overflow:hidden;padding:5rem 3rem;border-top:1px solid var(--surface);background:#761941;--surface:rgba(255,247,226,.25);--text:#fff7e2;--muted:rgba(255,247,226,.65);--accent:#ffe9af} /* dark section — see the "Alternating section backgrounds" comment near .h-section */
 .svc-blob{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none;z-index:0}
-.svc-blob-1{width:420px;height:420px;top:-120px;left:2%;background:rgba(118,25,65,.28)}
-.svc-blob-2{width:380px;height:380px;bottom:-140px;right:6%;background:rgba(76,16,42,.18)}
-.svc-blob-3{width:300px;height:300px;top:30%;right:30%;background:rgba(118,25,65,.14)}
+.svc-blob-1{width:420px;height:420px;top:-120px;left:2%;background:rgba(255,233,175,.22)}
+.svc-blob-2{width:380px;height:380px;bottom:-140px;right:6%;background:rgba(76,16,42,.35)}
+.svc-blob-3{width:300px;height:300px;top:30%;right:30%;background:rgba(255,233,175,.12)}
 .svc-content{position:relative;z-index:1}
-.services h2{font-family:'Bebas Neue',sans-serif;font-size:2rem;margin-bottom:3rem;letter-spacing:.1em}
+.services h2{font-family:'Jost',sans-serif;font-weight:600;font-size:2rem;margin-bottom:3rem;letter-spacing:.1em;color:var(--text)}
 .svc-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1.5rem}
 @media(max-width:900px){.svc-grid{grid-template-columns:1fr}.svc-card,.svc-card-wide{grid-column:span 1 !important}}
 .svc-card{position:relative;overflow:hidden;grid-column:span 2;border-radius:1.5rem;border:1px solid rgba(255,255,255,.12);box-shadow:0 8px 32px rgba(0,0,0,.4);min-height:320px;transition:border-color .3s,box-shadow .3s;transform-style:preserve-3d}
@@ -197,9 +218,9 @@ nav .nav-cta{padding:.5rem 1.5rem;border:1px solid rgba(76,16,42,.3);font-size:.
 .svc-card-center .svc-glass-content{align-items:center;text-align:center}
 .svc-icon{position:relative;z-index:1;width:56px;height:56px;flex-shrink:0;border-radius:50%;background:rgba(255,255,255,.06);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;color:var(--text)}
 .svc-icon svg{width:24px;height:24px}
-.svc-badge{position:relative;z-index:1;align-self:flex-start;padding:1.4rem 1.8rem;background:rgba(255,255,255,.06);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18);border-radius:999px;font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.04em;color:var(--text)}
+.svc-badge{position:relative;z-index:1;align-self:flex-start;padding:1.4rem 1.8rem;background:rgba(255,255,255,.06);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18);border-radius:999px;font-family:'Jost',sans-serif;font-weight:600;font-size:1.5rem;letter-spacing:.04em;color:var(--text)}
 .svc-chart{position:relative;z-index:1;width:100%;height:60px}
-.svc-card h3{position:relative;z-index:1;font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.04em;text-transform:uppercase;color:var(--text);margin-top:auto}
+.svc-card h3{position:relative;z-index:1;font-family:'Jost',sans-serif;font-weight:600;font-size:1.3rem;letter-spacing:.04em;text-transform:uppercase;color:var(--text);margin-top:auto}
 .svc-card-center h3{margin-top:0}
 .svc-card p{position:relative;z-index:1;color:var(--muted);font-size:.85rem;line-height:1.6;font-weight:200}
 .svc-chips{position:relative;z-index:1;display:flex;gap:.5rem;flex-wrap:wrap}
@@ -229,12 +250,12 @@ nav .nav-cta{padding:.5rem 1.5rem;border:1px solid rgba(76,16,42,.3);font-size:.
 .stats{padding:4rem 3rem;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--surface);border-bottom:1px solid var(--surface)}
 .stat{padding:3rem 2rem;text-align:center;border-right:1px solid var(--surface)}
 .stat:last-child{border-right:none}
-.stat h3{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;color:var(--accent);line-height:1}
+.stat h3{font-family:'Jost',sans-serif;font-weight:600;font-size:3.5rem;color:var(--accent);line-height:1}
 .stat p{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:.5rem}
 
 /* CONTACT */
-.contact{padding:6rem 3rem;text-align:center}
-.contact h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,8vw,6rem);letter-spacing:.05em}
+.contact{padding:6rem 3rem;text-align:center;background:#761941;--surface:rgba(255,247,226,.25);--text:#fff7e2;--muted:rgba(255,247,226,.65);--accent:#ffe9af} /* dark section — see the "Alternating section backgrounds" comment near .h-section */
+.contact h2{font-family:'Jost',sans-serif;font-weight:600;font-size:clamp(3rem,8vw,6rem);letter-spacing:.05em;color:var(--text)}
 .contact h2 .accent{color:var(--accent)}
 .contact p{color:var(--muted);font-size:.85rem;margin-top:1.5rem;font-weight:200}
 .contact-links{display:flex;gap:2rem;justify-content:center;margin-top:3rem}
@@ -262,7 +283,7 @@ footer{padding:2rem 3rem;border-top:1px solid var(--surface);text-align:center;f
 </svg>
 
 <nav>
-  <img class="logo" src="../Screenshots/235793839.png" alt="Bemonix">
+  <img class="logo" src="../Screenshots/bemonix-logo-transparent.png" alt="Bemonix">
   <ul>
     <li><a href="showcase.html">Work</a></li>
     <li><a href="#about">About</a></li>
@@ -276,10 +297,10 @@ footer{padding:2rem 3rem;border-top:1px solid var(--surface);text-align:center;f
   <div class="corridor-wrap" id="corridorWrap">
     <div class="corridor-3d" id="corridor3d"></div>
   </div>
-  <img class="corridor-logo" src="../Screenshots/235793839.png" alt="Bemonix">
+  <img class="corridor-logo" src="../Screenshots/cube-logo-upscaled-transparent.png" alt="Bemonix">
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <h1>Digital solutions<span class="accent"> built to</span> perform</h1>
+    <h1>Digital Solutions<span class="accent"> Built to</span> Perform</h1>
     <div class="hero-bottom">
       <p>Every website you see here was built by us and yours can be next</p>
       <div class="hero-bar"></div>
@@ -333,6 +354,18 @@ footer{padding:2rem 3rem;border-top:1px solid var(--surface);text-align:center;f
 
     <div class="wb-visual">
       <div class="wb-glow"></div>
+      <!-- .wb-phone-frame is a purely decorative overlay (a fake phone
+           bezel) shown only for the two app screenshots (SportsStreak,
+           Waypoint) via the .is-phone class JS toggles on .wb-visual — see
+           WORK_ITEMS[].phone in initWorkBuild. It sits on top of, but does
+           not touch, the clip-path tile/merge/shatter effect below; the
+           reveal animation itself is unchanged for every item. -->
+      <div class="wb-phone-frame">
+        <div class="wb-phone-bezel">
+          <span class="wb-phone-notch"></span>
+          <span class="wb-phone-home"></span>
+        </div>
+      </div>
       <!-- Each clipPath below is a set of tile <rect>/<path> shapes that
            .wbClipGroup can clip the screenshot to. JS (initWorkBuild) picks
            one clipId per menu item, animates the tiles in individually,
@@ -529,7 +562,7 @@ gsap.registerPlugin(ScrollTrigger);
 // no per-frame JS — so tune the whole effect by editing these numbers:
 const P = {
   perspective:60,             // CSS perspective distance, in cqw (container query width units)
-  cardWidth:58, cardHeight:26.5, cardRadius:.4,  // resting size/radius of each card, in cqw
+  cardWidth:58, cardHeight:26.5, cardRadius:.4,  // resting size/radius of each card, in cqw — keep the width:height ratio close to 2.19 (real screenshots are 1918x876) or they'll look stretched
   birthHeight:14, exitHeight:30,  // apparent on-screen height (cqw) of a card when it spawns vs. when it exits — these drive the z-depth math in buildKF, not literal CSS sizes
   railBirth:4, railExit:58,   // how far a card sits from center (cqw) at birth vs. exit — i.e. how wide the "V" the two rails fly apart into
   fan:3.3,                    // exponent controlling how quickly a card accelerates outward along the rail (higher = stays centered longer, then flares out fast)
@@ -607,7 +640,12 @@ function buildKF(dir, name) {
     const z = P.perspective * (1 - 1 / scale);
     const rail = P.railExit - (P.railExit - P.railBirth) * Math.pow(1 - u, P.fan); // eased outward drift, see P.fan
     const turn = P.turnBirth + (P.turnExit - P.turnBirth) * u; // linear rotateY ramp
-    // fully opaque the entire time, only fade out over last 20%
+    // fully opaque the entire time, only fade out over the last 20% (exit).
+    // Deliberately NOT fading in at birth (u near 0) even though that
+    // reads a little more "sudden" — the cards must be fully opaque while
+    // they're near center/still separating, or they partially reveal the
+    // .corridor-logo sitting behind them (see that element's comment)
+    // instead of fully occluding it, which looks like broken transparency.
     const opacity = u > 0.80 ? 1 - (u - 0.80) / 0.20 : 1;
     steps.push(`${(u*100).toFixed(2)}%{transform:translate3d(${(dir*rail).toFixed(2)}cqw,0,${z.toFixed(2)}cqw) rotateY(${(-dir*turn).toFixed(2)}deg);opacity:${opacity.toFixed(3)}}`);
   }
@@ -667,6 +705,11 @@ function buildKF(dir, name) {
 gsap.from('.hero-content h1', {y:60, opacity:0, duration:1.5, delay:.4, ease:'power3.out'});
 gsap.from('.hero-content p',  {y:20, opacity:0, duration:.8,  delay:1});
 gsap.from('.hero-bar',        {scaleX:0, duration:1, delay:1.3});
+// .corridor-logo needs no JS at all — it's a constant-opacity element that
+// only ever *appears* to switch on/off because the opaque cards above it
+// (higher z-index, see the CSS comment on .corridor-logo) physically cover
+// it whenever one sits at that screen position, and uncover it the moment
+// they've moved apart. No animation, no timing math, no drift.
 
 // ── WHAT WE BUILD — hover-driven clip-path reveal ─────────────────────────────
 gsap.from('.wb-item',      {scrollTrigger:{trigger:'.h-section',start:'top 70%'}, x:-40, opacity:0, stagger:.1, duration:.7});
@@ -687,9 +730,12 @@ gsap.from('.wb-visual', {scrollTrigger:{trigger:'.h-section',start:'top 70%'}, s
 // the HTML above AND a matching MERGED[id] array here (see the HTML
 // comment above the <defs> block for the geometry rules).
 (function initWorkBuild() {
+  // `phone:true` marks the two app screenshots (SportsStreak, Waypoint) so
+  // createLoop() can show the decorative .wb-phone-frame overlay only for
+  // those — it has no effect on the clip-path reveal animation itself.
   const WORK_ITEMS = [
-    { clipId:'clip-quad',   image:'../Screenshots/IMG_1484(1).PNG' },
-    { clipId:'clip-blocks', image:'../Screenshots/IMG_1488.PNG' },
+    { clipId:'clip-quad',   image:'../Screenshots/IMG_1484(1).PNG', phone:true },
+    { clipId:'clip-blocks', image:'../Screenshots/IMG_1488.PNG',    phone:true },
     { clipId:'clip-pixels', image:'../Screenshots/domaine.png' },
     { clipId:'clip-quad',   image:'../Screenshots/blvk.png' }
   ];
@@ -736,9 +782,10 @@ gsap.from('.wb-visual', {scrollTrigger:{trigger:'.h-section',start:'top 70%'}, s
     }));
   });
 
-  const items = document.querySelectorAll('.wb-item');
-  const group = document.getElementById('wbClipGroup');
-  const img   = document.getElementById('wbImage');
+  const items  = document.querySelectorAll('.wb-item');
+  const group  = document.getElementById('wbClipGroup');
+  const img    = document.getElementById('wbImage');
+  const visual = document.querySelector('.wb-visual');
   if (!items.length || !group || !img) return;
 
   let masterTl = null;
@@ -750,6 +797,7 @@ gsap.from('.wb-visual', {scrollTrigger:{trigger:'.h-section',start:'top 70%'}, s
     const els = document.querySelectorAll(`#${clipId} .path`);
     if (masterTl) masterTl.kill();
     img.setAttribute('href', data.image);
+    if (visual) visual.classList.toggle('is-phone', !!data.phone);
     group.setAttribute('clip-path', `url(#${clipId})`);
 
     const resetToTiles = () => els.forEach((el, i) => gsap.set(el, {attr:TILE[clipId][i]}));
@@ -808,6 +856,14 @@ gsap.to('.svc-blob-2', {x:-50, y:-30, duration:18, ease:'sine.inOut', yoyo:true,
 gsap.to('.svc-blob-3', {x:35,  y:-50, duration:11, ease:'sine.inOut', yoyo:true, repeat:-1});
 
 // ── SERVICES — liquid glass tilt + distortion tracking ────────────────────────
+// Per card, on mousemove: (1) tilt the whole card in 3D toward the cursor
+// (classic "magnetic card" effect — rotateX/Y proportional to cursor
+// position within the card, ±8° here), and (2) reach into that card's own
+// #glass-distortion-N SVG filter and change its feDisplacementMap `scale`
+// attribute live, so the glass ripple intensity itself reacts to the
+// cursor rather than staying static. `i` (each card's index in DOM order)
+// is what ties a card to its filter — see the HTML comment near the
+// <svg> filter defs if you reorder/add cards.
 document.querySelectorAll('.svc-card').forEach((card, i) => {
   const displacement = document.querySelector(`#glass-distortion-${i} feDisplacementMap`);
 
@@ -828,8 +884,8 @@ document.querySelectorAll('.svc-card').forEach((card, i) => {
 
   card.addEventListener('mouseleave', () => {
     card.style.transition = 'transform .5s cubic-bezier(.16,1,.3,1)';
-    card.style.transform = '';
-    if (displacement) displacement.setAttribute('scale', 77);
+    card.style.transform = ''; // reset tilt
+    if (displacement) displacement.setAttribute('scale', 77); // reset to the filter's resting distortion amount
   });
 });
 gsap.from('.stat',      {scrollTrigger:{trigger:'.stats',start:'top 80%'}, y:40, opacity:0, stagger:.12, duration:.7});
