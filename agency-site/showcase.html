@@ -34,12 +34,12 @@
 :root{--accent:#761941;--bg:#fff7e2;--surface:#ffffff;--muted:rgba(76,16,42,.55);--text:#4c102a;--gold:#c9a227}
 body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden}
 
-nav{position:fixed;top:0;width:100%;height:90px;padding:0 3rem;display:flex;justify-content:space-between;align-items:center;z-index:200;background:rgba(255,247,226,.85);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--surface)} /* height is fixed on purpose — the logo overflows it rather than stretching it, see nav .logo below */
+nav{position:fixed;top:0;width:100%;height:90px;padding:0 3rem;display:flex;justify-content:space-between;align-items:center;z-index:200;background:rgba(255,247,226,.85);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px dashed rgba(201,162,39,.35)} /* height is fixed on purpose — the logo overflows it rather than stretching it, see nav .logo below */
 nav .logo{display:block;height:150px;width:auto;flex-shrink:0} /* intentionally taller than the 90px bar */
 nav > ul{display:flex;align-items:center;gap:2.5rem;list-style:none}
 nav a{color:var(--text);text-decoration:none;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase}
 nav .nav-cta{padding:.5rem 1.5rem;border:1px solid rgba(76,16,42,.3);font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;color:var(--text);transition:border-color .3s,color .3s}
-nav .nav-cta:hover{background:var(--accent);border-color:var(--gold);color:var(--gold)}
+nav .nav-cta:hover{background:var(--accent) repeating-linear-gradient(45deg,rgba(255,255,255,.1) 0 2px,transparent 2px 6px);border-color:var(--gold);color:var(--gold)}
 /* "Work" nav dropdown — .nav-dropdown is given the nav's own 90px height so
    its hover area spans down to exactly where the menu appears (top:100%),
    with no gap a slow-moving cursor could fall through and drop the :hover. */
@@ -84,7 +84,7 @@ nav.nav-open .nav-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45
   nav{padding:0 1.5rem}
   nav .logo{height:100px}
   .nav-toggle{display:flex}
-  nav > ul{display:none;position:absolute;top:90px;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:rgba(255,247,226,.98);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--surface);padding:.5rem 1.5rem 1.5rem;box-shadow:0 20px 40px rgba(0,0,0,.15);max-height:calc(100vh - 90px);overflow-y:auto}
+  nav > ul{display:none;position:absolute;top:90px;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:rgba(255,247,226,.98);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px dashed rgba(201,162,39,.35);padding:.5rem 1.5rem 1.5rem;box-shadow:0 20px 40px rgba(0,0,0,.15);max-height:calc(100vh - 90px);overflow-y:auto}
   nav.nav-open > ul{display:flex}
   nav > ul > li{width:100%}
   nav > ul > li > a{display:block;padding:.9rem 0;border-bottom:1px solid rgba(76,16,42,.08)}
@@ -119,10 +119,10 @@ nav.nav-open .nav-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45
 .meta-num{font-family:'Jost',sans-serif;font-weight:600;font-size:2.2rem;color:var(--accent);line-height:1}
 .meta-lbl{font-size:.6rem;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;margin-top:.2rem}
 
-.filters{padding:1.5rem 3rem;border-bottom:1px solid var(--surface);display:flex;gap:.6rem;flex-wrap:wrap;background:var(--bg);position:sticky;top:90px;z-index:100;visibility:hidden;opacity:0;transform:translateY(-16px)} /* Sticky again, but safely this time: it stays invisible (visibility:hidden, not just opacity:0 — see the autoAlpha reveal in <script>) until the grid's pop-in has finished, so it can never visibly cover the still-tilted grid, and visibility:hidden also blocks pointer-events while hidden so it can't silently eat clicks/hovers meant for the grid underneath. Once revealed, position:sticky pins it below the nav while scrolling through the grid, and — because sticky can only ever stick as far as its own normal-flow position, never past it — scrolling back up to "Our Work" naturally un-sticks it with zero extra code. */
+.filters{padding:1.5rem 3rem;border-bottom:1px dashed rgba(201,162,39,.35);display:flex;gap:.6rem;flex-wrap:wrap;background:var(--bg);position:sticky;top:90px;z-index:100;visibility:hidden;opacity:0;transform:translateY(-16px)} /* Sticky again, but safely this time: it stays invisible (visibility:hidden, not just opacity:0 — see the autoAlpha reveal in <script>) until the grid's pop-in has finished, so it can never visibly cover the still-tilted grid, and visibility:hidden also blocks pointer-events while hidden so it can't silently eat clicks/hovers meant for the grid underneath. Once revealed, position:sticky pins it below the nav while scrolling through the grid, and — because sticky can only ever stick as far as its own normal-flow position, never past it — scrolling back up to "Our Work" naturally un-sticks it with zero extra code. */
 .filter-btn{padding:.35rem 1rem;border:1px solid var(--surface);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);background:none;cursor:pointer;font-family:'Inter',sans-serif;transition:all .25s}
-.filter-btn:hover{background:var(--accent);border-color:var(--gold);color:var(--gold)}
-.filter-btn.active{background:var(--accent);border-color:var(--gold);color:var(--gold)}
+.filter-btn:hover{background:var(--accent) repeating-linear-gradient(45deg,rgba(255,255,255,.1) 0 2px,transparent 2px 6px);border-color:var(--gold);color:var(--gold)}
+.filter-btn.active{background:var(--accent) repeating-linear-gradient(45deg,rgba(255,255,255,.1) 0 2px,transparent 2px 6px);border-color:var(--gold);color:var(--gold)}
 
 /* GRID POP-IN — .grid-wrap supplies the CSS `perspective` (the "camera
    distance") that makes .grid's rotateX actually read as a 3D tilt instead
@@ -154,25 +154,25 @@ nav.nav-open .nav-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45
 
 .viewer{display:none;position:fixed;inset:0;z-index:500;background:var(--bg);flex-direction:column}
 .viewer.open{display:flex}
-.viewer-bar{display:flex;align-items:center;justify-content:space-between;padding:.8rem 2rem;border-bottom:1px solid var(--surface);flex-shrink:0}
+.viewer-bar{display:flex;align-items:center;justify-content:space-between;padding:.8rem 2rem;border-bottom:1px dashed rgba(201,162,39,.35);flex-shrink:0}
 .viewer-back{background:none;border:1px solid var(--surface);color:var(--muted);padding:.4rem 1.2rem;cursor:pointer;font-family:'Inter',sans-serif;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;transition:all .3s}
-.viewer-back:hover{background:var(--accent);border-color:var(--gold);color:var(--gold)}
+.viewer-back:hover{background:var(--accent) repeating-linear-gradient(45deg,rgba(255,255,255,.1) 0 2px,transparent 2px 6px);border-color:var(--gold);color:var(--gold)}
 .viewer-title{font-family:'Jost',sans-serif;font-weight:600;font-size:1.1rem;letter-spacing:.1em}
 .viewer-nav{display:flex;gap:.5rem;align-items:center}
 .viewer-nav button{width:32px;height:32px;border:1px solid var(--surface);background:none;color:var(--muted);cursor:pointer;font-size:.9rem;transition:all .3s}
-.viewer-nav button:hover{background:var(--accent);border-color:var(--gold);color:var(--gold)}
+.viewer-nav button:hover{background:var(--accent) repeating-linear-gradient(45deg,rgba(255,255,255,.1) 0 2px,transparent 2px 6px);border-color:var(--gold);color:var(--gold)}
 .viewer-nav span{font-size:.6rem;color:var(--muted);letter-spacing:.1em;min-width:3rem;text-align:center}
 .viewer-frame{flex:1;border:none;width:100%}
 
-.cta{padding:10rem 3rem;text-align:center;border-top:1px solid var(--surface)}
+.cta{padding:10rem 3rem;text-align:center;border-top:1px dashed rgba(201,162,39,.35)}
 .cta h2{font-family:'Jost',sans-serif;font-weight:600;font-size:clamp(3rem,8vw,7rem);letter-spacing:.03em;line-height:.9}
 .cta h2 span{color:var(--accent)}
 .cta p{color:var(--muted);font-size:.85rem;margin-top:1.5rem;font-weight:200}
 .cta-links{display:flex;gap:2rem;justify-content:center;margin-top:3rem}
-.cta-links a{color:var(--text);text-decoration:none;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;border-bottom:1px solid var(--surface);padding-bottom:.3rem;transition:all .3s}
+.cta-links a{color:var(--text);text-decoration:none;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;border-bottom:1px dashed rgba(201,162,39,.35);padding-bottom:.3rem;transition:all .3s}
 .cta-links a:hover{border-color:var(--gold);color:var(--gold)}
 
-footer{padding:2rem 3rem;border-top:1px solid var(--surface);text-align:center;font-size:.6rem;color:var(--muted);letter-spacing:.2em}
+footer{padding:2rem 3rem;border-top:1px dashed rgba(201,162,39,.35);text-align:center;font-size:.6rem;color:var(--muted);letter-spacing:.2em}
 
 /* MOBILE — .header-row puts .header-shade and .scroll-hint side by side,
    which works fine on desktop but has no room to breathe on a narrow
