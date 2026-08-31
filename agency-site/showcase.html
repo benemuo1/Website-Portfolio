@@ -50,6 +50,51 @@ nav .nav-dropdown:hover .nav-dropdown-menu{opacity:1;visibility:visible;transfor
 nav .nav-dropdown-menu a{display:block;padding:.65rem .9rem;border-radius:.35rem;white-space:nowrap}
 nav .nav-dropdown-menu a:hover{background:rgba(201,162,39,.1);color:var(--gold)}
 
+/* NAV — RESPONSIVE. Three tiers, from the widest down:
+     >1150px       desktop — the rules above, untouched.
+     901-1150px    "smaller monitors": same full inline layout, just
+                   shrunk (tighter gaps/type/logo) — there's still room
+                   for the whole menu, it's just tight.
+     <=900px       tablets and phones: nav > ul collapses behind the
+                   hamburger toggle below; .nav-cta stays visible next to
+                   it since it's the primary action.
+   The hamburger doesn't duplicate any markup — .nav-open (toggled on
+   <nav> by the JS at the bottom of <body>) just re-shows/restyles the
+   SAME <ul> as a full-width dropdown panel, and the "Work" submenu
+   becomes permanently inline there instead of hover-triggered, since
+   touch has no hover. .nav-actions wraps .nav-cta + the toggle together
+   so they sit as one group on the right once <ul> stops taking up space
+   in the middle — see the HTML. */
+.nav-actions{display:flex;align-items:center;gap:1rem}
+.nav-toggle{display:none;flex-direction:column;justify-content:center;gap:5px;width:32px;height:32px;background:none;border:none;cursor:pointer;padding:0;flex-shrink:0}
+.nav-toggle span{display:block;width:100%;height:2px;background:var(--text);transition:transform .3s,opacity .3s}
+nav.nav-open .nav-toggle span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+nav.nav-open .nav-toggle span:nth-child(2){opacity:0}
+nav.nav-open .nav-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+@media(max-width:1150px) and (min-width:901px){
+  nav{padding:0 1.75rem}
+  nav .logo{height:110px}
+  nav > ul{gap:1.5rem}
+  nav a{font-size:.62rem}
+  nav .nav-cta{padding:.4rem 1.1rem;font-size:.6rem}
+}
+
+@media(max-width:900px){
+  nav{padding:0 1.5rem}
+  nav .logo{height:100px}
+  .nav-toggle{display:flex}
+  nav > ul{display:none;position:absolute;top:90px;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:rgba(255,247,226,.98);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--surface);padding:.5rem 1.5rem 1.5rem;box-shadow:0 20px 40px rgba(0,0,0,.15);max-height:calc(100vh - 90px);overflow-y:auto}
+  nav.nav-open > ul{display:flex}
+  nav > ul > li{width:100%}
+  nav > ul > li > a{display:block;padding:.9rem 0;border-bottom:1px solid rgba(76,16,42,.08)}
+  nav .nav-dropdown{height:auto;display:block;position:static}
+  nav .nav-dropdown > a::after{display:none}
+  nav .nav-dropdown-menu{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;background:transparent;-webkit-backdrop-filter:none;backdrop-filter:none;border:none;padding:0 0 .5rem 1rem;gap:0;min-width:0}
+  nav .nav-dropdown-menu a{padding:.7rem 0;border-bottom:none;font-size:.65rem;color:var(--muted)}
+  nav .nav-cta{padding:.45rem 1rem;font-size:.6rem}
+}
+
 .page-header{padding:170px 3rem 1.5rem;position:relative;z-index:10} /* no background — deliberately transparent so the tilted/dim grid pulled up behind it (see .grid-wrap below) shows through the whole header area, not just the empty space below it, matching the reference's overlaid "text sitting on top of the visible cards" look. z-index:10 still matters even without an opaque background: it's what keeps this ABOVE the grid's own transform-created stacking context, so the header text paints in front of (not behind) the images showing through it */ /* 170px, not just the nav's own 90px, clears the logo's 150px height overflowing past the nav bar — see the same padding-top value/reasoning on featured.html's .h-section. bottom padding kept small on purpose so there's less empty space before the (pulled-up, tilted) grid becomes visible below it */
 .header-shade{display:inline-block;width:fit-content;padding:1.5rem 2rem;border-radius:1rem;background:rgba(255,247,226,.6);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)} /* a fitted "shading" panel behind just the text — sized to hug the h1/p/stats content (fit-content, not the full header width) rather than a wide bar, since .page-header itself is transparent on purpose so the tilted grid shows through everywhere ELSE */
 
@@ -95,15 +140,14 @@ nav .nav-dropdown-menu a:hover{background:rgba(201,162,39,.1);color:var(--gold)}
 .card:hover{box-shadow:inset 0 0 0 2px var(--gold)}
 .card img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:filter .4s ease;filter:grayscale(25%)}
 .card:hover img{filter:grayscale(0%)}
-.card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.82) 0%,transparent 60%);opacity:0;transition:opacity .35s}
+.card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.92) 0%,rgba(0,0,0,.55) 45%,transparent 85%);opacity:0;transition:opacity .35s} /* darker and reaches further up the card than before — the old 60%-to-transparent falloff left the title/tags sitting in a zone that was too faded on busier/lighter screenshots to read reliably */
 .card:hover .card-overlay{opacity:1}
 .card-info{position:absolute;bottom:0;left:0;right:0;padding:1.2rem;transform:translateY(8px);opacity:0;transition:all .35s ease}
 .card:hover .card-info{transform:translateY(0);opacity:1}
-.card-info h3{font-family:'Jost',sans-serif;font-weight:600;font-size:1.2rem;letter-spacing:.06em;color:#fff}
-.card-info .card-type{font-size:.6rem;color:rgba(255,255,255,.7);letter-spacing:.15em;text-transform:uppercase;margin-top:.2rem}
+.card-info h3{font-family:'Jost',sans-serif;font-weight:600;font-size:1.2rem;letter-spacing:.06em;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.8)}
+.card-info .card-type{font-size:.6rem;color:rgba(255,255,255,.85);letter-spacing:.15em;text-transform:uppercase;margin-top:.2rem;text-shadow:0 1px 6px rgba(0,0,0,.8)}
 .card-tags{display:flex;gap:.4rem;margin-top:.6rem;flex-wrap:wrap}
-.card-tags span{padding:.2rem .5rem;border:1px solid rgba(255,255,255,.3);font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.85)}
-.card-num{position:absolute;top:.8rem;right:1rem;font-family:'Jost',sans-serif;font-weight:600;font-size:3.5rem;color:rgba(76,16,42,.08);line-height:1;pointer-events:none}
+.card-tags span{padding:.2rem .5rem;border:1px solid rgba(255,255,255,.3);background:rgba(0,0,0,.35);border-radius:.25rem;font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.6)} /* a solid-ish dark fill (not just a border) so the chip reads clearly as a pill regardless of what's behind it, instead of relying only on the shared .card-overlay gradient for contrast */
 .card-cat{position:absolute;top:.8rem;left:.8rem;padding:.2rem .6rem;background:rgba(255,247,226,.85);border-radius:.3rem;font-size:.5rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);transition:opacity .3s}
 .card:hover .card-cat{opacity:0} /* the category badge is redundant with .card-info's hover reveal, and would otherwise sit awkwardly on top of the dark overlay */
 .card.hidden{display:none}
@@ -129,6 +173,20 @@ nav .nav-dropdown-menu a:hover{background:rgba(201,162,39,.1);color:var(--gold)}
 .cta-links a:hover{border-color:var(--gold);color:var(--gold)}
 
 footer{padding:2rem 3rem;border-top:1px solid var(--surface);text-align:center;font-size:.6rem;color:var(--muted);letter-spacing:.2em}
+
+/* MOBILE — .header-row puts .header-shade and .scroll-hint side by side,
+   which works fine on desktop but has no room to breathe on a narrow
+   phone screen; stack them instead, and drop the scroll hint below the
+   fold-visible area entirely below a certain width since there's no
+   space left for it without crowding the actual heading. */
+@media(max-width:640px){
+  .page-header{padding:120px 1.25rem 1.5rem}
+  .header-row{flex-direction:column;align-items:flex-start;gap:1.5rem}
+  .header-shade{padding:1.1rem 1.3rem}
+  .scroll-hint{display:none} /* no room to pair it with the heading without crowding either one — the "swipe/scroll to browse" behavior is self-evident on a touchscreen anyway */
+  .grid{grid-template-columns:1fr}
+  .filters{padding:1rem 1.25rem}
+}
 </style>
 </head>
 <body>
@@ -147,7 +205,12 @@ footer{padding:2rem 3rem;border-top:1px solid var(--surface);text-align:center;f
     <li><a href="services.html">Services</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
-  <a href="contact.html" class="nav-cta">Start a Project</a>
+  <div class="nav-actions">
+    <a href="contact.html" class="nav-cta">Start a Project</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
 <div class="page-header">
@@ -199,6 +262,23 @@ footer{padding:2rem 3rem;border-top:1px solid var(--surface);text-align:center;f
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
 gsap.registerPlugin(ScrollTrigger);
+
+// ── MOBILE NAV TOGGLE ────────────────────────────────────────────────────────
+// Hamburger just toggles a class on <nav> — the CSS at max-width:900px reuses
+// the SAME <ul> as the mobile dropdown panel, no duplicate markup involved.
+(function initNavToggle() {
+  const nav = document.querySelector('nav');
+  const toggle = document.getElementById('navToggle');
+  if (!nav || !toggle) return;
+  toggle.addEventListener('click', () => {
+    const open = nav.classList.toggle('nav-open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+  nav.querySelectorAll('ul a').forEach(a => a.addEventListener('click', () => {
+    nav.classList.remove('nav-open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }));
+})();
 
 // Every template shown on this page lives here — one object per project.
 //   name  : display name on the card / viewer title
@@ -285,7 +365,6 @@ T.forEach((t, i) => {
   card.innerHTML = `
     <img src="${t.thumb}" alt="${t.name}" loading="lazy">
     <div class="card-overlay"></div>
-    <div class="card-num">${String(i+1).padStart(2,'0')}</div>
     <div class="card-cat">${t.cat}</div>
     <div class="card-info">
       <h3>${t.name}</h3>

@@ -1,29 +1,24 @@
 <!--
-  BEMONIX — Contact page (contact.html)
-  =======================================
-  One section: closing CTA with two direct contact links. No scroll-driven
-  effects here beyond a simple entrance animation (see <script> below).
-
-  Part of a multi-page site: index.html (hero landing page) / showcase.html
-  (full 44-template work grid) / featured.html / about.html / services.html
-  / contact.html (this page). All six share the same nav, footer, and
-  5-variable color system defined in :root below — see index.html's file
-  header for the full explanation of what each variable controls. Keep the
-  :root line identical across all six files if you change the palette.
+  BEMONIX — landing page hero A/B TEST VARIANT (hero-test.html)
+  ================================================================
+  NOT linked from nav — this is a standalone comparison page, a full copy
+  of index.html with the 3D "corridor" carousel removed and replaced with
+  a single centered, static cube logo. Everything else (nav, hero text,
+  buttons, footer, responsive behavior) is identical to index.html — see
+  that file's header comment for the full explanation of the color system
+  and page structure this shares.
 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BEMONIX — Contact</title>
+<title>BEMONIX — Hero Test</title>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Inter:wght@200;400;500;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
+/* See index.html's file-header comment for what each variable controls. */
 :root{--accent:#761941;--bg:#fff7e2;--surface:#ffffff;--muted:rgba(76,16,42,.55);--text:#4c102a;--gold:#c9a227}
-/* html/body locked to exactly one viewport tall (no scroll) — this page is
-   a single section + footer meant to fit entirely on screen. .contact
-   below flexes to fill whatever's left after the footer's natural height. */
 html,body{height:100%;overflow:hidden}
 body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;display:flex;flex-direction:column}
 
@@ -33,9 +28,6 @@ nav > ul{display:flex;align-items:center;gap:2.5rem;list-style:none}
 nav a{color:var(--text);text-decoration:none;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase}
 nav .nav-cta{padding:.5rem 1.5rem;border:1px solid rgba(76,16,42,.3);font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;color:var(--text);transition:border-color .3s,color .3s}
 nav .nav-cta:hover{background:var(--accent);border-color:var(--gold);color:var(--gold)}
-/* "Work" nav dropdown — .nav-dropdown is given the nav's own 90px height so
-   its hover area spans down to exactly where the menu appears (top:100%),
-   with no gap a slow-moving cursor could fall through and drop the :hover. */
 nav .nav-dropdown{position:relative;display:flex;align-items:center;height:90px}
 nav .nav-dropdown > a::after{content:'';display:inline-block;margin-left:.4em;width:0;height:0;border-left:3px solid transparent;border-right:3px solid transparent;border-top:4px solid currentColor;vertical-align:middle;opacity:.6}
 nav .nav-dropdown-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(-6px);display:flex;flex-direction:column;gap:.15rem;min-width:170px;list-style:none;background:rgba(255,247,226,.97);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid var(--surface);border-radius:.6rem;padding:.5rem;box-shadow:0 20px 45px rgba(0,0,0,.18);opacity:0;visibility:hidden;transition:opacity .25s,transform .25s,visibility .25s}
@@ -43,21 +35,6 @@ nav .nav-dropdown:hover .nav-dropdown-menu{opacity:1;visibility:visible;transfor
 nav .nav-dropdown-menu a{display:block;padding:.65rem .9rem;border-radius:.35rem;white-space:nowrap}
 nav .nav-dropdown-menu a:hover{background:rgba(201,162,39,.1);color:var(--gold)}
 
-/* NAV — RESPONSIVE. Three tiers, from the widest down:
-     >1150px       desktop — the rules above, untouched.
-     901-1150px    "smaller monitors": same full inline layout, just
-                   shrunk (tighter gaps/type/logo) — there's still room
-                   for the whole menu, it's just tight.
-     <=900px       tablets and phones: nav > ul collapses behind the
-                   hamburger toggle below; .nav-cta stays visible next to
-                   it since it's the primary action.
-   The hamburger doesn't duplicate any markup — .nav-open (toggled on
-   <nav> by the JS at the bottom of <body>) just re-shows/restyles the
-   SAME <ul> as a full-width dropdown panel, and the "Work" submenu
-   becomes permanently inline there instead of hover-triggered, since
-   touch has no hover. .nav-actions wraps .nav-cta + the toggle together
-   so they sit as one group on the right once <ul> stops taking up space
-   in the middle — see the HTML. */
 .nav-actions{display:flex;align-items:center;gap:1rem}
 .nav-toggle{display:none;flex-direction:column;justify-content:center;gap:5px;width:32px;height:32px;background:none;border:none;cursor:pointer;padding:0;flex-shrink:0}
 .nav-toggle span{display:block;width:100%;height:2px;background:var(--text);transition:transform .3s,opacity .3s}
@@ -88,30 +65,36 @@ nav.nav-open .nav-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45
   nav .nav-cta{padding:.45rem 1rem;font-size:.6rem}
 }
 
-/* CONTACT — dark section, same treatment as Featured/Services (see the
-   "Alternating section backgrounds" comment in index.html's file header)
-   with locally-redefined --surface/--text/--muted/--accent custom
-   properties for this subtree. */
-.contact{position:relative;flex:1 1 auto;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:140px 3rem 1.5rem;background:#761941;--surface:rgba(255,247,226,.25);--text:#fff7e2;--muted:rgba(255,247,226,.65);--accent:#ffe9af} /* top padding clears the fixed nav — see the matching comment on featured.html's .h-section for why it's 140px, not just the nav's own 90px. flex:1/min-height:0 (instead of min-height:100vh) makes this fill whatever's left of the viewport after the footer, so the page fits on one screen with no scroll */
-.contact h2{font-family:'Jost',sans-serif;font-weight:600;font-size:clamp(2.4rem,min(8vw,13vh),6rem);letter-spacing:.05em;color:var(--text)} /* capped by vh as well as vw — a pure vw cap can still be too tall for a short window on this no-scroll page */
-.contact h2 .accent{color:var(--accent)}
-.contact p{color:var(--muted);font-size:.85rem;margin-top:1.2rem;font-weight:200}
-.contact-links{display:flex;gap:2rem;justify-content:center;margin-top:2rem}
-.contact-links a{color:var(--text);text-decoration:none;font-size:.75rem;letter-spacing:.2em;border-bottom:1px solid var(--surface);padding-bottom:.3rem;transition:border-color .3s,color .3s}
-.contact-links a:hover{border-color:var(--gold);color:var(--gold)}
-
-footer{padding:1.2rem 3rem;border-top:1px solid var(--surface);text-align:center;font-size:.6rem;color:var(--muted);letter-spacing:.2em;flex-shrink:0}
-
-/* MOBILE — this page is normally locked to exactly one screen with no
-   scroll (see html,body above); the large heading + tagline + links can
-   need more room than a short phone viewport has at a readable size, so
-   below this breakpoint the constraint is dropped and the section
-   becomes a normal, natural-height, scrollable block instead. */
+/* MOBILE — same "drop the one-viewport constraint" treatment as index.html. */
 @media(max-width:640px){
   html,body{height:auto;overflow:visible}
-  .contact{flex:none;min-height:100vh;min-height:100dvh;padding:110px 1.5rem 2.5rem}
-  .contact-links{flex-direction:column;gap:1.2rem}
+  .hero{flex:none;min-height:100vh;min-height:100dvh}
+  .hero-content{height:auto;min-height:100vh;min-height:100dvh;padding:7rem 1.25rem 3rem}
+  .hero-content h1{white-space:normal;font-size:clamp(1.7rem,8vw,2.6rem);line-height:1.2}
+  .hero-cta{flex-wrap:wrap;justify-content:center}
+  .hero-logo{width:clamp(260px,88vw,420px)}
 }
+
+/* HERO — no corridor here. Just the cube logo, centered, static. */
+.hero{flex:1 1 auto;min-height:0;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.hero-logo-wrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:1;pointer-events:none}
+/* Video is 1280x720 but the cube+wordmark art only fills a centered 895x246 band —
+   crop to that band's aspect ratio with object-fit:cover so it isn't tiny and letterboxed. */
+.hero-logo{width:clamp(480px,60vw,920px);aspect-ratio:1280/420;object-fit:cover;object-position:center;opacity:.95;-webkit-mask-image:radial-gradient(ellipse 62% 68% at center,#000 45%,transparent 78%);mask-image:radial-gradient(ellipse 62% 68% at center,#000 45%,transparent 78%)}
+.hero-overlay{position:absolute;inset:0;background:radial-gradient(ellipse at center 55%,rgba(255,247,226,0) 60%,rgba(255,247,226,.22) 100%);z-index:2;pointer-events:none}
+.hero-content{position:relative;z-index:3;text-align:center;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:space-between;height:100%;padding:7rem 2rem .35rem}
+.hero-content h1{font-family:'Jost',sans-serif;font-weight:600;font-size:clamp(1.8rem,4.2vw,3.8rem);line-height:1;letter-spacing:.08em;white-space:nowrap;opacity:0}
+.hero-content h1 .accent{color:var(--accent)}
+.hero-content p{font-size:.9rem;color:rgba(76,16,42,.75);letter-spacing:.2em;text-transform:uppercase;font-weight:200;opacity:0}
+.hero-bar{height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);width:200px;margin:.8rem auto 0;transform:scaleX(0)}
+.hero-cta{display:flex;gap:1.2rem;justify-content:center;margin-top:2rem}
+.hero-cta a{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;padding:.9rem 2rem;border-radius:2px;transition:all .3s;opacity:0}
+.hero-cta .btn-primary{background:var(--accent);color:var(--bg);border:1px solid var(--accent)}
+.hero-cta .btn-primary:hover{background:var(--accent);border-color:var(--gold);color:var(--gold)}
+.hero-cta .btn-secondary{color:var(--text);border:1px solid rgba(76,16,42,.3)}
+.hero-cta .btn-secondary:hover{background:var(--accent);border-color:var(--gold);color:var(--gold)}
+
+footer{padding:1.2rem 3rem;border-top:1px solid var(--surface);text-align:center;font-size:.6rem;color:var(--muted);letter-spacing:.2em;flex-shrink:0}
 </style>
 </head>
 <body>
@@ -138,12 +121,23 @@ footer{padding:1.2rem 3rem;border-top:1px solid var(--surface);text-align:center
   </div>
 </nav>
 
-<section class="contact" id="contact">
-  <h2>LET'S TELL<br>YOUR <span class="accent">STORY</span></h2>
-  <p>Tell us about your project. We'll get back within 24 hours.</p>
-  <div class="contact-links">
-    <a href="mailto:hello@bemonixagency.co">hello@bemonixagency.co</a>
-    <a href="#">Book a Call</a>
+<section class="hero">
+  <div class="hero-logo-wrap">
+    <video class="hero-logo" autoplay muted playsinline preload="auto">
+      <source src="../Screenshots/Cube_rolls_and_transforms_logo_202608310130.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1><span class="accent">Digital</span> Solutions<span class="accent"> Built to</span> Perform</h1>
+    <div class="hero-bottom">
+      <p>Every website you see here was built by us and yours can be next</p>
+      <div class="hero-bar"></div>
+      <div class="hero-cta">
+        <a href="contact.html" class="btn-primary">Start a Project</a>
+        <a href="showcase.html" class="btn-secondary">View Our Work</a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -152,8 +146,6 @@ footer{padding:1.2rem 3rem;border-top:1px solid var(--surface);text-align:center
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script>
 // ── MOBILE NAV TOGGLE ────────────────────────────────────────────────────────
-// Hamburger just toggles a class on <nav> — the CSS at max-width:900px reuses
-// the SAME <ul> as the mobile dropdown panel, no duplicate markup involved.
 (function initNavToggle() {
   const nav = document.querySelector('nav');
   const toggle = document.getElementById('navToggle');
@@ -168,8 +160,11 @@ footer{padding:1.2rem 3rem;border-top:1px solid var(--surface);text-align:center
   }));
 })();
 
-gsap.from('.contact h2',{y:50, opacity:0, duration:1, delay:.2});
-gsap.from('.contact p, .contact-links a', {y:20, opacity:0, stagger:.12, duration:.6, delay:.6});
+// ── HERO ENTRANCE ─────────────────────────────────────────────────────────────
+gsap.fromTo('.hero-content h1', {y:60, opacity:0}, {y:0, opacity:1, duration:1.5, delay:.4, ease:'power3.out'});
+gsap.fromTo('.hero-content p',  {y:20, opacity:0}, {y:0, opacity:1, duration:.8,  delay:1});
+gsap.fromTo('.hero-bar',        {scaleX:0},        {scaleX:1, duration:1, delay:1.3});
+gsap.fromTo('.hero-cta a',      {y:20, opacity:0}, {y:0, opacity:1, stagger:.12, duration:.7, delay:1.6});
 </script>
 </body>
 </html>

@@ -45,6 +45,51 @@ nav .nav-dropdown:hover .nav-dropdown-menu{opacity:1;visibility:visible;transfor
 nav .nav-dropdown-menu a{display:block;padding:.65rem .9rem;border-radius:.35rem;white-space:nowrap}
 nav .nav-dropdown-menu a:hover{background:rgba(201,162,39,.1);color:var(--gold)}
 
+/* NAV — RESPONSIVE. Three tiers, from the widest down:
+     >1150px       desktop — the rules above, untouched.
+     901-1150px    "smaller monitors": same full inline layout, just
+                   shrunk (tighter gaps/type/logo) — there's still room
+                   for the whole menu, it's just tight.
+     <=900px       tablets and phones: nav > ul collapses behind the
+                   hamburger toggle below; .nav-cta stays visible next to
+                   it since it's the primary action.
+   The hamburger doesn't duplicate any markup — .nav-open (toggled on
+   <nav> by the JS at the bottom of <body>) just re-shows/restyles the
+   SAME <ul> as a full-width dropdown panel, and the "Work" submenu
+   becomes permanently inline there instead of hover-triggered, since
+   touch has no hover. .nav-actions wraps .nav-cta + the toggle together
+   so they sit as one group on the right once <ul> stops taking up space
+   in the middle — see the HTML. */
+.nav-actions{display:flex;align-items:center;gap:1rem}
+.nav-toggle{display:none;flex-direction:column;justify-content:center;gap:5px;width:32px;height:32px;background:none;border:none;cursor:pointer;padding:0;flex-shrink:0}
+.nav-toggle span{display:block;width:100%;height:2px;background:var(--text);transition:transform .3s,opacity .3s}
+nav.nav-open .nav-toggle span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+nav.nav-open .nav-toggle span:nth-child(2){opacity:0}
+nav.nav-open .nav-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+@media(max-width:1150px) and (min-width:901px){
+  nav{padding:0 1.75rem}
+  nav .logo{height:110px}
+  nav > ul{gap:1.5rem}
+  nav a{font-size:.62rem}
+  nav .nav-cta{padding:.4rem 1.1rem;font-size:.6rem}
+}
+
+@media(max-width:900px){
+  nav{padding:0 1.5rem}
+  nav .logo{height:100px}
+  .nav-toggle{display:flex}
+  nav > ul{display:none;position:absolute;top:90px;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:rgba(255,247,226,.98);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--surface);padding:.5rem 1.5rem 1.5rem;box-shadow:0 20px 40px rgba(0,0,0,.15);max-height:calc(100vh - 90px);overflow-y:auto}
+  nav.nav-open > ul{display:flex}
+  nav > ul > li{width:100%}
+  nav > ul > li > a{display:block;padding:.9rem 0;border-bottom:1px solid rgba(76,16,42,.08)}
+  nav .nav-dropdown{height:auto;display:block;position:static}
+  nav .nav-dropdown > a::after{display:none}
+  nav .nav-dropdown-menu{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;background:transparent;-webkit-backdrop-filter:none;backdrop-filter:none;border:none;padding:0 0 .5rem 1rem;gap:0;min-width:0}
+  nav .nav-dropdown-menu a{padding:.7rem 0;border-bottom:none;font-size:.65rem;color:var(--muted)}
+  nav .nav-cta{padding:.45rem 1rem;font-size:.6rem}
+}
+
 /* WHAT WE BUILD — hover-driven clip-path menu.
    Left column (.wb-menu) is a plain list; hovering an item swaps which
    screenshot shows in .wb-visual and which SVG clip-path pattern reveals
@@ -114,6 +159,17 @@ nav .nav-dropdown-menu a:hover{background:rgba(201,162,39,.1);color:var(--gold)}
 .wb-phone-home{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);width:30%;height:4px;border-radius:2px;background:var(--text);opacity:.5}
 
 footer{padding:1.2rem 3rem;border-top:1px solid var(--surface);text-align:center;font-size:.6rem;color:var(--muted);letter-spacing:.2em;flex-shrink:0}
+
+/* MOBILE — this page is normally locked to exactly one screen with no
+   scroll (see html,body above); on a short/narrow phone that means
+   either illegible tiny text or clipped content, so below this
+   breakpoint the constraint is dropped and the section just becomes a
+   normal, natural-height, scrollable block instead. */
+@media(max-width:640px){
+  html,body{height:auto;overflow:visible}
+  .h-section{flex:none;min-height:100vh;min-height:100dvh;padding-top:110px;padding-bottom:2rem}
+  .wb-menu ul{gap:1rem}
+}
 </style>
 </head>
 <body>
@@ -132,7 +188,12 @@ footer{padding:1.2rem 3rem;border-top:1px solid var(--surface);text-align:center
     <li><a href="services.html">Services</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
-  <a href="contact.html" class="nav-cta">Start a Project</a>
+  <div class="nav-actions">
+    <a href="contact.html" class="nav-cta">Start a Project</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
 <section class="h-section" id="work">
@@ -244,6 +305,23 @@ footer{padding:1.2rem 3rem;border-top:1px solid var(--surface);text-align:center
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
 gsap.registerPlugin(ScrollTrigger);
+
+// ── MOBILE NAV TOGGLE ────────────────────────────────────────────────────────
+// Hamburger just toggles a class on <nav> — the CSS at max-width:900px reuses
+// the SAME <ul> as the mobile dropdown panel, no duplicate markup involved.
+(function initNavToggle() {
+  const nav = document.querySelector('nav');
+  const toggle = document.getElementById('navToggle');
+  if (!nav || !toggle) return;
+  toggle.addEventListener('click', () => {
+    const open = nav.classList.toggle('nav-open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+  nav.querySelectorAll('ul a').forEach(a => a.addEventListener('click', () => {
+    nav.classList.remove('nav-open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }));
+})();
 
 // ── WHAT WE BUILD — hover-driven clip-path reveal ─────────────────────────────
 gsap.from('.wb-item',      {scrollTrigger:{trigger:'.h-section',start:'top 70%'}, x:-40, opacity:0, stagger:.1, duration:.7});
