@@ -58,7 +58,8 @@ nav .nav-dropdown-menu a:hover{background:rgba(201,162,39,.1);color:var(--gold)}
    first glance that scrolling is what brings them into focus. Faded out
    via its own scroll-tied tween in <script> once the user actually starts
    scrolling, rather than lingering after it's done its job. */
-.scroll-hint{margin:2rem 0 0 3rem;display:flex;flex-direction:column;align-items:center;gap:.7rem;pointer-events:none;width:fit-content} /* normal flow, not absolute — it used to be pinned to .page-header's own bottom edge, which collided with .header-shade's content once the shade panel's height grew close to it; sitting right after the shade panel in flow means it can never overlap it, at any panel height */
+.header-row{display:flex;align-items:center;justify-content:space-between;gap:2rem} /* flex align-items:center is what pairs .scroll-hint's vertical center with .header-shade's — no magic top:% offset to keep in sync if the shade panel's height ever changes, they're just centered against each other directly */
+.scroll-hint{display:flex;flex-direction:column;align-items:center;gap:.7rem;pointer-events:none;width:fit-content;flex-shrink:0}
 .scroll-hint span{font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--muted)}
 /* Classic "scroll wheel" mouse glyph instead of a plain dropping line —
    gold-accented to tie into the site's established gold hover/highlight
@@ -73,7 +74,7 @@ nav .nav-dropdown-menu a:hover{background:rgba(201,162,39,.1);color:var(--gold)}
 .meta-num{font-family:'Jost',sans-serif;font-weight:600;font-size:2.2rem;color:var(--accent);line-height:1}
 .meta-lbl{font-size:.6rem;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;margin-top:.2rem}
 
-.filters{padding:1.5rem 3rem;border-bottom:1px solid var(--surface);display:flex;gap:.6rem;flex-wrap:wrap;background:var(--bg);opacity:0;transform:translateY(-16px)} /* NOT sticky on purpose — a sticky bar necessarily overlaps whatever scrolls underneath it, which is exactly what was covering the grid; sitting statically in normal flow means it can never overlap anything. Starts hidden/offset and is only revealed by the GSAP scroll-trigger in <script> once the grid's pop-in has actually finished settling, instead of just sitting there the whole time. */
+.filters{padding:1.5rem 3rem;border-bottom:1px solid var(--surface);display:flex;gap:.6rem;flex-wrap:wrap;background:var(--bg);position:sticky;top:90px;z-index:100;visibility:hidden;opacity:0;transform:translateY(-16px)} /* Sticky again, but safely this time: it stays invisible (visibility:hidden, not just opacity:0 — see the autoAlpha reveal in <script>) until the grid's pop-in has finished, so it can never visibly cover the still-tilted grid, and visibility:hidden also blocks pointer-events while hidden so it can't silently eat clicks/hovers meant for the grid underneath. Once revealed, position:sticky pins it below the nav while scrolling through the grid, and — because sticky can only ever stick as far as its own normal-flow position, never past it — scrolling back up to "Our Work" naturally un-sticks it with zero extra code. */
 .filter-btn{padding:.35rem 1rem;border:1px solid var(--surface);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);background:none;cursor:pointer;font-family:'Inter',sans-serif;transition:all .25s}
 .filter-btn:hover{background:var(--accent);border-color:var(--gold);color:var(--gold)}
 .filter-btn.active{background:var(--accent);border-color:var(--gold);color:var(--gold)}
@@ -87,11 +88,11 @@ nav .nav-dropdown-menu a:hover{background:rgba(201,162,39,.1);color:var(--gold)}
    which it just sits there, flat and fully interactive (hover/click/
    filter all work immediately once it's settled; the tilt is a one-time
    entrance, not a running effect that would fight with using the grid). */
-.grid-wrap{padding:1px 2rem 3rem;perspective:1600px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;transform-origin:top center}
+.grid-wrap{padding:1px 2rem 3rem;perspective:1600px;position:relative;z-index:1} /* explicit position+z-index (below .filters' z-index:100) — `perspective` alone creates a stacking context here, and without position also being non-static, its z-index isn't guaranteed to be honored consistently, which was letting card content (e.g. .card-cat badges) paint on top of the sticky, opaque .filters bar instead of staying safely behind it */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1px;background:var(--surface);transform-origin:top center;will-change:transform;backface-visibility:hidden} /* gap:1px + background peeking through = the original seamless "tiled wall" look (square corners, hairline seams between cards) instead of the rounded, gap-spaced card style. will-change promotes this to its own GPU compositor layer up front, instead of the browser deciding reactively once the scrub tween starts — with 44 cards' worth of images/shadows in this one element, that promotion hitch was a real source of the choppiness on scroll */
 
-.card{background:var(--surface);position:relative;overflow:hidden;cursor:pointer;aspect-ratio:1918/876;border-radius:.6rem;box-shadow:0 15px 35px rgba(0,0,0,.2);transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s}
-.card:hover{transform:translateY(-10px);box-shadow:0 25px 50px rgba(0,0,0,.35)}
+.card{background:var(--surface);position:relative;overflow:hidden;cursor:pointer;aspect-ratio:1918/876;box-shadow:inset 0 0 0 0 var(--gold);transition:box-shadow .4s} /* square corners, no drop shadow, no lift-on-hover — a lift would tear a tile visibly out of the seamless grid it's flush against; the gold inset border below is the hover cue instead */
+.card:hover{box-shadow:inset 0 0 0 2px var(--gold)}
 .card img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:filter .4s ease;filter:grayscale(25%)}
 .card:hover img{filter:grayscale(0%)}
 .card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.82) 0%,transparent 60%);opacity:0;transition:opacity .35s}
@@ -150,18 +151,20 @@ footer{padding:2rem 3rem;border-top:1px solid var(--surface);text-align:center;f
 </nav>
 
 <div class="page-header">
-  <div class="header-shade">
-    <h1>OUR<br><span>WORK</span></h1>
-    <p>Every site you see here was built by us. Click any card to preview it live — then tell us which direction you want to go.</p>
-    <div class="header-meta">
-      <div><div class="meta-num">44+</div><div class="meta-lbl">Templates</div></div>
-      <div><div class="meta-num">12</div><div class="meta-lbl">Categories</div></div>
-      <div><div class="meta-num">120+</div><div class="meta-lbl">Clients Served</div></div>
+  <div class="header-row">
+    <div class="header-shade">
+      <h1>OUR<br><span>WORK</span></h1>
+      <p>Every site you see here was built by us. Click any card to preview it live — then tell us which direction you want to go.</p>
+      <div class="header-meta">
+        <div><div class="meta-num">44+</div><div class="meta-lbl">Templates</div></div>
+        <div><div class="meta-num">12</div><div class="meta-lbl">Categories</div></div>
+        <div><div class="meta-num">120+</div><div class="meta-lbl">Clients Served</div></div>
+      </div>
     </div>
-  </div>
-  <div class="scroll-hint" id="scrollHint">
-    <span>Scroll to see the templates</span>
-    <div class="scroll-hint-mouse"><div class="scroll-hint-wheel"></div></div>
+    <div class="scroll-hint" id="scrollHint">
+      <span>Scroll to see the templates</span>
+      <div class="scroll-hint-mouse"><div class="scroll-hint-wheel"></div></div>
+    </div>
   </div>
 </div>
 
@@ -394,10 +397,15 @@ gsap.from('.page-header p, .header-meta', {y:30, opacity:0, duration:.8, stagger
 // CSS), so that workaround is gone: the grid is meant to be visible —
 // dim, tilted, stacked right under the header — from the very first frame,
 // same as the reference screenshot, not hidden until it's mostly settled.
+// scrub:1 (raised from .6) adds a bit more smoothing lag between raw scroll
+// deltas and the tween's progress — combined with .grid's will-change (see
+// its CSS), this is what fixed the choppiness: coarse/jumpy scroll input
+// (trackpad or mouse-wheel "steps") was driving a big, expensive-to-
+// recomposite element frame-for-frame with no smoothing to absorb it.
 gsap.fromTo('.grid',
   {rotateX:32, rotateZ:14, y:'-65vh', opacity:.25, scale:.82},
   {rotateX:0, rotateZ:0, y:0, opacity:1, scale:1, ease:'none',
-    scrollTrigger:{trigger:'.grid-wrap', start:'top 95%', end:'top 35%', scrub:.6}}
+    scrollTrigger:{trigger:'.grid-wrap', start:'top 95%', end:'top 35%', scrub:1}}
 );
 // Scroll hint: fades in a beat after load (so it doesn't flash in with
 // everything else), then fades back out over the same scroll range that
@@ -406,7 +414,7 @@ gsap.fromTo('.grid',
 gsap.from('#scrollHint', {opacity:0, duration:.8, delay:1.2});
 gsap.to('#scrollHint', {
   opacity:0, ease:'none',
-  scrollTrigger:{trigger:'.grid-wrap', start:'top 95%', end:'top 70%', scrub:.5}
+  scrollTrigger:{trigger:'.grid-wrap', start:'top 95%', end:'top 70%', scrub:.8}
 });
 // The filter bar stays at opacity:0 (see its CSS) until the grid's pop-in
 // has actually finished settling — tied to .grid-wrap reaching the SAME
@@ -418,10 +426,22 @@ gsap.to('#scrollHint', {
 // every kind of scroll jump (a scrub tween has no such failure mode: its
 // value is just a direct function of current scroll position, recomputed
 // every time, so there's nothing that can fail to "fire").
+// autoAlpha (not opacity) so visibility:hidden gets toggled together with
+// opacity — needed because .filters is position:sticky now (see its CSS):
+// while it's still fading in, its sticky box can already be positioned
+// directly over the grid, and a merely-transparent (opacity:0) element
+// still blocks clicks/hovers there; visibility:hidden makes it truly
+// inert until it's actually shown.
+// start:'top 30%' (not 45%) — the position/tilt tween above doesn't fully
+// finish settling until 'top 35%', so starting the reveal any earlier than
+// that let the filter bar become visible while the grid was still very
+// slightly elevated, reading as a brief overlap right as it faded in.
+// Starting a little AFTER the grid's own end point guarantees the grid is
+// fully flat/settled before the filter bar shows anything at all.
 gsap.fromTo('.filters',
-  {opacity:0, y:-16},
-  {opacity:1, y:0, ease:'none',
-    scrollTrigger:{trigger:'.grid-wrap', start:'top 45%', end:'top 25%', scrub:.5}}
+  {autoAlpha:0, y:-16},
+  {autoAlpha:1, y:0, ease:'none',
+    scrollTrigger:{trigger:'.grid-wrap', start:'top 30%', end:'top 12%', scrub:.8}}
 );
 gsap.utils.toArray('.card').forEach((card, i) => {
   gsap.from(card, {
