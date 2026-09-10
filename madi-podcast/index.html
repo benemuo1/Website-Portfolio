@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Madi's Podcast â€” A Book Podcast</title>
+<title>Madi's Podcast — A Book Podcast</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
 <style>
-/* â”€â”€ COLOUR TOKENS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+/* ── COLOUR TOKENS ─────────────────────────────────────────────────────────
    Edit these variables to retheme the entire site at once.
    --cream      : page background / light panel background
    --red-dark   : darkest red, used for the intro sticky background
@@ -17,16 +17,16 @@
    --ink        : near-black, main text and border colour
    --muted      : dark brown, secondary/body text
    --border     : border colour for cards and dividers
-â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+────────────────────────────────────────────────────────────────────────── */
 :root{--cream:#F3EFE5;--red-dark:#250902;--red-mid:#640D14;--red-bright:#AD2831;--ink:#1a0a08;--muted:#3d1a14;--border:#800E13}
 
 *{margin:0;padding:0;box-sizing:border-box}
 html{height:100%}
-/* scroll-snap-type: y mandatory â€” makes each full-height section snap into view on scroll */
+/* scroll-snap-type: y mandatory — makes each full-height section snap into view on scroll */
 body{background:var(--cream);color:var(--ink);font-family:'Inter',sans-serif;overflow-x:hidden;height:100%;overflow-y:scroll;scroll-snap-type:y mandatory}
 @media(max-width:768px){body{scroll-snap-type:none}}
 
-/* â”€â”€ NAV â”€â”€ sticky top bar, sits above everything with z-index:100 */
+/* ── NAV ── sticky top bar, sits above everything with z-index:100 */
 nav{padding:1.2rem 2rem;display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid var(--ink);background:var(--cream);position:sticky;top:0;z-index:100}
 nav .logo{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;letter-spacing:.05em;color:var(--ink)}
 nav .logo span{color:var(--red-bright)}
@@ -36,57 +36,57 @@ nav ul a:hover,nav ul a.active{color:var(--red-bright)}
 .nav-toggle{display:none;background:none;border:none;cursor:pointer;font-size:1.4rem;color:var(--ink);padding:.2rem}
 @media(max-width:600px){.nav-toggle{display:block}nav ul{display:none;position:absolute;top:100%;left:0;right:0;background:var(--cream);flex-direction:column;gap:0;border-bottom:3px solid var(--ink);z-index:200}nav ul.open{display:flex}nav ul li a{display:block;padding:.9rem 1.5rem;border-bottom:1px solid var(--border)}}
 
-/* â”€â”€ INTRO SCROLL CHOREOGRAPHY â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+/* ── INTRO SCROLL CHOREOGRAPHY ─────────────────────────────────────────────
    .intro        : tall spacer (700vh) that gives the scroll animation its
-                   range â€” the actual visible content is position:sticky inside
+                   range — the actual visible content is position:sticky inside
    .intro-sticky : the visible full-screen panel that stays fixed while the
                    user scrolls through the 700vh of .intro
-â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+────────────────────────────────────────────────────────────────────────── */
 .intro{height:700vh;position:relative}
 .intro-sticky{position:sticky;top:0;height:100vh;overflow:hidden;background:var(--red-dark)}
 
-/* â”€â”€ CHOREO PANELS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+/* ── CHOREO PANELS ──────────────────────────────────────────────────────────
    4 image tiles (.tl .tr .bl .br = top-left, top-right, bottom-left, bottom-right)
    that animate across the screen during Phase 1 & 2 of the intro.
-   Their transforms are overridden by JS during the scroll animation â€”
+   Their transforms are overridden by JS during the scroll animation —
    the CSS values here are just the initial resting positions.
    will-change:transform tells the browser to GPU-accelerate these elements.
-â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+────────────────────────────────────────────────────────────────────────── */
 .choreo{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
 .choreo-img{position:absolute;width:36vw;height:24vh;overflow:hidden;will-change:transform;transition:none}
 .choreo-img img{width:100%;height:100%;object-fit:cover;display:block}
-/* Initial positions â€” JS animates these via style.transform on scroll */
+/* Initial positions — JS animates these via style.transform on scroll */
 .tl{transform:translate(calc(-20vw - 18vw), calc(-14vh - 12vh))} /* top-left tile */
 .tr{transform:translate(calc(20vw - 18vw),  calc(-14vh - 12vh))} /* top-right tile */
 .bl{transform:translate(calc(-20vw - 18vw), calc(14vh  - 12vh))} /* bottom-left tile */
 .br{transform:translate(calc(20vw - 18vw),  calc(14vh  - 12vh))} /* bottom-right tile */
 
-/* â”€â”€ FLIPBOOK â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+/* ── FLIPBOOK ───────────────────────────────────────────────────────────────
    Full-screen image layer that fades in during Phase 3.
    JS swaps the <img> src to step through the 33 book-closing frames.
    z-index:50 puts it above the choreo panels but below the text overlay.
-â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+────────────────────────────────────────────────────────────────────────── */
 .flipbook{position:absolute;inset:0;opacity:0;transition:opacity .3s;z-index:50}
 .flipbook img{width:100%;height:100%;object-fit:cover;display:block}
 
-/* â”€â”€ INTRO TEXT OVERLAY â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+/* ── INTRO TEXT OVERLAY ─────────────────────────────────────────────────────
    Centred text (title + subtitle) that sits on top of everything.
    z-index:60 keeps it above the flipbook (50) but below the sparkle canvas (65).
    pointer-events:none so it never blocks clicks on elements beneath.
-â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+────────────────────────────────────────────────────────────────────────── */
 .intro-text{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:60;text-align:center;pointer-events:none;opacity:1;transition:opacity .4s}
 .intro-eyebrow{font-family:'DM Sans',sans-serif;font-weight:300;font-size:.85rem;color:var(--red-bright);letter-spacing:.25em;text-transform:uppercase;margin-bottom:1rem}
-/* font-size uses clamp(min, preferred, max) â€” scales fluidly with viewport width */
+/* font-size uses clamp(min, preferred, max) — scales fluidly with viewport width */
 .intro-title{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(3rem,8vw,7rem);line-height:.9;text-transform:uppercase;color:#F3EFE5}
 .intro-title span{color:var(--red-bright)}
 .intro-sub{font-family:'DM Sans',sans-serif;font-weight:300;font-size:1rem;color:rgba(243,239,229,.65);margin-top:1.5rem;letter-spacing:.08em}
 
-/* Sparkle canvas â€” drawn on by a separate sparkle script if added later, z-index:65 sits above text */
+/* Sparkle canvas — drawn on by a separate sparkle script if added later, z-index:65 sits above text */
 #sparkleCanvas{position:absolute;inset:0;z-index:65;pointer-events:none}
 
-/* "Scroll to enter" hint at the bottom of the intro â€” fades out early in the animation */
+/* "Scroll to enter" hint at the bottom of the intro — fades out early in the animation */
 .scroll-cue{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);font-family:'DM Sans',sans-serif;font-weight:300;font-size:.7rem;color:rgba(243,239,229,.5);letter-spacing:.15em;text-transform:uppercase;z-index:70;transition:opacity .4s}
-/* â”€â”€ HERO â”€â”€ first content section after the intro, snaps into view */
+/* ── HERO ── first content section after the intro, snaps into view */
 .hero{display:grid;grid-template-columns:1.2fr 1fr;min-height:100vh;border-bottom:3px solid var(--ink);background:var(--cream);scroll-snap-align:start}
 .hero-content{padding:4rem 2rem;display:flex;flex-direction:column;justify-content:center;border-right:3px solid var(--ink)}
 .hero-eyebrow{font-family:'DM Sans',sans-serif;font-weight:300;font-size:.75rem;color:var(--red-bright);letter-spacing:.2em;text-transform:uppercase;margin-bottom:1rem}
@@ -107,7 +107,7 @@ nav ul a:hover,nav ul a.active{color:var(--red-bright)}
 .hero-art .book-spine{position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(to top,rgba(37,9,2,.85),transparent);display:flex;align-items:flex-end;padding:1rem 1.5rem}
 .book-spine p{font-family:'DM Sans',sans-serif;font-weight:300;font-size:.78rem;color:#fff;letter-spacing:.05em;font-style:italic}
 
-/* â”€â”€ EPISODES â”€â”€ layout is flipped: red panel left, cream content right */
+/* ── EPISODES ── layout is flipped: red panel left, cream content right */
 /* order:1 / order:2 on children controls visual order independently of DOM order */
 .episodes{padding:0;display:grid;grid-template-columns:1fr 1.2fr;border-bottom:3px solid var(--ink);min-height:100vh;scroll-snap-align:start}
 .episodes-main{padding:4rem 2rem;background:var(--cream);order:2}
@@ -132,7 +132,7 @@ nav ul a:hover,nav ul a.active{color:var(--red-bright)}
 .episodes-side .ep-count{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:3.4rem;color:var(--red-bright);line-height:1;margin-bottom:.5rem}
 .episodes-side .ep-count span{font-family:'DM Sans',sans-serif;font-weight:300;font-size:.8rem;color:rgba(243,239,229,.6);display:block;margin-top:.3rem}
 
-/* â”€â”€ PULL QUOTE â”€â”€ full-height quote section, same column layout as hero */
+/* ── PULL QUOTE ── full-height quote section, same column layout as hero */
 .pull-quote{display:grid;grid-template-columns:1.2fr 1fr;border-top:3px solid var(--ink);border-bottom:3px solid var(--ink);min-height:100vh;scroll-snap-align:start}
 .pull-quote-main{padding:4rem 2rem;background:var(--cream);border-right:3px solid var(--ink);display:flex;flex-direction:column;justify-content:center}
 .pull-quote-main p{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(1.5rem,3vw,2.5rem);text-transform:uppercase;line-height:1.3;color:var(--ink)}
@@ -143,7 +143,7 @@ nav ul a:hover,nav ul a.active{color:var(--red-bright)}
 .pull-quote-side .stat-num{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:2.2rem;color:#F3EFE5}
 .pull-quote-side .stat-label{font-family:'DM Sans',sans-serif;font-weight:300;font-size:.72rem;color:rgba(243,239,229,.6);letter-spacing:.12em;text-transform:uppercase;margin-top:.2rem}
 
-/* â”€â”€ SUBSCRIBE â”€â”€ flipped layout again: red image panel left, text right */
+/* ── SUBSCRIBE ── flipped layout again: red image panel left, text right */
 .subscribe{padding:0;display:grid;grid-template-columns:1fr 1.2fr;border-bottom:3px solid var(--ink);min-height:100vh;scroll-snap-align:start}
 .subscribe-main{padding:4rem 2rem;background:var(--cream);display:flex;flex-direction:column;justify-content:center;order:2}
 .subscribe h2{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:2.2rem;text-transform:uppercase;color:var(--ink)}
@@ -157,7 +157,7 @@ nav ul a:hover,nav ul a.active{color:var(--red-bright)}
 .subscribe-art .overlay span{font-family:'DM Sans',sans-serif;font-weight:300;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;color:var(--red-bright)}
 .subscribe-art .overlay strong{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1rem;text-transform:uppercase;color:#F3EFE5}
 
-/* â”€â”€ ABOUT â”€â”€ used on about.html, same layout as hero */
+/* ── ABOUT ── used on about.html, same layout as hero */
 .about{display:grid;grid-template-columns:1.2fr 1fr;border-bottom:3px solid var(--ink);min-height:100vh;scroll-snap-align:start;align-items:stretch}
 .about-main{padding:4rem 2rem;background:var(--cream);border-right:3px solid var(--ink);display:flex;flex-direction:column;justify-content:center}
 .about-eyebrow{font-family:'DM Sans',sans-serif;font-weight:300;font-size:.75rem;color:var(--red-bright);letter-spacing:.2em;text-transform:uppercase;margin-bottom:1rem}
@@ -175,7 +175,7 @@ nav ul a:hover,nav ul a.active{color:var(--red-bright)}
 .about-social a{font-family:'DM Sans',sans-serif;font-weight:300;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(243,239,229,.7);text-decoration:none;border-bottom:1px solid rgba(243,239,229,.3);padding-bottom:.1rem}
 .about-social a:hover{color:#F3EFE5;border-color:#F3EFE5}
 
-/* â”€â”€ MOBILE â€” collapses all two-column grids to single column below 768px */
+/* ── MOBILE — collapses all two-column grids to single column below 768px */
 @media(max-width:768px){
 nav{padding:1rem 1.5rem}
 nav ul{gap:1rem}
@@ -237,9 +237,9 @@ footer{flex-direction:column;gap:.5rem;text-align:center;padding:1.5rem}
 
 <section class="hero">
   <div class="hero-content">
-    <div class="hero-eyebrow">&#9654; Latest Episode Â· No. 12</div>
+    <div class="hero-eyebrow">&#9654; Latest Episode · No. 12</div>
     <h1>Project<span class="red"> Hail Mary</span></h1>
-    <p>A podcast about the books that stay with you. Issue 12 revisits the novels with cracked spines, coffee stains, and notes in the margins â€” and asks why some stories never let go.</p>
+    <p>A podcast about the books that stay with you. Issue 12 revisits the novels with cracked spines, coffee stains, and notes in the margins — and asks why some stories never let go.</p>
     <div class="hero-actions">
       <a href="listen.html" class="btn-play">&#9654; Listen Now</a>
       <a href="#episodes" class="btn-outline">All Episodes</a>
@@ -252,8 +252,8 @@ footer{flex-direction:column;gap:.5rem;text-align:center;padding:1.5rem}
   </div>
   <div class="hero-art">
     <img src="images/project-hail-mary.jpg" alt="Project Hail Mary book cover" loading="eager">
-    <div class="ep-badge">Ep. 12 Â· New</div>
-    <div class="book-spine"><p>"Some books you read. Some books read you." â€” Ep. 12</p></div>
+    <div class="ep-badge">Ep. 12 · New</div>
+    <div class="book-spine"><p>"Some books you read. Some books read you." — Ep. 12</p></div>
   </div>
 </section>
 
@@ -261,34 +261,34 @@ footer{flex-direction:column;gap:.5rem;text-align:center;padding:1.5rem}
   <div class="episodes-main">
     <div class="section-header">
       <h2>Recent Episodes</h2>
-      <a href="episodes.html">Full archive â†’</a>
+      <a href="episodes.html">Full archive →</a>
     </div>
     <div class="ep-grid">
       <a href="listen.html" class="ep-card">
         <img src="images/ep12.jpg" alt="" loading="lazy">
-        <div class="ep-card-body"><div class="ep-card-num">Episode 12 Â· Rereading</div><h3>The Ones We Keep Coming Back To</h3><p>On rereading, memory, and the books that feel different every time you open them.</p></div>
-        <div class="ep-card-footer"><span>48:22 Â· Winter 2024</span><button class="play-mini">&#9654;</button></div>
+        <div class="ep-card-body"><div class="ep-card-num">Episode 12 · Rereading</div><h3>The Ones We Keep Coming Back To</h3><p>On rereading, memory, and the books that feel different every time you open them.</p></div>
+        <div class="ep-card-footer"><span>48:22 · Winter 2024</span><button class="play-mini">&#9654;</button></div>
       </a>
       <a href="listen.html" class="ep-card">
         <img src="images/ep11.jpg" alt="" loading="lazy">
-        <div class="ep-card-body"><div class="ep-card-num">Episode 11 Â· Debut Fiction</div><h3>First Books, Lasting Impressions</h3><p>The debut novels that stopped us in our tracks this year.</p></div>
+        <div class="ep-card-body"><div class="ep-card-num">Episode 11 · Debut Fiction</div><h3>First Books, Lasting Impressions</h3><p>The debut novels that stopped us in our tracks this year.</p></div>
         <div class="ep-card-footer"><span>41:05</span><button class="play-mini">&#9654;</button></div>
       </a>
       <a href="listen.html" class="ep-card">
         <img src="images/ep10.jpg" alt="" loading="lazy">
-        <div class="ep-card-body"><div class="ep-card-num">Episode 10 Â· Poetry</div><h3>Reading Poetry Out Loud</h3><p>Why poetry sounds completely different when you hear it spoken.</p></div>
+        <div class="ep-card-body"><div class="ep-card-num">Episode 10 · Poetry</div><h3>Reading Poetry Out Loud</h3><p>Why poetry sounds completely different when you hear it spoken.</p></div>
         <div class="ep-card-footer"><span>36:50</span><button class="play-mini">&#9654;</button></div>
       </a>
       <a href="listen.html" class="ep-card">
         <img src="images/ep09.jpg" alt="" loading="lazy">
-        <div class="ep-card-body"><div class="ep-card-num">Episode 09 Â· Classics</div><h3>Are Classic Books Still Relevant?</h3><p>A gentle argument for and against the literary canon.</p></div>
+        <div class="ep-card-body"><div class="ep-card-num">Episode 09 · Classics</div><h3>Are Classic Books Still Relevant?</h3><p>A gentle argument for and against the literary canon.</p></div>
         <div class="ep-card-footer"><span>52:14</span><button class="play-mini">&#9654;</button></div>
       </a>
     </div>
   </div>
   <div class="episodes-side">
     <div class="ep-count">12<span>Episodes &amp; counting</span></div>
-    <p>New conversations about books, authors, and the quiet magic of reading â€” every two weeks.</p>
+    <p>New conversations about books, authors, and the quiet magic of reading — every two weeks.</p>
     <div style="margin-top:2rem"><a href="listen.html" style="display:inline-block;padding:.8rem 1.8rem;background:var(--red-bright);color:#fff;text-decoration:none;font-family:'Archivo Black',sans-serif;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;border:2px solid var(--red-bright)">&#9654; Listen Now</a></div>
   </div>
 </section>
@@ -296,7 +296,7 @@ footer{flex-direction:column;gap:.5rem;text-align:center;padding:1.5rem}
 <section class="pull-quote">
   <div class="pull-quote-main">
     <p>"A reader lives a thousand lives. <span class="red">The non-reader lives only one.</span>"</p>
-    <cite>â€” George R.R. Martin, discussed in Episode 09</cite>
+    <cite>— George R.R. Martin, discussed in Episode 09</cite>
   </div>
   <div class="pull-quote-side">
     <div class="stat"><div class="stat-num">48:22</div><div class="stat-label">Latest Episode Length</div></div>
@@ -308,7 +308,7 @@ footer{flex-direction:column;gap:.5rem;text-align:center;padding:1.5rem}
 <section class="subscribe">
   <div class="subscribe-main">
     <h2>Never Miss a Chapter</h2>
-    <p>New episodes every two weeks â€” conversations about books, authors, and the quiet magic of reading. Find us wherever you listen.</p>
+    <p>New episodes every two weeks — conversations about books, authors, and the quiet magic of reading. Find us wherever you listen.</p>
     <div class="platforms">
       <a href="#" class="primary">Apple Podcasts</a>
       <a href="#">Spotify</a>
@@ -316,23 +316,23 @@ footer{flex-direction:column;gap:.5rem;text-align:center;padding:1.5rem}
     </div>
     <div style="margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--border)">
       <div style="font-family:'DM Sans',sans-serif;font-weight:300;font-size:.75rem;color:var(--red-bright);letter-spacing:.2em;text-transform:uppercase;margin-bottom:.8rem">Your Host</div>
-      <p style="font-family:'DM Sans',sans-serif;font-weight:300;font-size:.95rem;color:var(--muted);line-height:1.7;margin-top:0">Madi is a lifelong reader and the voice behind every episode â€” with a soft spot for literary fiction, debut novels, and anything that makes her cry on public transport.</p>
-      <a href="about.html" style="display:inline-block;margin-top:1rem;font-family:'DM Sans',sans-serif;font-weight:300;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);text-decoration:none;border-bottom:2px solid var(--ink);padding-bottom:.1rem">Meet Madi â†’</a>
+      <p style="font-family:'DM Sans',sans-serif;font-weight:300;font-size:.95rem;color:var(--muted);line-height:1.7;margin-top:0">Madi is a lifelong reader and the voice behind every episode — with a soft spot for literary fiction, debut novels, and anything that makes her cry on public transport.</p>
+      <a href="about.html" style="display:inline-block;margin-top:1rem;font-family:'DM Sans',sans-serif;font-weight:300;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);text-decoration:none;border-bottom:2px solid var(--ink);padding-bottom:.1rem">Meet Madi →</a>
     </div>
   </div>
   <div class="subscribe-art">
     <img src="images/subscribe.jpg" alt="" loading="lazy">
-    <div class="overlay"><span>Now Playing</span><strong>Ep. 12 â€” The Ones We Keep Coming Back To</strong></div>
+    <div class="overlay"><span>Now Playing</span><strong>Ep. 12 — The Ones We Keep Coming Back To</strong></div>
   </div>
 </section>
 
 
-<footer style="display:flex;justify-content:space-between;align-items:center;padding:2rem;border-top:3px solid var(--ink);font-family:'DM Sans',sans-serif;font-weight:300;font-size:.8rem;color:var(--muted)"><span>Madi's Podcast Â© 2024</span><span>A podcast for readers, by readers</span></footer>
+<footer style="display:flex;justify-content:space-between;align-items:center;padding:2rem;border-top:3px solid var(--ink);font-family:'DM Sans',sans-serif;font-weight:300;font-size:.8rem;color:var(--muted)"><span>Madi's Podcast © 2024</span><span>A podcast for readers, by readers</span></footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
-// â”€â”€ GSAP ENTRANCE ANIMATIONS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── GSAP ENTRANCE ANIMATIONS ─────────────────────────────────────────────────
 // These run once when the page loads / when sections scroll into view.
 // y/x = vertical/horizontal offset to animate FROM (pixels)
 // skewX / rotation = tilt in degrees
@@ -369,20 +369,25 @@ gsap.from('.subscribe-main > *', {scrollTrigger:{trigger:'.subscribe', start:'to
 gsap.from('.subscribe-art',      {scrollTrigger:{trigger:'.subscribe', start:'top 90%', once:true}, x:-30, duration:.8});
 
 
-// â”€â”€ INTRO SCROLL CHOREOGRAPHY â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── INTRO SCROLL CHOREOGRAPHY ─────────────────────────────────────────────────
+// The intro is a one-time entrance animation, not the home page itself — once
+// the visitor has reached the hero this session, every later load (including
+// clicking "Home" in the nav) skips straight past it.
+const introSeen = sessionStorage.getItem('madiIntroSeen') === '1';
+
 // Builds an array of 33 file paths for the book-closing frame sequence.
-// padStart(3,'0') zero-pads the number: 1 â†’ '001', 9 â†’ '009' etc.
+// padStart(3,'0') zero-pads the number: 1 → '001', 9 → '009' etc.
 const frames = Array.from({length: 33}, (_, i) => {
   const n = String(i + 1).padStart(3, '0');
   return `images/frames/ezgif-frame-${n}.jpg`;
 });
 
-// Only preload frames on non-mobile to save memory
-if (window.innerWidth > 768) {
+// Only preload frames on non-mobile, and only if the intro will actually play
+if (!introSeen && window.innerWidth > 768) {
   frames.forEach(src => { const img = new Image(); img.src = src; });
 }
 
-// â”€â”€ DOM REFERENCES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── DOM REFERENCES ────────────────────────────────────────────────────────────
 const intro     = document.getElementById('intro');      // the 700vh scroll spacer
 const flipFrame = document.getElementById('flipFrame');  // <img> whose src is swapped each frame
 const flipbook  = document.getElementById('flipbook');   // wrapper that fades in over the choreo
@@ -393,31 +398,36 @@ const cTR = document.getElementById('cTR'); // choreo tile: top-right
 const cBL = document.getElementById('cBL'); // choreo tile: bottom-left
 const cBR = document.getElementById('cBR'); // choreo tile: bottom-right
 
-// â”€â”€ UTILITY FUNCTIONS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-// lerp: linear interpolate between a and b by factor t (0â€“1)
+if (introSeen) {
+  // Already played this session — skip straight to the real homepage.
+  intro.style.display = 'none';
+} else {
+
+// ── UTILITY FUNCTIONS ─────────────────────────────────────────────────────────
+// lerp: linear interpolate between a and b by factor t (0–1)
 function lerp(a, b, t) { return a + (b - a) * t; }
 // clamp: keep value v between min a and max b
 function clamp(v, a, b) { return Math.min(Math.max(v, a), b); }
-// prog: maps global scroll progress t into a 0â€“1 range between scroll points a and b
+// prog: maps global scroll progress t into a 0–1 range between scroll points a and b
 //       e.g. prog(t, 0.25, 0.48) returns 0 before 25% scroll, 1 after 48%, and interpolates between
 function prog(t, a, b) { return clamp((t - a) / (b - a), 0, 1); }
 
-// â”€â”€ SCROLL RATE LIMITING â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-// targetT  : raw scroll progress (0â€“1), updated instantly on every scroll event
+// ── SCROLL RATE LIMITING ──────────────────────────────────────────────────────
+// targetT  : raw scroll progress (0–1), updated instantly on every scroll event
 // currentT : smoothed progress that chases targetT each animation frame
-// LERP_SPEED: how fast currentT catches up â€” lower = slower/more cinematic (try 0.03â€“0.1)
+// LERP_SPEED: how fast currentT catches up — lower = slower/more cinematic (try 0.03–0.1)
 let targetT  = 0;
 let currentT = 0;
 const LERP_SPEED = 0.06;
 
-// Only update the target â€” never touch the DOM here
+// Only update the target — never touch the DOM here
 function onScroll() {
   const totalH = intro.offsetHeight - window.innerHeight;
   targetT = clamp(window.scrollY / totalH, 0, 1);
 }
 window.addEventListener('scroll', onScroll);
 
-// â”€â”€ ANIMATION TICK LOOP â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── ANIMATION TICK LOOP ───────────────────────────────────────────────────────
 // Runs every frame (~60fps). Smoothly steps currentT toward targetT,
 // then drives all visual updates from that single smoothed value.
 const isMobile = window.innerWidth <= 768;
@@ -429,6 +439,9 @@ if (isMobile) {
   intro.style.position = 'relative';
   document.querySelector('.intro-sticky').style.position = 'relative';
   document.querySelector('.intro-sticky').style.height = '100svh';
+  // No scroll-driven animation on mobile — it's just a static splash, so
+  // mark the intro as seen as soon as it's shown.
+  sessionStorage.setItem('madiIntroSeen', '1');
 }
 
 function tick() {
@@ -442,7 +455,7 @@ function tick() {
 
   const t = currentT;
 
-  // â”€â”€ PHASE 1 (t: 0 â†’ 0.25) â€” diagonal swap â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── PHASE 1 (t: 0 → 0.25) — diagonal swap ──────────────────────────────────
   // TL tile slides down, BR tile slides up. TR and BL stay fixed.
   // tlY / brY are the vertical positions in vh units
   const p1  = prog(t, 0, 0.25);
@@ -453,20 +466,20 @@ function tick() {
   cBL.style.transform = `translate(calc(-20vw - 18vw), calc(14vh - 12vh))`;
   cTR.style.transform = `translate(calc(20vw - 18vw),  calc(-14vh - 12vh))`;
 
-  // â”€â”€ PHASE 2 (t: 0.25 â†’ 0.48) â€” all four tiles converge to center â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── PHASE 2 (t: 0.25 → 0.48) — all four tiles converge to center ───────────
   const p2 = prog(t, 0.25, 0.48);
   if (p2 > 0) {
-    // lerp(Â±20, 0, p2) moves each tile's horizontal offset toward 0 (center)
+    // lerp(±20, 0, p2) moves each tile's horizontal offset toward 0 (center)
     cTL.style.transform = `translate(calc(${lerp(-20, 0, p2)}vw - 18vw), ${lerp(tlY, 0, p2)}vh)`;
     cTR.style.transform = `translate(calc(${lerp(20,  0, p2)}vw - 18vw), ${lerp(-26, 0, p2)}vh)`;
     cBL.style.transform = `translate(calc(${lerp(-20, 0, p2)}vw - 18vw), ${lerp(2,   0, p2)}vh)`;
     cBR.style.transform = `translate(calc(${lerp(20,  0, p2)}vw - 18vw), ${lerp(brY, 0, p2)}vh)`;
   }
 
-  // Fade the choreo grid out as the flipbook fades in (t: 0.44 â†’ 0.52)
+  // Fade the choreo grid out as the flipbook fades in (t: 0.44 → 0.52)
   document.querySelector('.choreo').style.opacity = 1 - prog(t, 0.44, 0.52);
 
-  // â”€â”€ PHASE 3 (t: 0.48 â†’ 0.82) â€” flipbook plays through all 33 frames â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── PHASE 3 (t: 0.48 → 0.82) — flipbook plays through all 33 frames ────────
   // The wide range (34% of total scroll) gives each frame plenty of breathing room
   const p3 = prog(t, 0.48, 0.82);
   flipbook.style.opacity  = p3 > 0 ? 1 : 0;
@@ -474,40 +487,43 @@ function tick() {
   // Fade the scroll cue out in the first 15% of scroll
   scrollCue.style.opacity = 1 - prog(t, 0, 0.15) * 2;
 
-  // Map p3 (0â€“1) to a frame index (0â€“32) and swap the src only when it changes
+  // Map p3 (0–1) to a frame index (0–32) and swap the src only when it changes
   const frameIdx = Math.min(Math.floor(p3 * frames.length), frames.length - 1);
   const src = frames[frameIdx];
   if (flipFrame.getAttribute('src') !== src) flipFrame.src = src;
 
-  // â”€â”€ PHASE 4 (t: 0.82 â†’ 0.97) â€” title scales up + colour shifts, then snaps â”€
+  // ── PHASE 4 (t: 0.82 → 0.97) — title scales up + colour shifts, then snaps ─
   const p4 = prog(t, 0.82, 0.97);
   const title = document.querySelector('.intro-title');
   const sub   = document.querySelector('.intro-sub');
-  // Title scales from 1Ã— to 1.12Ã— and colour shifts from cream (#F3EFE5) to ink (#1a0a08)
+  // Title scales from 1× to 1.12× and colour shifts from cream (#F3EFE5) to ink (#1a0a08)
   title.style.transform = `scale(${lerp(1, 1.12, p4)}) translateY(${lerp(0, -10, p4)}px)`;
   title.style.color     = `rgba(${Math.round(lerp(243,26,p4))},${Math.round(lerp(239,10,p4))},${Math.round(lerp(229,8,p4))},1)`;
   // Subtitle drifts down and fades out
   sub.style.transform   = `translateY(${lerp(0, 12, p4)}px)`;
   sub.style.opacity     = String(lerp(0.65, 0, p4));
-  // Whole text block fades out in the final stretch (t: 0.93 â†’ 0.97)
+  // Whole text block fades out in the final stretch (t: 0.93 → 0.97)
   introText.style.opacity = lerp(1, 0, prog(t, 0.93, 0.97));
 
-  // â”€â”€ SNAP TO HERO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── SNAP TO HERO ─────────────────────────────────────────────────────────────
   // Once the user has scrolled past 97% of the intro, jump them to the hero section.
   // A cream-coloured cover div hides the jump, then fades away to reveal the hero.
   // _snapped flag prevents this from firing more than once per visit.
-  if (targetT >= 0.97 && !intro._snapped) {
+  if (t >= 0.97 && !intro._snapped) {
     intro._snapped = true;
+    sessionStorage.setItem('madiIntroSeen', '1');
     window.removeEventListener('scroll', onScroll);
     const navEl   = document.querySelector('nav');
     const heroEl  = document.querySelector('.hero');
-    const heroTop = heroEl.getBoundingClientRect().top + window.scrollY - navEl.offsetHeight;
     const cover   = document.createElement('div');
     cover.style.cssText = 'position:fixed;inset:0;background:var(--cream);z-index:9999;pointer-events:none;opacity:1;transition:opacity 0.5s ease';
     document.body.appendChild(cover);
-    window.scrollTo({top: heroTop, behavior: 'instant'});
-    intro.style.height   = '0';       // collapse the 700vh spacer so it can't be scrolled back into
+    intro.style.height   = '0';       // collapse the 700vh spacer first so layout below it settles
     intro.style.overflow = 'hidden';
+    // Compute heroTop AFTER the collapse — using the pre-collapse position here
+    // would target a spot ~700vh too far down once the spacer disappears.
+    const heroTop = heroEl.getBoundingClientRect().top + window.scrollY - navEl.offsetHeight;
+    window.scrollTo({top: heroTop, behavior: 'instant'});
     requestAnimationFrame(() => requestAnimationFrame(() => {
       cover.style.opacity = '0';      // fade the cover out
       setTimeout(() => cover.remove(), 600);
@@ -517,8 +533,10 @@ function tick() {
 }
 tick(); // kick off the animation loop
 
+} // end of !introSeen setup
 
-// â”€â”€ SECTION SNAP â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+// ── SECTION SNAP ──────────────────────────────────────────────────────────────
 // Uses IntersectionObserver to snap each main section into view when it's
 // more than 50% visible. isSnapping flag prevents multiple snaps firing at once.
 const sections = document.querySelectorAll('.hero, .episodes, .pull-quote, .subscribe');
