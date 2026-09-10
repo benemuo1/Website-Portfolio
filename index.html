@@ -10,7 +10,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" async onload="window.gsapReady=true;document.dispatchEvent(new Event('gsapLoaded'))"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:140px}
+html{scroll-behavior:smooth;scroll-padding-top:60px}
 body{background:#faf6f1;color:#2d2520;font-family:'Inter',sans-serif;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
@@ -20,8 +20,9 @@ img{display:block;max-width:100%}
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 2rem;height:52px;background:rgba(255,255,255,.85);backdrop-filter:blur(24px);border-bottom:1px solid rgba(0,0,0,.06);display:flex;align-items:center;justify-content:center;transition:transform .3s ease}
 .nav.nav-hidden{transform:translateY(-100%)}
 .nav-brand{font-size:1rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:#6a5a4a}
-.nav-contact{color: white; position:absolute;right:2rem;font-size:.65rem;background-color:#f9a85c;letter-spacing:.1em;padding:.3rem .8rem;border-radius:50px;border:1px solid rgba(0,0,0,.06)}
-.nav-ContactMessage{position:absolute;right:calc(2rem + 85px);font-family:'Inter',sans-serif;font-size:.65rem;color:#6a5a4a;letter-spacing:.05em;white-space:nowrap;transform:translateY(-1px) translateX(-10%);}
+.nav-right{position:absolute;right:2rem;top:50%;transform:translateY(-50%);display:flex;align-items:center;gap:.6rem}
+.nav-contact{color: white;font-size:.65rem;background-color:#f9a85c;letter-spacing:.1em;padding:.3rem .8rem;border-radius:50px;border:1px solid rgba(0,0,0,.06)}
+.nav-ContactMessage{font-family:'Inter',sans-serif;font-size:.65rem;color:#6a5a4a;letter-spacing:.05em;white-space:nowrap}
 .nav-contact button{background:none;border:none;color:inherit;font:inherit;cursor:pointer;padding:0}
 
 /* HERO */
@@ -76,7 +77,7 @@ img{display:block;max-width:100%}
 .filter-hint.hidden{opacity:0}
 
 /* GRID */
-.grid-section{max-width:1400px;margin:0 auto;padding:0 2rem 4rem}
+.grid-section{max-width:1400px;margin:0 auto;padding:0 2rem 4rem;scroll-margin-top:80px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.5rem}
 
 /* CARD */
@@ -119,6 +120,12 @@ img{display:block;max-width:100%}
 .contact-form input::placeholder,.contact-form textarea::placeholder{color:#c8b8a8}
 .contact-form button{padding:.8rem;background:#e85d26;color:#fff;border:none;border-radius:50px;font-family:inherit;font-size:.8rem;font-weight:600;letter-spacing:.05em;cursor:pointer;transition:background .3s}
 .contact-form button:hover{background:#d4511e}
+.contact-location{display:flex;align-items:center;justify-content:center;gap:.4rem;color:#a09080;font-size:.8rem;margin-top:2rem}
+.contact-location svg{width:14px;height:14px;fill:currentColor}
+.contact-social{display:flex;align-items:center;justify-content:center;gap:.8rem;margin-top:1rem}
+.contact-social a{width:38px;height:38px;border-radius:50%;border:1px solid rgba(0,0,0,.08);display:flex;align-items:center;justify-content:center;color:#6a5a4a;transition:all .3s}
+.contact-social a:hover{background:#e85d26;border-color:#e85d26;color:#fff}
+.contact-social svg{width:18px;height:18px}
 .contact-sent{display:none;color:#e85d26;font-size:.85rem;font-weight:600;margin-top:.5rem}
 .footer{padding:3rem 2rem;border-top:1px solid rgba(0,0,0,.06);text-align:center;background:#faf6f1}
 .footer p{font-size:.75rem;color:#c8b8a8}
@@ -135,9 +142,11 @@ img{display:block;max-width:100%}
 <body>
 
 <nav class="nav">
-<div class="nav-brand">Bianca Enemuo</div>
-<div class="nav-ContactMessage" id="nav-ContactMessage"> Want to learn more? </div>
+<a href="index.html" class="nav-brand">Bianca Enemuo</a>
+<div class="nav-right">
+<div class="nav-ContactMessage" id="nav-ContactMessage">Want to learn more?</div>
 <div class="nav-contact" id="nav-contact"><a href="#contact" style="color:inherit;text-decoration:none">Contact Me</a></div>
+</div>
 </nav>
 
 <section class="hero">
@@ -154,8 +163,8 @@ img{display:block;max-width:100%}
 <span class="line"><span class="line-inner pop">websites.</span></span>
 <span class="line"><span class="line-inner dim">I build experiences.</span></span>
 </h1>
-<p class="hero-tagline" id="heroTagline">Every template below is a real, working site — animated, responsive, and ready to become yours</p>
-<a href="#grid" class="hero-cta" id="heroCta" onclick="filterBy('All',true)">Browse all designs <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+<p class="hero-tagline" id="heroTagline">Every template here was built by me. Want to add to the showcase?</p>
+<a href="#grid" class="hero-cta" id="heroCta" onclick="event.preventDefault();filterBy('All',true);scrollToGrid();">Browse all designs <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
 
 </div>
 </div>
@@ -213,6 +222,14 @@ img{display:block;max-width:100%}
 <textarea rows="4" name="message" placeholder="Tell me about your project..." required></textarea>
 <button type="submit">Send Message</button>
 </form>
+<div class="contact-location">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+Based in Houston, TX
+</div>
+<div class="contact-social">
+<a href="https://www.instagram.com/bianca__2020/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg></a>
+<a href="https://www.linkedin.com/in/bianca-enemuo" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.114 20.452H3.558V9h3.556v11.452z"/></svg></a>
+</div>
 </section>
 
 <footer class="footer"><p>&copy; 2025 Bianca Enemuo. All rights reserved.</p></footer>
@@ -220,7 +237,13 @@ img{display:block;max-width:100%}
 <script>
 const T=[
 // GSAP SITES
+{name:'Madi\'s Podcast',type:'Book Podcast',cat:'Entertainment',path:'./madi-podcast/index.html',thumb:'./Screenshots/madi-podcast.png',tags:['Keyframes','Editorial'],premium:true},
+{name:'WILDER',type:'Wellness Retreat',cat:'Wellness',path:'./wellness-adventure-retreat/index.html',thumb:'./Screenshots/wellness-adventure-retreat.png',tags:['Parallax','Outdoor'],premium:false},
+{name:'BLVCK',type:'Streetwear',cat:'Fashion',path:'./blvck-streetwear/index.html',thumb:'./Screenshots/blvk.png',tags:['toggleClass','Clip-Path'],premium:true},
+{name:'KAEL',type:'Film Director',cat:'Portfolio',path:'./kael-director/index.html',thumb:'./Screenshots/kael.png',tags:['containerAnimation','Cinema'],premium:true},
+{name:'DOMAINE',type:'Estate Winery',cat:'Food & Drink',path:'./domaine-winery/index.html',thumb:'./Screenshots/domaine.png',tags:['SVG Draw','Luxury'],premium:true},
 {name:'VOXEL',type:'Creative Agency',cat:'Agency',path:'./voxel-agency/index.html',thumb:'./Screenshots/voxel.png',tags:['Dark','Custom Cursor'],premium:true},
+{name:'VOID',type:'Photography',cat:'Portfolio',path:'./void-photography/index.html',thumb:'./Screenshots/void.png',tags:['Snap Scroll','Cinematic'],premium:true},
 {name:'MONOLITH',type:'Architecture Studio',cat:'Architecture',path:'./monolith-architecture/index.html',thumb:'./Screenshots/monolith.png',tags:['Horizontal Scroll','Elegant'],premium:true},
 {name:'PULSE',type:'Analytics Platform',cat:'SaaS',path:'./pulse-saas/index.html',thumb:'./Screenshots/pulse.png',tags:['Dark','Glassmorphism'],premium:true},
 {name:'ATELIER',type:'Fashion House',cat:'Fashion',path:'./atelier-fashion/index.html',thumb:'./Screenshots/atelier.png',tags:['Luxury','Parallax'],premium:true},
@@ -228,7 +251,6 @@ const T=[
 {name:'CRUMB',type:'Artisan Bakery',cat:'Food & Drink',path:'./crumb-bakery/index.html',thumb:'./Screenshots/crumb.png',tags:['Flip','Warm'],premium:true},
 {name:'STERLING',type:'Law Firm',cat:'Professional',path:'./sterling-law/index.html',thumb:'./Screenshots/sterling.png',tags:['Typewriter','Corporate'],premium:true},
 {name:'FORGE',type:'Performance Gym',cat:'Fitness',path:'./forge-gym/index.html',thumb:'./Screenshots/forge.png',tags:['MotionPath','Bold'],premium:true},
-{name:'DOMAINE',type:'Estate Winery',cat:'Food & Drink',path:'./domaine-winery/index.html',thumb:'./Screenshots/domaine.png',tags:['SVG Draw','Luxury'],premium:true},
 {name:'AETHER',type:'Space Tourism',cat:'SaaS',path:'./aether-space/index.html',thumb:'./Screenshots/aether.jpg',tags:['Rocket','Sci-Fi'],premium:true},
 {name:'HAUS',type:'Interior Design',cat:'Architecture',path:'./haus-interiors/index.html',thumb:'./Screenshots/haus.png',tags:['Observer','Full-Screen'],premium:true},
 {name:'PAWSOME',type:'Pet Care',cat:'Services',path:'./pawsome-petcare/index.html',thumb:'./Screenshots/pawsome.png',tags:['Playful','Colorful'],premium:true},
@@ -245,15 +267,12 @@ const T=[
 {name:'THREAD',type:'Modern Fashion',cat:'Fashion',path:'./thread-fashion/index.html',thumb:'./Screenshots/thread.png',tags:['E-Commerce','Minimal'],premium:true},
 {name:'FORM',type:'Architecture & Design',cat:'Architecture',path:'./form-architecture/index.html',thumb:'./Screenshots/Form.png',tags:['Hybrid','Drop-In'],premium:true},
 {name:'Margot\'s Journal',type:'Personal Blog',cat:'Blog',path:'./margot-blog/index.html',thumb:'./Screenshots/margot.png',tags:['matchMedia','Handwritten'],premium:true},
-{name:'VOID',type:'Photography',cat:'Portfolio',path:'./void-photography/index.html',thumb:'./Screenshots/void.png',tags:['Snap Scroll','Cinematic'],premium:true},
 {name:'ZEPHYR',type:'Music Artist',cat:'Entertainment',path:'./zephyr-music/index.html',thumb:'./Screenshots/zephyr.png',tags:['quickTo','Neon'],premium:true},
 {name:'Sage & Spoon',type:'Recipe Blog',cat:'Food & Drink',path:'./sage-recipes/index.html',thumb:'./Screenshots/sage.png',tags:['Batch','Masonry'],premium:true},
 {name:'RAW',type:'Design Portfolio',cat:'Portfolio',path:'./raw-portfolio/index.html',thumb:'./Screenshots/raw.png',tags:['registerEffect','Brutalist'],premium:true},
 {name:'Sparks!',type:'Kids Learning',cat:'Education',path:'./sparks-kids/index.html',thumb:'./Screenshots/sparks.png',tags:['Random','Colorful'],premium:true},
-{name:'KAEL',type:'Film Director',cat:'Portfolio',path:'./kael-director/index.html',thumb:'./Screenshots/kael.png',tags:['containerAnimation','Cinema'],premium:true},
 {name:'RELIC',type:'Vintage Shop',cat:'E-Commerce',path:'./relic-vintage/index.html',thumb:'./Screenshots/relic.png',tags:['Skew','Sepia'],premium:true},
 {name:'Ink & Silence',type:'Poetry Journal',cat:'Blog',path:'./ink-poetry/index.html',thumb:'./Screenshots/ink and silence.png',tags:['distribute','Minimal'],premium:true},
-{name:'BLVCK',type:'Streetwear',cat:'Fashion',path:'./blvck-streetwear/index.html',thumb:'./Screenshots/blvk.png',tags:['toggleClass','Clip-Path'],premium:true},
 {name:'KILN',type:'Ceramics Studio',cat:'E-Commerce',path:'./kiln-ceramics/index.html',thumb:'./Screenshots/kiln.png',tags:['Blob Morph','Organic'],premium:true},
 {name:'Wanderlog',type:'Travel Journal',cat:'Travel',path:'./wanderlog-travel/index.html',thumb:'./Screenshots/wanderlog.png',tags:['Draggable','Polaroid'],premium:true},
 {name:'CANVAS',type:'Art Gallery',cat:'Portfolio',path:'./canvas-gallery/index.html',thumb:'./Screenshots/canvas.png',tags:['Progress','Horizontal'],premium:true},
@@ -268,6 +287,8 @@ const T=[
 {name:'HK Dark Botanical',type:'Massage Therapy',cat:'Wellness',path:'./HK therapy templates/template-10/single.html',thumb:'./Screenshots/hk template 10.png',tags:['Dark','Particles'],premium:false},
 {name:'HK Coastal Teal',type:'Massage Therapy',cat:'Wellness',path:'./HK therapy templates/template-13/single.html',thumb:'./Screenshots/hk template 13.png',tags:['Teal','Blur Anim'],premium:false},
 {name:'HK Bold Dark',type:'Massage Therapy',cat:'Wellness',path:'./HK therapy templates/template-19/single.html',thumb:'./Screenshots/hk template 19.png',tags:['Dark','Loader'],premium:false},
+// WELLNESS (HK EXAMPLES)
+{name:'HAVEN WELLNESS',type:'Massage & Yoga Studio',cat:'Wellness',path:'./wellness-tier-premium/index.html',thumb:'./Screenshots/wellness-tier-premium.png',tags:['ScrollTrigger','Calm'],premium:false},
 // PREMIUM NO GSAP
 {name:'IRON ELITE',type:'Performance Gym',cat:'Fitness',path:'./premium with no gsap/gym-iron-elite/single.html',thumb:'./Screenshots/iron elite.png',tags:['Red','Military'],premium:false},
 {name:'TITAN FORGE',type:'Training Ground',cat:'Fitness',path:'./premium with no gsap/gym-titan-forge/single.html',thumb:'./Screenshots/titan forge.png',tags:['Orange','Forge'],premium:false},
@@ -317,6 +338,30 @@ grid.appendChild(card);
 }
 
 // ========== FILTER (with history) ==========
+function smoothScrollTo(targetY,duration){
+const startY=window.scrollY;
+const diff=targetY-startY;
+let startTime=null;
+function step(timestamp){
+if(!startTime)startTime=timestamp;
+const elapsed=timestamp-startTime;
+const progress=Math.min(elapsed/duration,1);
+const ease=progress<.5?2*progress*progress:1-Math.pow(-2*progress+2,2)/2;
+window.scrollTo(0,startY+diff*ease);
+if(progress<1)requestAnimationFrame(step);
+}
+requestAnimationFrame(step);
+}
+
+function scrollToGrid(){
+requestAnimationFrame(()=>{
+const el=document.querySelector('.grid-section');
+if(!el)return;
+const targetY=el.getBoundingClientRect().top+window.scrollY-140;
+smoothScrollTo(targetY,900);
+});
+}
+
 function filterBy(cat,pushState){
 currentFilter=cat;
 document.querySelectorAll('.filter-btn').forEach(b=>b.classList.toggle('active',b.dataset.cat===cat));
@@ -341,6 +386,7 @@ viewerOpen=true;
 document.querySelector('.hero').style.display='none';
 document.querySelector('.filters').style.display='none';
 document.querySelector('.grid-section').style.display='none';
+document.querySelector('.contact-section').style.display='none';
 document.querySelector('.footer').style.display='none';
 document.querySelector('.nav').style.display='none';
 document.getElementById('viewer').classList.add('open');
@@ -412,6 +458,7 @@ document.querySelector('.nav').style.display='';
 document.querySelector('.hero').style.display='';
 document.querySelector('.filters').style.display='';
 document.querySelector('.grid-section').style.display='';
+document.querySelector('.contact-section').style.display='';
 document.querySelector('.footer').style.display='';
 if(pushState!==false){
 const url=currentFilter==='All'?location.pathname:location.pathname+'?cat='+encodeURIComponent(currentFilter);
@@ -432,6 +479,7 @@ document.querySelector('.nav').style.display='';
 document.querySelector('.hero').style.display='';
 document.querySelector('.filters').style.display='';
 document.querySelector('.grid-section').style.display='';
+document.querySelector('.contact-section').style.display='';
 document.querySelector('.footer').style.display='';
 }
 const cat=(state&&state.cat)||getUrlCat()||'All';

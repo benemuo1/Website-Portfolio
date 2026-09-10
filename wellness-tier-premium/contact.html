@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Haven Wellness</title>
+<meta name="description" content="Book an appointment or get in touch with Haven Wellness in Bellingham, WA.">
+<link rel="canonical" href="https://havenwellness.example.com/contact.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Contact — Haven Wellness">
+<meta property="og:description" content="Book an appointment or get in touch with Haven Wellness.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1519824145371-296894a0daa9?auto=format&fit=crop&w=1200&q=75">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header solid" id="siteHeader">
+  <div class="nav-wrap">
+    <a href="index.html" class="brand">Haven Wellness</a>
+    <nav class="main-nav" id="mainNav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="membership.html">Membership</a>
+      <a href="journal.html">Journal</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a href="contact.html" class="btn btn-primary">Book Now</a>
+    <button type="button" class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="page-hero">
+  <span class="hero-blob blob-2"></span>
+  <div class="container">
+    <span class="eyebrow">Get In Touch</span>
+    <h1>Let&rsquo;s find your <em>next</em> visit.</h1>
+    <p class="hero-lede-light">Fill out the form and we'll confirm within one business day.</p>
+  </div>
+</section>
+
+<!-- CONTACT GRID -->
+<section class="services">
+  <div class="container contact-grid">
+    <div class="reveal">
+      <h2 class="contact-title">Book an appointment</h2>
+      <form class="contact-form" data-demo-form>
+        <div class="form-row">
+          <div>
+            <label for="name">Full name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+        </div>
+        <div>
+          <label for="service">Interested in</label>
+          <select id="service" name="service">
+            <option>Massage Therapy</option>
+            <option>Yoga Classes</option>
+            <option>Guided Mindfulness</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+        <div>
+          <label for="notes">Notes (optional)</label>
+          <textarea id="notes" name="notes" placeholder="Preferred days, anything we should know..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Request Appointment</button>
+        <p class="form-note"></p>
+      </form>
+    </div>
+    <div class="reveal">
+      <div class="contact-info-card">
+        <h4>Visit</h4>
+        <p>118 Maple Street, Bellingham, WA</p>
+      </div>
+      <div class="contact-info-card">
+        <h4>Hours</h4>
+        <p>Mon–Fri · 9am–6pm</p>
+        <p>Sat · 10am–3pm</p>
+      </div>
+      <div class="contact-info-card">
+        <h4>Contact</h4>
+        <p>hello@havenwellness.co</p>
+        <p>(360) 555-0148</p>
+      </div>
+      <div class="newsletter-card">
+        <h4>Join the newsletter</h4>
+        <p>Studio news and journal notes, once a month. No spam.</p>
+        <form class="newsletter-form" id="newsletterForm">
+          <input type="email" placeholder="Your email" required aria-label="Email address">
+          <button type="submit">Join</button>
+        </form>
+        <span class="crm-badge"><span class="crm-dot"></span> Connected to Mailchimp</span>
+        <p class="form-note" id="newsletterNote"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <span class="brand">Haven Wellness</span>
+      <p>A neighborhood studio for massage, yoga, and mindfulness.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Studio</h5>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="membership.html">Membership</a>
+    </div>
+    <div class="footer-col">
+      <h5>More</h5>
+      <a href="journal.html">Journal</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h5>Visit</h5>
+      <p>118 Maple Street<br>Bellingham, WA</p>
+      <p>hello@havenwellness.co</p>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <p>&copy; 2026 Haven Wellness. All rights reserved.</p>
+    <p>Template example — not a real business.</p>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>
