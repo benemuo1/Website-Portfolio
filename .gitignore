@@ -2,3 +2,19 @@ node_modules/
 .DS_Store
 Thumbs.db
 *.log
+.vscode/
+
+# Not part of the deployed website — kept locally, not published
+effects-demo/
+agency-site/
+Screenshots/235793839.png
+Screenshots/Cube_rolls_and_transforms_logo_202608310130.mp4
+Screenshots/IMG_1484(1).PNG
+Screenshots/IMG_1485(1).PNG
+Screenshots/IMG_1486(1).PNG
+Screenshots/IMG_1487.PNG
+Screenshots/IMG_1488.PNG
+Screenshots/cube logo.png
+Screenshots/cube-logo-transparent.png
+Screenshots/cube-logo-upscaled-transparent.png
+Screenshots/cube_logo_upscaled.png

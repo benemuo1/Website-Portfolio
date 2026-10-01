@@ -3,11 +3,68 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Template Portfolio — Web Design Showcase</title>
+<title>Bianca Enemuo | Freelance Web Developer in Houston, TX</title>
+<meta name="description" content="Freelance web developer in Houston, TX, building animated, responsive websites with GSAP. Browse 50+ live templates and get in touch about your project.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#e85d26">
+<link rel="canonical" href="https://biancaenemuo.com/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Bianca Enemuo">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://biancaenemuo.com/">
+<meta property="og:title" content="Bianca Enemuo | Freelance Web Developer in Houston, TX">
+<meta property="og:description" content="Freelance web developer in Houston, TX, building animated, responsive websites with GSAP. Browse 50+ live templates and get in touch about your project.">
+<meta property="og:image" content="https://biancaenemuo.com/Screenshots/madi-podcast.png">
+<meta property="og:image:width" content="1918">
+<meta property="og:image:height" content="887">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Bianca Enemuo | Freelance Web Developer in Houston, TX">
+<meta name="twitter:description" content="Freelance web developer in Houston, TX, building animated, responsive websites with GSAP. Browse 50+ live templates and get in touch about your project.">
+<meta name="twitter:image" content="https://biancaenemuo.com/Screenshots/madi-podcast.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" async onload="window.gsapReady=true;document.dispatchEvent(new Event('gsapLoaded'))"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous" async onload="window.gsapReady=true;document.dispatchEvent(new Event('gsapLoaded'))"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://biancaenemuo.com/#person",
+      "name": "Bianca Enemuo",
+      "url": "https://biancaenemuo.com/",
+      "image": "https://biancaenemuo.com/Screenshots/madi-podcast.png",
+      "jobTitle": "Freelance Web Developer",
+      "email": "mailto:biancaenemuobusiness@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Houston",
+        "addressRegion": "TX",
+        "addressCountry": "US"
+      },
+      "sameAs": [
+        "https://www.instagram.com/bianca__2020/",
+        "https://www.linkedin.com/in/bianca-enemuo"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://biancaenemuo.com/#website",
+      "name": "Bianca Enemuo — Web Design Portfolio",
+      "url": "https://biancaenemuo.com/",
+      "inLanguage": "en-US",
+      "publisher": { "@id": "https://biancaenemuo.com/#person" }
+    }
+  ]
+}
+</script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:60px}
@@ -83,8 +140,8 @@ img{display:block;max-width:100%}
 /* CARD */
 .card{position:relative;border-radius:16px;overflow:hidden;border:1px solid rgba(0,0,0,.06);background:#fff;transition:all .4s;cursor:pointer;box-shadow:0 2px 12px rgba(0,0,0,.04)}
 .card:hover{border-color:rgba(234,124,50,.2);transform:translateY(-4px);box-shadow:0 20px 50px rgba(234,124,50,.08)}
-.card-img{position:relative;overflow:hidden;background:#f5ede4;clip-path:inset(0 0 0 0 round 16px 16px 0 0)}
-.card-img img{width:100%;display:block}
+.card-img{position:relative;overflow:hidden;background:#f5ede4;clip-path:inset(0 0 0 0 round 16px 16px 0 0);aspect-ratio:2.2}
+.card-img img{width:100%;height:100%;object-fit:cover;display:block}
 .card-img .overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(255,255,255,.5) 0%,transparent 10%);z-index:2;pointer-events:none}
 .card-body{padding:1.25rem;position:relative;z-index:3}
 .card-cat{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:#e85d26;font-weight:600;margin-bottom:.5rem}
@@ -102,7 +159,7 @@ img{display:block;max-width:100%}
 .viewer-left{display:flex;align-items:center;gap:1rem}
 .viewer-back{display:flex;align-items:center;gap:.4rem;background:none;border:1px solid rgba(234,124,50,.25);color:#e85d26;padding:.35rem .9rem;border-radius:8px;font-size:.7rem;cursor:pointer;font-family:inherit;transition:all .3s;letter-spacing:.03em}
 .viewer-back:hover{background:rgba(234,124,50,.12);border-color:rgba(234,124,50,.4);color:#c45a20}
-.viewer-info h3{font-family:'Space Grotesk',sans-serif;font-size:.85rem;font-weight:600;color:#2d2520}
+.viewer-info h2{font-family:'Space Grotesk',sans-serif;font-size:.85rem;font-weight:600;color:#2d2520}
 .viewer-info span{font-size:.65rem;color:#8a4a24}
 .viewer-nav{display:flex;align-items:center;gap:.5rem}
 .viewer-nav button{width:34px;height:34px;border-radius:50%;border:1px solid rgba(0,0,0,.1);background:none;color:#8a4a24;cursor:pointer;font-size:.8rem;display:flex;align-items:center;justify-content:center;transition:all .3s;font-family:inherit}
@@ -202,7 +259,7 @@ img{display:block;max-width:100%}
 <div class="viewer-topbar">
 <div class="viewer-left">
 <button class="viewer-back" onclick="closeViewer(true)">← Back</button>
-<div class="viewer-info"><h3 id="viewerTitle">Template</h3><span id="viewerType"></span></div>
+<div class="viewer-info"><h2 id="viewerTitle">Template</h2><span id="viewerType"></span></div>
 </div>
 <div class="viewer-nav">
 <button onclick="viewerPrev()" title="Previous">‹</button>
@@ -322,7 +379,7 @@ const card=document.createElement('div');
 card.className='card';
 card.setAttribute('data-cat',t.cat);
 card.innerHTML=`
-<div class="card-img"><img src="${t.thumb}" alt="${t.name}" loading="lazy"><div class="overlay"></div></div>
+<div class="card-img"><img src="${t.thumb}" alt="${t.name} — ${t.type} website template" loading="lazy"><div class="overlay"></div></div>
 <div class="card-body">
 <div class="card-cat">${t.cat}</div>
 <div class="card-title">${t.name}</div>
